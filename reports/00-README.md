@@ -14,6 +14,7 @@ engineering.
 | [`02-topics-project-management.md`](02-topics-project-management.md) | **3 project-management topics** as extended abstracts, each ready to grow into its own paper. | Proposals |
 | [`03-topics-technical.md`](03-topics-technical.md) | **5 technical topics** as extended abstracts. | Proposals |
 | [`04-topics-security.md`](04-topics-security.md) | **2 security topics** as extended abstracts. | Proposals |
+| [`05-measurements.md`](05-measurements.md) | **10 topics with measured results** — each with the metric, the recorded value(s), the source file, and what it demonstrates (plus suggested figures). | Data catalog |
 
 ## How these were produced
 
