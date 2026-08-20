@@ -1,0 +1,157 @@
+issue_key,issue_type,status,status_category,priority,urgency,reporter,assignee,created,resolved,lead_time_days,commits,first_commit,last_commit,has_code,summary
+STRP-1,Task,Done,Done,SHOULD,,Zerfas Razvan,Zerfas Razvan,2024-11-22,2024-11-28,6,0,,,0,Navigating back from the external pay page causes the fields on Stripe Credit card to no longer be displayed
+STRP-2,Task,Done,Done,SHOULD,,Daniel Paniagua,Mario Lorenz,2024-01-08,2024-01-16,8,0,,,0,Tag v2.0.1
+STRP-3,Task,Done,Done,SHOULD,,Daniel Paniagua,Zerfas Razvan,2024-10-11,2024-11-25,45,0,,,0,"0007731: If a credit card is declined, the payment page is only reloaded, but no error message appears"
+STRP-4,Task,Done,Done,SHOULD,,Daniel Paniagua,Mario Lorenz,2024-02-01,2024-02-09,8,0,,,0,TAG 2.0.2 und 1.0.2
+STRP-5,Task,Done,Done,SHOULD,,René Gust,Former user,2023-08-15,2023-08-18,2,0,,,0,Einrichtung Live Umgebung
+STRP-6,Task,To Do,To Do,SHOULD,,Mark Christoph Schütte,,2025-02-11,,,0,,,0,Verify fix for session bug for Stripe Module
+STRP-7,Task,Done,Done,Trivial,,Mario Lorenz,Mario Lorenz,2023-05-30,2023-08-29,91,0,,,0,MiddleWare
+STRP-8,Task,Done,Done,SHOULD,,Mario Lorenz,Former user,2024-04-18,2024-04-23,4,0,,,0,Stripe Pipeline is broken
+STRP-9,Task,Done,Done,SHOULD,,Daniel Paniagua,,2023-10-09,2023-11-23,45,0,,,0,Upgrade Stripe to Oxid 7
+STRP-10,Task,Done,Done,SHOULD,,Daniel Paniagua,Daniel Paniagua,2024-04-04,2024-04-10,5,0,,,0,Stripe new features request
+STRP-11,Task,Done,Done,SHOULD,,Daniel Paniagua,René Gust,2024-06-19,2024-06-25,5,0,,,0,[Ticket#125069] Stripe v1.0.3-rc.1 Release Test
+STRP-12,Task,To Do,To Do,SHOULD,,Daniel Paniagua,,2023-11-30,,,0,,,0,Create Automated tests for the Stripe Plugin
+STRP-13,Task,Done,Done,SHOULD,,Daniel Paniagua,Mario Lorenz,2023-11-14,2023-11-23,9,0,,,0,Tag for Oxid7 b-7.0.x
+STRP-14,Task,Done,Done,SHOULD,,Daniel Paniagua,,2023-12-13,2024-01-16,33,0,,,0,"Deleted Stripe customer is not updated in Oxid customer field, leads to fail payment"
+STRP-15,Task,Done,Done,SHOULD,,Daniel Paniagua,,2023-09-26,2023-09-27,0,0,,,0,We cant populate the Keys field with the connect button in our demo shop
+STRP-16,Task,Done,Done,SHOULD,,René Gust,René Gust,2023-08-15,2023-08-16,0,0,,,0,Live Account Stripe
+STRP-17,Task,To Do,To Do,SHOULD,,Daniel Paniagua,,2024-09-17,,,0,,,0,Integrate Amazon Pay
+STRP-18,Task,Done,Done,Major,,Daniel Paniagua,Daniel Paniagua,2023-11-28,2023-11-28,0,0,,,0,Date is set wrong in the CHANGELOG.
+STRP-19,Task,Done,Done,SHOULD,,Daniel Paniagua,Mario Lorenz,2024-05-23,2024-06-04,12,0,,,0,check mail about save and re-use
+STRP-20,Task,Done,Done,SHOULD,,Eike Spriess,Zerfas Razvan,2024-11-27,2024-12-02,5,0,,,0,Parameter overrides the settings in the Stripe account
+STRP-21,Task,To Do,To Do,SHOULD,,Mario Lorenz,,2025-03-14,,,0,,,0,[STRIPE-DEPLOY] Dismantling generation test machine (Docker build)
+STRP-22,Task,Done,Done,Trivial,,René Gust,Mario Lorenz,2023-06-16,2023-08-29,73,0,,,0,Logging
+STRP-23,Task,Done,Done,Trivial,,René Gust,Markus Michalski,2023-06-16,2023-08-22,66,0,,,0,Infrastruktur klären
+STRP-24,Task,To Do,To Do,SHOULD,,Peter,,2025-03-03,,,0,,,0,0007773: View and extend reservation of payment
+STRP-25,Task,Done,Done,SHOULD,,Daniel Paniagua,Christoph Albrecht,2023-08-31,2023-11-06,66,0,,,0,Create documentation for STRIPE
+STRP-26,Task,Done,Done,SHOULD,,Daniel Paniagua,Zerfas Razvan,2024-11-14,2024-11-15,1,0,,,0,"Credit card fields are not appearing atomatically, only when the user clicks on the payment method ""Name"""
+STRP-27,Task,To Do,To Do,SHOULD,,Daniel Paniagua,,2024-07-05,,,0,,,0,"0007693: Currently it is only possible to save credit card data, but not to delete it"
+STRP-28,Task,Done,Done,SHOULD,,Daniel Paniagua,Mario Lorenz,2024-06-25,2024-06-28,3,0,,,0,Stripe Credit Card error
+STRP-29,Task,Done,Done,SHOULD,,Daniel Paniagua,Zerfas Razvan,2024-07-05,2024-09-17,73,0,,,0,0007694: Webhook generation for multi-clients
+STRP-30,Task,To Do,To Do,SHOULD,,Daniel Paniagua,,2024-07-11,,,0,,,0,Apple Pay Integration
+STRP-31,Task,Done,Done,SHOULD,,Daniel Paniagua,Mario Lorenz,2024-04-10,2024-06-28,78,0,,,0,Save and Reuse
+STRP-32,Task,Done,Done,SHOULD,,Daniel Paniagua,Mario Lorenz,2024-07-05,2024-07-09,4,0,,,0,"0007692: When switching to the OXID summary page (OrderController), a message appears briefly: Card number incomplete"
+STRP-33,Task,To Do,To Do,SHOULD,,Daniel Paniagua,,2024-07-11,,,0,,,0,Google Pay Integration
+STRP-34,Task,To Do,To Do,SHOULD,,Daniel Paniagua,,2024-07-11,,,0,,,0,Paypal Integration
+STRP-35,Task,Done,Done,SHOULD,,Markus Michalski,Mario Lorenz,2023-12-05,2024-02-09,65,0,,,0,Enterprise Edition Compatibility OXID 6 und 7
+STRP-36,Task,Done,Done,Trivial,,René Gust,Former user,2023-07-07,2023-07-14,7,0,,,0,Test-Server konfigurieren
+STRP-37,Task,Done,Done,SHOULD,,Mario Lorenz,,2023-10-07,2023-11-06,29,0,,,0,Stripe Release v1.0.0
+STRP-38,Task,Done,Done,SHOULD,,Markus Michalski,Markus Michalski,2024-03-04,2024-03-13,9,0,,,0,Bestellungen aus Subshop werden nicht im Stripe Dashboard angezeigt
+STRP-39,Task,Done,Done,MUST,,Daniel Paniagua,Daniel Paniagua,2023-11-24,2024-01-08,44,0,,,0,"0007565: The ""Paid"" field is not set after the transaction is completed"
+STRP-40,Task,Done,Done,SHOULD,,Daniel Paniagua,Zerfas Razvan,2024-09-18,2024-09-20,1,0,,,0,0007722: Connect with stripe - Session does not match if shop_redirect_url is used in subshop
+STRP-41,Task,To Do,To Do,SHOULD,,Daniel Paniagua,,2024-08-27,,,0,,,0,"Add the ""Capture Later"" functionality"
+STRP-42,Sub-task,Done,Done,SHOULD,,Mario Lorenz,Daniel Paniagua,2023-10-07,2023-10-24,17,0,,,0,Publish on packagist.org
+STRP-43,Sub-task,Done,Done,SHOULD,,Mario Lorenz,Daniel Paniagua,2023-10-07,2023-10-25,17,0,,,0,Change Stripe Install-Doc in README.md
+STRP-44,Sub-task,Done,Done,SHOULD,,Mario Lorenz,Christoph Albrecht,2023-10-07,2023-11-06,29,0,,,0,Change Install-Doc in OXID-DOC
+STRP-45,Sub-task,Done,Done,SHOULD,,Mario Lorenz,,2023-10-07,2023-11-03,26,0,,,0,Tagg v1.0.0
+STRP-46,Sub-task,Done,Done,Trivial,,Mario Lorenz,,2023-05-30,2023-07-24,55,0,,,0,Initial Creation
+STRP-47,Sub-task,Done,Done,Trivial,,Mario Lorenz,,2023-05-30,2023-07-24,55,0,,,0,Installation together with IT-Support
+STRP-48,Sub-task,Done,Done,Trivial,,Mario Lorenz,,2023-05-30,2023-07-24,55,0,,,0,Integration into Stripe-Module
+STRP-49,Sub-task,Done,Done,Trivial,,Mario Lorenz,,2023-05-30,2023-07-24,55,0,,,0,Testing
+STRP-50,Story,To Do,To Do,SHOULD,Medium,Mario Lorenz,,2025-07-15,,,0,,,0,Fix Security Alerts StripeMiddleWare
+STRP-51,Task,Done,Done,SHOULD,Medium,Zerfas Razvan,,2025-09-24,,,0,,,0,Create repository
+STRP-52,Task,Done,Done,SHOULD,Medium,Zerfas Razvan,,2025-09-24,,,33,2025-10-21,2025-10-27,1,Develop Strategy
+STRP-53,Task,Done,Done,MUST,Medium,Daniil Tkachev,,2025-09-24,,,0,,,0,"[Oxid7.4] Setup dev envornment: setup.sh, CI/CD, phpunit, playwright"
+STRP-54,Story,Done,Done,SHOULD,Medium,Mario Lorenz,,2025-10-09,,,16,2025-11-06,2025-11-11,1,Create Basic-Module
+STRP-55,Story,Done,Done,SHOULD,Medium,Mario Lorenz,,2025-10-09,,,0,,,0,Final Architecure build as Visual via puml-files
+STRP-56,Task,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-10-23,,,0,,,0,[Component] Migrations - create tests and migrations needed for component layer
+STRP-57,Task,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-10-23,,,0,,,0,[Concept] ModuleSettings - Splitting component and provider-dependent config
+STRP-58,Task,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-10-23,,,8,2025-11-12,2025-11-27,1,[Component] Classic checkout frontend 
+STRP-59,Task,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-10-30,,,1,2025-10-30,2025-10-30,1,[Component] Event System
+STRP-60,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-10-31,,,32,2025-10-31,2025-11-03,1,[Component] Provider SDK integration
+STRP-61,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-10-31,,,0,,,0,[Component] Webhook Processing
+STRP-62,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-10-31,,,0,,,0,[Component]Module Configuration & Admin UI
+STRP-63,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-10-31,,,6,2025-11-04,2025-11-05,1,[Component] Capture & Refund Operations
+STRP-64,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-10-31,,,18,2025-11-04,2025-11-07,1,[Component] Security & Fraud Prevention
+STRP-65,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-11-07,,,0,,,0,[Stripe] Stripe SDK integration
+STRP-66,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-11-11,,,5,2025-11-07,2025-11-12,1,[Watch] Setup test-reinforcement module
+STRP-67,Story,Passed QA,In Progress,SHOULD,Medium,Mario Lorenz,,2025-11-18,,,28,2025-11-19,2025-12-02,1,[Stripe] PayLater
+STRP-68,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-11-20,,,0,,,0,[Stripe][Component] WebhooksController Implement
+STRP-69,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-11-20,,,12,2025-12-02,2025-12-03,1,"[Stripe] Admin Order page, capture, refund, order cancel, auth cancel etc."
+STRP-70,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2025-11-21,,,15,2025-12-03,2025-12-08,1,[Stripe] Delayed or manual charge in order
+STRP-71,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-12-02,,,2,2026-01-20,2026-01-20,1,[Stripe] Integrated FraudCheck Proof
+STRP-72,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-12-03,,,0,,,0,[Stripe] Fix contract flow
+STRP-73,Story,Done,Done,SHOULD,Medium,Mario Lorenz,,2025-12-05,,,0,,,0,[Stripe] TakeOver Important EMail-Article-Bugfix from PayPal
+STRP-74,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2025-12-09,,,2,2026-01-09,2026-01-13,1,[Stripe] Change flow and create not_finished order along with the contract
+STRP-75,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-12-09,,,8,2025-12-09,2025-12-16,1,[Component][Stripe] Do code review and cleanup
+STRP-76,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2025-12-16,,,1,2025-12-29,2025-12-29,1,[Stripe]Extract Watcher to external repo
+STRP-77,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2026-01-08,,,0,,,0,OE Namespace
+STRP-78,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2026-01-09,,,57,2026-01-14,2026-01-16,1,Extract Component
+STRP-79,Story,QA,In Progress,SHOULD,Medium,Daniil Tkachev,Zerfas Razvan,2026-01-20,,,2,2026-01-28,2026-07-02,1,Stock reservation handler
+STRP-80,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-01-28,,,0,,,0,[Stripe] Missing admin translations
+STRP-81,Story,Not a bug,Done,SHOULD,Medium,Daniil Tkachev,,2026-01-28,,,1,2026-01-29,2026-01-29,1,[Stripe] Cron-jobs and reconciliation e2e test
+STRP-82,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2026-01-29,,,0,,,0,[Stripe] Module activation API check issue
+STRP-83,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-01-29,,,0,,,0,[Stripe] Add ContractID to the stripe tab in order admin
+STRP-84,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2026-01-30,,,4,2026-02-02,2026-02-02,1,[Component] Add migrations run to the post-update-script in composer with php version and migration wrapper versions precheck
+STRP-85,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2026-02-04,,,5,2026-02-04,2026-02-04,1,[Component][Stripe] Code cleanup
+STRP-86,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-02-05,,,3,2026-02-05,2026-02-05,1,[Stripe] API Keys chaos
+STRP-87,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-02-05,,,3,2026-02-06,2026-02-09,1,[Stripe] Email sending to Stripe
+STRP-88,Story,To Do,To Do,SHOULD,Medium,Daniil Tkachev,,2026-02-05,,,20,2026-02-09,2026-02-19,1,[Component][Stripe] MCP + ACP development
+STRP-89,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2026-02-05,,,2,2026-02-06,2026-02-06,1,[Component]Idempotency feature implementation
+STRP-91,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2026-02-11,,,1,2026-02-25,2026-02-25,1,[Stripe] StripeSDK 18->19.3 ??
+STRP-92,Bug,Core Bug,Done,SHOULD,Medium,Szabo Botond,,2026-02-13,,,0,,,0,Star button resets cart item quantity to zero
+STRP-93,Bug,Core Bug,Done,SHOULD,Medium,Szabo Botond,,2026-02-16,,,0,,,0,UI breaks when entering extremely large product quantity
+STRP-95,Story,To Do,To Do,SHOULD,Medium,Daniil Tkachev,,2026-02-17,,,0,,,0,[MCP] Add-On Module for MCP Order Confirmation
+STRP-96,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-02-18,,,1,2026-03-25,2026-03-25,1,Inconsistent Naming for Stripe Payment Method Across Application
+STRP-97,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-02-18,,,0,,,0,Proper Error Message Is Not Displayed for Invalid Delivery Address
+STRP-98,Bug,Core Bug,Done,SHOULD,Medium,Zerfas Razvan,,2026-02-19,,,0,,,0,Checkout redirects to Maintenance Mode when Next is clicked without selecting a payment method
+STRP-99,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2026-02-19,,,7,2026-02-20,2026-02-23,1,"[Component][Stripe] Secutiry complience PCI, GDPR"
+STRP-100,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-02-19,,,2,2026-03-02,2026-03-02,1,Order not displayed correctly in Shop Back End after returning from payment page and completing checkout
+STRP-101,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-02-19,,,1,2026-02-26,2026-02-26,1,Refunded order displays inconsistent totals and status in Shop Back End
+STRP-102,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2026-02-23,,,2,2026-02-23,2026-02-24,1,[Stripe] PEN/CSRF/brute force abuse test
+STRP-103,Bug,Passed QA,In Progress,SHOULD,Medium,Szabo Botond,,2026-02-23,,,3,2026-02-27,2026-03-02,1,Grand total price differs between cart and checkout payment page
+STRP-104,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-03-03,,,0,,,0,Maintenance Mode Activated When Attempting to Place an Order with Invalid Shipping Address
+STRP-105,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-03-06,,,3,2026-03-23,2026-03-24,1,Coupon becomes invalid after returning from the external payment page
+STRP-106,Bug,Done,Done,SHOULD,Medium,Zerfas Razvan,,2026-03-06,,,0,,,0,Testing Board V 1.0 OS
+STRP-107,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2026-03-13,,,0,,,0,[Middleware] Stripe middleware may have wrong Key and App credentials
+STRP-108,Story,Done,Done,SHOULD,Medium,Mario Lorenz,,2026-03-13,,,0,,,0,[SECURITY] Create an audit and fix findings
+STRP-109,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-03-19,,,1,2026-03-24,2026-03-24,1,Maintenance mode is triggered when clicking Next if no shipping methods are available
+STRP-110,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2026-03-24,,,2,2026-03-25,2026-03-27,1,[Stripe] Test on b-7.5.x
+STRP-111,Story,Done,Done,SHOULD,Medium,Daniil Tkachev,,2026-03-25,,,1,2026-04-02,2026-04-02,1,[Stripe] Tests under load lraffic
+STRP-112,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-03-25,,,1,2026-03-25,2026-03-25,1,Payment fails during checkout
+STRP-113,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-03-30,,,0,,,0,Order cannot be captured from Shopbackend due to error
+STRP-114,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-01,,,1,2026-04-17,2026-04-17,1, Refund notification is shown after cancelling authorization
+STRP-115,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-01,,,0,,,0,Refund option is available for orders without captured payment
+STRP-116,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-01,,,1,2026-04-16,2026-04-16,1,Special characters in account details block payment completion
+STRP-118,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-04-07,,,4,2026-04-08,2026-04-16,1,Stripe button still on the checkout even if non-stripe payment
+STRP-119,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-04-07,,,0,,,0,Stripe and OPC installation decoupling issue
+STRP-120,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-08,,,2,2026-04-16,2026-05-04,1,Language switches from English to German on the Thank You page after payment
+STRP-121,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-08,,,1,2026-04-15,2026-04-15,1,Cancelled order remains as unfinished in Shop BE and is removed only after a new order is created
+STRP-122,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-04-13,,,1,2026-04-08,2026-04-08,1,Transaction history and partial capture/refund on Stripe Dash
+STRP-123,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-17,,,1,2026-05-07,2026-05-07,1,User can complete order without accepting Terms and Conditions
+STRP-124,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-17,,,1,2026-04-17,2026-04-17,1,Multiple clicks on buttons in Stripe tab cause Shop BE to become unresponsive
+STRP-125,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-17,,,0,,,0,Full amount is not prefilled in Capture and Refund amount field
+STRP-126,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-17,,,0,,,0,Confirmation dialog is missing when capturing or refunding a payment
+STRP-127,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-04-17,,,0,,,0,[Stripe Admin] Slow loading of the Stripe Tab if long history
+STRP-128,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-20,,,0,,,0,Stripe Transaction ID link opens “Transaction not found” page for Stripe transactions
+STRP-129,Task,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-20,,,4,2026-05-29,2026-06-05,1,Define Allowed Special Characters for Account / Billing & Shipping Address Fields
+STRP-130,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-21,,,0,,,0,Loading spinner may continue indefinitely when navigating between order pages or switching orders
+STRP-131,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-21,,,1,2026-05-18,2026-05-18,1,Partial refund is not possible after partial capture
+STRP-132,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-21,,,0,,,0,Loading spinner appears on non-Stripe tabs when switching from Stripe tab
+STRP-133,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-04-21,,,0,,,0,Stripe tab shows empty content for orders paid with non-Stripe payment methods
+STRP-134,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-04-21,,,3,2026-05-18,2026-05-19,1,Long time loading of stripe tab due to transaction retrieving from Stripe
+STRP-135,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-05-05,,,12,2026-05-08,2026-05-19,1,Payment component to become PaymentBase
+STRP-136,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-05-12,,,0,,,0,Refund section is visible for payments that have not been captured
+STRP-137,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-05-12,,,0,,,0,Refund amount is calculated as negative after capture
+STRP-138,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-05-12,,,2,2026-06-08,2026-06-22,1,Order now button stays disabled after returning from external payment page
+STRP-139,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-05-12,,,0,,,0,Terms and Conditions checkbox can be unchecked after clicking Order now
+STRP-140,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-05-12,,,0,,,0,Admin shop slows down when multiple refunds are triggered without waiting
+STRP-141,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-05-19,,,0,,,0,Cancelled orders do not update internal status to “Cancelled”
+STRP-142,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-05-19,,,1,2026-05-20,2026-05-20,1,Add dependency.yaml to Stripe
+STRP-143,Bug,Not a bug,Done,SHOULD,Medium,Zerfas Razvan,Zerfas Razvan,2026-05-20,,,0,,,0,Stripe payment method shows unavailable error in standard checkout
+STRP-144,Story,QA,In Progress,SHOULD,Medium,Daniil Tkachev,Zerfas Razvan,2026-05-21,,,1,2026-05-22,2026-05-22,1,Add webhook to stripe connect operatiion
+STRP-145,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-05-22,,,64,2026-05-27,2026-05-29,1,DevLog review
+STRP-146,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-05-26,,,2,2026-05-26,2026-05-26,1,"Hide API keys, add ""show key"" icons"
+STRP-147,Story,Release Candidate,In Progress,SHOULD,Medium,Daniil Tkachev,Daniil Tkachev,2026-06-05,,,11,2026-06-23,2026-06-26,1,Pre-Flight CheckUp
+STRP-148,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-06-05,,,0,,,0,A validation message should be displayed when user attempts to proceed with the payment without ticking terms and conditions
+STRP-149,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-06-10,,,1,2026-06-10,2026-06-10,1,Validation - non-ascii latin symbols issue
+STRP-150,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-06-10,,,0,,,0,Refund Amount Field Is Prefilled With More Than the Remaining Refundable Amount
+STRP-151,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-06-10,,,3,2026-06-17,2026-06-18,1,Selected Capture Mode Value Is Clipped in Configuration Dropdown
+STRP-152,Bug,Not a bug,Done,SHOULD,Medium,Zerfas Razvan,Zerfas Razvan,2026-06-10,,,0,,,0,Capture Amount Field Is Prefilled With Incorrect Remaining Amount After Partial Capture
+STRP-155,Bug,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-06-11,,,1,2026-06-16,2026-06-16,1,[Payment Base]Missing Translation Keys Displayed in OXID Payment Base Module Settings
+STRP-156,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-06-11,,,0,,,0,[Payment Base]Module's Settings tab content
+STRP-157,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-06-11,,,4,2026-06-15,2026-06-16,1,OXID checkout arythmetics issue
+STRP-158,Task,Passed QA,In Progress,SHOULD,Medium,Zerfas Razvan,,2026-06-16,,,0,,,0,Align Configuration Fields and Dropdowns
+STRP-159,Story,Passed QA,In Progress,SHOULD,Medium,Daniil Tkachev,,2026-06-19,,,1,2026-06-22,2026-06-22,1,Digital Börse to rename
+STRP-160,Story,QA,In Progress,SHOULD,Medium,Daniil Tkachev,Zerfas Razvan,2026-06-22,,,4,2026-06-22,2026-06-23,1,OXCore and PaymentBase Float Math
+STRP-161,Story,Release Candidate,In Progress,SHOULD,Medium,Daniil Tkachev,Daniil Tkachev,2026-06-22,,,1,2026-06-23,2026-06-23,1,PEN Test tests on pay1

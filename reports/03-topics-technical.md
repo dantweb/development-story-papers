@@ -6,9 +6,9 @@ Extended abstracts. Grounded in `architecture/` (the 5 curated design docs + 7
 PlantUML diagrams) and the `daniil_dev_log` corpus. Paths are relative to
 `docs/dev_logs/daniil_dev_log/` unless prefixed `architecture/`.
 
-**Git verification.** Named classes, method counts, and LOC deltas have been
-checked against the trees and diffs of both repositories (dataset:
-[`../data/`](../data/)). These abstracts fared **much better than the
+**Git and Jira verification.** Named classes, method counts, and LOC deltas have
+been checked against the trees and diffs of both repositories, and against the
+156-issue Jira export (dataset: [`../data/`](../data/)). These abstracts fared **much better than the
 project-management ones** — several figures match to the exact line. The one
 recurring correction is a pattern the abstracts share: *refactors that reduced
 per-unit size while increasing total volume are described only by their
@@ -295,7 +295,16 @@ PHP modules — the class of failure most under-documented and most expensive.
 > of the record. The abstract's claim that this is the *dominant* cost is
 > supported directionally; git cannot price it in hours.
 >
-> **Not measurable from git:** the five falsified CI iterations, the
+> **Jira adds one supporting datum for the framework-coupling thesis.** Three
+> bug issues carry the status **`Core Bug`** — defects triaged to the OXID
+> platform rather than the module (`STRP-98` maintenance-mode redirect,
+> `STRP-93` UI break on extreme quantity, `STRP-92` star button resetting cart
+> quantity) — alongside 3 closed `Not a bug`. Six of 40 bug reports (15%) were
+> reclassified away from the module. That the project needed a *dedicated status*
+> for "this is the framework's fault" is itself evidence for the topic's central
+> claim about framework coupling.
+>
+> **Not measurable from git or Jira:** the five falsified CI iterations, the
 > last-green→red windows (those come from CI/server timestamps, not commits), the
 > four backslash-escape forms, and the `generated/` interleaving mechanism. This
 > topic remains the most journal-dependent of the five, which is worth stating

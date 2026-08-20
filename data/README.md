@@ -1,10 +1,11 @@
-# Measured dataset — git commit record
+# Measured dataset — git commit record + Jira issue record
 
 Machine-extracted measurables for
 [`../reports/01-flagship-paper-ai-assisted-payment-module.md`](../reports/01-flagship-paper-ai-assisted-payment-module.md).
 Unlike the dev-log corpus (self-reported prose), every number here is derived
-from **git commit metadata** — timestamps, authorship trailers, and `numstat`
-diffs — and is reproducible from the two subject repositories.
+from machine records — **git commit metadata** (timestamps, authorship trailers,
+`numstat` diffs) and the **Jira issue export** — and is reproducible from the two
+subject repositories plus the export.
 
 ## Provenance
 
@@ -19,7 +20,7 @@ and legacy branches are included, not just the mainline. Timestamps are **author
 dates in the committer's local timezone** — this is what makes hour-of-day and
 session analysis meaningful.
 
-## Files
+## Files — git
 
 | File | Rows | Grain | Notes |
 |---|---|---|---|
@@ -31,6 +32,44 @@ session analysis meaningful.
 | `author_contribution.csv` | 7 | author | commits, LOC, AI-trailer share, active range |
 | `model_generations.csv` | 6 | model | commits and LOC per `Co-Authored-By` model string |
 | `hour_histogram.csv` | 24 | hour | commits by local hour of day |
+
+## Files — Jira
+
+Source: `jira-stripe.csv`, a 156-issue / 129-column export of the **STRP**
+project (OXID's Jira), covering **2023-05-30 → 2026-06-22**. This is a *third*
+corpus, independent of both the dev log and git, and it is the only one that
+records **who asked for the work**.
+
+| File | Rows | Grain | Notes |
+|---|---|---|---|
+| `jira-stripe.csv` | 156 | one issue | the raw export, as received (129 columns, most empty) |
+| `jira_issues.csv` | 156 | one issue | normalized + **joined to the commit record**: type, status, category, priority, urgency, reporter, assignee, created/resolved, lead time, commit count, first/last commit date, `has_code`, summary |
+| `jira_roles.csv` | 10 | one reporter | reporter × issue-type matrix — the role-separation result |
+
+### Jira-specific caveats — read before quoting
+
+- **No time tracking whatsoever.** `Original estimate`, `Remaining Estimate`,
+  `Time Spent`, `Work Ratio` and their `Σ` variants are **empty for all 156
+  issues**. The estimate-vs-actual study the papers hoped for is *not*
+  recoverable from this corpus either.
+- **Priority is degenerate and carries no signal:** 145/156 issues are
+  `SHOULD` (93%). `Urgency` is likewise `Medium` (107) or empty (49). Do not
+  build severity analyses on these fields.
+- **`Assignee` is 76% empty** (119/156). Assignment was not used as a workflow
+  mechanism; `Reporter` is the informative actor field.
+- **`Resolution` disagrees with `Status`.** Only 39 issues carry a `Resolution`,
+  but 82 are in status category `Done`. Prefer `status_category`; treat
+  `resolved` / `lead_time_days` as available for **n=39 only**.
+- **Jira sprints are NOT the dev log's sprints.** The `Sprint` field holds just
+  two values — `STRIPE Wallet` and `STRIPE All Tickets Sprint`. The journal's
+  "Sprint 1 → 133" numbering is a **private convention with no counterpart in
+  Jira**, so the two sprint notions must never be equated.
+- **Lead time is contaminated at the fast end.** Several 0-day resolutions are
+  2023-era `Task` issues that look bulk-closed, not delivered in a day.
+- **The export is a snapshot** taken 2026-08-20 and reflects status *as of then*,
+  not status at any earlier point; there is no status-transition history.
+- Account IDs, watcher lists, and issue `Description` bodies are **excluded**
+  from the derived CSVs; summaries are retained.
 
 ## Definitions and caveats
 
@@ -72,3 +111,8 @@ git -C <repo> log --all --date-order --numstat \
 ```
 Session grouping, category split, and trailer parsing are plain aggregations
 over that stream; test trajectories use `git grep -hoE 'function test[A-Za-z0-9_]*' <rev> -- tests/`.
+
+The Jira join keys on `STRP-\d+` occurrences in commit **subjects** (case
+insensitive, de-duplicated per commit). All **61** distinct references found in
+the commit record resolve to real issues in the export — there are **no
+fabricated ticket numbers**.

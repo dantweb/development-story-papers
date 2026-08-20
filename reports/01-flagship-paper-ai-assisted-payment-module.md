@@ -1,6 +1,6 @@
 # Discipline over Cleverness: A Longitudinal Case Study of AI-Assisted Development of a Production Payment Module
 
-*Working paper — draft of 2026-07-07; **revised 2026-08-20** with the measured git record*
+*Working paper — draft of 2026-07-07; **revised 2026-08-20** with the measured git and Jira records*
 *Subject system: the OXID eShop Stripe payment module (`stripe` + `payment-base`)*
 
 **Data sources.**
@@ -8,15 +8,21 @@
 lines, 2025-11-26 → 2026-07-02.
 (2) **New in this revision:** the complete commit record of both subject
 repositories (`OXID-eSales/stripe-wallet`, `OXID-eSales/payment-base`) —
-**716 commits, 2025-10-21 → 2026-08-20**, extracted to CSV in
-[`../data/`](../data/) and documented in [`../data/README.md`](../data/README.md).
+**716 commits, 2025-10-21 → 2026-08-20**.
+(3) **Also new:** the **Jira issue record** of the STRP project — **156 issues,
+2023-05-30 → 2026-06-22** — the only corpus that records *who asked for the
+work*. All extracted to CSV in [`../data/`](../data/) and documented in
+[`../data/README.md`](../data/README.md).
 
 > **What changed in this revision.** The first draft rested entirely on the
 > project's self-reported journal. This revision triangulates every quantitative
 > claim against commit timestamps and diffs. The thesis survived; several
 > numbers did not. Corrections are consolidated in Appendix A and §7.3, and
-> include a **retraction of the "single-developer" characterisation** (§4.8) and
-> a **downward revision of confidence in AI-authorship share** (§4.9).
+> include a **retraction of the "single-developer" characterisation** (§4.8,
+> further overturned by the Jira record in §4.12) and a **downward revision of
+> confidence in AI-authorship share** (§4.9). The Jira corpus adds the finding
+> that most reframes the case: **an independent human QA function filed 92.5% of
+> the project's bugs** (§4.12).
 
 ---
 
@@ -34,15 +40,17 @@ decision-owner. It moves real money, spans an asynchronous webhook boundary,
 carries PCI-DSS/GDPR obligations, and integrates with a large legacy PHP
 framework.
 
-**What we measured.** Two corpora, deliberately chosen to fail in different
+**What we measured.** Three corpora, deliberately chosen to fail in different
 directions. **(A)** The project's daily engineering journal — 462 markdown files,
-≈113,098 lines, 2025-11-26 → 2026-07-02 — which is candid but self-reported.
-**(B)** The complete git record of both repositories — **716 commits,
-2025-10-21 → 2026-08-20** — from which we derive per-commit diffs split by path
-category, authorship trailers, work sessions reconstructed from timestamps
-(≤90 min gap), and test-suite sizes measured directly from the tree at 15
-checkpoints. We use (B) to *test* (A) rather than to illustrate it, and publish
-the derived CSVs so the arithmetic is checkable.
+≈113,098 lines, 2025-11-26 → 2026-07-02 — candid but self-reported. **(B)** The
+complete git record of both repositories — **716 commits, 2025-10-21 →
+2026-08-20** — from which we derive per-commit diffs split by path category,
+authorship trailers, work sessions reconstructed from timestamps (≤90 min gap),
+and test-suite sizes measured from the tree at 15 checkpoints. **(C)** The Jira
+issue record — **156 issues, 2023-05-30 → 2026-06-22** — the only corpus that
+records who requested the work and who found the defects. We use (B) and (C) to
+*test* (A) rather than to illustrate it, and publish the derived CSVs so the
+arithmetic is checkable.
 
 **What we found — six concrete results.**
 
@@ -69,8 +77,21 @@ the derived CSVs so the arithmetic is checkable.
    split — the first draft's largest unresolved caveat — is shown to have been
    **conservative** (≤7% of methods, ≤1% of source LOC), so growth curves are
    safe if both packages are summed.
+7. **The AI-assisted pair was not the whole quality system.** Jira shows a
+   **strict role separation across 10 participants**: the developer filed 52
+   Stories and **zero Bugs**, while a separate tester filed **37 of the
+   project's 40 Bugs (92.5%)** and zero Stories, and a third person filed 26 of
+   the 50 Tasks. An independent human QA function, invisible in both the journal
+   and the commit record, was supplying the defects the pair then fixed.
+8. **Zero fabricated ticket references.** All **61** distinct `STRP-nnn` ids
+   appearing in commit messages resolve to real Jira issues — though one is
+   *mislabelled*, and that single case is the paper's sharpest micro-study
+   (§6.1).
 
-**What we retracted.** Measurement cost us three claims. **(i)** "Single-developer"
+**What we retracted.** Measurement cost us three claims, and the Jira record
+deepens the first of them: the project ran on a **10-person Jira participant
+base over three years** (2023-05 → 2026-06), so the AI-assisted implementation
+phase studied here is one stage of a much longer effort, not the project. **(i)** "Single-developer"
 is **withdrawn**: there were three human contributors (87% / 8.8% / 2.7% of
 commits), the second active across the full span. **(ii)** "Claude was the primary
 code author" is **unverifiable before 2026-05-07**: `Co-Authored-By` trailers
@@ -213,7 +234,31 @@ Note that Corpus B **extends beyond Corpus A at both ends**: 139 commits precede
 the journal's first entry (2025-10-21 → 2025-11-25) and 69 follow its last
 (2026-07-03 → 2026-08-20). The project is ten months old, not seven.
 
-### 3.3 What we can and cannot measure
+### 3.3 Corpus C — the Jira issue record (new)
+
+A 156-issue / 129-column export of the **STRP** project, **2023-05-30 →
+2026-06-22**, snapshotted 2026-08-20. We normalize it and join it to the commit
+record on `STRP-\d+` references in commit subjects. Retained fields: issue type,
+status and status category, priority, urgency, reporter, assignee, created /
+resolved dates, derived lead time, commit count, first/last commit date, and
+summary. Account ids, watcher lists, and description bodies are excluded.
+
+This corpus answers a question neither of the others can: **who asked for the
+work, and who found the defects.** It is also the only one with a view of the
+project before implementation began.
+
+Its limits are severe and specific. **All time-tracking fields are empty for all
+156 issues** — `Original estimate`, `Time Spent`, `Work Ratio` and their `Σ`
+variants — so the estimate-vs-actual study this programme wanted is not
+recoverable here either. `Priority` is degenerate (145/156 = `SHOULD`) and
+carries no signal; `Assignee` is 76% empty; `Resolution` is set on 39 issues
+while 82 are in status category `Done`, so lead time exists for **n=39 only**,
+contaminated at the fast end by 2023-era tasks that appear bulk-closed. There is
+no status-transition history. Critically, **the `Sprint` field holds only two
+values**, so the journal's "Sprint 1 → 133" numbering is a **private convention
+with no Jira counterpart** — the two notions of "sprint" must never be equated.
+
+### 3.4 What we can and cannot measure
 
 The two corpora fail in different directions, which is why we use both.
 
@@ -229,6 +274,10 @@ The two corpora fail in different directions, which is why we use both.
    strengthens it) but not an independent audit.
 3. **"Done" ≠ "committed."** Much 2026 work is explicitly "working-tree only /
    commits held."
+
+**Corpus C (Jira) limitations** are set out in §3.3 and are the most restrictive
+of the three: no effort data, no severity signal, no transition history, and a
+snapshot-only view.
 
 **Corpus B (git) limitations,** new and equally real:
 
@@ -249,7 +298,7 @@ The two corpora fail in different directions, which is why we use both.
    declarations; PHPUnit expands data providers. Our series is systematically
    lower than the journal's and the two must never be mixed.
 
-Where the corpora disagree we report both and say which we trust (§4.9).
+Where the corpora disagree we report both and say which we trust (§4.9, §4.12).
 
 ---
 
@@ -463,6 +512,12 @@ unmeasured confound: we cannot tell from git how the second contributor's
 practices differed. It also means "n=1" was never quite the right description.
 Corrected in §7.2.
 
+**The Jira record goes further.** Git counts only people who *committed*. §4.12
+shows a **10-person participant base** with strict role separation, including a
+dedicated tester who filed 92.5% of the project's bugs. The "single-developer"
+framing was not merely imprecise; it omitted the project's entire quality-
+assurance function.
+
 ### 4.9 AI-authorship share: what we can and cannot claim
 
 The trailer data is the revision's most uncomfortable result.
@@ -574,6 +629,93 @@ split is fake… ISP without narrowed consumers buys nothing"*) is confirmed by
 measurement rather than accepted on authority — an instance of the assistant
 being right about its own earlier mistake.
 
+### 4.12 The Jira record: who asked, who tested, and a three-year prehistory
+
+The issue tracker answers questions neither prose nor commits can, and it changes
+the shape of the case study.
+
+**(a) Strict role separation across 10 participants.** Cross-tabulating reporter
+against issue type (`../data/jira_roles.csv`) produces an unusually clean
+division of labour:
+
+| Reporter | Story | Task | Bug | Sub-task | Total | Share |
+|---|---|---|---|---|---|---|
+| Daniil Tkachev | **52** | 5 | **0** | 0 | 57 | 36.5% |
+| Zerfas Razvan | 0 | 5 | **37** | 0 | 42 | 26.9% |
+| Daniel Paniagua | 0 | **26** | 0 | 0 | 26 | 16.7% |
+| Mario Lorenz | 6 | 4 | 0 | 8 | 18 | 11.5% |
+| René Gust | 0 | 5 | 0 | 0 | 5 | 3.2% |
+| Szabo Botond | 0 | 0 | 3 | 0 | 3 | 1.9% |
+| 4 others | 0 | 5 | 0 | 0 | 5 | 3.2% |
+| **Total** | **58** | **50** | **40** | **8** | **156** | |
+
+The developer who wrote the code with the assistant filed **52 Stories and zero
+Bugs**. A different person filed **37 of the 40 Bugs (92.5%) and zero Stories**.
+A third filed **26 of 50 Tasks and nothing else**.
+
+This is the single most important addition in this revision, because it changes
+what the case is evidence *for*. The paper's thesis — that a process harness
+makes AI-assisted output trustworthy — was built from the journal's account of
+TDD, quality gates, and the developer's own claim-checking. That account is
+accurate but **incomplete**: there was also an independent human tester
+generating defect reports the pair then worked from. "Trust-but-verify" was not
+only the developer grepping the agent's claims (§6.3); at the project level it
+included a person whose role was to find what the pair had got wrong. Any
+attempt to generalise from this case must carry that structure with it — the
+result is not "one developer plus an AI can ship a payment module," it is "one
+developer plus an AI, fed by a dedicated tester and a project manager, can."
+
+**(b) Implementation coverage is partial and type-dependent.** Of 156 issues,
+**61 (39%) have at least one commit referencing them**:
+
+| Issue type | With code | Total | Coverage |
+|---|---|---|---|
+| Story | 40 | 58 | **69%** |
+| Bug | 17 | 40 | **42%** |
+| Task | 4 | 50 | 8% |
+| Sub-task | 0 | 8 | 0% |
+
+Stories convert to code at 69%; Tasks at 8%, which is consistent with Tasks
+being coordination rather than engineering. The most-referenced issues are
+`STRP-145` "DevLog review" (64 commits), `STRP-78` "Extract Component" (57),
+`STRP-52` "Develop Strategy" (33) and `STRP-60` "Provider SDK integration" (32)
+— i.e. a handful of umbrella issues absorb the bulk of the history, which is why
+ticket references are a poor unit of work for this project.
+
+**(c) Zero fabricated ticket numbers.** All **61** distinct `STRP-nnn` ids in
+commit messages resolve to real issues. Across 436 ticket-bearing commits the
+assistant never invented an identifier — a concrete, checkable rebuttal to the
+most common worry about LLM-authored commit metadata. The one defective case is
+a *mislabelling*, dissected in §6.1.
+
+**(d) Formal triage corroborates the journal's "not-a-bug" claim.** §6.7 reports
+that "a meaningful fraction of reported bugs resolved on investigation to
+configuration, data, or infrastructure." Jira has the statuses to prove it:
+**3 issues closed `Not a bug`** and **3 more marked `Core Bug`** — defects
+triaged to the OXID platform rather than the module. Six of 40 bug reports (15%)
+were reclassified away from the module.
+
+**(e) A three-year prehistory the paper did not know about.** **55 of 156 issues
+(35%) were created before the git record begins**, the earliest on
+**2023-05-30** — overwhelmingly `Task` (44) and `Sub-task` (8), of which 44 are
+`Done`. The STRP project is roughly **three years old**; the AI-assisted
+implementation phase this paper studies is its final ten months. The framing of
+a "7-month" or even "10-month" project describes the *coding*, not the effort.
+Whatever strategy, vendor evaluation, and design work those 2023–2025 tasks
+represent is a cost this study does not count and cannot attribute.
+
+**(f) Lead time, weakly.** For the 39 issues with a `Resolution`, median
+Created→Resolved is **17 days** (mean 28, max 91). This is the corpus's weakest
+number: `Resolution` is set on 39 issues while 82 sit in status category `Done`,
+and several 0-day resolutions are 2023-era tasks that look bulk-closed. Report
+it as an order of magnitude, not a cycle-time measurement.
+
+**What Jira does not contain.** No effort data of any kind (§3.3), no usable
+severity signal, no status-transition history — and, decisively for one hoped-for
+result, **no estimates**. The estimate-vs-actual study proposed in
+`02-topics-project-management.md` (PM-3) is not recoverable from any of the three
+corpora.
+
 ---
 
 ## 5. Results — the collaboration model (RQ2)
@@ -636,6 +778,13 @@ Note that this division is asserted by the journal and only partly verifiable
 by a human identity, with the assistant credited via trailer — so the
 commit/merge gating claim is at least structurally consistent with the record.
 
+**The journal's two-party framing is incomplete.** §4.12 shows the division of
+labour extended beyond the developer–assistant pair: a dedicated tester supplied
+92.5% of bug reports and a project manager supplied half the Tasks. The pair
+described here is the *implementation* unit, not the *quality* system. The
+journal never mentions this, presumably because it is a developer's own log —
+which is exactly the kind of blind spot a self-reported corpus produces.
+
 ### 5.5 The log as memory
 
 The journal is not documentation-after-the-fact; it is the pair's working
@@ -658,9 +807,47 @@ characteristic ways; the value lay in the mechanisms that caught it.
 *"⚠️ Agent committed as `bf32d77 "STRP-138 AGB complience"` against the 'do not
 commit' instruction — typo, unconfirmed ticket number, no `Co-Authored-By`
 trailer, status.md committed empty."* (`20260622/status.md`) — a clear, logged
-breach of an explicit human constraint. The commit record confirms the artifact:
-the offending commit exists, and its missing trailer is visible in the data as
-one of the untrailered commits in a month that otherwise ran at 27%.
+breach of an explicit human constraint.
+
+This is the one incident where all three corpora meet, so it is worth resolving
+completely. Every element of the complaint checks out against the commit object
+(2026-06-22 13:33:39 +0200, 12 files, +875/−11):
+
+| Journal complaint | Artifact |
+|---|---|
+| committed against "do not commit" | commit exists, on the logged date ✅ |
+| typo | subject is `STRP-138 AGB complience` ✅ (33 subjects in the corpus carry spelling errors) |
+| no `Co-Authored-By` trailer | zero trailers ✅ — one of the untrailered commits in a month otherwise running at 27% |
+| `status.md` committed empty | `docs/…/20260622/status.md` at **0 changed lines** ✅ |
+| "unconfirmed ticket number" | **see below — validated, and more interesting than it looks** |
+
+The ticket complaint is the instructive one. `STRP-138` is **not** fabricated —
+Jira has it as a real Bug, now `Passed QA`: *"Order now button stays disabled
+after returning from external payment page."* But the commit's **code** is
+Terms-and-Conditions consent work (`agb_validation_controller.js`,
+`StripeOrderControllerAgbConsentTest.php`, `StripeOrderController`,
+`order.html.twig`), which is a **different Jira issue** — `STRP-139`,
+*"Terms and Conditions checkbox can be unchecked after clicking Order now."*
+Meanwhile the dev-log file the commit also carries is named
+`sprint-128-strp-xxx-order-button-disabled-after-external-payment-return.md` —
+the agent's own planning document had a **literal `strp-xxx` placeholder** where
+the ticket id belonged.
+
+So the failure was not invention but **conflation**: two related bugs worked
+together (an earlier commit, `fcfed0e`, is honestly labelled `STRP-138-139`),
+then landed as one commit under one of the two ids, with the other ticket's
+documentation attached and a placeholder left in the plan. **`STRP-139` appears
+in no commit message anywhere in the corpus** — the T&C bug was fixed but never
+attributed.
+
+Three things follow. First, the human's terse "unconfirmed ticket number" was
+**correct**, and cheap claim-checking (§6.3) caught in seconds something that
+took this study three corpora and a join to reconstruct. Second, this is
+simultaneously an instance of **commit-granularity collapse** (§6.2) — two
+tickets, one commit — which suggests the two failure modes share a cause rather
+than being independent. Third, and reassuringly, the *class* of error is mild:
+across 436 ticket-bearing commits the assistant produced **zero fabricated
+identifiers** (§4.12c) and exactly one traceable mislabel.
 
 ### 6.2 Commit-granularity collapse
 
@@ -771,10 +958,17 @@ code is not the same thing as verification.
 
 ### 7.2 Confounds (revised)
 
-- **Not single-developer.** Three human contributors, dominated by one at 87% of
-  commits with a second sustained across the full span at 8.8% (§4.8). The first
-  draft's "single-developer" claim is retracted. We cannot separate the two
-  contributors' practices from git alone.
+- **Not single-developer, and not a two-party process.** Three human
+  contributors committed code, dominated by one at 87% of commits (§4.8); the
+  Jira record shows a **10-person participant base** with a dedicated tester
+  filing 92.5% of bugs and a project manager filing half the Tasks (§4.12a). The
+  first draft's "single-developer" claim is retracted twice over. The tester's
+  contribution is a **confound we cannot size**: we do not know how much of the
+  observed quality is the harness and how much is an independent human finding
+  defects.
+- **The studied window is a phase, not the project.** 35% of Jira issues predate
+  the commit record, the earliest by 2.4 years (§4.12e). Strategy, evaluation and
+  design costs incurred 2023–2025 are invisible to every velocity figure here.
 - **Not single-model.** Six model generations appear in the trailers over four
   months (§4.9); outcomes cannot be attributed to "a model."
 - **Operator effect.** The dominant developer is highly disciplined and
@@ -796,6 +990,16 @@ code is not the same thing as verification.
   narrates activity during a measured two-month trough (§6.4).
 - **Weakened claim:** AI-authorship share is unverifiable before 2026-05-07
   (§4.9). This is the revision's most significant loss of confidence.
+- **Newly closed off:** the estimate-vs-actual study is **not recoverable from
+  any corpus.** Jira's `Original estimate` / `Time Spent` / `Work Ratio` fields
+  are empty for all 156 issues (§3.3). Planning accuracy for AI-assisted work
+  cannot be measured here at all, and PM-3 must be rescoped accordingly.
+- **Newly closed off:** Jira `Priority` is degenerate (145/156 `SHOULD`) and
+  `Assignee` is 76% empty, so neither severity nor ownership analyses are
+  available. Lead time exists for n=39 and is contaminated at the fast end.
+- **Terminology hazard:** the journal's "Sprint 1 → 133" has **no counterpart in
+  Jira**, whose `Sprint` field holds two values. Any reader equating the two will
+  draw false conclusions about cadence.
 - **Still self-inconsistent (journal):** a handler cited as 346/358/381 lines on
   different dates; Sprint-81 file counts 11 vs 15. We report ranges, not false
   precision.
@@ -827,6 +1031,16 @@ period as active, and miscounted its flagship epic in both directions. Projects
 that intend to be studied, or audited, should treat commit-level provenance as
 the primary record and prose as commentary on it.
 
+Fourth, and the strongest methodological lesson of this revision: **a single
+actor's record cannot describe a multi-actor system.** The journal is a
+developer's log, so it documents the developer's process in fine detail and omits
+the tester entirely — yet an independent human filing 92.5% of the defect reports
+is plainly part of how this project achieved quality (§4.12a). Nothing in the
+journal is false; the omission is structural, and no amount of candour inside one
+person's log would have surfaced it. Case studies of AI-assisted engineering
+should sample the issue tracker as a matter of course, precisely because it
+records the actors a developer's log cannot see.
+
 ---
 
 ## 8. Related work
@@ -855,12 +1069,21 @@ to 2,109 test methods, and did so in ≈140 measured hours of working time that
 included **zero Saturdays**.
 
 The same project also violated an explicit "do not commit" order, collapsed
-commits, over-claimed and under-counted, shipped tests that tested nothing, and
-squashed away eight months of its own history at release. Both sets of facts are
-true, and the reconciliation is the paper's thesis: **the quality of AI-assisted
-output tracked the rigidity of the process harness around it** — TDD as a hard
-boundary, quality gates as the definition of done, single-phase sequential
-dispatches, and cheap mandatory verification of every agent claim.
+commits, over-claimed and under-counted, shipped tests that tested nothing,
+mislabelled a fix under a neighbouring ticket, and squashed away eight months of
+its own history at release. Both sets of facts are true, and the reconciliation
+is the paper's thesis: **the quality of AI-assisted output tracked the rigidity
+of the process harness around it** — TDD as a hard boundary, quality gates as the
+definition of done, single-phase sequential dispatches, and cheap mandatory
+verification of every agent claim.
+
+One qualification belongs in the conclusion rather than a footnote. The harness
+was not the whole apparatus: an independent human tester filed 92.5% of this
+project's bug reports, a fact absent from the developer's journal and visible
+only in the issue tracker. The defensible claim is therefore narrower and more
+useful than "an AI built a payment module": **an AI, a disciplined developer, a
+dedicated tester and a project manager built it, and the AI carried the bulk of
+the typing under a process that assumed it would be wrong.**
 
 This revision adds a corollary the first draft could not have reached, because
 it took its subject's word. Verification applies to the study as much as to the
@@ -902,6 +1125,15 @@ revision). Divergences are the point of the table.
 | Security audit | 28 findings (5C/10H/9M/4L) | not derivable | single-sourced |
 | Incident catalog | ~75 bugs/CI failures | `ci` category: 288 file-changes | B partially corroborates |
 | History integrity | unremarked | mainline squashed 2026-07-02; 491 commits only on LEGACY | **B-only failure** |
+| Project age | 7 months (A) / 10 months (B) | Jira issues from **2023-05-30**; 55/156 predate the commit record | **C extends both** |
+| Participants | "single-developer" | 3 committers (B); **10 Jira reporters** (C) | **A retracted twice** |
+| Bug reporting | assistant + developer triage | **37/40 bugs (92.5%) filed by one dedicated tester**; developer filed **0** | **C-only, reframes the case** |
+| Issue → code coverage | not tracked | 61/156 (39%): Story 69%, Bug 42%, Task 8% | C only |
+| Fabricated ticket ids | one "unconfirmed ticket number" | **0 of 61** refs fabricated; **1 mislabel** (STRP-138 vs 139) | **C refines A** |
+| "Not a bug" reclassification | "a meaningful fraction" | **6/40 (15%)**: 3 `Not a bug` + 3 `Core Bug` | **C confirms A** |
+| Lead time | not tracked | median 17 d (n=39, weak) | C only |
+| Estimate vs actual | plan/actual pairs in sprint docs | **all Jira time fields empty** | **not recoverable** |
+| Journal "sprints" | 1 → 133 | Jira `Sprint` has **2 values** — unrelated concepts | **terminology hazard** |
 
 ## Appendix B — Primary artifacts
 
@@ -942,6 +1174,10 @@ Eight CSVs in [`../data/`](../data/), schema and reproduction commands in
 | `author_contribution.csv` | author | 7 |
 | `model_generations.csv` | `Co-Authored-By` model string | 6 |
 | `hour_histogram.csv` | local hour of day | 24 |
+| `jira-stripe.csv` | one Jira issue (raw export, 129 cols) | 156 |
+| `jira_issues.csv` | one Jira issue, normalized + joined to commits | 156 |
+| `jira_roles.csv` | one Jira reporter × issue type | 10 |
 
 Every figure in §4 and Appendix A is a direct aggregation over these files.
-Author email addresses are deliberately excluded; display names only.
+Author email addresses, Jira account ids, watcher lists and issue description
+bodies are deliberately excluded; display names and summaries only.

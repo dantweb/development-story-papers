@@ -1,18 +1,24 @@
 # Research Reports
 
-*Created 2026-07-07 · **all five reports revised 2026-08-20** against the git record*
+*Created 2026-07-07 · **all five reports revised 2026-08-20** against the git and Jira records*
 
 A set of research write-ups mined from the Stripe payment module's development
 record, treated as a longitudinal, single-subject case study of AI-assisted
-software engineering. Two corpora:
+software engineering. Three corpora:
 
 - **Corpus A — the dev log:** 462 markdown files (≈113,098 lines) spanning
   **2025-11-26 → 2026-07-02**, plus the curated `docs/architecture/` corpus.
   Self-reported prose.
 - **Corpus B — the commit record:** 716 commits from
   `OXID-eSales/stripe-wallet` (586) and `OXID-eSales/payment-base` (130),
-  spanning **2025-10-21 → 2026-08-20**. Machine-extracted to
-  [`../data/`](../data/); schema in [`../data/README.md`](../data/README.md).
+  spanning **2025-10-21 → 2026-08-20**.
+- **Corpus C — the Jira issue record:** 156 issues of the STRP project,
+  spanning **2023-05-30 → 2026-06-22**, joined to Corpus B on `STRP-nnn`
+  references. The only corpus that records *who asked for the work and who found
+  the defects*.
+
+All machine-extracted to [`../data/`](../data/); schema and caveats in
+[`../data/README.md`](../data/README.md).
 
 ## Contents
 
@@ -39,6 +45,17 @@ software engineering. Two corpora:
 | **SEC-1** async money boundary | ✅ fixes present and fail-closed; scores and burn-down not verifiable |
 | **SEC-2** central validation | ✅ **7/7** guards confirmed by exact class name |
 
+### What Corpus C (Jira) changed
+
+| Finding | Effect |
+|---|---|
+| **A dedicated tester filed 37/40 bugs (92.5%)**; the developer filed **0** | Reframes the whole case — the AI pair was the implementation unit, not the quality system |
+| **10 Jira participants** across **3 years** (from 2023-05-30) | "Single-developer" retracted a second time; the studied window is the final 10 months of a longer project |
+| **All time-tracking fields empty** for all 156 issues | PM-3's estimate-vs-actual study is **impossible** from any corpus; withdraw it |
+| **0/61 ticket refs fabricated**, 1 mislabelled (STRP-138 vs 139) | Negative result on hallucinated commit metadata; new taxonomy entry: misattribution ≠ fabrication |
+| **6/40 bugs (15%) reclassified** — 3 `Not a bug`, 3 `Core Bug` | Confirms the journal's "meaningful fraction were not module defects" with a number |
+| Jira `Sprint` has **2 values** | The journal's "Sprint 1→133" is a private convention, **not** tracker sprints — a terminology hazard |
+
 ## How these were produced
 
 Corpus A was mined by five parallel extraction passes (timeline/metrics,
@@ -59,6 +76,11 @@ from the tree at 15 checkpoints.
 Sprint numbering is not globally monotonic, test counts are not comparable
 across the 2026-01-16 package split, and "done" ≠ "committed" for much of the
 mid-2026 work. It is also written by the party being studied.
+
+**Corpus C** is the most restrictive: no effort data at all, `Priority` degenerate
+(145/156 = `SHOULD`), `Assignee` 76% empty, `Resolution` on 39 issues while 82 are
+`Done`-category, no status-transition history, and a snapshot-only view taken
+2026-08-20.
 
 **Corpus B** fails differently. Sessions are a **lower bound** on effort — they
 cannot see thinking, reading, or debugging that produces no commit. `files_changed`

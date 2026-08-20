@@ -7,12 +7,15 @@ Extended abstracts. Each is a self-contained paper proposal grounded in the
 unless prefixed `architecture/`). Each states a research question, the evidence
 available, a method, expected findings, and the main threat to validity.
 
-**Git verification.** Every testable claim below has been checked against the
-716-commit record extracted to [`../data/`](../data/) (see
-[`../data/README.md`](../data/README.md)). Verification blocks report one of
-**confirmed** / **revised** / **refuted** / **not measurable from git**. One
-headline outcome: **PM-1's central mechanism does not survive measurement** —
-the decimal sub-sprint convention did not produce one commit per phase.
+**Git and Jira verification.** Every testable claim below has been checked
+against the 716-commit record **and** the 156-issue Jira export, both in
+[`../data/`](../data/) (see [`../data/README.md`](../data/README.md)).
+Verification blocks report one of **confirmed** / **revised** / **refuted** /
+**not measurable**. Three headline outcomes: **PM-1's central mechanism does not
+survive measurement**; **PM-2 gains a third actor it never accounted for** — a
+dedicated tester who filed 92.5% of the project's bugs; and **PM-3's
+estimate-vs-actual study is now known to be impossible** from any available
+corpus, because every Jira time-tracking field is empty.
 
 ---
 
@@ -91,8 +94,25 @@ rests on that anchor plus qualitative evidence elsewhere.
 > (436/716) carry a ticket reference. A decomposition convention cannot be
 > audited from a history whose messages don't distinguish the increments.
 >
-> **Still not measurable from git:** per-dispatch compute (the 15 dispatches,
-> 8–165 min) and first-pass gate success. Both remain single-sourced to `117`.
+> **A second granularity failure, now fully reconstructible.** Commit `bf32d77`
+> ("STRP-138 AGB complience") bundles work on **two distinct Jira bugs**:
+> `STRP-138` *"Order now button stays disabled…"* and `STRP-139` *"Terms and
+> Conditions checkbox can be unchecked…"*. The commit's code is the T&C fix
+> (= 139), its attached dev-log document is about the button bug (= 138), the
+> plan file inside carries a literal **`strp-xxx` placeholder**, and **`STRP-139`
+> appears in no commit message anywhere in the corpus**. An earlier commit
+> (`fcfed0e`) had honestly labelled the pair `STRP-138-139`.
+>
+> This is a cleaner specimen than the phases-2–4 collapse, because the boundary
+> that was violated is externally defined — two tickets, filed by two different
+> people — rather than an internal phase plan. It suggests the paper's unit of
+> analysis should be the **ticket**, not the sub-sprint: tickets exist
+> independently of the agent's plan, so collapse against them is unambiguous.
+>
+> **Still not measurable:** per-dispatch compute (the 15 dispatches, 8–165 min)
+> and first-pass gate success remain single-sourced to `117`. Jira adds nothing
+> here — its `Sprint` field holds only two values and has **no relation** to the
+> journal's Sprint 1→133 numbering.
 
 ---
 
@@ -161,6 +181,37 @@ not escaped ones.
 > denominator the abstract assumed was lost: of 716 commits, 149 carry a Claude
 > trailer, so agent-attributed commits are countable even though agent *claims*
 > are not. Error rates can be expressed per attributed commit.
+>
+> ### Jira verification — ⚠️ **the topic is missing an actor**
+>
+> **Zero fabricated ticket ids.** All **61** distinct `STRP-nnn` references in
+> commit messages resolve to real Jira issues, across 436 ticket-bearing commits.
+> For a taxonomy of AI self-report errors this is an important negative result:
+> the assistant did not hallucinate identifiers. The single defect is a
+> *mislabel* (STRP-138 vs STRP-139, dissected in PM-1's block above), which
+> belongs in the taxonomy as **misattribution**, distinct from fabrication and
+> from overclaiming.
+>
+> **The bigger correction.** This abstract frames verification as a *human
+> auditing the agent* — one person claim-checking with `grep` and `git show`. The
+> Jira record shows a second, institutional verification layer the abstract never
+> mentions: reporter × issue-type cross-tabulation gives **Zerfas Razvan 37 of the
+> project's 40 Bugs (92.5%) and zero Stories**, while **Daniil filed 52 Stories
+> and zero Bugs**. There was a dedicated tester whose function was to find what
+> the pair had shipped wrong.
+>
+> That changes the paper's cost/benefit argument materially. The 1–2 minute
+> claim-check is one control; an independent tester is another, far more
+> expensive one; and the abstract's proposed "defect-escape-rate reduction
+> attributable to verification" cannot be attributed to the cheap control alone.
+> Formal triage confirms the tester's output was substantive rather than noise:
+> only **6 of 40 bug reports (15%)** were reclassified away — 3 `Not a bug`,
+> 3 `Core Bug` (triaged to the OXID platform).
+>
+> **Recommended rescope:** two verification layers, priced separately — agent
+> claim-checking (cheap, immediate, catches misreporting) and independent human
+> testing (expensive, delayed, catches behaviour). The interesting question is
+> what each layer catches that the other cannot.
 
 ---
 
@@ -245,3 +296,32 @@ not rates. The paper must foreground this rather than paper over it.
 > 08:00–20:00** local time. A velocity paper that only reports throughput misses
 > the more interesting result: this cadence was achieved *without* schedule
 > compression.
+>
+> ### Jira verification — ❌ **the estimate-vs-actual study is impossible**
+>
+> This is the topic's decisive result, and it is negative. **Every
+> time-tracking field in the Jira export is empty for all 156 issues** —
+> `Original estimate`, `Remaining Estimate`, `Time Spent`, `Work Ratio`, and the
+> `Σ` roll-ups. The project never used Jira time tracking. Combined with the
+> journal's 3 clock-stamped days, **planning accuracy for this project cannot be
+> measured from any available corpus.** The proposal's part (a) — "a small but
+> real estimate-vs-actual signal" — should be **withdrawn**, leaving part (b),
+> the methods note, as the whole contribution. That is a better-scoped paper and
+> the git data (M-11…M-14) now furnishes it well.
+>
+> **A terminology hazard this topic must foreground.** Jira's `Sprint` field
+> holds exactly **two values** (`STRIPE Wallet`, `STRIPE All Tickets Sprint`).
+> The journal's "Sprint 1 → 133" is therefore a **private convention with no
+> tracker counterpart** — not a sprint in any Scrum sense, but a
+> self-assigned work-unit id. Any cadence claim that reads them as sprints is
+> wrong, and the methods note should say so explicitly.
+>
+> **What Jira does add.** (i) **Lead time** for the 39 resolved issues: median
+> **17 days**, mean 28, max 91 — weak (only 39 of 82 `Done`-category issues carry
+> a `Resolution`, and several 0-day closes are 2023-era bulk cleanups), but the
+> only cycle-time signal in existence for this project. (ii) **A three-year
+> prehistory**: 55/156 issues (35%) predate the commit record, the earliest
+> **2023-05-30**, mostly Tasks and Sub-tasks, 44 of them `Done`. The project is
+> ~3 years old and the AI-assisted phase is its last ten months, so *every*
+> velocity figure in this programme describes a phase, not a project.
+> (iii) **`Priority` is unusable**: 145/156 = `SHOULD`; `Assignee` is 76% empty.

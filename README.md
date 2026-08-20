@@ -5,18 +5,22 @@ AI-assisted software project: the **OXID eShop Stripe payment module**, built
 with Claude (Claude Code) as a primary code author and a human engineer as
 orchestrator, reviewer, and decision-owner.
 
-Two corpora underpin the work:
+Three corpora underpin the work:
 
 - **The dev log** — a daily engineering journal of **462 markdown files
   (≈113,098 lines), 2025-11-26 → 2026-07-02**, plus a curated architecture
   corpus.
 - **The commit record** *(added 2026-08-20)* — **716 commits across both
-  subject repositories, 2025-10-21 → 2026-08-20**, extracted to CSV under
-  [`data/`](data/) with timestamps, diffs, and authorship trailers.
+  subject repositories, 2025-10-21 → 2026-08-20**, with timestamps, diffs, and
+  authorship trailers.
+- **The Jira issue record** *(added 2026-08-20)* — **156 issues of the STRP
+  project, 2023-05-30 → 2026-06-22**, joined to the commits on `STRP-nnn`
+  references. The only corpus that records who asked for the work and who found
+  the defects.
 
-Together they form a longitudinal, single-subject case study of AI-assisted
-software engineering in which the prose record and the machine record are used
-to check each other.
+All extracted to CSV under [`data/`](data/). Together they form a longitudinal,
+single-subject case study of AI-assisted software engineering in which the prose
+record and the machine records are used to check each other.
 
 ## Contents
 
@@ -28,9 +32,23 @@ to check each other.
 | [`reports/03-topics-technical.md`](reports/03-topics-technical.md) | 5 technical topics (extended abstracts). |
 | [`reports/04-topics-security.md`](reports/04-topics-security.md) | 2 security topics (extended abstracts). |
 | [`reports/05-measurements.md`](reports/05-measurements.md) | 10 topics with measured results, sourced to dev-log files. |
-| [`data/`](data/) | 8 CSVs of git-derived measurables + [`data/README.md`](data/README.md) schema and reproduction commands. |
+| [`data/`](data/) | 11 files of git- and Jira-derived measurables + [`data/README.md`](data/README.md) schema and reproduction commands. |
 
 ## Headline findings
+
+Measured from the Jira record:
+
+- **A dedicated human tester filed 37 of the project's 40 bugs (92.5%) and zero
+  stories; the developer filed 52 stories and zero bugs.** The AI-assisted pair
+  was the *implementation* unit, not the *quality* system — a structure invisible
+  in both the journal and the commit history.
+- **10 participants across 3 years** (issues from 2023-05-30). The AI-assisted
+  phase studied here is the project's final ten months, not the project.
+- **Zero of 61 ticket references were fabricated** across 436 ticket-bearing
+  commits — one was misattributed (STRP-138 vs STRP-139). Misattribution and
+  fabrication are different failure modes.
+- **All Jira time-tracking fields are empty**, so planning accuracy for
+  AI-assisted work is unmeasurable from any corpus here.
 
 Measured from the commit record:
 
@@ -53,8 +71,9 @@ Measured from the commit record:
 
 What the commit record took away:
 
-- **"Single-developer" is retracted** — three human contributors (87% / 8.8% /
-  2.7% of commits), the second active across the entire span.
+- **"Single-developer" is retracted twice** — three human contributors committed
+  code (87% / 8.8% / 2.7%), inside a ten-person project with a dedicated QA
+  function.
 - **AI-authorship share is unverifiable before 2026-05-07.** `Co-Authored-By:
   Claude*` trailers cover 149/716 commits (20.8%), reaching 86% by August 2026
   but effectively absent before May. The journal's bylines remain evidence, but
@@ -72,10 +91,13 @@ The developer's one-line thesis, recorded in the log: **"Discipline > cleverness
 
 ## Status & caveats
 
-Draft working papers. The flagship paper is triangulated against git; the four
-topic files remain journal-sourced proposals and carry the original caveats —
-the dev log is a **sampled, not continuous** record with real effort timestamps
-in only three files. Session-derived hours are a **lower bound** (they cannot
-see non-committing work), and `Co-Authored-By` trailers measure *attribution
-practice*, not authorship. Each report restates the caveats bearing on its own
-claims.
+Draft working papers. All five reports are now triangulated against git and
+Jira; each topic carries a verification block labelled confirmed / revised /
+refuted / not measurable. Caveats that bear on every claim: the dev log is a
+**sampled, not continuous** record with real effort timestamps in only three
+files; session-derived hours are a **lower bound** (they cannot see
+non-committing work); `Co-Authored-By` trailers measure *attribution practice*,
+not authorship, and are absent before May 2026; and the Jira export has **no
+effort data**, a degenerate `Priority` field, and no status-transition history.
+One terminology hazard: the journal's "Sprint 1 → 133" is a private convention
+with **no relation** to Jira sprints.

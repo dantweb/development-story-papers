@@ -1,6 +1,7 @@
-# Measured Results (17)
+# Measured Results (22)
 
-*Revised 2026-08-20 — journal-reported values now sit beside git-measured ones.*
+*Revised 2026-08-20 — journal-reported values now sit beside git- and
+Jira-measured ones.*
 
 Topics where the evidence supports **hard, quantitative results** — not just
 narrative. Each entry states the metric, the value(s) recorded, the source, and
@@ -11,8 +12,12 @@ Two provenance classes, kept strictly apart:
 - **`[A]` journal-reported** — from the dev-log corpus. Paths relative to
   `docs/dev_logs/daniil_dev_log/` unless prefixed `architecture/`.
 - **`[B]` git-measured** — derived from the 716-commit record of both
-  repositories, 2025-10-21 → 2026-08-20. Dataset: [`../data/`](../data/);
-  schema and caveats: [`../data/README.md`](../data/README.md).
+  repositories, 2025-10-21 → 2026-08-20.
+- **`[C]` Jira-measured** — derived from the 156-issue STRP export,
+  2023-05-30 → 2026-06-22, joined to the commit record on `STRP-nnn` refs.
+
+Dataset: [`../data/`](../data/); schema and caveats:
+[`../data/README.md`](../data/README.md).
 
 > **Read the caveats first.**
 > **`[A]`** is a *sampled, not continuous* record: real HH:MM effort timestamps
@@ -24,8 +29,13 @@ Two provenance classes, kept strictly apart:
 > unique files; test-method counts are **not** PHPUnit test counts; a **mainline
 > squash on 2026-07-02** re-added 562 files and left pre-July provenance only on
 > `b-7.4.x-LEGACY`; and `Co-Authored-By` trailers measure *attribution practice*,
-> not authorship. Every measurement below is annotated with the limit that bears
-> on it.
+> not authorship.
+> **`[C]`** is the most restrictive of the three: **all time-tracking fields are
+> empty for all 156 issues**, `Priority` is degenerate (145/156 = `SHOULD`),
+> `Assignee` is 76% empty, `Resolution` is set on 39 issues while 82 are
+> `Done`-category, there is no status-transition history, and the `Sprint` field
+> holds two values — so **Jira sprints are unrelated to the journal's Sprint
+> 1→133**. Every measurement below is annotated with the limit that bears on it.
 
 ---
 
@@ -107,6 +117,12 @@ gate-green rate itself is **not derivable** from git.
 cross-repo auth**; deepest cluster **contract state-machine × OXID
 `finalizeOrder`**; **~10** rated hard/multi-iteration.
 **Source:** incident-forensics pass.
+**`[C]` Formal bug record:** **40 `Bug`-type issues** (of 156), plus 3 issues
+closed **`Not a bug`** and 3 marked **`Core Bug`** (triaged to the OXID platform,
+not the module) — **6/40 = 15% reclassified away**. So `[A]`'s ~75 is a
+**superset**: it counts CI failures and regressions that never became tickets.
+The journal's claim that "a meaningful fraction of reported bugs resolved to
+configuration, data, or infrastructure" is **confirmed with a number**.
 **`[B]` Directional support:** `ci`-path churn totals **288 file-changes
 (+10,074 / −1,894)** and `ci:`-prefixed commit subjects recur across the whole
 ten months — the same cross-repo composer-resolution problem is still being
@@ -333,6 +349,86 @@ its own paper.
 conventions of PM-1 from history; the docs figure includes the dev log itself,
 so it measures the *research corpus* as much as the deliverable.
 
+## M-18 — Role separation: who asks, who tests `[C]`
+
+**Metric:** reporter × issue-type cross-tabulation.
+**Values:** **Daniil Tkachev 52 Stories / 5 Tasks / 0 Bugs** (57 total, 36.5%);
+**Zerfas Razvan 37 Bugs / 5 Tasks / 0 Stories** (42, 26.9%) — **92.5% of all 40
+bugs**; **Daniel Paniagua 26 Tasks and nothing else** (16.7%); Mario Lorenz 6
+Stories / 4 Tasks / 8 Sub-tasks (11.5%); **10 reporters** in total.
+**Source:** `../data/jira_roles.csv`.
+**Shows:** the most consequential single result from the Jira corpus. The
+developer who wrote the code with the assistant filed **zero bug reports**; an
+independent tester supplied nearly all of them. The AI-assisted pair was the
+*implementation* unit, not the *quality* system — a structure invisible in both
+the journal (a developer's log) and git (which sees only committers).
+**Caveat:** roles are inferred from reporting behaviour, not from job titles, and
+the export has no work-log to show effort per role.
+
+## M-19 — Issue → code coverage `[B]`+`[C]`
+
+**Metric:** share of Jira issues with at least one commit referencing them.
+**Values:** **61/156 (39%)** overall — **Story 40/58 (69%)**, **Bug 17/40
+(42%)**, Task 4/50 (8%), Sub-task 0/8. Most-referenced issues: `STRP-145`
+"DevLog review" (64 commits), `STRP-78` "Extract Component" (57), `STRP-52`
+"Develop Strategy" (33), `STRP-60` "Provider SDK integration" (32).
+**Source:** `../data/jira_issues.csv`.
+**Shows:** Stories convert to code at 69% while Tasks sit at 8% — Tasks are
+coordination, not engineering. Also shows why **tickets are a poor unit of work
+here**: a handful of umbrella issues absorb most of the history.
+**Caveat:** join is on `STRP-nnn` in commit *subjects* only; work committed
+without a reference (39% of commits carry none) is invisible to this metric, so
+coverage is a **lower bound**.
+
+## M-20 — Ticket-reference integrity `[B]`+`[C]`
+
+**Metric:** fabricated vs mislabelled ticket references in commit messages.
+**Values:** **61/61 distinct refs resolve to real Jira issues — zero
+fabricated**, across **436 ticket-bearing commits**. **One mislabel:** `bf32d77`
+"STRP-138 AGB complience" contains the `STRP-139` T&C fix, carries `STRP-138`'s
+documentation, and has a literal **`strp-xxx` placeholder** in its plan file;
+**`STRP-139` appears in no commit message in the corpus.**
+**Shows:** a concrete negative result on the most common worry about LLM-authored
+commit metadata — no hallucinated identifiers — and a precise taxonomy split:
+**misattribution ≠ fabrication**. The mislabel is simultaneously an instance of
+granularity collapse against an *externally defined* boundary (two tickets filed
+by two different people), which makes it a cleaner specimen than any internal
+phase plan.
+**Caveat:** the export is a snapshot; a ref could resolve to an issue created
+*after* the commit. Spot-checking found no such case, but it is not excluded
+systematically.
+
+## M-21 — Project age and prehistory `[C]`
+
+**Metric:** issue creation dates relative to the commit record.
+**Values:** Jira spans **2023-05-30 → 2026-06-22**. **55/156 issues (35%) predate
+the commit record's start (2025-10-21)** — 44 `Task`, 8 `Sub-task`, 3 `Story`, of
+which **44 are `Done`**. Creation peaks in 2026-04 (20), 2026-02 (17), 2026-06
+(13), 2026-05 (12).
+**Shows:** the STRP project is roughly **three years old**; the AI-assisted
+implementation phase this programme studies is its **final ten months**. Every
+velocity, effort and output figure here describes a *phase*, not a project, and
+the 2023–2025 strategy/evaluation/design effort is a cost none of the corpora
+price.
+**Caveat:** old `Done` tasks may have been bulk-closed during a tracker cleanup
+rather than delivered; creation dates are reliable, closure dates are not.
+
+## M-22 — Lead time, and what Jira cannot measure `[C]`
+
+**Metric:** Created → Resolved interval.
+**Values:** **n=39, median 17 days**, mean 28, min 0, max 91.
+**Shows:** the only cycle-time signal in existence for this project.
+**Caveat:** the weakest number in the catalogue, and reported mainly to document
+its weakness. `Resolution` is set on 39 issues while **82** are in status
+category `Done`; several 0-day closes are 2023-era tasks. Treat as an order of
+magnitude.
+**What is absent, and closes off a planned study:** `Original estimate`,
+`Remaining Estimate`, `Time Spent`, `Work Ratio` and their `Σ` variants are
+**empty for all 156 issues**. Combined with the journal's 3 clock-stamped days,
+**planning accuracy for AI-assisted work cannot be measured from any corpus in
+this programme** — PM-3's estimate-vs-actual proposal must be withdrawn and
+rescoped to its methods contribution.
+
 ---
 
 ### Suggested figures
@@ -349,6 +445,11 @@ so it measures the *research corpus* as much as the deliverable.
    as *convention adopted*, not *AI introduced*.
 7. Compute-per-dispatch histogram (M-3) and security severity pie + burn-down
    (M-8) — both `[A]`-only; label them as self-reported in the caption.
+8. **Reporter × issue-type matrix** (M-18) — the zero cells are the figure:
+   developer/Bugs and tester/Stories are both empty.
+9. **Issue→code coverage by type** (M-19) — Story 69% vs Task 8%.
+10. **Issue creation timeline** (M-21) with the commit-record window shaded, so
+    the three-year prehistory is visible at a glance.
 
 ### One-line takeaway for each cluster
 
@@ -357,6 +458,10 @@ improved measurably while volume rose, though the refactors grew total code as
 they shrank per-unit complexity (M-4/9/10); the hard time went to *environment
 not logic* and left the least trace (M-5/6/17); effort is now bounded
 project-wide rather than sampled from 3 days (M-7→M-11); the work was done in
-ordinary hours by three people, not one (M-14/15); and the project's own
-attribution practice cannot support its authorship claim before May 2026 (M-16)
-— the honest strength and the honest limit of this dataset, side by side.
+ordinary hours by three committers, not one (M-14/15), inside a **10-person
+project where a dedicated tester filed 92.5% of the bugs** (M-18); ticket
+metadata was **never fabricated but once misattributed** (M-20); the studied
+window is the **final ten months of a three-year project** (M-21); the project's
+own attribution practice cannot support its authorship claim before May 2026
+(M-16); and planning accuracy is **unmeasurable from any corpus** (M-22) — the
+honest strength and the honest limit of this dataset, side by side.
