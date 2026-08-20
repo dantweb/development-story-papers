@@ -1,150 +1,223 @@
-# Research Reports
+# Research Reports — index
 
-*Created 2026-07-07 · **all five reports revised 2026-08-20** against the git and Jira records*
+*Created 2026-07-07 · **all seven reports revised 2026-08-20** against the git and
+Jira records*
 
-A set of research write-ups mined from the Stripe payment module's development
+Research write-ups mined from the OXID eShop Stripe payment module's development
 record, treated as a longitudinal, single-subject case study of AI-assisted
-software engineering. Three corpora:
+software engineering — with the project's self-account **audited against two
+independent machine records** rather than taken at its word.
 
-- **Corpus A — the dev log:** 462 markdown files (≈113,098 lines) spanning
-  **2025-11-26 → 2026-07-02**, plus the curated `docs/architecture/` corpus.
-  Self-reported prose.
-- **Corpus B — the commit record:** 716 commits from
-  `OXID-eSales/stripe-wallet` (586) and `OXID-eSales/payment-base` (130),
-  spanning **2025-10-21 → 2026-08-20**.
-- **Corpus C — the Jira issue record:** 156 issues of the STRP project,
-  spanning **2023-05-30 → 2026-06-22**, joined to Corpus B on `STRP-nnn`
-  references. The only corpus that records *who asked for the work and who found
-  the defects*.
+---
 
-All machine-extracted to [`../data/`](../data/); schema and caveats in
-[`../data/README.md`](../data/README.md).
+## 1. The three corpora
 
-## Contents
+| | Corpus | Span | Size | What only it can tell you |
+|---|---|---|---|---|
+| **A** | the dev log | 2025-11-26 → 2026-07-02 | 462 markdown files, ≈113,098 lines, + the curated `architecture/` set | *intent* — why a decision was made, and the process rules |
+| **B** | the commit record | 2025-10-21 → 2026-08-20 | 716 commits (`stripe-wallet` 586, `payment-base` 130) | *what actually landed*, and when, to the minute |
+| **C** | the Jira issue record | 2023-05-30 → 2026-06-22 | 156 issues of project STRP | *who asked for the work and who found the defects* |
 
-| File | What it is | Corpus | Status |
-|------|------------|--------|--------|
-| [`01-flagship-paper-ai-assisted-payment-module.md`](01-flagship-paper-ai-assisted-payment-module.md) | **Flagship scientific paper** — *How Claude helped develop the payment module.* Abstract, methods, quantitative results, the human–AI collaboration model, honest failure analysis, threats to validity. | A + B | Full draft, revised |
-| [`02-topics-project-management.md`](02-topics-project-management.md) | **3 project-management topics** as extended abstracts, each with a **Git verification** block. | A + B | Proposals, verified |
-| [`03-topics-technical.md`](03-topics-technical.md) | **5 technical topics** as extended abstracts, each with a **Git verification** block. | A + B | Proposals, verified |
-| [`04-topics-security.md`](04-topics-security.md) | **2 security topics** as extended abstracts, each with a **Git verification** block. | A + B | Proposals, verified |
-| [`06-novelty-assessment.md`](06-novelty-assessment.md) | **Internal review: what would survive peer review.** Tiers all 12 contributions by novelty *and* by evidence class (tested / census / n=1 / untestable, with statistics), names the claims to drop, recommends a reframing and venues. Read this first if you are deciding what to write up. | — | Review |
-| [`07-lessons-learned.md`](07-lessons-learned.md) | **Eight practitioner topics** (LL-1…LL-8) — what we would tell the next team, each graded by evidence class and routed to a **named venue**, plus a day-one checklist, a submission sequence, three publication gates, and a list of lessons the evidence *cannot* support. | A + B + C | Proposals |
-| [`05-measurements.md`](05-measurements.md) | **17 topics with measured results** — M-1…M-10 now show journal-reported beside git-measured values; M-11…M-17 are git-only measurables. | A + B | Data catalog, revised |
+A is self-reported prose. B and C are machine records, extracted to
+[`../data/`](../data/) — 11 CSVs, a schema and caveats document
+([`../data/README.md`](../data/README.md)), and
+[`../data/stats.py`](../data/stats.py), which recomputes every statistical test
+cited anywhere in these reports.
 
-### Verification outcomes at a glance
+Each corpus is blind to something the others see. That is the point: the
+programme's central method is **using B and C to test A**, and reporting the
+divergences rather than the agreements.
 
-| Topic | Outcome |
+---
+
+## 2. Where to start
+
+| If you want… | Read |
 |---|---|
-| **PM-1** dispatch as unit of work | ⚠️ **premise fails on its own terms** — 69% of decimal sub-sprints span >1 commit (median 5), so the convention did not do what it was for. The *comparison* with ordinary numbering is underpowered (Fisher p = 1.00) |
-| **PM-2** trust-but-verify | ✅ confirmed in detail — the `bf32d77` incident matches the journal in all five particulars |
-| **PM-3** estimation & velocity | ✅ main obstacle removed — 227 sessions / ≈140 h replaces n=3 clock-stamped days |
-| **TECH-1** contract-first checkout | ✅ `function setState` occurs **zero times** in either `src/` — the invariant is structural |
-| **TECH-2** event system | ✅ confirmed exactly; ⚠️ revised — "330→107" is one file; module handler code went **2,616 → 2,953 LOC** |
-| **TECH-3** ISP theatre | ✅✅ strongest result — **exactly zero** consumers typehint the narrow interfaces |
-| **TECH-4** CI/CD | ◐ partial — the rename is measurable (565 files), the CI sagas are journal-only |
-| **TECH-5** money as a type | ✅ confirmed, and the consolidation **held**: 0 raw cents-math sites remain |
-| **SEC-1** async money boundary | ✅ fixes present and fail-closed; scores and burn-down not verifiable |
-| **SEC-2** central validation | ✅ **7/7** guards confirmed by exact class name |
+| the whole argument | [`01-flagship-paper…`](01-flagship-paper-ai-assisted-payment-module.md) |
+| to decide **what is worth writing up** | [`06-novelty-assessment.md`](06-novelty-assessment.md) — read this *first* if you are choosing a paper |
+| to know **what we would tell the next team** | [`07-lessons-learned.md`](07-lessons-learned.md) |
+| a specific number, with its source and caveat | [`05-measurements.md`](05-measurements.md) |
+| candidate papers on one theme | [`02`](02-topics-project-management.md) (management), [`03`](03-topics-technical.md) (technical), [`04`](04-topics-security.md) (security) |
+| to check the arithmetic | [`../data/README.md`](../data/README.md), then `python3 data/stats.py` |
 
-### Which claims have a statistical test behind them
+---
 
-Seven do — see the *"Which lessons the data can actually prove"* section of
-[`07-lessons-learned.md`](07-lessons-learned.md). Strongest: **role separation**
-(χ² = 199.4, df 6, p = 2.6e-40, Cramér's V = **0.859**) and **test code
-outweighing production code** (11/11 months, sign test p = 0.0010, bootstrapped
-ratio CI **[1.39, 2.06]**). Also tested: trailer step-change (p = 5.2e-81),
-weekend abstention (p = 1.2e-48), cadence overdispersion (index **6.93**,
-p = 4.7e-126), issue→code coverage by type (p = 2.9e-10), out-of-hours
-concentration (p = 4.8e-07). Everything else is either a census fact needing no
-inference, a single verified incident, or — for all causal claims about AI's
-effect — **out of reach without a second case**.
+## 3. Contents
 
-### Novelty, in one line
+| File | What it is | Corpora | Status |
+|------|------------|---------|--------|
+| [`01-flagship-paper-ai-assisted-payment-module.md`](01-flagship-paper-ai-assisted-payment-module.md) | **Flagship paper** — *Discipline over Cleverness.* Abstract (a concrete spoiler), methods over three corpora, quantitative results §4.1–§4.12, the collaboration model, failure analysis, threats to validity, and an appendix table putting every journal claim beside its measured value. | A+B+C | Full draft, revised |
+| [`02-topics-project-management.md`](02-topics-project-management.md) | **3 PM topics** (PM-1…PM-3) as extended abstracts, each with **Git** and **Jira verification** blocks. | A+B+C | Proposals, verified |
+| [`03-topics-technical.md`](03-topics-technical.md) | **5 technical topics** (TECH-1…TECH-5), same treatment. | A+B+C | Proposals, verified |
+| [`04-topics-security.md`](04-topics-security.md) | **2 security topics** (SEC-1, SEC-2), same treatment. | A+B+C | Proposals, verified |
+| [`05-measurements.md`](05-measurements.md) | **22 measured results.** M-1…M-10 show journal-reported beside git-measured values; M-11…M-17 are git-only; M-18…M-22 are Jira-only. Each carries its metric, source, what it demonstrates, and the caveat that bears on it. | A+B+C | Data catalog |
+| [`06-novelty-assessment.md`](06-novelty-assessment.md) | **What would survive peer review.** Tiers all **12** contributions (N-1…N-12) by novelty *and* by evidence class — tested / census / n=1 / mixed / untestable, with statistics. Names the claims to drop, recommends a reframing and research venues. | — | Review |
+| [`07-lessons-learned.md`](07-lessons-learned.md) | **8 practitioner topics** (LL-1…LL-8) — what we would tell the next team. Each graded by evidence class and routed to a **named venue**; plus the full inference grading (Tiers S/D/U/N/X), a 12-item day-one checklist, a submission sequence, three publication gates, and the lessons the evidence **cannot** support. | A+B+C | Proposals |
 
-The contribution is **methodological, not thesis-driven**: the value is that a
-project's self-account was audited against two independent machine records and
-found to diverge in specific, directional ways. The "discipline over cleverness"
-thesis is the *least* novel element and cannot be established at n=1 — see
-[`06-novelty-assessment.md`](06-novelty-assessment.md), which recommends
-demoting it to framing and leading with the audit.
+---
 
-### Per-topic Jira outcomes
+## 4. Headline results
 
-| Topic | Jira outcome |
+**Tested** — statistic and p-value, all reproducible via `data/stats.py`. These
+corpora are **censuses, not samples**, so each test rejects a chance-arrangement
+null *within* this project and none licenses generalisation to AI-assisted
+development at large.
+
+| Result | Statistic | p |
+|---|---|---|
+| **Role separation** — the developer filed 52 Stories / **0 Bugs**; a dedicated tester filed **37 of 40 Bugs** / 0 Stories | Fisher on `[[52,0],[0,37]]`; full table **χ² = 199.4**, df 6, **Cramér's V = 0.859** | **6.7e-26** / **2.6e-40** |
+| **Test code outweighs production code 1.69 : 1** (+150,321 vs +88,896) | 11/11 months by sign test; bootstrap 95% CI **[1.39, 2.06]** | **0.0010** |
+| **AI-trailer adoption is a step change, not a trend** | 2/466 before vs 147/250 after 2026-05-07 | **5.2e-81** |
+| **Cadence is bursty — the peak is not the rate** | **dispersion index 6.93** vs Poisson's 1.0 (χ² = 984.4, df 142) | **4.7e-126** |
+| **Output without schedule compression** — 0 Saturdays in 716 commits | vs a uniform-7-day null; Mon–Fri itself non-uniform (p = 0.0001) | **1.2e-48** |
+| **Issue→code coverage depends on issue type** — Story 69%, Bug 42%, Task 8% | χ² = 47.4, df 3 | **2.9e-10** |
+| **Out-of-hours work is concentrated** — 13 of 29 on one day | exact binomial vs uniform over the 11 affected days | **4.8e-07** |
+
+**Census facts** — complete enumerations needing no inference (attaching a
+p-value would be a category error): the journal undersampled its own active days
+**2.2×** (47 documented vs 105 with commits); **zero** raw cents-math sites remain
+outside the converter; `function setState` occurs **zero** times in either
+`src/`; **exactly zero** consumers typehint the narrow adapter sub-interfaces;
+**0 of 61** ticket references were fabricated; effort is unrecoverable (Jira time
+fields empty for all 156 issues, journal clock-stamps 3 of 143 active days).
+
+**Retractions and corrections** — the most credible part of the set:
+
+| Claim | Outcome |
 |---|---|
-| **PM-1** | ⚠️ deepened — a second granularity failure (one commit, two tickets); **no artifact is a reliable unit of work**: 4 umbrella issues absorb most history, 39% of commits carry no ticket, and architectural refactors have no tickets at all |
-| **PM-2** | ⚠️ **missing an actor** — verification had a second, institutional layer (a dedicated tester); 0/61 refs fabricated, 1 misattributed |
-| **PM-3** | ❌ **estimate-vs-actual is impossible** — all Jira time fields empty; withdraw part (a) |
-| **TECH-1** | ✅ the redirect-boundary defect class is documented from **2024**, pre-dating the design — and kept producing tester-filed bugs *after* it |
-| **TECH-2** | ◐ MCP channel is `To Do` with 20 commits; `STRP-88` asserts both "Status: Complete" (body) and `To Do` (field) |
-| **TECH-3** | ⚠️ **none of this work was ticketed** — ISP theatre survived with PHPMD as its *only* reviewer |
-| **TECH-4** | ✅ a dedicated `Core Bug` status exists — 3 defects triaged to the OXID platform |
-| **TECH-5** | ✅ BCMath deferral is a **live open ticket** (`STRP-160`); money is measurably the defect-dense area, and refactoring vs black-box testing yielded **disjoint** bug sets |
-| **SEC-1** | ✅ security ran as a tracked workstream; ⚠️ `STRP-50` middleware security alerts open since 2025-07 |
-| **SEC-2** | ⚠️⚠️ **QA-driven, not developer-initiated** — the tester filed the payment-failure bug *and* wrote the requirements task that became Sprint 119 |
+| "single-developer" | **retracted twice** — 3 committers (87/8.8/2.7%), inside a 10-person, 3-year project |
+| "Claude was the primary code author" | **unverifiable before 2026-05-07**; trailers measure convention, not authorship |
+| reported "simplifications" | describe **one file, not the module** (330→107 while handler code went 2,616→2,953) |
+| PM-1 "premise refuted" | corrected to **underpowered** — the convention failed on its own terms (69% of sub-sprints span >1 commit), but the comparison tests at Fisher **p = 1.00** |
+| §4.4 "the only such day" | **false** — 11 days carry out-of-hours commits; the pattern is concentration, not absence |
+| rename day "10 commits" | **9** (author date; the earlier figure used committer-date filtering) |
 
-### What Corpus C (Jira) changed
+---
 
-| Finding | Effect |
-|---|---|
-| **A dedicated tester filed 37/40 bugs (92.5%)**; the developer filed **0** | Reframes the whole case — the AI pair was the implementation unit, not the quality system |
-| **10 Jira participants** across **3 years** (from 2023-05-30) | "Single-developer" retracted a second time; the studied window is the final 10 months of a longer project |
-| **All time-tracking fields empty** for all 156 issues | PM-3's estimate-vs-actual study is **impossible** from any corpus; withdraw it |
-| **0/61 ticket refs fabricated**, 1 mislabelled (STRP-138 vs 139) | Negative result on hallucinated commit metadata; new taxonomy entry: misattribution ≠ fabrication |
-| **6/40 bugs (15%) reclassified** — 3 `Not a bug`, 3 `Core Bug` | Confirms the journal's "meaningful fraction were not module defects" with a number |
-| Jira `Sprint` has **2 values** | The journal's "Sprint 1→133" is a private convention, **not** tracker sprints — a terminology hazard |
+## 5. Verification outcomes, per topic
 
-## How these were produced
+| Topic | vs Git (B) | vs Jira (C) |
+|---|---|---|
+| **PM-1** dispatch as unit of work | ⚠️ **fails on its own terms** — 69% of decimal sub-sprints span >1 commit (median 5); the comparison with ordinary numbering is underpowered (p = 1.00) | ⚠️ deepened — one commit spanning two tickets; **no artifact is a reliable unit of work** (4 umbrella issues absorb most history, 39% of commits ticketless, refactors untracked) |
+| **PM-2** trust-but-verify | ✅ confirmed in detail — `bf32d77` matches the journal in **all five** particulars | ⚠️ **missing an actor** — verification had a second, institutional layer; 0/61 refs fabricated, 1 misattributed |
+| **PM-3** estimation & velocity | ✅ main obstacle removed — 227 sessions / ≈140 h replaces n=3 clock-stamped days | ❌ **estimate-vs-actual is impossible** — all time fields empty; withdraw part (a) |
+| **TECH-1** contract-first checkout | ✅ `function setState` occurs **zero times** — the invariant is structural | ✅ the defect class is documented from **2024**, predating the design, and kept producing tester-filed bugs *after* it |
+| **TECH-2** event system | ✅ exact (330→107); ⚠️ revised — that is one file; module handler code rose **2,616 → 2,953** | ◐ MCP channel is `To Do` with 20 commits; `STRP-88` asserts both "Complete" (body) and `To Do` (field) |
+| **TECH-3** ISP theatre | ✅✅ strongest — **exactly zero** consumers typehint the narrow interfaces | ⚠️ **none of this work was ticketed** — PHPMD, with a silenced baseline, was its *only* reviewer |
+| **TECH-4** CI/CD | ◐ partial — the rename is measurable (565 files, 9 commits, one shared subject); the CI sagas are journal-only | ✅ a dedicated **`Core Bug`** status exists — 3 defects triaged to the platform |
+| **TECH-5** money as a type | ✅ confirmed, and the consolidation **held** — 0 raw cents-math sites remain | ✅ BCMath deferral is a **live open ticket** (`STRP-160`); refactoring and black-box testing yielded **disjoint** defect sets |
+| **SEC-1** async money boundary | ✅ fixes present and fail-closed; scores and burn-down not verifiable | ✅ security ran as a tracked workstream; ⚠️ `STRP-50` open since 2025-07 |
+| **SEC-2** central validation | ✅ **7/7** guards confirmed by exact class name | ⚠️⚠️ **QA-driven, not developer-initiated** — the tester filed the payment-failure bug *and* wrote the requirements task that became Sprint 119 |
 
-Corpus A was mined by five parallel extraction passes (timeline/metrics,
-incident forensics, architecture/tech, human–AI collaboration evidence,
-security), then synthesized. Citations use paths relative to
-`docs/dev_logs/daniil_dev_log/` unless prefixed with `architecture/`.
+---
 
-Corpus B was extracted from all refs of both repositories with `git log --all
---numstat`, capturing author/committer timestamps, per-path diffs,
-`Co-Authored-By` trailers, and sprint/ticket identifiers; work sessions are
-maximal commit runs separated by ≤90 minutes, and test-suite sizes are measured
-from the tree at 15 checkpoints.
+## 6. Novelty and where it goes
 
-## Data-quality note
+**In one line:** the contribution is **methodological, not thesis-driven**. The
+"discipline over cleverness" thesis is the *least* novel element and cannot be
+established at n=1; the value is that a project's self-account was audited
+against two machine records and found to diverge in specific, directional ways.
+[`06`](06-novelty-assessment.md) recommends retitling the flagship around the
+audit and splitting out a negative-results paper.
 
-**Corpus A** is a **sampled, not continuous** record: 47 dated day-dirs across
-~7 months, with real HH:MM developer-effort timestamps in **only three files**.
-Sprint numbering is not globally monotonic, test counts are not comparable
-across the 2026-01-16 package split, and "done" ≠ "committed" for much of the
-mid-2026 work. It is also written by the party being studied.
+- **Research venues** — MSR / EMSE / ICSE-SEIP for the reframed flagship and the
+  negative-results paper. The engineering and security topics are
+  practitioner-grade, not research-grade, and [`06`](06-novelty-assessment.md) §4
+  says so plainly.
+- **Practitioner venues** — [`07`](07-lessons-learned.md) routes all eight
+  lessons: EuroSTAR / TestBash (LL-3, **submit first**), LeadDev (LL-6, LL-5),
+  OWASP AppSec (LL-7), QCon / GOTO (LL-1), ACM Queue / IEEE Software (LL-2, LL-4),
+  OXID Commons / IPC / phpCE (LL-8).
+- **Three gates before anything ships externally**, two of which can stop
+  publication outright: employer approval and material classification;
+  **named-colleague consent** (LL-6 reports identifiable individuals' work
+  patterns and must be anonymised by role); and **security disclosure** (LL-7
+  describes real vulnerabilities in a shipped payment module). Detail in
+  [`07`](07-lessons-learned.md).
 
-**Corpus C** is the most restrictive: no effort data at all, `Priority` degenerate
-(145/156 = `SHOULD`), `Assignee` 76% empty, `Resolution` on 39 issues while 82 are
-`Done`-category, no status-transition history, and a snapshot-only view taken
-2026-08-20.
+---
 
-**Corpus B** also carries a **survivorship** problem: two mechanisms removed
-provenance during the study window — the 2026-07-02 mainline squash, and the
-deletion of merged feature branches (one orphaned commit was recovered from a
-stale local checkout frozen at 2026-05-22). Neither is detectable from inside the
-repository, so all commit counts are **lower bounds**. Corpus B otherwise fails
-differently. Sessions are a **lower bound** on effort — they
-cannot see thinking, reading, or debugging that produces no commit. `files_changed`
-counts change *events*, not unique files. Test-method counts are not PHPUnit test
-counts (which expand data providers), so the two series must never be mixed. A
-mainline **squash on 2026-07-02** re-added 562 files and destroyed pre-July
-provenance on `b-7.4.x-LEGACY` alone. And `Co-Authored-By: Claude*` trailers,
-present on 149/716 commits, only became routine on 2026-05-07 — so their absence
-is **not** evidence of absence of AI involvement.
+## 7. How these were produced
 
-Where the two corpora disagree, the flagship paper reports both and says which
-it trusts (§4.9, §4.11, Appendix A). As of 2026-08-20 the four topic files have
-**also** been checked against git; each topic carries a verification block
-labelled **confirmed** / **revised** / **refuted** / **not measurable from git**.
+**Corpus A** was mined by five parallel extraction passes — timeline/metrics,
+incident forensics, architecture/tech, human–AI collaboration evidence, and
+security — then synthesised. Citations are relative to
+`docs/dev_logs/daniil_dev_log/` unless prefixed `architecture/`.
 
-Two patterns emerged from that pass and are worth stating once here. First, the
-journal is **highly reliable on mechanical facts** — several LOC and method
-counts match the artifact to the exact line (330→107, −183, 4→3, 25 methods).
+**Corpus B** was extracted from *all refs* of both repositories with
+`git log --all --numstat`, capturing author and committer timestamps, per-path
+diffs split by category (`src`/`tests`/`docs`/`ci`/`assets`/`other`),
+`Co-Authored-By` trailers, and sprint/ticket identifiers. Work sessions are
+maximal commit runs separated by ≤90 minutes; test-suite sizes are measured
+**from the tree** at 15 checkpoints.
+
+**Corpus C** was normalised from a 129-column Jira export and joined to B on
+`STRP-\d+` references in commit subjects. Account ids, watcher lists and issue
+description bodies are excluded; display names and summaries retained.
+
+**Statistics** are computed by [`../data/stats.py`](../data/stats.py) — exact
+Fisher, exact binomial, χ² with an incomplete-gamma tail, and a seeded percentile
+bootstrap. It needs only `numpy`.
+
+---
+
+## 8. Data-quality caveats
+
+Read these before quoting any number. Each corpus fails differently, which is
+why all three are used.
+
+**Corpus A — self-reported, and sampled.** 47 dated day-dirs across ~7 months,
+with real HH:MM effort timestamps in **only three files**. Sprint numbering is
+not globally monotonic; test counts are not comparable across the 2026-01-16
+package split; "done" ≠ "committed" for much of the mid-2026 work. Written by the
+party being studied — candid about failure, which strengthens it, but not an
+independent audit. It is also the **only** corpus that records intent, and
+therefore irreplaceable for design archaeology.
+
+**Corpus B — a lower bound, twice over.** Sessions cannot see thinking, reading
+or debugging that produces no commit, and 100 of 227 sessions are single-commit
+and contribute zero duration. `files_changed` counts change *events*, not unique
+files. Test-method counts (`function test*`) are **not** PHPUnit test counts,
+which expand data providers — the two series must never be mixed. Two mechanisms
+destroyed provenance during the study window: the **2026-07-02 mainline squash**
+(562 files re-added; 491 commits survive only on `b-7.4.x-LEGACY`) and the
+**deletion of merged feature branches** (one orphaned commit recovered from a
+stale local checkout frozen at 2026-05-22, now a dangling object). **Neither is
+detectable from inside the repository**, so all counts are lower bounds. And
+`Co-Authored-By` trailers, on 149/716 commits, became routine only on
+2026-05-07 — their absence is **not** evidence of absence of AI involvement.
+
+**Corpus C — the most restrictive.** **No effort data at all** (`Original
+estimate`, `Time Spent`, `Work Ratio` and their `Σ` variants empty for all 156
+issues). `Priority` is degenerate (145/156 = `SHOULD`) and carries no signal;
+`Assignee` is 76% empty; `Resolution` is set on 39 issues while 82 are in status
+category `Done`, so lead time exists for **n=39 only**, contaminated at the fast
+end by 2023-era tasks that look bulk-closed. No status-transition history, and a
+snapshot-only view taken 2026-08-20. **Terminology hazard:** the `Sprint` field
+holds **two values**, so the journal's "Sprint 1 → 133" is a private convention
+with no tracker counterpart — the two notions must never be equated.
+
+**Two patterns from the verification passes**, worth stating once. First, the
+journal is **highly reliable on mechanical facts** — several LOC and method counts
+match the artifact to the exact line (330→107, −183 LOC, PHPMD 4→3, 25 methods).
 Second, it is **systematically optimistic about simplification**: before/after
-pairs quote the shrinking number and omit the code added to replace it. And the
+pairs quote the number that fell and omit the code added to replace it. And the
 failures that cost the most time — the multi-iteration CI sagas — left the
-*least* trace in the commit record, so the most expensive class of work is the
-least verifiable.
+*least* trace in the artifact, so the most expensive class of work is the least
+verifiable.
+
+Where the corpora disagree, the flagship paper reports both and says which it
+trusts (§4.9, §4.11, §4.12, Appendix A).
+
+---
+
+## 9. Revision history
+
+| Date | What changed |
+|---|---|
+| 2026-07-07 | Initial set: flagship draft + 10 topic proposals, mined from Corpus A alone. |
+| 2026-08-20 | **Corpus B added.** Flagship rewritten against the commit record; three retractions; abstract rewritten as a concrete spoiler; §4.11 on incomplete simplifications. All 10 topics given Git verification blocks. `05` grown 10 → 17 entries. |
+| 2026-08-20 | **Corpus C added.** Role separation found; flagship §4.12; `05` grown to 22 entries; all 10 topics given Jira verification blocks. Second provenance-loss mechanism recorded from a stale checkout. |
+| 2026-08-20 | **`06` novelty assessment** added, then revised with statistics — two findings promoted (N-11, N-12), one downgraded to an observation (N-5). |
+| 2026-08-20 | **`07` lessons learned** added: 8 practitioner topics, inference grading (Tiers S/D/U/N/X) backed by `data/stats.py`, day-one checklist, venue routing and publication gates. |
