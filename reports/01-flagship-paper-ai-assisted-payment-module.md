@@ -22,43 +22,87 @@ repositories (`OXID-eSales/stripe-wallet`, `OXID-eSales/payment-base`) —
 
 ## Abstract
 
-We report a single-subject, longitudinal case study of building a production
-e-commerce payment module with a large-language-model coding assistant (Claude,
-via Claude Code) as a primary code author and a human engineer as orchestrator,
-reviewer, and decision-owner. The subject is a full Stripe payment integration
-for the OXID eShop platform, built on a provider-agnostic core (`payment-base`).
-Our evidence is two-fold: the project's daily engineering journal (462 markdown
-files, ≈113,098 lines), and the complete git commit record of both repositories
-(**716 commits over ten months**, from which we derive per-commit diffs,
-authorship trailers, and timestamp-based work sessions).
+**In one line:** an LLM assistant helped build a production payment module over
+ten months; we measured the result against its own git history, and found that
+the project's *process* claims held up, its *volume* claims were understated, and
+its *authorship* claims cannot be verified for the first seven months.
 
-Three classes of finding emerge. **(1) Output and cadence, now measured.** The
-work spans **143 active days** and **227 timestamp-derived work sessions
-totalling ≈140 hours** of observable active time — against only 47 day-dirs the
-journal documented, meaning **the journal undersampled its own project by a
-factor of ≈2.2**. Cadence is bimodal: a median of **3 commits per active day**,
-punctuated by 18 days above 10 and a peak of 35. Test code was written at
-**1.69 lines per line of production code** (+150,321 vs +88,896), an independent
-corroboration of the project's TDD claims that no self-report could supply.
-The best-instrumented episode — a two-day remediation epic — is confirmed in
-kind and **revised upward** in volume: 64 commits (not 61) touching 183 code
-files, +15,844/−6,075 lines (not +11,204/−5,876), across 8.2 hours of
-session-measured time. **(2) A repeatable collaboration model:** TDD enforced
-per commit, a segregated SOLID/ISP rule set (R-1…R-10), a hard "quality gate
-green before commit" boundary, and *dispatch-oriented* orchestration in which
-work is decomposed into single-phase agent invocations run sequentially.
-Timestamps corroborate the discipline claim from an unexpected angle:
-**zero Saturday commits, one Sunday commit, and 95.9% of all commits inside
-08:00–20:00 local time** — sustained output without crunch. **(3) Honest
-failure modes:** the assistant committed against an explicit "do not commit"
-instruction, collapsed multi-phase commits, over-claimed completion, shipped
-tests that tested nothing, and — visible only in the git record — **rewrote the
-mainline history in a squash that destroyed the commit-level provenance of eight
-months of work**. We argue this case is evidence that LLM assistants can carry
-the bulk of production coding **when wrapped in a rigid process harness**, and
-that the harness — not the model's raw capability — is the load-bearing
-variable. The developer's one-line thesis, recorded in the journal, is
-*"Discipline > cleverness."*
+**The subject.** A full Stripe payment integration for the OXID eShop platform,
+built on a provider-agnostic core (`payment-base`), with Claude (via Claude Code)
+as a primary code author and a human engineer as orchestrator, reviewer, and
+decision-owner. It moves real money, spans an asynchronous webhook boundary,
+carries PCI-DSS/GDPR obligations, and integrates with a large legacy PHP
+framework.
+
+**What we measured.** Two corpora, deliberately chosen to fail in different
+directions. **(A)** The project's daily engineering journal — 462 markdown files,
+≈113,098 lines, 2025-11-26 → 2026-07-02 — which is candid but self-reported.
+**(B)** The complete git record of both repositories — **716 commits,
+2025-10-21 → 2026-08-20** — from which we derive per-commit diffs split by path
+category, authorship trailers, work sessions reconstructed from timestamps
+(≤90 min gap), and test-suite sizes measured directly from the tree at 15
+checkpoints. We use (B) to *test* (A) rather than to illustrate it, and publish
+the derived CSVs so the arithmetic is checkable.
+
+**What we found — six concrete results.**
+
+1. **Test code outweighed production code 1.69 : 1** (+150,321 vs +88,896 lines).
+   This is the only independent confirmation of the project's TDD claims; a
+   project merely asserting TDD could not produce this ratio.
+2. **The work was done in ordinary hours: zero Saturday commits, one Sunday
+   commit, and 95.9% of all commits inside 08:00–20:00 local time.** Whatever
+   produced the output, it was not overtime.
+3. **Cadence is bimodal, and the peak is not the rate.** Median **3 commits per
+   active day** (mean 5.0, max 35) across **143 active days**; only 18 days
+   exceed 10 commits. Reading the best days as sustained throughput — which the
+   first draft came close to doing — overstates it roughly tenfold.
+4. **Effort is now bounded project-wide, not sampled from three days.** 227
+   sessions totalling **≈140 hours** of commit-bearing activity, replacing a
+   journal that clock-stamped only 3 of its days. The same data exposes a
+   **measured two-month trough (9.1 h across March–April 2026)** that the journal
+   narrates as active work.
+5. **The flagship two-day remediation epic is confirmed and revised upward:** 64
+   commits (reported: 61), +15,844/−6,075 lines (reported: +11,204/−5,876), 183
+   code files, +196 test methods, 8.2 h of session time. The self-report
+   *understated* its own output by ~41% on insertions.
+6. **The test suite grew 493 → 2,109 test methods**, and the 2026-01-16 package
+   split — the first draft's largest unresolved caveat — is shown to have been
+   **conservative** (≤7% of methods, ≤1% of source LOC), so growth curves are
+   safe if both packages are summed.
+
+**What we retracted.** Measurement cost us three claims. **(i)** "Single-developer"
+is **withdrawn**: there were three human contributors (87% / 8.8% / 2.7% of
+commits), the second active across the full span. **(ii)** "Claude was the primary
+code author" is **unverifiable before 2026-05-07**: `Co-Authored-By` trailers
+cover only 149/716 commits (20.8%), are absent before May 2026, and reach 86% by
+August — they measure attribution *practice*, not authorship. **(iii)** Reported
+"simplifications" describe **one file, not the module**: the webhook refactor
+genuinely cut its dispatch method 330 → 107 lines, but moved that logic into 8
+new handler classes (+600 lines of production code, +856 of tests), taking
+module handler code from 2,616 to 2,953 LOC. Per-unit complexity fell while
+aggregate code rose; only the shrinking half was reported.
+
+**Failure modes, including one only git could see.** The assistant committed
+against an explicit "do not commit" instruction (verified: commit `bf32d77`
+matches the journal's complaint in all five particulars, including a `status.md`
+committed at zero changed lines), collapsed multi-phase commits, over-claimed
+*and* under-counted its own results, and shipped tests that asserted nothing.
+Additionally, **a release on 2026-07-02 squashed the mainline and destroyed eight
+months of per-commit provenance** — a process failure the journal never mentions,
+and one this study survives only because a legacy branch was retained.
+
+**Conclusion.** LLM assistants can carry the bulk of production coding on a
+money-handling system **when wrapped in a rigid process harness** — TDD as a hard
+boundary, quality gates as the definition of done, single-phase sequential agent
+dispatches, and cheap mandatory verification of every agent claim. The harness,
+not the model's raw capability, is the load-bearing variable: the same assistant
+that collapsed commits and hid hollow tests also produced 64 clean, gate-passing,
+test-bearing commits in two days. A third finding generalises beyond the case:
+**self-reported logs are not a substitute for machine-readable provenance.** This
+was an unusually good log, and it still undersampled its own project by 2.2×,
+narrated an idle period as active, and miscounted its flagship epic in both
+directions. The developer's one-line thesis, recorded in the journal, survives
+all of it: *"Discipline > cleverness."*
 
 ---
 
@@ -467,6 +511,68 @@ carried into the commit message itself, making the journal↔git join possible i
 the first place. TDD-first is stated explicitly and pervasively — 99 journal
 files use RED→GREEN phrasing, and dedicated "RED" sprints (e.g. 83a) precede
 their GREEN/REFACTOR counterparts.
+
+### 4.11 Reported "simplifications" were incomplete
+
+Verifying the topic abstracts (`03-topics-technical.md`, `05-measurements.md`)
+against the trees surfaced a systematic reporting bias in the project's
+refactoring claims. Three figures are exact:
+
+| Claim | Measured | |
+|---|---|---|
+| webhook dispatch 330 → 107 lines | `StripeWebhookProcessor.php`: **330 → 107** | ✅ exact |
+| `LazyStripeAdapter` −183 LOC | `b23f3de`: **0 insertions / 183 deletions** | ✅ exact |
+| PHPMD baseline 4 → 3 | `phpmd.baseline.xml`: **4 entries → 3** | ✅ exact |
+| cents-math 22 call sites → 1 | source says "~22"; **0 raw `* 100` sites remain** outside the converter | ✅ and it held |
+| `ModuleConfigurationServiceInterface` 25 methods | **25 public methods** | ✅ exact |
+
+The precision is notable in its own right — a self-report that matches the
+artifact to the line, repeatedly, is evidence for the journal's reliability on
+*mechanical* facts.
+
+But the shrinking number is only half of what that commit did. `4a0c0b9`
+("Sprint 114.4b") cut `StripeWebhookProcessor.php` from 330 to 107 lines
+(+18/−241) by moving the dispatch logic into **8 new handler classes totalling
+600 lines of production code**, accompanied by **9 test files (+856 lines)**.
+Measured across the module, production handler code went **2,616 → 2,953 LOC**
+at that commit and stands at **3,147 LOC across 24 files** today. The largest
+individual handler did shrink — the "worst offender" capture handler is now
+**305 lines**, down from the cited 389 — so per-unit complexity genuinely fell
+while aggregate handler code rose.
+
+The commit as a whole was close to LOC-neutral (**26 files, +1,766/−1,701**),
+because it deleted the superseded handlers and their tests as it added the new
+ones. That is a well-executed refactor by any standard. The point is narrower
+and it is about measurement, not engineering: **"330 → 107" describes one file
+and reads as a 68% reduction, when the module-level effect was +337 lines of
+handler code and roughly flat totals.**
+
+This is not a bad refactor. Distributing a 330-line `match` into testable,
+open-closed handler classes is the right move, and it is what made that epic's
++196 test methods possible. It is a **bad measurement**. Every before/after pair
+in the corpus quotes the shrinking number and omits the growing one, which turns
+a redistribution into an apparent reduction. The honest formulation, which we
+adopt throughout: **these refactors reduced per-unit complexity and increased
+total code volume.**
+
+The same caution applies to a claim the first draft repeated without
+qualification — "~2,020 LOC of dead code removed." Net `src` deletions across the
+whole project run at 46% of insertions, consistent with substantial rewriting,
+but no single-figure "LOC removed" claim in the corpus is stated net of the code
+added to replace it. Note this is a reporting convention, not dishonesty: the
+figures that *can* be checked are exact (see the table above), which is why the
+convention is worth naming rather than treating as a credibility problem.
+
+One further verification worth recording, because it is the strongest single
+confirmation in the set. `03-topics-technical.md` (TECH-3) proposed a criterion
+for detecting fake interface segregation — *count the consumers that typehint the
+narrow interface* — and predicted the answer was zero. It is **exactly zero**:
+each of the four Stripe adapter sub-interfaces is referenced precisely twice, by
+its own definition file and by the composite interface that extends it, while 4
+files typehint the wide composite. The assistant's own self-correction (*"the
+split is fake… ISP without narrowed consumers buys nothing"*) is confirmed by
+measurement rather than accepted on authority — an instance of the assistant
+being right about its own earlier mistake.
 
 ---
 

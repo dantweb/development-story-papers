@@ -1,6 +1,6 @@
 # Research Reports
 
-*Created 2026-07-07 · flagship paper revised 2026-08-20 against the git record*
+*Created 2026-07-07 · **all five reports revised 2026-08-20** against the git record*
 
 A set of research write-ups mined from the Stripe payment module's development
 record, treated as a longitudinal, single-subject case study of AI-assisted
@@ -19,10 +19,25 @@ software engineering. Two corpora:
 | File | What it is | Corpus | Status |
 |------|------------|--------|--------|
 | [`01-flagship-paper-ai-assisted-payment-module.md`](01-flagship-paper-ai-assisted-payment-module.md) | **Flagship scientific paper** — *How Claude helped develop the payment module.* Abstract, methods, quantitative results, the human–AI collaboration model, honest failure analysis, threats to validity. | A + B | Full draft, revised |
-| [`02-topics-project-management.md`](02-topics-project-management.md) | **3 project-management topics** as extended abstracts. | A | Proposals |
-| [`03-topics-technical.md`](03-topics-technical.md) | **5 technical topics** as extended abstracts. | A | Proposals |
-| [`04-topics-security.md`](04-topics-security.md) | **2 security topics** as extended abstracts. | A | Proposals |
-| [`05-measurements.md`](05-measurements.md) | **10 topics with measured results** — metric, recorded value(s), source file, what it demonstrates, suggested figures. | A | Data catalog |
+| [`02-topics-project-management.md`](02-topics-project-management.md) | **3 project-management topics** as extended abstracts, each with a **Git verification** block. | A + B | Proposals, verified |
+| [`03-topics-technical.md`](03-topics-technical.md) | **5 technical topics** as extended abstracts, each with a **Git verification** block. | A + B | Proposals, verified |
+| [`04-topics-security.md`](04-topics-security.md) | **2 security topics** as extended abstracts, each with a **Git verification** block. | A + B | Proposals, verified |
+| [`05-measurements.md`](05-measurements.md) | **17 topics with measured results** — M-1…M-10 now show journal-reported beside git-measured values; M-11…M-17 are git-only measurables. | A + B | Data catalog, revised |
+
+### Verification outcomes at a glance
+
+| Topic | Outcome |
+|---|---|
+| **PM-1** dispatch as unit of work | ⚠️ **central premise refuted** — decimal sub-sprints averaged 4.77 commits each; only 31% mapped to one commit, vs 33% for ordinary sprints |
+| **PM-2** trust-but-verify | ✅ confirmed in detail — the `bf32d77` incident matches the journal in all five particulars |
+| **PM-3** estimation & velocity | ✅ main obstacle removed — 227 sessions / ≈140 h replaces n=3 clock-stamped days |
+| **TECH-1** contract-first checkout | ✅ `function setState` occurs **zero times** in either `src/` — the invariant is structural |
+| **TECH-2** event system | ✅ confirmed exactly; ⚠️ revised — "330→107" is one file; module handler code went **2,616 → 2,953 LOC** |
+| **TECH-3** ISP theatre | ✅✅ strongest result — **exactly zero** consumers typehint the narrow interfaces |
+| **TECH-4** CI/CD | ◐ partial — the rename is measurable (565 files), the CI sagas are journal-only |
+| **TECH-5** money as a type | ✅ confirmed, and the consolidation **held**: 0 raw cents-math sites remain |
+| **SEC-1** async money boundary | ✅ fixes present and fail-closed; scores and burn-down not verifiable |
+| **SEC-2** central validation | ✅ **7/7** guards confirmed by exact class name |
 
 ## How these were produced
 
@@ -55,6 +70,15 @@ present on 149/716 commits, only became routine on 2026-05-07 — so their absen
 is **not** evidence of absence of AI involvement.
 
 Where the two corpora disagree, the flagship paper reports both and says which
-it trusts (§4.9, Appendix A). The four topic files are still Corpus-A-only and
-have **not** been revised against git; their quantitative claims should be read
-with the same scepticism the flagship paper's first draft earned.
+it trusts (§4.9, §4.11, Appendix A). As of 2026-08-20 the four topic files have
+**also** been checked against git; each topic carries a verification block
+labelled **confirmed** / **revised** / **refuted** / **not measurable from git**.
+
+Two patterns emerged from that pass and are worth stating once here. First, the
+journal is **highly reliable on mechanical facts** — several LOC and method
+counts match the artifact to the exact line (330→107, −183, 4→3, 25 methods).
+Second, it is **systematically optimistic about simplification**: before/after
+pairs quote the shrinking number and omit the code added to replace it. And the
+failures that cost the most time — the multi-iteration CI sagas — left the
+*least* trace in the commit record, so the most expensive class of work is the
+least verifiable.

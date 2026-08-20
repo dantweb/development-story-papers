@@ -1,8 +1,17 @@
 # Security Research Topics (2)
 
+*Revised 2026-08-20 — each topic now carries a **Git verification** block.*
+
 Extended abstracts. Grounded in the AI-authored security audit, the remediation
 sprints, the CI pentest suite, and `architecture/04-webhook-processing.md`.
 Paths relative to `docs/dev_logs/daniil_dev_log/` unless prefixed `architecture/`.
+
+**Git verification.** Named guards, sanitizers, and fail-closed fixes have been
+checked against the current tree and the commit history of both repositories
+(dataset: [`../data/`](../data/)). Security claims verified **best of all four
+topic files** — the fixes are structural and therefore visible in source. The
+limit is inherent and worth stating up front: git can confirm that a control
+*exists*, never that it is *sufficient*.
 
 A meta-point for both topics: **security was run by the AI as a first-class
 workstream** — a 28-finding formal audit mapped to PCI-DSS v4.0 / GDPR / BSI
@@ -82,6 +91,51 @@ module whose failures (IDOR + session hijack, unauthenticated
 design structurally avoids
 (`2026/03/20260324/security_check/security_issues_stripe.md`).
 
+> ### Git verification (2026-08-20) — ✅ **fixes confirmed present and fail-closed**
+>
+> **Finding S2 — the commented-out webhook-secret check — is confirmed fixed in
+> the artifact.** The abstract quotes the broken form
+> `return !empty(getToken()) /* && !empty(getWebhookSecret()) */`. Current
+> `src/Stripe/Service/ModuleConfigurationService.php` reads:
+>
+> ```php
+> public function isConfigured(): bool
+> {
+>     return !empty($this->getToken()) && !empty($this->getWebhookSecret());
+> }
+> ```
+>
+> The check is live, not commented. This is the single most consequential fix in
+> the topic — it is what stopped the shop accepting payments it could not
+> verify — and it is now verifiable in three lines of source rather than
+> asserted by the party that made it.
+>
+> All four guard classes and the layered chain exist by name:
+> `WebhookHttpsGuard`, `WebhookPayloadSizeGuard`, `WebhookRateLimitGuard`,
+> `WebhookIpAllowlistGuard`. The **atomic idempotency fix** is present too —
+> `UniqueConstraintViolationException` is caught in
+> `src/Repository/DoctrineWebhookLogRepository.php`, which is exactly the
+> INSERT-and-catch shape the TOCTOU remediation prescribed (CVSS 7.0), and the
+> `oe_payments_idempotency` table has 11 references in `payment-base`,
+> confirming the once-dead table is now wired. `WebhookPayloadSanitizer`
+> (the GDPR 5(1)(c) / H7 fix) exists in `payment-base`.
+>
+> **New finding — the work did not stop when the journal did.** Commit `aa7409e`
+> (2026-08-19), *"Sprint 133 S13–S14 (F13, F14): mode-scoped webhook secret,
+> required shop id"*, extends exactly this control **seven weeks after the
+> journal's last entry**. The abstract's picture of webhook-secret handling as a
+> closed story is out of date: the secret became *mode-scoped* (test vs live)
+> later, which is a real hardening the journal never records. Any paper on this
+> topic should extend its window to the git record's end.
+>
+> **What git cannot verify, and must not be claimed:** the CVSS scores, the
+> 28-finding severity mix, the "26/28 done" burn-down, the AI self-corrections
+> (H9/H10/M1/M4 downgraded to "already secure"), and the pentest result that the
+> rate limiter did not engage in the test environment. Every one of those is
+> AI-authored and self-scored. Presence of a control is measurable; adequacy of a
+> control is not. The topic's candor — documenting what was wrong first and what
+> is still open — remains its strongest feature and its least verifiable one.
+
 ---
 
 ## SEC-2 — One Hardened Endpoint: A Central Anti-Injection Validation Subsystem for Payment Input
@@ -149,3 +203,46 @@ architecture's DRY leverage.
 validation at a payment boundary, with an unusually explicit threat model and a
 worked example of the allowlist-too-strict / test-too-narrow failure that
 allowlist validation invites.
+
+> ### Git verification (2026-08-20) — ✅ **7/7 guards confirmed by exact class name**
+>
+> The guard chain is the topic's central artifact and it is present in full, in
+> `payment-base/src/Validation/Guard/`, in the order the abstract lists:
+>
+> | # | Guard claimed | Class measured | Status |
+> |---|---|---|---|
+> | 1 | `PostOnly` (405) | `PostOnlyGuard.php` | ✅ |
+> | 2 | `PayloadSize` (413) | `PayloadSizeGuard.php` | ✅ |
+> | 3 | `ActiveSession` (401) | `ActiveSessionGuard.php` | ✅ |
+> | 4 | `SameOrigin` (403) | `SameOriginGuard.php` | ✅ |
+> | 5 | `CsrfToken` (403) | `CsrfTokenGuard.php` | ✅ |
+> | 6 | `RateLimit` (429) | `RateLimitGuard.php` | ✅ |
+> | 7 | `PluginIdAllowlist` (422) | `PluginIdAllowlistGuard.php` | ✅ |
+>
+> Plus the chain's own scaffolding — `ValidationGuardInterface`, `GuardFailure`,
+> `ValidationRequestContext` — and `OxidSessionChallengeVerifier`, which confirms
+> the specific claim that CSRF protection *reuses OXID's
+> `Session::checkSessionChallenge`* rather than rolling its own.
+>
+> The engine is confirmed and, more importantly, **so is its placement**, which
+> is the architectural claim the topic actually rests on:
+>
+> - `ValidationBase`, `CharacterClass`, `RuleSet`, `FieldValidationResult` — all
+>   in **`payment-base`** (the shared engine).
+> - `validation-rules.php` — **1 file in `stripe`, 0 in `payment-base`**. Exactly
+>   the per-plugin split the design requires: the grammar is shared, the rules
+>   are the plugin's. This is what makes the abstract's "adding the entry IS the
+>   feature toggle" claim structurally true rather than rhetorical.
+> - `AdminAmountValidator` in `stripe` — the Sprint 121 fail-closed replacement
+>   for the `parseAmount('12,30 EUR') → null → full capture` footgun.
+> - `UNICODE_LETTERS` present (6 references), confirming the documented widening
+>   away from ASCII-only `LETTERS` after the `Müllerstraße` / Polish `ł` failure.
+>
+> **What git cannot verify:** that the widening's accepted trade-off (admitting
+> Cyrillic/Greek/CJK homoglyphs while holding the injection surface constant) is
+> *sound*; that the fail-open-on-HTTP-error decision in the OPC widget is *safe*;
+> and that the threat model's rejected mitigations were rejected for good
+> reasons. These are the topic's genuine contributions and they are arguments,
+> not artifacts. The NFC-normalization follow-up is likewise unverifiable as
+> "flagged" — git shows no NFC normalization in the tree, which is consistent
+> with the item still being open, but silence is not evidence.

@@ -1,8 +1,18 @@
 # Technical Research Topics (5)
 
+*Revised 2026-08-20 — each topic now carries a **Git verification** block.*
+
 Extended abstracts. Grounded in `architecture/` (the 5 curated design docs + 7
 PlantUML diagrams) and the `daniil_dev_log` corpus. Paths are relative to
 `docs/dev_logs/daniil_dev_log/` unless prefixed `architecture/`.
+
+**Git verification.** Named classes, method counts, and LOC deltas have been
+checked against the trees and diffs of both repositories (dataset:
+[`../data/`](../data/)). These abstracts fared **much better than the
+project-management ones** — several figures match to the exact line. The one
+recurring correction is a pattern the abstracts share: *refactors that reduced
+per-unit size while increasing total volume are described only by their
+shrinking half.*
 
 ---
 
@@ -49,6 +59,29 @@ against the bug narrative; contrast intended vs observed state transitions.
 **Contribution.** A reusable pattern (and its anti-patterns) for redirect-based
 PSP integrations, with the honest failure modes most write-ups omit.
 
+> ### Git verification (2026-08-20) — ✅ **invariant confirmed in the tree**
+>
+> The load-bearing design claim is that the state machine has **no generic
+> setter**. Measured on `origin/b-7.4.x`:
+>
+> - **`function setState` occurs zero times** in `src/` of *either* repository.
+>   The invariant is not merely documented, it is absent from the code — the
+>   strongest form this claim can take.
+> - All named transition methods exist and are in use: `transitionToPending`
+>   (2 files), `authorize` (5), `captureAuthorization` (3), `fulfill` (6),
+>   `cancel` (6), `expire` (4), `fail` (14).
+>
+> The STRP-89 crash — a refund handler calling the nonexistent
+> `setState('REFUNDED')` — is therefore verifiable as *structurally impossible to
+> reintroduce* in the current design, which is a stronger claim than "we fixed
+> the bug."
+>
+> **Not measurable from git:** the live-DB observation that `authorized` /
+> `ready_to_commit` are compressed in practice (`pending → committed` directly).
+> That rests on runtime traces, not source, and remains the topic's most
+> interesting unverified claim — it asserts the *implemented* machine is
+> narrower than the *designed* one, which source inspection cannot settle.
+
 ---
 
 ## TECH-2 — Multi-Channel by Construction: An Event System with Provider Translators
@@ -84,6 +117,38 @@ chain; quantify the SRP refactor deltas.
 
 **Contribution.** A concrete recipe for multi-channel, multi-provider payment
 orchestration with provider isolation enforced by DI, not discipline alone.
+
+> ### Git verification (2026-08-20) — ✅ **confirmed, with one important revision**
+>
+> The mechanism is all present in the tree: the **`payment.event_handler` DI
+> tag** (25 references across both repos), Symfony **`tagged_iterator`** (18
+> references), the data-driven **`EVENT_MAP`** that replaced the `instanceof`
+> ladder, and the **`oe.payment.event_translator`** (6 references, mostly in
+> `payment-base` as the design requires).
+>
+> The webhook-registry claim is exact:
+>
+> | Claim | Measured |
+> |---|---|
+> | dispatch `match($event->type)` 330 → 107 lines | `StripeWebhookProcessor.php`: **330 → 107 lines** ✅ exact |
+> | Sprint 114.4, tagged-iterator dispatch | commit `4a0c0b9`, 2026-05-27, "Sprint 114.4b: tagged webhook-handler registry" ✅ |
+>
+> **⚠️ Revision — "330 → 107" describes one file, not the module.** Commit
+> `4a0c0b9` moved the dispatch logic into **8 new handler classes (+600 lines of
+> production code)** with **9 test files (+856 lines)**. Module handler code went
+> **2,616 → 2,953 LOC** at that commit, and stands at **3,147 LOC across 24
+> files** today. The largest individual handler did shrink — the "worst offender"
+> capture handler is now **305 lines**, down from the cited 389.
+>
+> The commit overall was near LOC-neutral (**26 files, +1,766/−1,701**), since it
+> deleted the superseded handlers and tests as it added the new ones. So this is
+> not a defect in the refactor — distributing a `match` into testable,
+> OCP-compliant classes is the right move, and it is what made that epic's +196
+> test methods possible. It is a **measurement** issue: a figure that reads as a
+> 68% reduction corresponds to +337 lines of handler code at module level. The
+> framing the paper should adopt: **these refactors reduced per-unit complexity
+> while aggregate code held flat or grew.** A before/after pair quoting only the
+> shrinking file overstates the simplification.
 
 ---
 
@@ -125,6 +190,47 @@ consumer-usage census of the wide interfaces to demonstrate "fake" segregation.
 **Contribution.** A field study of how ISP fails silently under a metrics gate,
 and a criterion — *count consumers that use the narrow type* — for detecting it.
 
+> ### Git verification (2026-08-20) — ✅✅ **the strongest-verified topic in the set**
+>
+> This abstract proposed a criterion — *count consumers that typehint the narrow
+> type* — and predicted the answer would be zero. It is **exactly zero**.
+>
+> | Sub-interface | Total refs in `src/` | Actual consumers |
+> |---|---|---|
+> | `StripeCheckoutAdapterInterface` | 2 | **0** |
+> | `StripeCustomerAdapterInterface` | 2 | **0** |
+> | `StripePaymentIntentAdapterInterface` | 2 | **0** |
+> | `StripeRefundAdapterInterface` | 2 | **0** |
+>
+> Every narrow interface is referenced exactly twice: its own definition file,
+> and the composite `StripeAdapterInterface` that `extends` it. Meanwhile **4
+> files typehint the wide composite**. The split is provably cosmetic — the
+> assistant's own verdict (*"the split is fake… ISP without narrowed consumers
+> buys nothing"*) is confirmed by measurement rather than accepted on authority.
+>
+> The source even carries its own archaeology: `StripeAdapterInterface`'s
+> docblock reads *"Sprint 19: Route Stripe SDK calls through adapter. Sprint 46:
+> ISP split into focused sub-interfaces."* The longitudinal design story the
+> abstract proposes to reconstruct is annotated in the artifact.
+>
+> Three further figures match exactly:
+>
+> | Claim | Measured |
+> |---|---|
+> | `LazyStripeAdapter` deleted, **183 LOC** | `b23f3de` (2026-05-27, "Sprint 114.6"): **0 insertions / 183 deletions**, single file ✅ exact |
+> | PHPMD baseline **4 → 3** | `tests/PhpMd/phpmd.baseline.xml`: **4 entries → 3** across that commit ✅ exact |
+> | the *real* god-interface: `ModuleConfigurationServiceInterface`, **25 methods** | **25 public methods**; referenced by **25 files** ✅ exact |
+>
+> The consumer count for the god-interface (25 referencing files vs the abstract's
+> "21 consumers") differs only because the raw count includes the interface and
+> its implementation; the substantive claim — a 25-method interface with ~20+
+> consumers most of which use 1–3 methods — stands.
+>
+> **Not measurable from git:** the PayPal contrast (a sibling module outside this
+> corpus) and the claim that the framework's factory/dispatcher *blocks* full
+> segregation. The latter is an architectural argument about OXID, testable only
+> by attempting the refactor.
+
 ---
 
 ## TECH-4 — CI/CD in a Cross-Repo, Unified-Namespace, Framework-Coupled World
@@ -164,6 +270,38 @@ taxonomy and the permanent regression guards added.
 **Contribution.** A hard-won field guide to CI for framework-coupled, cross-repo
 PHP modules — the class of failure most under-documented and most expensive.
 
+> ### Git verification (2026-08-20) — ◐ **partially confirmed; the sagas are journal-only**
+>
+> **The rename epic is measurable and consistent.** On 2026-05-08 the two
+> repositories in this corpus touched **565 unique files** (163 in `stripe`, 402
+> in `payment-base`) across **10 commits**, against the abstract's "~700 files
+> across 4 modules" — the two modules not in the corpus plausibly supply the
+> remainder. Sprint 102's identity is confirmed by the commit subjects
+> (`STRP-135 PaymentComponent -> PaymentBase namespace refactoring`).
+>
+> **An unintended finding, relevant to PM-1.** All 10 of those commits carry the
+> **identical subject line**. A day the journal describes as five distinct
+> failure modes and a 4-hour CI loop is, in the artifact, ten
+> indistinguishable commits. This is the clearest single illustration of the
+> thesis that commit history was not being used as the record of increments —
+> and it is why the CI-saga reconstruction the abstract proposes **cannot** be
+> done from git alone.
+>
+> **`ci`-category churn corroborates the "environment, not logic" claim** in
+> aggregate: 288 `ci`-path file-changes (+10,074/−1,894), with `ci:`-prefixed
+> subjects recurring across the whole ten months, e.g. *"ci: fix composer
+> resolution — payment-base alias and dev stability"* (2026-08-19) — the same
+> cross-repo dependency-resolution problem still being fixed in the final week
+> of the record. The abstract's claim that this is the *dominant* cost is
+> supported directionally; git cannot price it in hours.
+>
+> **Not measurable from git:** the five falsified CI iterations, the
+> last-green→red windows (those come from CI/server timestamps, not commits), the
+> four backslash-escape forms, and the `generated/` interleaving mechanism. This
+> topic remains the most journal-dependent of the five, which is worth stating
+> plainly in the paper: **the failures that cost the most time left the least
+> trace in the artifact.**
+
 ---
 
 ## TECH-5 — Money as a Type: Float Truncation, Minor-Unit Converters, and Per-Line VAT Reconciliation
@@ -201,6 +339,41 @@ call-site consolidation; analyze the per-line-vs-grouped VAT reconciliation math
 **Contribution.** A concrete, PSP-agnostic pattern for monetary correctness in a
 float-based legacy shop, and evidence that *DRY consolidation is an effective
 bug-finding technique* for money code.
+
+> ### Git verification (2026-08-20) — ✅ **confirmed; the consolidation is complete**
+>
+> Every named artifact exists where the abstract says it should, and the
+> `payment-base` / `stripe` placement matches the architectural claim:
+>
+> | Artifact | Location measured |
+> |---|---|
+> | `AmountConverter` | `stripe` (19 referencing files) |
+> | `MinorUnitConverter` | both (canonical in `payment-base`) |
+> | `TaxableLine`, `VatBreakdown`, `PerLineVatCalculator` | **`payment-base` only** ✅ as claimed (ported for reuse) |
+> | `LineItemAmount`, `HALF_CENT_EPSILON` | `payment-base` |
+> | `CapturableAmount`, `AdminAmountValidator` | `stripe` |
+>
+> **The 22-call-sites-→-1 claim is confirmed, and its provenance is in the
+> source.** `AmountConverter`'s own docblock reads: *"Sprint 114.7: centralises
+> the ~22 hand-coded `* 100` / `/ 100` sites"* — and records the bug in the same
+> comment: *"19.99 * 100 = 1998.9999… → (int) gives 1998 (WRONG); (int) round(19.99
+> * 100) → 1999 (CORRECT)"*.
+>
+> More usefully, the consolidation **held**. A sweep of `src/*.php` on
+> `origin/b-7.4.x` finds only 4 matches for raw `* 100` arithmetic: three are
+> inside `AmountConverter`'s own explanatory comment, and one is an unrelated
+> trust-score scale (`SecurityValidationResult`: *"100 = fully trusted"*).
+> **Zero raw cents-math sites remain outside the converter** — the DRY claim is
+> not just "we consolidated once" but "it stayed consolidated," which is the
+> claim that actually matters and the one self-reports never substantiate.
+>
+> Note the docblock's own hedge — "~22" — meaning the abstract's precise "22 call
+> sites" inherits an approximation from the source. Report it as ~22.
+>
+> **Not measurable from git:** that the four truncation bugs were *found as a
+> side effect* of the DRY refactor rather than sought (the causal claim, and the
+> topic's most interesting contribution), and that the preceding review missed
+> them. Both rest on `117` §4. The *fix* is verifiable; the *serendipity* is not.
 
 ---
 
