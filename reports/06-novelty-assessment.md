@@ -8,6 +8,15 @@ any reviewer asks: **what is new here?** It assesses the flagship paper and all
 ten topic proposals, tiers them by defensible novelty, and names the claims that
 should be dropped or demoted.
 
+**Revised 2026-08-20 (statistics pass).** Every item now carries an **evidence
+class** — *tested*, *census*, *n=1*, *mixed*, or *untestable* — with the statistic
+where one exists (§2.0). That pass changed three verdicts: two findings previously
+dismissed as "descriptive" turned out to be statistically established and were
+promoted (**N-11**, **N-12**); **N-5** was downgraded to an observation once it
+became clear no test of it is possible; and **N-10**'s "refuted" was corrected to
+*underpowered*. Item numbers are stable identifiers cited from the other reports,
+so N-11 and N-12 sit at the end of Tier 1 rather than being renumbered into it.
+
 > **Scope caveat, and it is a real one.** This is an assessment against the
 > literature *as known to the author at the time of writing*, without a
 > systematic search. A proper related-work pass is the single largest missing
@@ -38,13 +47,22 @@ this study.
   stable unit of analysis over the study window.
 - **n=1, single operator, single framework, single domain.**
 
-The same applies to the **velocity and output figures**. 716 commits, ~140
-measured hours, the cadence distribution — these are descriptively interesting
-and honestly caveated, but there are randomised controlled trials of AI-assisted
-developer productivity in the literature. A single-subject observational study
-cannot compete on that ground and should not try. Reported as productivity
-evidence, these numbers invite the correct objection: *no control, no baseline,
-no causal identification.*
+The same applies to the **velocity and output figures as productivity claims**.
+716 commits, ~140 measured hours — descriptively interesting and honestly
+caveated, but there are randomised controlled trials of AI-assisted developer
+productivity in the literature. A single-subject observational study cannot
+compete on that ground and should not try. Reported as productivity evidence,
+these numbers invite the correct objection: *no control, no baseline, no causal
+identification.*
+
+**One distinction rescues part of this material, and it is worth drawing
+carefully.** *Rate* claims ("N commits/day," "N× faster") are unsupported here for
+the reasons above. *Distributional* claims about the same data are a different
+matter and are testable: that the cadence is overdispersed (dispersion index
+**6.93**, p = 4.7e-126) and that the work avoided weekends (P = **1.2e-48**) are
+statistically established, non-obvious, and counter-narrative. They are promoted
+to **N-11** and **N-12** in §2. What cannot be claimed is that AI *caused* either
+pattern.
 
 The **failure taxonomy** (instruction violation, granularity collapse,
 over-claiming, tests that assert nothing) is likewise largely known and
@@ -60,6 +78,43 @@ cleverness" as the central claim will write "asserted, not shown" — and be rig
 ## 2. Tier 1 — defensible novelty
 
 These are the contributions worth building the papers around.
+
+### 2.0 Evidence strength, item by item
+
+Novelty and evidential strength are **different axes**, and conflating them is
+how a case study oversells itself. A finding can be conceptually new and weakly
+evidenced (N-5), or unremarkable in kind but near-unassailable in support (N-3).
+The tests below are computed by [`../data/stats.py`](../data/stats.py); the full
+grading of every claim in the programme is in
+[`07-lessons-learned.md`](07-lessons-learned.md).
+
+| Item | Evidence class | Statistic | p |
+|---|---|---|---|
+| **N-3** QA labour omitted | **tested** | Fisher on `[[52,0],[0,37]]`; full table **χ² = 199.4**, df 6, **Cramér's V = 0.859** | **6.7e-26** / **2.6e-40** |
+| **N-2** trailers ≠ authorship | **tested** | 2/466 vs 147/250 across 2026-05-07, Fisher exact | **5.2e-81** |
+| **N-4** test-to-source ratio | **tested** | 11/11 months by sign test; bootstrap 95% CI **[1.39, 2.06]** | **0.0010** |
+| **N-11** peak ≠ rate *(new, §2.7)* | **tested** | **dispersion index 6.93** vs Poisson 1.0; χ² = 984.4, df 142 | **4.7e-126** |
+| **N-12** intensity without crunch *(new, §2.8)* | **tested** | 0/716 Saturdays under a uniform-7-day null; Mon–Fri also non-uniform (χ² = 22.8, df 4, p = 0.0001) | **1.2e-48** |
+| **N-1** self-account vs machine record | **census** | 2.2× undersampling; 41% understatement; a measured 9.1 h over two narrated-as-active months | *n/a — complete enumeration* |
+| **N-6** provenance destruction | **census** | 2 mechanisms; 491 commits only on `LEGACY`; 1 commit on no remote ref | *n/a* |
+| **N-7** ISP criterion | **census** | **exactly 0** consumers typehint the narrow interfaces | *n/a* |
+| **N-8** misattribution ≠ fabrication | **census + n=1** | 0/61 fabricated; **1** mislabel | *frequency untestable* |
+| **N-10** no reliable unit of work | **mixed** | 39% of commits ticketless (census); sub-sprint comparison **underpowered** | **1.0000** ← *no power* |
+| **N-9** inverted causality (SEC-2) | **n=1, dated** | one three-step chain | *n/a* |
+| **N-5** disjoint yields | **untestable** | 4 vs 6 defects, zero overlap — needs the defect-pool size | *not computable* |
+
+Three consequences for how the papers should be written.
+
+1. **Two items are stronger than their prose suggested.** The cadence
+   overdispersion and the weekend result were buried inside material §1 dismisses
+   as "descriptive only." They are tested, counter-narrative, and belong in the
+   contribution list — promoted to **N-11** and **N-12** below.
+2. **N-1 and N-6 are census-strength, not test-strength.** That is not a
+   weakness — a complete enumeration needs no inference, and attaching a p-value
+   to "zero raw cents-math sites remain" would be a category error. But the
+   papers must not *imply* statistical support where the support is enumerative.
+3. **N-5 is the weakest Tier-1 item and should be labelled as an observation.**
+   See §2.5.
 
 ### N-1. Auditing a project's self-account against its own machine records — and publishing the corrections
 
@@ -111,8 +166,14 @@ has property X" — is confounded by the convention's rollout, and any
 model-attributed comparison is confounded by generation churn. Absence of a
 trailer is not evidence of absence of AI.
 
-This is a clean, dated, worked counterexample to a technique currently gaining
-traction. It is short-paper or methods-note material on its own.
+Split at the adoption date the change is categorical rather than gradual —
+**2/466 (0.4%)** before versus **147/250 (58.8%)** after, Fisher exact
+**p = 5.2e-81**. That distinction is the whole point: a trend line fitted through
+this data would describe a convention being adopted, not a practice emerging.
+
+This is a clean, dated, worked, and *tested* counterexample to a technique
+currently gaining traction. It is short-paper or methods-note material on its
+own.
 
 ### N-3. The productivity narrative structurally omits the QA labour
 
@@ -181,9 +242,20 @@ experiments of the Basili era — and updates it for the AI-assisted case, where
 respectable rather than anecdotal**, and it is the strongest paper any technical
 topic in this set can now write.
 
-**Caveat:** the disjointness is observed, not designed; the two channels ran at
-different times on different code states, so this is a natural experiment with no
-controls.
+**Caveat — and it is the binding one.** The disjointness is **not testable with
+this data**. Computing the probability of zero overlap between a 4-defect set and
+a 6-defect set requires the size of the underlying population of amount-related
+defects, which is unknowable; without it there is no null to reject. The two
+channels also ran at different times against different code states, so this is an
+uncontrolled natural experiment.
+
+**Therefore: label this an observation, not a result.** It is the most
+conceptually interesting item in Tier 1 and the least defensible one, which is an
+uncomfortable combination and the reason it is stated last. What would make it a
+result: a designed comparison — hold a subsystem fixed, run a refactoring pass
+and an independent testing pass against the same code state, and compare yields
+against an agreed defect inventory. That is a follow-up study, not a
+reinterpretation of this data.
 
 ### N-6. Provenance destruction as a measurement threat
 
@@ -205,9 +277,57 @@ merged branches inherit an **invisible survivorship bias**. All counts are lower
 bounds. This is sharpened by the domain — PCI-DSS-obligated payment software,
 where per-commit provenance is a compliance artifact rather than a convenience.
 
-Solid methods note. Not a theoretical result, and should not be oversold as one.
+Solid methods note, resting on **complete enumeration rather than inference** —
+there is nothing here to test, and nothing that needs testing. Not a theoretical
+result, and should not be oversold as one.
 
 ---
+
+### N-11. "The peak is not the rate": a statistical correction to how AI-assisted throughput gets quoted
+
+**Promoted from material §1 dismisses as descriptive.** The *rate* claim remains
+unsupported; the *distributional* claim is tested, and they are different claims.
+
+Commits per active day: mean 5.01, **variance 34.71**, median 3, max 35. The
+**dispersion index is 6.93** where a steady (Poisson) process gives 1.0 —
+overdispersion χ² = 984.4, df = 142, **p = 4.7e-126**. Only 18 of 143 active days
+exceed 10 commits.
+
+Why this is a contribution rather than a statistic: **AI-assisted throughput is
+routinely quoted from peak episodes.** This project's own completion report
+invited exactly that reading, and the first draft of the flagship paper came close
+to taking it — the epic's 30+ commits/day against a modal day of three, an
+overstatement of roughly tenfold. The dispersion index is a one-number, testable
+way to say "this distribution has no meaningful central rate," and it is
+applicable to any repository. Anyone reporting AI-assisted velocity should be
+required to report dispersion alongside the mean, and this gives them the
+instrument and a worked example.
+
+**Limit:** commits/day is a proxy for output, not value — the 35-commit day was a
+mechanical package split, not 35 features. The result establishes burstiness, not
+productivity.
+
+### N-12. Sustained AI-assisted output without schedule compression
+
+**Also promoted.** Across ten months: **zero Saturday commits** and one Sunday
+commit in 716; **95.9% of commits inside 08:00–20:00** local time. Under a null of
+commits distributed uniformly across seven days, P(zero Saturdays) =
+**1.2e-48**. Within Mon–Fri the distribution is itself non-uniform (χ² = 22.8,
+df = 4, **p = 0.0001**, Wednesday heavy). Out-of-hours work exists but is
+**concentrated**: 13 of the 29 out-of-hours commits fall on one day, the hardest
+sprint in the record (exact binomial **p = 4.8e-07**).
+
+Why it matters: a recurring worry about agentic development is that it enables or
+demands intensification — always-on work, because the agent is always available.
+This case is a counterexample with a hard test behind it, and it is orthogonal to
+everything the journal claims about itself.
+
+**Limit, and it is worth stating in the paper rather than being caught on it:**
+commit timestamps record when work *landed*, not when it was done, so batching
+could in principle hide evening effort. The weekday result is robust to that
+(batching does not cross day boundaries for 715 of 716 commits); the hour-of-day
+result is weaker for exactly this reason. And n=1 operator — this is one person's
+working pattern, not a property of AI-assisted development.
 
 ## 3. Tier 2 — modest or contingent novelty
 
@@ -283,7 +403,12 @@ The strong version is:
 
 Under that title:
 
-- **N-1 becomes the contribution** — a methods result for empirical AI-SE.
+- **N-1 becomes the contribution** — a methods result for empirical AI-SE, and
+  its strength is **enumerative**: it does not need a p-value and should not
+  claim one.
+- The **tested** results (N-3, N-2, N-4, N-11, N-12) become the paper's hard
+  evidence, led by **N-3** at Cramér's V = 0.859 — the one finding no reviewer can
+  wave away.
 - The six numbered findings become **evidence**, not the point.
 - The **three retractions become credibility**, not embarrassment. A paper that
   withdraws its own "single-developer" claim, withdraws its authorship claim for
@@ -329,11 +454,11 @@ Ordered by how likely each is to sink the papers.
 4. **A second case.** Every Tier-1 finding is n=1. Even one comparison
    project — another AI-assisted module with a journal, a repo and a tracker —
    would convert "here is a divergence" into "here is a pattern of divergence."
-5. **Effort data.** Unrecoverable from all three corpora (Jira's time fields are
+6. **Effort data.** Unrecoverable from all three corpora (Jira's time fields are
    empty for all 156 issues; the journal clock-stamps 3 days). Any future project
    intending to be studied should instrument this prospectively — which is itself
    worth saying as a recommendation.
-6. **Independent security assessment.** SEC-1's audit is AI-authored and
+7. **Independent security assessment.** SEC-1's audit is AI-authored and
    self-scored. Without an external review its findings cannot be reported as
    security results, only as *claims the project made about itself*.
 
@@ -347,9 +472,18 @@ n=1. It is that the project's own account of itself was **audited against two
 independent machine records and found to diverge in specific, measurable,
 directional ways**: undersampling its active days 2.2×, understating its flagship
 epic by 41%, narrating a measured idle period as active, and omitting the human
-QA function that filed 92.5% of its defects. Along the way the audit produced a
-dated counterexample to trailer-based AI-commit identification, a documented case
-of invisible provenance loss, and an artifact-derived confirmation that the
-project's TDD claim was real in *volume* while demonstrably hollow in *places*.
-The contribution is methodological, the findings are negative more often than
-positive, and the retractions are the most credible part.
+QA function that filed 92.5% of its defects — a role separation so sharp it tests
+at **χ² = 199.4, Cramér's V = 0.859, p = 2.6e-40**. Along the way the audit
+produced a *tested* counterexample to trailer-based AI-commit identification
+(**p = 5.2e-81**), an artifact-derived confirmation that the TDD claim was real in
+volume (**11/11 months, ratio CI [1.39, 2.06]**) while demonstrably hollow in
+places, a one-number instrument for the peak-versus-rate error that AI-throughput
+reporting keeps making (**dispersion 6.93**), evidence of sustained output without
+schedule compression (**zero Saturdays, P = 1.2e-48**), and a documented case of
+invisible provenance loss. Five of those carry a statistical test; the rest are
+complete enumerations that need none; **every causal claim about AI's effect
+remains out of reach**, and the honest correction of one earlier overclaim — a
+"refuted" that a test showed to be merely underpowered — is as much a part of the
+contribution as anything confirmed. The contribution is methodological, the
+findings are negative more often than positive, and the retractions are the most
+credible part.
