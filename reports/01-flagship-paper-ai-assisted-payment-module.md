@@ -389,8 +389,16 @@ This is the strongest quantitative support in the paper for the "discipline"
 thesis, and it is orthogonal to everything the journal claims. The output
 described in §4.2 was produced inside ordinary working hours. Whatever the
 mechanism — the harness, the assistant, the operator — it did not run on
-overtime. The one apparent exception is instructive: the epic's day 1 ran to
-22:12 (§4.5), and it is the only such day in the record.
+overtime.
+
+Out-of-hours work is **concentrated rather than absent**, and the concentration
+is itself informative. The 29 out-of-hours commits fall on **11 distinct days**,
+but **13 of the 29 (45%) land on a single one** — 2026-05-27, the epic's day 1,
+running 21:30 → 22:12 (§4.5). The remaining ten days carry one to three commits
+each, mostly just past 20:00. So the picture is not "no evening work ever" but
+"evening work was rare, shallow, and once — during the hardest sprint in the
+record — sustained." The weekend result carries no such qualification: zero
+Saturdays and one Sunday commit across ten months.
 
 ### 4.5 The anchor epic, re-measured
 

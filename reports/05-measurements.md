@@ -144,7 +144,7 @@ a CI loop with **5 distinct failure modes**.
 **Source:** `20260505/reports/01,02-*.md`; `20260508/done/sprint-102-completion-report.md`.
 **`[B]` Not measurable.** These windows come from CI/server timestamps, not
 commits. What git *does* show for the rename day (2026-05-08) is **565 unique
-files across 10 commits** — and that **all 10 commits share one identical
+files across 9 commits** — and that **all 9 commits share one identical
 subject line**, so the five failure modes are indistinguishable in history.
 **Shows:** MTTR-style windows and an iteration-count metric for environment bugs.
 **Caveat:** windows derive from CI logs, not a tracked incident clock, and
@@ -291,8 +291,10 @@ effort, not verification quality.
 fall outside 08:00–20:00**.
 **Shows:** the output of M-11/M-12/M-13 was produced **without schedule
 compression** — zero Saturdays in ten months. The strongest quantitative support
-for the "discipline" thesis, and orthogonal to every journal claim. The lone
-exception is legible: the epic's day 1 ran to 22:12, the only such day.
+for the "discipline" thesis, and orthogonal to every journal claim. Out-of-hours
+work is **concentrated, not absent**: the 29 commits fall on **11 days**, but
+**13 of 29 (45%) land on 2026-05-27 alone** (the epic's day 1, 21:30→22:12); the
+other ten days carry 1–3 each, mostly just past 20:00.
 **Caveat:** commit timestamps are when work *landed*, not when it was done;
 batched commits could hide evening work. The weekday result is robust to this
 (batching does not cross days for 715 of 716 commits).

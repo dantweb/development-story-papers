@@ -33,6 +33,7 @@ record and the machine records are used to check each other.
 | [`reports/04-topics-security.md`](reports/04-topics-security.md) | 2 security topics (extended abstracts). |
 | [`reports/05-measurements.md`](reports/05-measurements.md) | 10 topics with measured results, sourced to dev-log files. |
 | [`reports/06-novelty-assessment.md`](reports/06-novelty-assessment.md) | **Internal review of scientific novelty** — what would survive peer review, what to drop, recommended reframing and venue fit. |
+| [`reports/07-lessons-learned.md`](reports/07-lessons-learned.md) | **Eight practitioner topics** — orchestrating a stateless agent, trust-but-verify, test volume vs verification, refactoring as defect detection, the repo as audit trail, why the AI pair still needs a tester, fail-closed money, and why the environment costs more than the logic. Includes a day-one checklist and the lessons the evidence cannot support. |
 | [`data/`](data/) | 11 files of git- and Jira-derived measurables + [`data/README.md`](data/README.md) schema and reproduction commands. |
 
 ## Headline findings

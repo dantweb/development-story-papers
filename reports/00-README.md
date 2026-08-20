@@ -29,6 +29,7 @@ All machine-extracted to [`../data/`](../data/); schema and caveats in
 | [`03-topics-technical.md`](03-topics-technical.md) | **5 technical topics** as extended abstracts, each with a **Git verification** block. | A + B | Proposals, verified |
 | [`04-topics-security.md`](04-topics-security.md) | **2 security topics** as extended abstracts, each with a **Git verification** block. | A + B | Proposals, verified |
 | [`06-novelty-assessment.md`](06-novelty-assessment.md) | **Internal review: what would survive peer review.** Tiers every contribution, names the claims to drop, recommends a reframing and venues. Read this first if you are deciding what to write up. | — | Review |
+| [`07-lessons-learned.md`](07-lessons-learned.md) | **Eight practitioner topics** (LL-1…LL-8) — what we would tell the next team, each graded by evidence class, plus a day-one checklist and a list of lessons the evidence *cannot* support. | A + B + C | Proposals |
 | [`05-measurements.md`](05-measurements.md) | **17 topics with measured results** — M-1…M-10 now show journal-reported beside git-measured values; M-11…M-17 are git-only measurables. | A + B | Data catalog, revised |
 
 ### Verification outcomes at a glance

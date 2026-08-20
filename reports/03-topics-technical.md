@@ -366,12 +366,12 @@ PHP modules — the class of failure most under-documented and most expensive.
 >
 > **The rename epic is measurable and consistent.** On 2026-05-08 the two
 > repositories in this corpus touched **565 unique files** (163 in `stripe`, 402
-> in `payment-base`) across **10 commits**, against the abstract's "~700 files
+> in `payment-base`) across **9 commits**, against the abstract's "~700 files
 > across 4 modules" — the two modules not in the corpus plausibly supply the
 > remainder. Sprint 102's identity is confirmed by the commit subjects
 > (`STRP-135 PaymentComponent -> PaymentBase namespace refactoring`).
 >
-> **An unintended finding, relevant to PM-1.** All 10 of those commits carry the
+> **An unintended finding, relevant to PM-1.** All 9 of those commits carry the
 > **identical subject line**. A day the journal describes as five distinct
 > failure modes and a 4-hour CI loop is, in the artifact, ten
 > indistinguishable commits. This is the clearest single illustration of the
