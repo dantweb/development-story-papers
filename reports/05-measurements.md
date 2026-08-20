@@ -329,7 +329,17 @@ months**. This is the single largest loss of confidence in the revision.
 ## M-17 — Provenance and message hygiene `[B]`
 
 **Metric:** integrity of the commit record as an audit trail.
-**Values:** **102 distinct commit subjects are reused** across multiple commits
+**Values:** **Two independent provenance-loss mechanisms** operated during the
+study window. (1) On **2026-07-02 the `stripe-wallet` mainline was squashed**
+(`6e828a242d6b`, 562 files re-added, +18,417 src / +44,534 tests / +19,803 docs);
+the **491 pre-squash commits survive only on `b-7.4.x-LEGACY`**. (2) Feature
+branches were **deleted from the remote** after consolidation: comparing against
+a stale local checkout frozen at 2026-05-22 surfaced `ce96dc86085b` (25 files,
++1,710/−60, subject **"test"**), the tip of the now-deleted
+`b-7.4.x-webhook-STRP-144`; `b-7.4.x-fixing-ci` is likewise gone. The work
+survived — it landed as `3a50c1c` (61 files, +5,431/−1,255) and all five source
+files are in the current tree — but its incremental history did not.
+Also: **102 distinct commit subjects are reused** across multiple commits
 — `"STRP-78 Extract paymenmt component"` **56×** (typo included), `"STRP-135
 PaymentComponent -> PaymentBase namespace refactoring"` 10×, `"up"` 10× — and
 **33 subjects contain spelling errors**. Only **61% of commits (436/716)** carry
@@ -348,6 +358,16 @@ its own paper.
 **Caveat:** reused subjects make it impossible to audit the decomposition
 conventions of PM-1 from history; the docs figure includes the dev log itself,
 so it measures the *research corpus* as much as the deliverable.
+**Two refinements from the branch-deletion finding.** First, message quality
+tracked **branch role**: the orphan feature-branch tip is titled `test` while the
+mainline commit that superseded it is properly titled — a more accurate reading
+than blanket carelessness. Second, and methodologically important: the orphan is
+**1 of 717 known commits (0.14%)** and is deliberately **excluded**, since its
+content overlaps `3a50c1c` and counting both would double-count. But it was found
+only because a stale checkout existed on the same machine — so **commit-mining
+studies of repositories that squash releases and prune merged branches carry an
+invisible survivorship bias.** All figures here are over the history reachable
+from the canonical remote, which is a **lower bound** on what was committed.
 
 ## M-18 — Role separation: who asks, who tests `[C]`
 

@@ -91,6 +91,21 @@ records **who asked for the work**.
   excluded from LOC aggregates. Pre-July mainline history survives only on
   `origin/b-7.4.x-LEGACY` (491 commits), which is where the early
   `test_trajectory.csv` checkpoints are measured.
+- **Survivorship: the corpus is the history that survived, not the history that
+  happened.** Comparing against a stale local checkout frozen at 2026-05-22
+  (`/home/dtkachev/osc/strp-test-may-21/source/extensions`) surfaced **one commit
+  reachable from no ref on the canonical remote**: `ce96dc86085b` (25 files,
+  +1,710/−60, subject `test`), the tip of the since-deleted feature branch
+  `b-7.4.x-webhook-STRP-144`. `b-7.4.x-fixing-ci` is also gone from the remote.
+  The *work* survived — consolidated onto the mainline as `3a50c1c` (61 files,
+  +5,431/−1,255, a further-developed version with a different tree) — so the
+  orphan is **deliberately excluded** from these CSVs: counting both would
+  double-count the same feature. Impact is 1 of 717 known commits (0.14%), which
+  changes no aggregate materially. The methodological point stands regardless:
+  two mechanisms (a mainline squash and routine branch pruning) removed
+  provenance during the study window, neither is detectable from inside the
+  repository, and we have no witness for losses before 2026-05-22. **Treat all
+  counts as lower bounds.**
 - **`docs/` dominates churn** (+605,801 / −194,375 across 4,005 file-changes)
   because the dev log itself lives in the repo. Code-only claims use the
   `src`/`tests` columns.

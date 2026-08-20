@@ -80,7 +80,10 @@ What the commit record took away:
   not independent evidence.
 - **A release squashed away eight months of history** (2026-07-02); the
   commit-level record survives only on a retained legacy branch — a process
-  failure the journal never mentions.
+  failure the journal never mentions. A **second** mechanism was found later:
+  merged feature branches were deleted from the remote, orphaning a commit that
+  survives only in a stale local checkout. Neither loss is detectable from inside
+  the repository, so every commit count here is a **lower bound**.
 
 Honest failure modes are documented throughout: the assistant committed against
 an explicit "do not commit" order, collapsed commits, over-claimed *and*

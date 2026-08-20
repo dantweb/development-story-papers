@@ -901,7 +901,7 @@ test-to-code ratio is necessary but not sufficient, since this project
 demonstrably produced *volume* of test code that included tests asserting
 nothing.
 
-### 6.6 A failure only git could see: the history squash
+### 6.6 A failure only git could see: the history squash — and a survivorship problem
 
 On 2026-07-02, `stripe-wallet`'s mainline was rewritten into a single commit
 (`6e828a242d6b`, "Stripe payment module v3.1-rc.1 (squashed history)")
@@ -916,6 +916,48 @@ obligations, per-commit provenance is not a nicety, and a release procedure that
 discards it is a finding in its own right. It is also a cautionary note for this
 research programme: had the legacy branch been pruned, §4.1–§4.7 would have been
 impossible.
+
+**A second mechanism, found by accident, and it generalises the problem.**
+Comparing the measured corpus against a **stale local checkout frozen at
+2026-05-22** (`strp-test-may-21`) revealed a commit that exists nowhere on the
+canonical remote: `ce96dc86085b` — 25 files, +1,710/−60, subject **"test"** — the
+working tip of the feature branch `b-7.4.x-webhook-STRP-144`. That branch, and
+`b-7.4.x-fixing-ci`, have since been **deleted from the remote**.
+
+Unlike the squash, this is *routine* practice: the work was consolidated onto the
+mainline as `3a50c1c` "STRP-144 Webhook registration" (61 files,
++5,431/−1,255 — a further-developed version, different tree) and the branch was
+then pruned. All five source files survive in the current tree. **No code was
+lost; the incremental history of how that feature was built was.**
+
+Three consequences, and the third is the important one.
+
+1. **The measurement impact is negligible.** One commit out of 717 known
+   (0.14%). We deliberately **do not** add it to the corpus: its content overlaps
+   `3a50c1c`, so including both would double-count the same work. Every figure in
+   §4 remains as reported, over the history reachable from the canonical remote.
+2. **It refines the message-hygiene finding** (§4.10, M-17). The orphan's subject
+   is literally `test`. Feature-branch commits were casual; the mainline commit
+   that superseded it is properly titled. Commit-message quality in this project
+   was a function of **branch role**, not of author or period — which is a more
+   charitable and more accurate reading of the 102 reused subjects than
+   "carelessness."
+3. **Git-based research on this repository measures the surviving history, not
+   the actual one.** Two independent mechanisms — a mainline squash and ordinary
+   branch pruning — removed provenance during the study window, and *neither is
+   detectable from inside the repository*. We found the second only because a
+   stale checkout happened to exist on the same machine. Any commit-mining study
+   of a project that squashes releases and deletes merged branches inherits an
+   invisible survivorship bias, and should say so. §7.3 records this as a
+   standing limitation rather than a resolved one.
+
+The orphan's status is worth one further sentence, because it illustrates how
+thin this margin is. In the working checkout the commit is a **dangling
+object** — present in the local object database from a fetch that predates the
+branch deletion, reachable from no ref, and referenced by nothing on the remote.
+It would not survive a `git gc`. The provenance of that feature is currently one
+routine maintenance command away from permanent loss, and the same is true of
+whatever else is dangling in checkouts nobody has thought to compare.
 
 ### 6.7 Frequency and severity
 
@@ -1005,8 +1047,14 @@ code is not the same thing as verification.
   precision.
 - **Still single-sourced:** findings-closed counts and quality-gate pass rates
   are not derivable from git and rest on AI-authored completion reports (§4.5).
-- **Survivorship, both corpora:** the journal is written by the party being
-  studied; the git record was nearly truncated by a squash (§6.6).
+- **Survivorship, all three corpora:** the journal is written by the party being
+  studied; the Jira export is a snapshot with no transition history; and the git
+  record lost provenance twice during the study window — a mainline squash and
+  the deletion of at least two feature branches (§6.6). The second was
+  detectable only by comparing against a stale local checkout, so **we cannot
+  rule out further losses we have no witness for.** Aggregate figures are
+  reported over the history reachable from the canonical remote, which is a
+  lower bound on what was actually committed.
 
 ### 7.4 What generalizes
 

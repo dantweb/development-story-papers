@@ -97,7 +97,12 @@ mid-2026 work. It is also written by the party being studied.
 `Done`-category, no status-transition history, and a snapshot-only view taken
 2026-08-20.
 
-**Corpus B** fails differently. Sessions are a **lower bound** on effort — they
+**Corpus B** also carries a **survivorship** problem: two mechanisms removed
+provenance during the study window — the 2026-07-02 mainline squash, and the
+deletion of merged feature branches (one orphaned commit was recovered from a
+stale local checkout frozen at 2026-05-22). Neither is detectable from inside the
+repository, so all commit counts are **lower bounds**. Corpus B otherwise fails
+differently. Sessions are a **lower bound** on effort — they
 cannot see thinking, reading, or debugging that produces no commit. `files_changed`
 counts change *events*, not unique files. Test-method counts are not PHPUnit test
 counts (which expand data providers), so the two series must never be mixed. A
