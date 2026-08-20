@@ -321,9 +321,11 @@ correct for the right reason but the wrong magnitude.
 
 ### 4.2 Cadence is bimodal, not steady
 
-Across 143 active days: **median 3 commits/day, mean 5.0, maximum 35**. Only
-**18 days carry ≥10 commits**, and those days contain the project's structural
-events:
+Across 143 active days: **median 3 commits/day, mean 5.0, maximum 35**. The
+distribution is formally **overdispersed**: variance 34.71 against mean 5.01
+gives a **dispersion index of 6.93** where a steady (Poisson) process would give
+1.0 — χ² = 984.4, df = 142, **p = 4.7e-126**. Only **18 days carry ≥10
+commits**, and those days contain the project's structural events:
 
 | Date | Commits | What it was |
 |---|---|---|
@@ -391,10 +393,16 @@ described in §4.2 was produced inside ordinary working hours. Whatever the
 mechanism — the harness, the assistant, the operator — it did not run on
 overtime.
 
+Under a null of commits distributed uniformly across all seven days, the
+probability of observing **zero** Saturdays in 716 commits is **1.2e-48**. Even
+within Mon–Fri the spread is not uniform (χ² = 22.8, df = 4, **p = 0.0001**) —
+Wednesday carries 181 commits against an expected 143.
+
 Out-of-hours work is **concentrated rather than absent**, and the concentration
 is itself informative. The 29 out-of-hours commits fall on **11 distinct days**,
 but **13 of the 29 (45%) land on a single one** — 2026-05-27, the epic's day 1,
-running 21:30 → 22:12 (§4.5). The remaining ten days carry one to three commits
+running 21:30 → 22:12 (§4.5); an exact binomial against uniformity over those 11
+days gives **p = 4.8e-07**. The remaining ten days carry one to three commits
 each, mostly just past 20:00. So the picture is not "no evening work ever" but
 "evening work was rare, shallow, and once — during the hardest sprint in the
 record — sustained." The weekend result carries no such qualification: zero
@@ -478,9 +486,12 @@ project's clearest quality signal:
 | `ci` | 288 | 10,074 | 1,894 |
 | `other` | 382 | 38,188 | 9,438 |
 
-**1.69 lines of test code were written per line of production code.** The
-journal *asserts* TDD ("if a test never went red, you didn't TDD it"); this
-measures it. A project that merely claimed TDD while writing tests as an
+**1.69 lines of test code were written per line of production code**, and the
+result is not an artifact of one period: test insertions exceeded source
+insertions in **11 of 11 months** (exact sign test, **p = 0.0010**), and a
+percentile bootstrap over commits (20,000 resamples) puts the 95% CI on the ratio
+at **[1.39, 2.06]**, with the ratio above 1 in **100%** of resamples. The journal
+*asserts* TDD ("if a test never went red, you didn't TDD it"); this measures it. A project that merely claimed TDD while writing tests as an
 afterthought could not produce this ratio, and no self-report was needed to
 establish it.
 
@@ -542,7 +553,9 @@ The trailer data is the revision's most uncomfortable result.
 
 Monthly trailer share: 0% through April 2026, then **65% (May), 27% (June),
 67% (July), 86% (August)**. The first two trailers appear on 2025-12-05, then
-nothing until 2026-05-07.
+nothing until 2026-05-07. Split at that date, the change is categorical:
+**2/466 (0.4%)** before versus **147/250 (58.8%)** after — Fisher exact,
+**p = 5.2e-81**. This is a convention being adopted, not a practice emerging.
 
 The honest conclusion: **the git record cannot substantiate "Claude was the
 primary code author" for the first seven months of this project.** It
@@ -661,6 +674,13 @@ The developer who wrote the code with the assistant filed **52 Stories and zero
 Bugs**. A different person filed **37 of the 40 Bugs (92.5%) and zero Stories**.
 A third filed **26 of 50 Tasks and nothing else**.
 
+The separation is statistically near-deterministic, and this is the most robust
+result in the paper: Fisher's exact test on the developer×tester / Story×Bug
+2×2 — `[[52,0],[0,37]]` — gives **p = 6.7e-26**, and the full reporter×type table
+gives **χ² = 199.4, df = 6, p = 2.6e-40, Cramér's V = 0.859**. (These corpora are
+censuses rather than samples, so the null being rejected is "reporter is
+independent of issue type," not a claim about projects in general — see §7.2.)
+
 This is the single most important addition in this revision, because it changes
 what the case is evidence *for*. The paper's thesis — that a process harness
 makes AI-assisted output trustworthy — was built from the journal's account of
@@ -682,6 +702,8 @@ developer plus an AI, fed by a dedicated tester and a project manager, can."
 | Bug | 17 | 40 | **42%** |
 | Task | 4 | 50 | 8% |
 | Sub-task | 0 | 8 | 0% |
+
+Coverage is not independent of issue type: χ² = 47.4, df = 3, **p = 2.9e-10**.
 
 Stories convert to code at 69%; Tasks at 8%, which is consistent with Tasks
 being coordination rather than engineering. The most-referenced issues are
@@ -1007,6 +1029,18 @@ here is a property of the *loop*, not of any single commit, and volume of test
 code is not the same thing as verification.
 
 ### 7.2 Confounds (revised)
+
+**A standing caveat on every p-value in this paper.** Both machine corpora are
+**censuses**, not samples: every commit and every issue in the window is present.
+So the tests in §4 reject specific chance-arrangement nulls — reporter
+independent of issue type, commit timing independent of weekday, months
+exchangeable with respect to which category grew faster — and none of them
+licenses an inference to AI-assisted development *in general*. That inference
+requires a second case, which this study does not have (§7.4). A full inventory
+of which claims carry a test, which are census facts needing none, and which are
+underpowered or out of reach is maintained in
+`07-lessons-learned.md`.
+
 
 - **Not single-developer, and not a two-party process.** Three human
   contributors committed code, dominated by one at 87% of commits (§4.8); the

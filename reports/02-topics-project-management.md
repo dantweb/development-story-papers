@@ -56,7 +56,7 @@ quality, predicts commit hygiene and first-pass gate success.
 **Threat to validity.** Dispatch compute is logged for only one epic; generalization
 rests on that anchor plus qualitative evidence elsewhere.
 
-> ### Git verification (2026-08-20) — ⚠️ **central premise refuted**
+> ### Git verification (2026-08-20) — ⚠️ **premise fails on its own terms; the comparison is underpowered**
 >
 > The convention's stated purpose is *"to map one finding/phase to one dispatch
 > to one commit."* The commit record shows it did not do that.
@@ -68,9 +68,20 @@ rests on that anchor plus qualitative evidence elsewhere.
 > | Commits per ref, mean | **4.77** | 7.67 |
 > | Refs with **exactly one** commit | **4/13 (31%)** | 2/6 (33%) |
 >
-> Sub-sprint 114.10 took 12 commits, 114.11 took 9, 114.5 took 8. On the
-> one-commit-per-phase criterion the decimal convention is **statistically
-> indistinguishable from ordinary sprint numbering** (31% vs 33%).
+> Sub-sprint 114.10 took 12 commits, 114.11 took 9, 114.5 took 8.
+>
+> **Two claims here, with very different evidential standing — an earlier draft
+> of this block conflated them.**
+>
+> 1. **The convention failed on its own terms.** Its stated purpose was one
+>    phase → one dispatch → one commit. **9 of 13 decimal sub-sprints (69%) span
+>    more than one commit, median 5.** This is a census fact about the whole
+>    population and needs no inference.
+> 2. **Whether it beat ordinary numbering is untestable.** Fisher exact on
+>    31% (4/13) vs 33% (2/6) gives **p = 1.0000**. With 13 groups against 6 there
+>    is no power to detect a difference of any plausible size, so the data are
+>    **silent** on that comparison — which is *not* the same as showing no
+>    difference. Any write-up must not claim it is.
 >
 > Note the *direction* of failure: the mapping was one-to-**many**, not
 > one-to-few, so the granularity was finer than the convention promised rather

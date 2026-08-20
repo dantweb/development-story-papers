@@ -46,6 +46,21 @@ records **who asked for the work**.
 | `jira_issues.csv` | 156 | one issue | normalized + **joined to the commit record**: type, status, category, priority, urgency, reporter, assignee, created/resolved, lead time, commit count, first/last commit date, `has_code`, summary |
 | `jira_roles.csv` | 10 | one reporter | reporter × issue-type matrix — the role-separation result |
 
+## Statistical tests
+
+`stats.py` recomputes every test cited in
+[`../reports/07-lessons-learned.md`](../reports/07-lessons-learned.md) ("Which
+lessons the data can actually prove") from the CSVs above. Run it with
+`python3 data/stats.py`; it needs only `numpy` (the bootstrap) — Fisher's exact
+test, the exact binomial, and the chi-square tail are implemented directly, so
+`scipy` is not required. It is seeded, so the bootstrap CI is reproducible.
+
+**Read the p-values correctly.** These corpora are **censuses, not samples**:
+every commit and every issue in the window is present. A p-value here rejects a
+specific chance-arrangement null (e.g. "reporter is independent of issue type"),
+and does **not** license generalisation to AI-assisted development at large —
+that needs a second case.
+
 ### Jira-specific caveats — read before quoting
 
 - **No time tracking whatsoever.** `Original estimate`, `Remaining Estimate`,

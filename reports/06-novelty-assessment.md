@@ -126,6 +126,11 @@ read**.
 | a dedicated tester | 0 | 5 | **37** (92.5% of all bugs) |
 | a project manager | 0 | **26** | 0 |
 
+The association is near-deterministic: Fisher exact on the developer×tester /
+Story×Bug 2×2 gives **p = 6.7e-26**, and the full reporter×type table gives
+**χ² = 199.4, df 6, p = 2.6e-40, Cramér's V = 0.859**. This is the most
+statistically robust result in the corpus.
+
 The developer who wrote the code filed **zero** bug reports. An independent human
 filed nearly all of them. This function is **invisible in the journal** (a
 developer's log) and **invisible in git** (which sees only committers). It

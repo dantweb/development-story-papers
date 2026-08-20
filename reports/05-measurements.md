@@ -262,8 +262,10 @@ of commit-bearing activity."
 **Values:** **143 active days**; median **3**, mean **5.0**, max **35**. Only
 **18 days carry ≥10 commits**. Busiest: 2026-01-16 (35, the package split),
 05-27 (33), 05-28 (31), 08-19 (26), 2025-11-03 (21), 2026-01-15 (21).
-**Shows:** the distribution is **bimodal** — a low modal day punctuated by
-structural events. Directly corrects the temptation to read M-2's 30+
+**Statistic:** variance 34.71 vs mean 5.01 → **dispersion index 6.93** (Poisson
+expects 1.0); overdispersion χ² = 984.4, df = 142, **p = 4.7e-126**.
+**Shows:** the distribution is **bimodal/bursty, not steady** — a low modal day
+punctuated by structural events. Directly corrects the temptation to read M-2's 30+
 commits/day as sustained throughput; peak-as-rate overstates by ~10×.
 **Caveat:** commits per day is a proxy for output, not value; the 35-commit day
 was a mechanical package split, not 35 features.
@@ -275,6 +277,9 @@ commit excluded).
 **Values:** `tests` **+150,321 / −62,008** across 2,429 file-changes; `src`
 **+88,896 / −40,888** across 2,918 — a ratio of **1.69 : 1**. Deletions run at
 ~46% of insertions in `src` (ongoing rewriting, not accretion).
+**Statistic:** test+ > src+ in **11/11 months** (exact sign test **p = 0.0010**);
+bootstrap 95% CI on the ratio **[1.39, 2.06]** (20k resamples), ratio > 1 in
+**100%** of them.
 **Shows:** the **only independent confirmation of the project's TDD claims**. A
 project that merely asserted TDD while writing tests as an afterthought could not
 produce this ratio. Pairs with M-2's +196 test methods in two days.
@@ -289,6 +294,9 @@ effort, not verification quality.
 (21.8%), Fri 142 (19.8%), **Sat 0 (0.0%)**, Sun 1 (0.1%). Peak hours 13:00
 (110), 16:00 (94), 14:00 (85), 12:00 (76), 17:00 (68). Only **29 commits (4.1%)
 fall outside 08:00–20:00**.
+**Statistic:** P(zero Saturdays | uniform over 7 days) = **1.2e-48**; Mon–Fri
+spread is itself non-uniform (χ² = 22.8, df = 4, **p = 0.0001**, Wednesday
+heavy); out-of-hours concentration on 2026-05-27 exact binomial **p = 4.8e-07**.
 **Shows:** the output of M-11/M-12/M-13 was produced **without schedule
 compression** — zero Saturdays in ten months. The strongest quantitative support
 for the "discipline" thesis, and orthogonal to every journal claim. Out-of-hours
@@ -379,6 +387,10 @@ from the canonical remote, which is a **lower bound** on what was committed.
 bugs**; **Daniel Paniagua 26 Tasks and nothing else** (16.7%); Mario Lorenz 6
 Stories / 4 Tasks / 8 Sub-tasks (11.5%); **10 reporters** in total.
 **Source:** `../data/jira_roles.csv`.
+**Statistic:** Fisher exact on the developer×tester / Story×Bug 2×2
+`[[52,0],[0,37]]` → **p = 6.7e-26**; full reporter×type table **χ² = 199.4,
+df = 6, p = 2.6e-40, Cramér's V = 0.859**. The most statistically robust result
+in this catalogue.
 **Shows:** the most consequential single result from the Jira corpus. The
 developer who wrote the code with the assistant filed **zero bug reports**; an
 independent tester supplied nearly all of them. The AI-assisted pair was the
@@ -395,6 +407,7 @@ the export has no work-log to show effort per role.
 "DevLog review" (64 commits), `STRP-78` "Extract Component" (57), `STRP-52`
 "Develop Strategy" (33), `STRP-60` "Provider SDK integration" (32).
 **Source:** `../data/jira_issues.csv`.
+**Statistic:** χ² independence = 47.4, df = 3, **p = 2.9e-10**.
 **Shows:** Stories convert to code at 69% while Tasks sit at 8% — Tasks are
 coordination, not engineering. Also shows why **tickets are a poor unit of work
 here**: a handful of umbrella issues absorb most of the history.

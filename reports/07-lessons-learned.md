@@ -32,14 +32,17 @@ in the set.**
    When per-commit granularity mattered, the fix was never a better-worded
    prompt — it was *more dispatches*. Splitting the work is mechanical; asking
    nicely is advisory.
-2. **A naming convention does not enforce granularity — only the dispatch does.**
+2. **A naming convention did not enforce granularity — only the dispatch does.**
    `[B]` This is the lesson the project believed it had learned and had not. The
    decimal sub-sprint scheme (114.0–114.13) was introduced explicitly to map one
-   phase to one commit. Measured: **median 5 commits per sub-sprint** (mean
-   4.77), and only **31% mapped to exactly one commit — versus 33% for ordinary
-   sprint numbering.** The convention was statistically indistinguishable from no
-   convention. If you want one commit per unit, the harness must produce it; a
-   numbering scheme will not.
+   phase to one commit. Measured: **9 of 13 sub-sprints (69%) span more than one
+   commit, median 5** — so the convention **failed on its own terms**. Note the
+   limit precisely, because it is easy to overclaim here (and an earlier draft of
+   this document did): whether the scheme was nonetheless *better than* ordinary
+   sprint numbering is **untestable** with 13 groups against 6 (31% vs 33%,
+   Fisher exact **p = 1.00**). The transferable lesson survives either way: if
+   you want one commit per unit, the harness must produce it — do not assume a
+   numbering scheme did.
 3. **Restate the hard rules at the top of every dispatch.** `[A]` *"Agents work
    from the prompt, not from session history."* Scope rules were repeated as
    ABSOLUTE HARD RULES on each invocation rather than established once.
@@ -338,6 +341,132 @@ individual defects also make good conference war stories.
    recurred.
 
 ---
+
+## Which lessons the data can actually prove
+
+The lessons above are graded by *source* (`[A]`/`[B]`/`[C]`). This section grades
+them by **strength of inference** — the distinction that matters if any of this is
+written up. Tests were computed from the CSVs in [`../data/`](../data/); the
+script is reproducible from the column definitions in
+[`../data/README.md`](../data/README.md).
+
+### A note on what a p-value means here
+
+These corpora are **censuses, not samples**: every commit and every issue in the
+window is present. So a p-value cannot be read as "generalises to a population of
+projects." It answers a narrower and still useful question: *could this pattern
+have arisen from a chance arrangement of the labels we observe?* For T2 the null
+is "reporter is independent of issue type"; for T4, "commit timing is independent
+of weekday"; for T1, "months are exchangeable with respect to which category grew
+faster." Each is a real null worth rejecting, and none of them licenses a claim
+about AI-assisted development *in general* — that would need the second case this
+programme does not have.
+
+All tests are exact or standard, two-sided, and implemented without scipy
+(exact Fisher via the hypergeometric, exact binomial, chi-square with an
+incomplete-gamma tail, percentile bootstrap at 20,000 resamples).
+
+### Tier S — statistically supported
+
+| # | Lesson | Test | Statistic | p |
+|---|---|---|---|---|
+| **T1** | Test code outweighs production code (LL-3, LL-4) | sign test over months, + bootstrap CI on the ratio | **11/11 months** test+ > src+; pooled ratio **1.69**, 95% CI **[1.39, 2.06]**, ratio > 1 in **100%** of 20k resamples | **0.0010** |
+| **T2** | The pair does not file bugs against itself (LL-6) | Fisher exact on developer×tester / Story×Bug; χ² on the full reporter table | 2×2 = **[[52,0],[0,37]]**; full table **χ² = 199.4**, df 6, **Cramér's V = 0.859** | **6.7e-26** / **2.6e-40** |
+| **T3** | Trailer adoption is a step change, not a trend (LL-5) | Fisher exact, pre/post 2026-05-07 | **2/466 (0.4%)** before vs **147/250 (58.8%)** after | **5.2e-81** |
+| **T4** | Weekend abstention is real (LL-8) | exact binomial vs uniform-over-7-days; χ² on Mon–Fri | **0/716** Saturdays → P = **1.2e-48**; weekdays **not** uniform (χ² = 22.8, df 4 — Wednesday heavy) | **1.2e-48** / **0.0001** |
+| **T5** | Cadence is bursty, not steady (LL-1) | overdispersion vs Poisson | mean 5.01, variance 34.71 → **dispersion index 6.93** (Poisson expects 1.0), χ² = 984.4, df 142 | **4.7e-126** |
+| **T6** | Issue→code coverage depends on issue type (LL-6) | χ² independence | Story **69%**, Bug **42%**, Task **8%**, Sub-task **0%**; χ² = 47.4, df 3 | **2.9e-10** |
+| **T8** | Out-of-hours work is concentrated, not diffuse (LL-8) | exact binomial vs uniform over the 11 affected days | **13 of 29** out-of-hours commits on 2026-05-27 alone (45%) | **4.8e-07** |
+
+These seven are the lessons that can be stated as findings with a test behind
+them. **T2 is the strongest result in the entire corpus** — a Cramér's V of 0.859
+on a 4×3 table is a near-deterministic association, and it is the finding that
+most changes how the case study should be read.
+
+### Tier D — established descriptively, no inference needed
+
+Complete-enumeration facts. These need no statistics because nothing is being
+inferred: the population *is* the data. They are not weaker than Tier S, just
+different in kind — and citing a p-value for them would be a category error.
+
+| Claim | Value |
+|---|---|
+| Journal undersampled its own active days (LL-5) | 47 documented vs **105** with commits in-window (**2.2×**) |
+| The cents-math consolidation held (LL-4) | **zero** raw `* 100` sites remain outside the converter |
+| The no-`setState()` invariant is structural (LL-3) | `function setState` occurs **zero** times in either `src/` |
+| The ISP split is cosmetic (LL-1, LL-6) | **exactly zero** consumers typehint any of the 4 narrow sub-interfaces |
+| No ticket references were fabricated (LL-2) | **0 of 61** across 436 ticket-bearing commits |
+| Provenance was lost twice (LL-5) | 491 commits only on `LEGACY`; 1 commit reachable from **no** remote ref |
+| Effort is unrecoverable (LL-5) | Jira time fields empty for **all 156** issues; journal clock-stamps **3** of 143 active days |
+| Private "sprint" shadows the tracker (LL-5) | journal Sprint 1→133 vs Jira `Sprint` = **2 values** |
+| Commit messages are not an index (LL-5) | **102** reused subjects; one 56×; **39%** carry no ticket |
+| All 7 named validation guards exist (LL-7) | **7/7** by exact class name |
+| Refactors were reported by their shrinking half (LL-4) | 330→107 in one file, while module handler code went **2,616→2,953** |
+
+### Tier U — underpowered: the direction is visible, the test is not
+
+**This is where my earlier drafts overreached, and the correction matters.**
+
+`02-topics-project-management.md` described PM-1's premise as **refuted** on the
+strength of a comparison. That comparison does not survive a test:
+
+| | decimal sub-sprints | ordinary sprints |
+|---|---|---|
+| groups | 13 | 6 |
+| exactly one commit | 4 (31%) | 2 (33%) |
+
+**Fisher exact, two-sided: p = 1.0000.** With 13 groups against 6 there is no
+power to detect a difference of any plausible size, so the data are **silent** on
+whether decimal numbering helped — that is not the same as showing it did not.
+
+What *is* established, and needs no inference, is the narrower claim: **9 of 13
+decimal sub-sprints (69%) span more than one commit, median 5.** The convention's
+stated purpose was one phase → one dispatch → one commit, and it demonstrably did
+not achieve that. So the honest formulation is:
+
+> The convention **failed on its own terms** (census fact). Whether it was
+> nonetheless *better than nothing* is **untestable with this data** (p = 1.00).
+
+Also underpowered or untestable: lead time (n = 39, and `Resolution` is set on 39
+issues while 82 are `Done`-category, so the sample is not even well-defined);
+and the LL-4 disjointness claim — 4 refactoring-found defects versus 6
+tester-found defects with **zero overlap** is striking, but testing it requires
+knowing the size of the underlying defect pool, which is unknowable. Report the
+disjointness as an observation, not a result.
+
+### Tier N — single-case verified
+
+One instance, checked against the artifact. Not statistics; provenance. Strong
+for *existence* claims ("this happened, precisely thus"), useless for frequency.
+
+- The `bf32d77` instruction-violation incident matching the journal in **all five
+  particulars**, including `status.md` at 0 changed lines (LL-2).
+- The `STRP-138`/`STRP-139` misattribution, with the `strp-xxx` placeholder in the
+  agent's own plan file (LL-1, LL-2).
+- The flagship epic's self-report understating insertions by **~41%** (LL-2) — a
+  single episode, so "agent arithmetic is unreliable in both directions" is
+  supported by *two* instances (this and the "said 4, was 3" miscount), which is
+  a pattern claim resting on n = 2.
+- `isConfigured()` shipping with the webhook-secret check commented out (LL-7).
+
+### Tier X — cannot be supported by any available data
+
+Restating [§ "Lessons we cannot support"](#lessons-we-cannot-support) in
+inferential terms: **every causal and comparative claim about the effect of AI
+assistance is out of reach**, because there is no counterfactual arm, no control
+project, one operator, and six model generations inside the window. No amount of
+additional analysis of *these* corpora changes that. It needs a second case.
+
+### What this means for writing it up
+
+- Lead with **T2** (role separation) and **T1** (test-to-source). They are the two
+  results with both a strong test and a genuinely counter-narrative message.
+- **T3** is the most useful to other researchers and the cheapest to state.
+- **T5** should replace every loose use of the word "velocity": the dispersion
+  index of 6.93 is the precise way to say "the peak is not the rate."
+- Move PM-1 from "refuted" to "failed on its own terms; comparison underpowered."
+- Never attach a p-value to a Tier-D claim, and never state a Tier-N incident as
+  a frequency.
 
 ## What we would do on day one, next time
 

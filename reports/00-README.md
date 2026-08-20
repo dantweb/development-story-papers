@@ -36,7 +36,7 @@ All machine-extracted to [`../data/`](../data/); schema and caveats in
 
 | Topic | Outcome |
 |---|---|
-| **PM-1** dispatch as unit of work | ⚠️ **central premise refuted** — decimal sub-sprints averaged 4.77 commits each; only 31% mapped to one commit, vs 33% for ordinary sprints |
+| **PM-1** dispatch as unit of work | ⚠️ **premise fails on its own terms** — 69% of decimal sub-sprints span >1 commit (median 5), so the convention did not do what it was for. The *comparison* with ordinary numbering is underpowered (Fisher p = 1.00) |
 | **PM-2** trust-but-verify | ✅ confirmed in detail — the `bf32d77` incident matches the journal in all five particulars |
 | **PM-3** estimation & velocity | ✅ main obstacle removed — 227 sessions / ≈140 h replaces n=3 clock-stamped days |
 | **TECH-1** contract-first checkout | ✅ `function setState` occurs **zero times** in either `src/` — the invariant is structural |
@@ -46,6 +46,19 @@ All machine-extracted to [`../data/`](../data/); schema and caveats in
 | **TECH-5** money as a type | ✅ confirmed, and the consolidation **held**: 0 raw cents-math sites remain |
 | **SEC-1** async money boundary | ✅ fixes present and fail-closed; scores and burn-down not verifiable |
 | **SEC-2** central validation | ✅ **7/7** guards confirmed by exact class name |
+
+### Which claims have a statistical test behind them
+
+Seven do — see the *"Which lessons the data can actually prove"* section of
+[`07-lessons-learned.md`](07-lessons-learned.md). Strongest: **role separation**
+(χ² = 199.4, df 6, p = 2.6e-40, Cramér's V = **0.859**) and **test code
+outweighing production code** (11/11 months, sign test p = 0.0010, bootstrapped
+ratio CI **[1.39, 2.06]**). Also tested: trailer step-change (p = 5.2e-81),
+weekend abstention (p = 1.2e-48), cadence overdispersion (index **6.93**,
+p = 4.7e-126), issue→code coverage by type (p = 2.9e-10), out-of-hours
+concentration (p = 4.8e-07). Everything else is either a census fact needing no
+inference, a single verified incident, or — for all causal claims about AI's
+effect — **out of reach without a second case**.
 
 ### Novelty, in one line
 
