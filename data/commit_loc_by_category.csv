@@ -1,0 +1,717 @@
+repo,sha,author_date_iso,date,files,src_files,src_ins,src_del,tests_files,tests_ins,tests_del,docs_files,docs_ins,docs_del,ci_files,ci_ins,ci_del,assets_files,assets_ins,assets_del,other_files,other_ins,other_del,subject
+stripe-wallet,72e7cab0fd6f,2025-10-21T08:16:32+00:00,2025-10-21,1,0,0,0,0,0,0,0,0,0,1,2,2,0,0,0,0,0,0,Bump actions/checkout from 3 to 5
+stripe-wallet,9259f81ef012,2025-10-21T09:22:24+02:00,2025-10-21,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,Initial commit
+stripe-wallet,885d3be04b0d,2025-10-21T10:00:47+02:00,2025-10-21,112,0,0,0,0,0,0,112,68719,0,0,0,0,0,0,0,0,0,0,STRP-52 Module concept design
+stripe-wallet,1b1ad22f9d77,2025-10-21T10:06:17+02:00,2025-10-21,5,0,0,0,0,0,0,0,0,0,4,593,0,0,0,0,1,4,0,STRP-52 Add install recipe and submodules dep
+stripe-wallet,15aae949b4ef,2025-10-21T10:15:37+02:00,2025-10-21,31,2,0,0,15,245,0,0,0,0,3,510,0,3,84,0,8,285,2,STRP-52 Add gha
+stripe-wallet,e4e7a6a45b7c,2025-10-21T10:42:09+02:00,2025-10-21,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Merge pull request #1 from OXID-eSales/dependabot/github_actions/actions/checkout-5
+stripe-wallet,dda199473637,2025-10-21T17:26:23+02:00,2025-10-21,16,0,0,0,0,0,0,16,7182,0,0,0,0,0,0,0,0,0,0,STRP-52 Add block-chain-aware inventory manager concept design
+stripe-wallet,15ab62a76997,2025-10-22T11:39:21+02:00,2025-10-22,6,0,0,0,0,0,0,6,4566,1510,0,0,0,0,0,0,0,0,0,STRP-52 Add block-chain-aware inventory manager concept design
+stripe-wallet,919e68aa9730,2025-10-22T12:22:14+02:00,2025-10-22,14,0,0,0,0,0,0,14,5751,0,0,0,0,0,0,0,0,0,0,STRP-52 Add booking platform concept design
+stripe-wallet,fd4dea92ba3b,2025-10-22T15:12:29+02:00,2025-10-22,1,0,0,0,0,0,0,1,829,2,0,0,0,0,0,0,0,0,0,STRP-52 Update smart contract implementation plan
+stripe-wallet,dbc20eed67dc,2025-10-22T16:06:01+02:00,2025-10-22,18,0,0,0,18,370,20,0,0,0,0,0,0,0,0,0,0,0,0,STRP-52 Add tests for smart contracts
+stripe-wallet,6ccc4135a0f4,2025-10-23T12:12:56+02:00,2025-10-23,9,0,0,0,0,0,0,9,2088,3,0,0,0,0,0,0,0,0,0,STRP-52 Update smart contract implementation plan
+stripe-wallet,8e51bd4109de,2025-10-23T12:54:07+02:00,2025-10-23,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,6,4,STRP-52 Update smart contract implementation plan
+stripe-wallet,621a12ccfd91,2025-10-23T13:07:04+02:00,2025-10-23,20,19,93,0,0,0,0,0,0,0,1,1,4,0,0,0,0,0,0,STRP-52 Add basic module structure
+stripe-wallet,60b8b7d9c063,2025-10-23T13:11:07+02:00,2025-10-23,1,0,0,0,0,0,0,0,0,0,1,1,2,0,0,0,0,0,0,STRP-52 Add basic module structure
+stripe-wallet,e33aa7a35913,2025-10-23T13:16:29+02:00,2025-10-23,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,15,STRP-52 Add basic module structure
+stripe-wallet,7147053002e9,2025-10-23T13:20:20+02:00,2025-10-23,2,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,STRP-52 Add basic module structure
+stripe-wallet,b254410f9f46,2025-10-23T14:25:06+02:00,2025-10-23,9,0,0,0,0,0,0,9,643,5302,0,0,0,0,0,0,0,0,0,STRP-52 Update docs and implementation plan
+stripe-wallet,b57d887ae70b,2025-10-23T15:00:10+02:00,2025-10-23,33,0,0,0,17,0,595,14,941,127,1,1,1,0,0,0,1,1,1,STRP-52 Update test structure and docs
+stripe-wallet,db69ed03d975,2025-10-23T15:32:08+02:00,2025-10-23,24,0,0,0,1,142,0,22,638,241,0,0,0,0,0,0,1,1,0,STRP-52 Update test structure and docs
+stripe-wallet,9e3db896a4bd,2025-10-24T13:37:16+02:00,2025-10-24,3,0,0,0,2,30,1,0,0,0,0,0,0,0,0,0,1,2,2,STRP-52 Update test structure and docs
+stripe-wallet,47706f4b7c8c,2025-10-24T14:17:35+02:00,2025-10-24,15,11,84,11,3,36,16,0,0,0,0,0,0,0,0,0,1,8,5,STRP-52 Module structure test run
+stripe-wallet,c3bb4cb785e7,2025-10-24T14:57:03+02:00,2025-10-24,8,0,0,0,1,30,13,0,0,0,0,0,0,6,638,0,1,1,1,STRP-52 Migrations and related tests
+stripe-wallet,250ca5efc3ea,2025-10-24T15:12:43+02:00,2025-10-24,4,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-52 Migrations and related tests
+stripe-wallet,66b6dc64eb34,2025-10-24T15:34:48+02:00,2025-10-24,13,6,0,0,6,824,0,0,0,0,1,1,2,0,0,0,0,0,0,STRP-52 Migrations and related tests
+stripe-wallet,6a0514ab02b2,2025-10-24T15:51:05+02:00,2025-10-24,5,0,0,0,5,5,5,0,0,0,0,0,0,0,0,0,0,0,0,STRP-52 Migrations and related tests
+stripe-wallet,40fa0a9b13c4,2025-10-24T15:59:13+02:00,2025-10-24,7,0,0,0,6,6,7,0,0,0,0,0,0,0,0,0,1,1,6,STRP-52 Migrations and related tests
+stripe-wallet,eb1e1bddc4d8,2025-10-26T19:40:23+01:00,2025-10-26,13,0,0,0,0,0,0,13,15721,0,0,0,0,0,0,0,0,0,0,STRP-52 Add research papers concept ideas
+stripe-wallet,8c3dc1360ee9,2025-10-27T14:21:16+01:00,2025-10-27,1,0,0,0,0,0,0,0,0,0,1,3,13,0,0,0,0,0,0,STRP-52 Update install recipe script
+stripe-wallet,8631e660726e,2025-10-27T15:24:20+01:00,2025-10-27,1,0,0,0,0,0,0,0,0,0,1,10,8,0,0,0,0,0,0,STRP-52 Update install recipe script
+stripe-wallet,f3bf279e694c,2025-10-27T15:32:54+01:00,2025-10-27,3,0,0,0,0,0,0,0,0,0,2,7,3,0,0,0,1,1,1,STRP-52 Update install recipe script
+stripe-wallet,5981b4f6b485,2025-10-27T15:34:37+01:00,2025-10-27,1,0,0,0,0,0,0,0,0,0,1,5,4,0,0,0,0,0,0,STRP-52 Update install recipe script
+stripe-wallet,90bcf2b18670,2025-10-27T16:19:48+01:00,2025-10-27,3,0,0,0,0,0,0,3,2559,0,0,0,0,0,0,0,0,0,0,STRP-52 Add researchb and biz hypotethae
+stripe-wallet,b1f02f6b22fa,2025-10-27T17:59:02+01:00,2025-10-27,35,0,0,0,0,0,0,35,15858,0,0,0,0,0,0,0,0,0,0,STRP-52 Add research and biz hypotethae
+stripe-wallet,ab42f981dd2b,2025-10-27T18:29:42+01:00,2025-10-27,13,0,0,0,0,0,0,13,61941,48,0,0,0,0,0,0,0,0,0,STRP-52 Add research and biz hypotethae
+stripe-wallet,24a8b4252097,2025-10-27T19:02:24+01:00,2025-10-27,7,0,0,0,0,0,0,7,32,6,0,0,0,0,0,0,0,0,0,STRP-52 Update biz-diagrams
+stripe-wallet,f896e70e2111,2025-10-30T12:37:39+01:00,2025-10-30,137,59,2584,7,35,4751,1,42,18740,351,1,45,1,0,0,0,0,0,0,STRP-59 Add contract and event layers
+stripe-wallet,d906cbf4a5ea,2025-10-31T10:50:49+01:00,2025-10-31,44,26,2234,0,9,1554,0,8,2661,26,0,0,0,0,0,0,1,45,0,STRP-60 Add provider SDK adapter integration
+stripe-wallet,7a6d50d74004,2025-10-31T11:08:23+01:00,2025-10-31,28,15,447,2,6,810,0,7,397,0,0,0,0,0,0,0,0,0,0,STRP-60 Add webhook system
+stripe-wallet,a60d52d96f6a,2025-10-31T11:14:55+01:00,2025-10-31,11,7,30,5,3,53,0,0,0,0,1,0,10,0,0,0,0,0,0,STRP-60 Update styles
+stripe-wallet,c5bba94e5938,2025-10-31T11:24:46+01:00,2025-10-31,3,1,105,29,2,15,2,0,0,0,0,0,0,0,0,0,0,0,0,STRP-60 Update styles
+stripe-wallet,b7cde7d8833c,2025-10-31T11:27:53+01:00,2025-10-31,9,9,0,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-60 Update styles
+stripe-wallet,df0437f25218,2025-10-31T12:18:02+01:00,2025-10-31,53,6,104,12,6,252,703,41,2295,85,0,0,0,0,0,0,0,0,0,STRP-60 Update models handling
+stripe-wallet,2c0523cb5048,2025-10-31T12:58:27+01:00,2025-10-31,30,26,174,89,1,8,4,3,1442,0,0,0,0,0,0,0,0,0,0,STRP-60 Update interface pattern
+stripe-wallet,1bfd15ab4f65,2025-10-31T13:17:58+01:00,2025-10-31,20,20,199,89,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-60 Style fix
+stripe-wallet,517e31ed6f8a,2025-10-31T13:29:16+01:00,2025-10-31,5,4,180,74,1,15,3,0,0,0,0,0,0,0,0,0,0,0,0,STRP-60 Style fix
+stripe-wallet,8873315d1360,2025-10-31T13:32:40+01:00,2025-10-31,1,1,81,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-60 Style fix
+stripe-wallet,cdb3a8067656,2025-10-31T16:53:01+01:00,2025-10-31,23,5,867,0,4,1265,0,3,555,184,0,0,0,10,1151,597,1,3,1,STRP-60 Update migrations
+stripe-wallet,2cfbb7928462,2025-11-03T12:31:48+01:00,2025-11-03,2,0,0,0,2,5,5,0,0,0,0,0,0,0,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,03368794a5eb,2025-11-03T12:40:05+01:00,2025-11-03,4,0,0,0,0,0,0,0,0,0,1,0,1,3,10,21,0,0,0,STRP-60 Update migrations
+stripe-wallet,10c7f3f09192,2025-11-03T12:51:00+01:00,2025-11-03,4,0,0,0,0,0,0,0,0,0,1,14,2,3,372,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,de98e837212f,2025-11-03T12:55:52+01:00,2025-11-03,1,0,0,0,0,0,0,0,0,0,1,4,2,0,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,0581b697ed6d,2025-11-03T12:58:40+01:00,2025-11-03,2,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,5c157a5b8465,2025-11-03T13:05:30+01:00,2025-11-03,3,0,0,0,0,0,0,0,0,0,1,1,1,2,7,19,0,0,0,STRP-60 Update migrations
+stripe-wallet,8540b1be4994,2025-11-03T13:08:26+01:00,2025-11-03,1,0,0,0,0,0,0,0,0,0,1,4,2,0,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,e1a5e1f7f65a,2025-11-03T13:11:51+01:00,2025-11-03,1,0,0,0,0,0,0,0,0,0,1,2,2,0,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,11ceb64b333d,2025-11-03T13:13:56+01:00,2025-11-03,1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,9d5cea4f5d04,2025-11-03T13:15:49+01:00,2025-11-03,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,5387efe84220,2025-11-03T13:24:49+01:00,2025-11-03,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,b5ba02a41314,2025-11-03T13:30:18+01:00,2025-11-03,8,0,0,0,7,39,17,0,0,0,1,1,2,0,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,18914aedfef0,2025-11-03T13:37:14+01:00,2025-11-03,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,fec5369985c1,2025-11-03T15:02:39+01:00,2025-11-03,1,0,0,0,1,3,3,0,0,0,0,0,0,0,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,79df62b18f7a,2025-11-03T15:19:13+01:00,2025-11-03,1,0,0,0,0,0,0,0,0,0,1,2,2,0,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,af70deee1f66,2025-11-03T15:33:12+01:00,2025-11-03,1,0,0,0,0,0,0,0,0,0,1,4,0,0,0,0,0,0,0,STRP-60 Update migrations
+stripe-wallet,5c4e8e82be17,2025-11-03T15:39:52+01:00,2025-11-03,1,0,0,0,1,48,15,0,0,0,0,0,0,0,0,0,0,0,0,STRP-60 Update tests
+stripe-wallet,879f75a35623,2025-11-03T16:45:06+01:00,2025-11-03,1,0,0,0,0,0,0,0,0,0,1,2,173,0,0,0,0,0,0,STRP-60 Update tests
+stripe-wallet,39a1c5045986,2025-11-03T16:51:31+01:00,2025-11-03,2,0,0,0,1,15,1,0,0,0,1,2,2,0,0,0,0,0,0,STRP-60 Update tests
+stripe-wallet,814739702606,2025-11-03T16:56:12+01:00,2025-11-03,1,0,0,0,0,0,0,0,0,0,1,2,3,0,0,0,0,0,0,STRP-60 Update tests
+stripe-wallet,2753d64e7005,2025-11-03T17:02:27+01:00,2025-11-03,3,0,0,0,2,2,2,0,0,0,1,1,3,0,0,0,0,0,0,STRP-60 Update tests
+stripe-wallet,d27bccc9cc7a,2025-11-04T11:52:23+01:00,2025-11-04,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,Fix gha
+stripe-wallet,70b2fbd14d49,2025-11-04T12:09:20+01:00,2025-11-04,4,0,0,0,3,12,19,0,0,0,1,2,2,0,0,0,0,0,0,STRP-63 Update github actions and migrations test
+stripe-wallet,be1f2c352a09,2025-11-04T12:20:41+01:00,2025-11-04,2,0,0,0,0,0,0,0,0,0,1,4,0,0,0,0,1,2,1,STRP-64 Update development.yml
+stripe-wallet,d6a5271babee,2025-11-04T13:20:55+01:00,2025-11-04,2,0,0,0,0,0,0,0,0,0,2,30,1,0,0,0,0,0,0,STRP-64 Update gha
+stripe-wallet,c010d5f303ec,2025-11-04T13:29:15+01:00,2025-11-04,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-64 Update gha
+stripe-wallet,ce2f6e96e577,2025-11-04T13:38:59+01:00,2025-11-04,1,0,0,0,0,0,0,0,0,0,1,28,14,0,0,0,0,0,0,STRP-64 Update gha
+stripe-wallet,93b16bd5f6fb,2025-11-04T13:56:53+01:00,2025-11-04,3,0,0,0,0,0,0,0,0,0,2,0,47,0,0,0,1,2,2,STRP-64 Update gha
+stripe-wallet,8b445001d839,2025-11-04T14:05:26+01:00,2025-11-04,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-64 Update gha
+stripe-wallet,bf143d468fd1,2025-11-04T14:32:53+01:00,2025-11-04,1,0,0,0,0,0,0,1,9,7,0,0,0,0,0,0,0,0,0,STRP-63 Create capture and refund
+stripe-wallet,25da9a0c5d50,2025-11-04T14:32:53+01:00,2025-11-04,46,9,513,53,8,750,164,24,32157,44,1,4,0,4,145,24,0,0,0,STRP-63 Create capture and refund
+stripe-wallet,eb00a15ed528,2025-11-05T15:06:18+01:00,2025-11-05,5,3,54,4,1,6,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-63 Update doctrine styles
+stripe-wallet,9a1b2378fb0c,2025-11-05T15:55:21+01:00,2025-11-05,1,0,0,0,0,0,0,1,483,0,0,0,0,0,0,0,0,0,0,STRP-63 Update code quality standards
+stripe-wallet,5beb040e494e,2025-11-05T16:41:49+01:00,2025-11-05,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,36,31,Metadada and configuration validation
+stripe-wallet,315c41feb296,2025-11-05T16:41:49+01:00,2025-11-05,13,3,468,0,5,1211,1,0,0,0,0,0,0,3,260,0,2,144,110,Metadada and configuration validation
+stripe-wallet,0ea6d8b0f0da,2025-11-05T17:10:54+01:00,2025-11-05,2,0,0,0,1,10,2,0,0,0,0,0,0,0,0,0,1,1,1,STRP-63 Fix tests
+stripe-wallet,1098cd3b0efe,2025-11-05T17:37:03+01:00,2025-11-05,2,0,0,0,1,12,12,0,0,0,0,0,0,0,0,0,1,32,37,Metadada and configuration validation
+stripe-wallet,e0c4570e974b,2025-11-06T11:05:40+01:00,2025-11-06,2,0,0,0,1,5,5,0,0,0,0,0,0,0,0,0,1,1,1,Metadata fix
+stripe-wallet,6dde7c011c6a,2025-11-06T11:10:32+01:00,2025-11-06,2,0,0,0,1,22,0,0,0,0,0,0,0,0,0,0,1,3,2,mapped module events tests
+stripe-wallet,4f0ec374e097,2025-11-06T11:54:15+01:00,2025-11-06,8,1,48,17,3,215,196,0,0,0,0,0,0,2,2,0,2,30,115,Module settings handling
+stripe-wallet,e2e82e314318,2025-11-06T12:06:33+01:00,2025-11-06,1,1,24,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Code style fixes
+stripe-wallet,9d32ea30cab7,2025-11-06T12:15:35+01:00,2025-11-06,2,2,9,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Code style fixes
+stripe-wallet,cbffcd0a7dbb,2025-11-06T12:30:18+01:00,2025-11-06,2,1,11,9,1,26,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-54 Code style fixes
+stripe-wallet,c9e10ca3b46c,2025-11-06T12:36:37+01:00,2025-11-06,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,update gitignore
+stripe-wallet,322f6e4750e9,2025-11-06T12:37:15+01:00,2025-11-06,11,0,0,0,0,0,0,11,34587,15,0,0,0,0,0,0,0,0,0,update docs
+stripe-wallet,5a12227a565b,2025-11-06T12:46:33+01:00,2025-11-06,14,0,0,0,0,0,0,14,27397,353,0,0,0,0,0,0,0,0,0,update docs
+stripe-wallet,146f7f25ceb2,2025-11-06T12:49:27+01:00,2025-11-06,3,1,66,0,1,173,0,0,0,0,1,95,0,0,0,0,0,0,0,"STRP-54 Code style fixes, pre commit checks script"
+stripe-wallet,5486b1988982,2025-11-06T13:05:12+01:00,2025-11-06,1,0,0,0,0,0,0,1,57,39,0,0,0,0,0,0,0,0,0,STRP-54 task progress update
+stripe-wallet,00122e9c9de9,2025-11-07T08:57:59+01:00,2025-11-07,89,22,2214,0,13,3037,1,50,32243,0,1,1,1,1,138,0,2,8,0,STRP-66 Payment watch docs and implementation
+stripe-wallet,512fb714579f,2025-11-07T08:57:59+01:00,2025-11-07,13,0,0,0,0,0,0,13,4162,0,0,0,0,0,0,0,0,0,0,STRP-64 Update docs
+stripe-wallet,67886fe945f6,2025-11-07T09:32:53+01:00,2025-11-07,4,1,2,0,2,3,63,1,41,9,0,0,0,0,0,0,0,0,0,STRP-64 Update stripe adapter
+stripe-wallet,88675079936c,2025-11-07T09:45:53+01:00,2025-11-07,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Merge pull request #3 from OXID-eSales/b-7.4.x-STRP-54
+stripe-wallet,32b0150f5025,2025-11-07T09:46:01+01:00,2025-11-07,2,1,0,2,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,STRP-64 Update stripe adapter
+stripe-wallet,059996a8c7ca,2025-11-07T10:21:58+01:00,2025-11-07,19,9,769,0,8,1428,1,1,737,0,1,1,1,0,0,0,0,0,0,STRP-64 Update styles
+stripe-wallet,3dc17a414c34,2025-11-07T10:23:36+01:00,2025-11-07,1,0,0,0,0,0,0,0,0,0,1,4,6,0,0,0,0,0,0,STRP-64 Update styles check CI/CD
+stripe-wallet,ea975cad878f,2025-11-07T10:29:54+01:00,2025-11-07,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,STRP-64 Update styles check CI/CD
+stripe-wallet,ddc752c8bf8e,2025-11-07T12:05:04+01:00,2025-11-07,2,0,0,0,1,1,1,0,0,0,1,1,2,0,0,0,0,0,0,STRP-64 Update styles check CI/CD
+stripe-wallet,0dac8752f466,2025-11-07T12:08:10+01:00,2025-11-07,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-64 Update styles check CI/CD
+stripe-wallet,96759f502a4a,2025-11-07T12:39:04+01:00,2025-11-07,2,0,0,0,1,14,1,0,0,0,1,51,15,0,0,0,0,0,0,STRP-64 Update styles check CI/CD
+stripe-wallet,cd92f5b75393,2025-11-07T12:41:16+01:00,2025-11-07,1,0,0,0,0,0,0,0,0,0,1,1,3,0,0,0,0,0,0,STRP-64 Update styles check CI/CD
+stripe-wallet,d6e69fc021a0,2025-11-07T14:13:57+01:00,2025-11-07,31,7,65,22,15,2709,5,7,2033,22,2,43,15,0,0,0,0,0,0,STRP-64 Update Stripe adapter SDK tests
+stripe-wallet,d8530eb21635,2025-11-07T17:32:32+01:00,2025-11-07,9,5,318,4,0,0,0,0,0,0,0,0,0,2,203,0,2,18,2,STRP-54 Configuration - tokens fetch
+stripe-wallet,d9e9d968f607,2025-11-07T17:32:32+01:00,2025-11-07,9,5,318,4,0,0,0,0,0,0,0,0,0,2,203,0,2,18,2,STRP-54 Configuration - tokens fetch
+stripe-wallet,6bb523458c5f,2025-11-07T17:51:34+01:00,2025-11-07,2,0,0,0,1,175,0,1,269,0,0,0,0,0,0,0,0,0,0,STRP-64 Update Stripe adapter SDK tests
+stripe-wallet,95a0c421e126,2025-11-11T09:45:13+01:00,2025-11-11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Merge remote-tracking branch 'origin/b-7.4.x-STRP-54' into b-7.4.x-STRP-54
+stripe-wallet,7129d568f01c,2025-11-11T12:02:07+01:00,2025-11-11,10,3,47,16,4,44,16,0,0,0,0,0,0,1,2,2,2,3,14,STRP-54 Refactor
+stripe-wallet,ee0e7b7b815c,2025-11-11T12:03:18+01:00,2025-11-11,1,0,0,0,1,207,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-54 Stripe client factory test
+stripe-wallet,12956417c910,2025-11-11T13:18:25+01:00,2025-11-11,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,8,8,STRP-54 Fetched stripe variables types modified to be visible in admin
+stripe-wallet,8cc70c2cce68,2025-11-11T13:25:05+01:00,2025-11-11,1,0,0,0,1,2,2,0,0,0,0,0,0,0,0,0,0,0,0,STRP-54 corrected test
+stripe-wallet,7aafc05b1484,2025-11-11T13:32:19+01:00,2025-11-11,1,0,0,0,1,17,9,0,0,0,0,0,0,0,0,0,0,0,0,STRP-54 corrected test
+stripe-wallet,cca80a2f833b,2025-11-11T13:44:15+01:00,2025-11-11,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-54 CS fix
+stripe-wallet,764366ed7741,2025-11-11T14:52:57+01:00,2025-11-11,2,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,STRP-54 Changed config class namespace
+stripe-wallet,5d4153fb0b34,2025-11-11T15:17:13+01:00,2025-11-11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Merge pull request #4 from OXID-eSales/b-7.4.x-STRP-54
+stripe-wallet,c3ab54741f9b,2025-11-11T16:31:50+01:00,2025-11-11,4,1,0,1,2,21,0,1,75,49,0,0,0,0,0,0,0,0,0,STRP-54 minor updates
+stripe-wallet,f7bdcd96e3ff,2025-11-12T12:10:24+01:00,2025-11-12,31,13,2162,0,0,0,0,5,3766,0,0,0,0,7,1486,0,6,2754,0,"STRP-58 one page checkout draft, WIP"
+stripe-wallet,2290d117a43f,2025-11-12T13:36:42+01:00,2025-11-12,15,1,64,0,0,0,0,2,865,0,0,0,0,11,337,1123,1,1,0,"STRP-58 one page checkout frontend parts, WIP"
+stripe-wallet,c11ad7f09728,2025-11-12T14:24:17+01:00,2025-11-12,2,0,0,0,1,1,0,0,0,0,1,2,1,0,0,0,0,0,0,STRP-66 Paymentwatch implementation
+stripe-wallet,10d77ae53b58,2025-11-12T14:41:29+01:00,2025-11-12,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,STRP-66 Paymentwatch implementation
+stripe-wallet,c0eebb94070c,2025-11-12T16:32:59+01:00,2025-11-12,2,1,0,3,0,0,0,0,0,0,1,4,0,0,0,0,0,0,0,STRP-66 Paymentwatch implementation
+stripe-wallet,53e5de807d12,2025-11-12T17:03:28+01:00,2025-11-12,3,1,10,7,1,4,1,1,22,2,0,0,0,0,0,0,0,0,0,STRP-66 Paymentwatch implementation
+stripe-wallet,e6a7ee433c4e,2025-11-13T11:43:36+01:00,2025-11-13,23,1,99,0,0,0,0,9,5658,0,0,0,0,11,545,101,2,3,1,"STRP-58 standard checkout plan, WIP"
+stripe-wallet,d99b515b7b98,2025-11-17T16:26:04+01:00,2025-11-17,55,26,2754,54,2,5,3,9,5180,128,0,0,0,13,1186,0,5,7524,25,"STRP-58 standard checkout plan, WIP"
+stripe-wallet,0b0fc0fa7c12,2025-11-19T08:57:09+01:00,2025-11-19,60,25,1367,6,9,1840,0,15,8478,0,2,27,9,6,499,0,3,80,23,STRP-67 Order details and refund in admin
+stripe-wallet,0703fbd9483b,2025-11-19T16:23:53+01:00,2025-11-19,57,9,504,81,2,4,5,5,2405,0,0,0,0,23,3899,1111,18,4678,9,STRP-58 wip
+stripe-wallet,aef5801f0a5f,2025-11-19T19:00:53+01:00,2025-11-19,9,0,0,0,0,0,0,0,0,0,0,0,0,8,66,570,1,3,0,STRP-58 wip
+stripe-wallet,a048dd63772f,2025-11-19T20:17:34+01:00,2025-11-19,1,0,0,0,0,0,0,0,0,0,0,0,0,1,13,0,0,0,0,STRP-58 id added to submit order button
+stripe-wallet,40895188518e,2025-11-20T13:39:54+01:00,2025-11-20,2,1,98,22,0,0,0,0,0,0,0,0,0,0,0,0,1,25,0,using adapter in payment controller
+stripe-wallet,d10e500fcbb6,2025-11-24T12:26:56+01:00,2025-11-24,41,17,1273,971,2,542,0,12,1015,101,0,0,0,6,502,51,4,183,5,remove StripePayment service
+stripe-wallet,0eb51193afb2,2025-11-24T12:27:31+01:00,2025-11-24,5,5,391,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,ShopOrderService wip
+stripe-wallet,7bd858a8e531,2025-11-25T13:42:28+01:00,2025-11-25,14,8,241,156,1,13,1,1,2,1,0,0,0,2,76,1,2,14,3,wip
+stripe-wallet,bb5e5abb0a23,2025-11-25T13:42:54+01:00,2025-11-25,6,0,0,0,0,0,0,1,484,0,0,0,0,5,134,0,0,0,0,agb wip
+stripe-wallet,c55614439e94,2025-11-26T10:26:08+01:00,2025-11-26,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,23,0,update dev readme
+stripe-wallet,d5310cb52dac,2025-11-26T13:01:08+01:00,2025-11-26,6,3,370,17,1,5,1,0,0,0,0,0,0,1,1,2,1,1,0,custom id support
+stripe-wallet,cc9048120f99,2025-11-26T15:22:26+01:00,2025-11-26,9,4,5,4,1,2,2,0,0,0,0,0,0,3,0,299,1,4,4,STRP-67 Fix styles
+stripe-wallet,21cf1374d3d6,2025-11-26T15:24:44+01:00,2025-11-26,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-67  Update install script
+stripe-wallet,0c47cca072dd,2025-11-26T16:12:39+01:00,2025-11-26,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-67 OrderController and EventSystem integration
+stripe-wallet,95afea68f19d,2025-11-26T16:31:30+01:00,2025-11-26,7,3,47,13,3,31,9,0,0,0,0,0,0,0,0,0,1,6,2,STRP-67 Controller refactor
+stripe-wallet,c40b93bf1d4b,2025-11-26T16:45:59+01:00,2025-11-26,3,1,1,1,1,7,4,1,182,0,0,0,0,0,0,0,0,0,0,STRP-67 Add e2e integration test for the Order State Machine
+stripe-wallet,dbe8b3850546,2025-11-26T16:46:44+01:00,2025-11-26,1,0,0,0,1,778,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-67 Add e2e integration test for the Order State Machine
+stripe-wallet,323ecb88e355,2025-11-26T16:56:52+01:00,2025-11-26,2,0,0,0,1,320,320,1,80,21,0,0,0,0,0,0,0,0,0,STRP-67 Add e2e integration test for the Order State Machine
+stripe-wallet,00fad17372b3,2025-11-26T17:30:04+01:00,2025-11-26,7,2,8,7,3,938,4,1,156,0,1,16,3,0,0,0,0,0,0,STRP-67 Add full data flow integration tests
+stripe-wallet,087429aa94e4,2025-11-26T17:39:05+01:00,2025-11-26,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,49,4,STRP-67 Add full data flow integration tests
+stripe-wallet,7e9e0858dfe1,2025-11-26T17:41:52+01:00,2025-11-26,2,0,0,0,1,770,0,1,211,0,0,0,0,0,0,0,0,0,0,STRP-67 Add Controller-EventSystem integration test
+stripe-wallet,f0a780771866,2025-11-26T17:51:36+01:00,2025-11-26,1,0,0,0,0,0,0,1,218,0,0,0,0,0,0,0,0,0,0,STRP-67 Add Controller-EventSystem integration docs
+stripe-wallet,c37df187377c,2025-11-27T07:12:53+01:00,2025-11-27,1,0,0,0,0,0,0,0,0,0,0,0,0,1,82,33,0,0,0,STRP-67 Admin view order details mocked
+stripe-wallet,1ee5263a2c7d,2025-11-27T10:03:31+01:00,2025-11-27,2,2,55,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,custom id splitted to singular meta entries
+stripe-wallet,5c880ba3d00d,2025-11-27T13:09:32+01:00,2025-11-27,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Merge branch 'b-7.4.x-STRP-58-RR' into b-7.4.x-charge-STRP-67-RR
+stripe-wallet,056fd016ed1a,2025-11-28T13:34:33+01:00,2025-11-28,78,36,2455,985,20,3050,421,20,4946,7,0,0,0,0,0,0,2,42,51,STRP-67 Shop controllers and event system integration
+stripe-wallet,8de1b61440b4,2025-11-28T18:17:48+01:00,2025-11-28,1,0,0,0,0,0,0,1,732,0,0,0,0,0,0,0,0,0,0,STRP-67 Architecture review
+stripe-wallet,f7a976b7cb65,2025-11-28T18:30:31+01:00,2025-11-28,18,3,1,6,6,23,23,8,2073,0,0,0,0,0,0,0,1,1,2,STRP-67 Fix metadata.php controller registration
+stripe-wallet,2875e8858250,2025-12-01T10:35:31+01:00,2025-12-01,5,5,8,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-67 Refine the code styles
+stripe-wallet,460ed7dcd161,2025-12-01T12:02:06+01:00,2025-12-01,9,6,225,16,2,184,0,0,0,0,0,0,0,0,0,0,1,50,0,STRP-67 Upadate SDK Key delivery
+stripe-wallet,dda90e30528e,2025-12-01T12:31:03+01:00,2025-12-01,9,2,78,1,2,462,2,5,732,0,0,0,0,0,0,0,0,0,0,STRP-67 Fix StripeConnect
+stripe-wallet,839ce4a98490,2025-12-01T12:59:58+01:00,2025-12-01,126,3,256,3,1,39,52,121,429,151359,0,0,0,0,0,0,1,42,0,STRP-67 Fix order creation after redirect
+stripe-wallet,209a0fb34283,2025-12-01T13:47:17+01:00,2025-12-01,17,6,214,4,2,82,11,0,0,0,0,0,0,7,23,15,2,360,0,STRP-67 Fix order creation after redirect
+stripe-wallet,87821df92982,2025-12-01T15:00:54+01:00,2025-12-01,11,5,112,38,4,946,0,2,447,0,0,0,0,0,0,0,0,0,0,STRP-67 Fix order creation after redirect
+stripe-wallet,6e253a499b7c,2025-12-01T16:17:53+01:00,2025-12-01,33,3,34,36,2,16,0,27,2902,178,1,73,13,0,0,0,0,0,0,STRP-67 Architecture review and style check
+stripe-wallet,ea6350dcad0a,2025-12-01T16:32:03+01:00,2025-12-01,1,0,0,0,0,0,0,1,351,0,0,0,0,0,0,0,0,0,0,STRP-67 Status fixation
+stripe-wallet,7540a6f20227,2025-12-01T16:51:49+01:00,2025-12-01,1,0,0,0,0,0,0,1,295,0,0,0,0,0,0,0,0,0,0,STRP-67 Status fixation
+stripe-wallet,0d3f101802fa,2025-12-02T11:40:40+01:00,2025-12-02,50,18,1228,1173,19,3818,54,11,4701,0,1,3,3,0,0,0,1,38,1,STRP-67 Return url security validation
+stripe-wallet,17f55892b838,2025-12-02T13:14:58+01:00,2025-12-02,10,3,0,26,0,0,0,6,190,0,0,0,0,1,194,0,0,0,0,STRP-67 Order creation fixed
+stripe-wallet,d2b216302e0c,2025-12-02T14:28:17+01:00,2025-12-02,25,3,838,109,5,940,1,11,3367,0,0,0,0,3,125,203,3,18,2,STRP-69 Admin order details refund view works
+stripe-wallet,9aa74fe0e9da,2025-12-02T14:39:10+01:00,2025-12-02,4,2,149,42,1,19,0,0,0,0,0,0,0,1,2,1,0,0,0,STRP-69 Admin order details refund view works
+stripe-wallet,42989e467302,2025-12-02T14:43:47+01:00,2025-12-02,1,0,0,0,0,0,0,1,118,39,0,0,0,0,0,0,0,0,0,STRP-69 Admin order details refund -- report
+stripe-wallet,7b7ebaf1eee2,2025-12-02T15:11:45+01:00,2025-12-02,4,0,0,0,0,0,0,4,937,0,0,0,0,0,0,0,0,0,0,STRP-69 Admin order details refund -- update docs visuals
+stripe-wallet,2f7f749ef80b,2025-12-02T15:13:02+01:00,2025-12-02,9,0,0,0,0,0,0,9,9,0,0,0,0,0,0,0,0,0,0,STRP-69 Admin order details refund -- update docs visuals [SVG]
+stripe-wallet,183a9a2be428,2025-12-02T15:14:11+01:00,2025-12-02,1,0,0,0,0,0,0,1,157,0,0,0,0,0,0,0,0,0,0,STRP-69 Add refund flow
+stripe-wallet,65e45925149e,2025-12-02T15:31:23+01:00,2025-12-02,9,8,3,14,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,STRP-69 Style fix
+stripe-wallet,9387556176ae,2025-12-03T09:12:53+01:00,2025-12-03,29,0,0,0,20,3152,0,9,3821,0,0,0,0,0,0,0,0,0,0,STRP-69 Add Webhook and e2e Playwright scaffold
+stripe-wallet,a3dddc832f6b,2025-12-03T11:05:30+01:00,2025-12-03,24,1,192,3,20,1452,692,3,498,104,0,0,0,0,0,0,0,0,0,STRP-69 Add Webhook and e2e Playwright scaffold
+stripe-wallet,b657aab819e0,2025-12-03T13:15:08+01:00,2025-12-03,10,2,8,11,3,28,9,4,1190,244,0,0,0,1,8,1,0,0,0,STRP-69 Admin refund update and e2e tests
+stripe-wallet,859513b7b97b,2025-12-03T13:37:27+01:00,2025-12-03,193,1,22,204,1,155,33,181,438,1,0,0,0,0,0,0,10,12,0,STRP-69 Update docs and core event handling
+stripe-wallet,6a062a96fb7f,2025-12-03T13:53:37+01:00,2025-12-03,1,0,0,0,0,0,0,0,0,0,1,1,2,0,0,0,0,0,0,STRP-69 Run migrations test on GHA
+stripe-wallet,9c7ab38d4a3e,2025-12-03T15:53:24+01:00,2025-12-03,20,0,0,0,0,0,0,20,1985,5,0,0,0,0,0,0,0,0,0,STRP-70 Created docs with the architecture review
+stripe-wallet,8584fa58db89,2025-12-04T11:30:28+01:00,2025-12-04,24,6,312,23,5,363,145,12,1247,261,0,0,0,0,0,0,1,42,0,STRP-70 Update webhook flow
+stripe-wallet,f419566a7d37,2025-12-04T11:41:26+01:00,2025-12-04,14,6,436,1,2,827,0,3,1374,0,0,0,0,3,197,0,0,0,0,STRP-70 Update webhook flow
+stripe-wallet,ec594731c991,2025-12-04T11:58:48+01:00,2025-12-04,4,1,81,10,1,159,0,1,301,0,0,0,0,0,0,0,1,2,0,STRP-70 Update webhook flow
+stripe-wallet,43455a42ffbc,2025-12-04T12:22:18+01:00,2025-12-04,3,0,0,0,2,66,2,0,0,0,0,0,0,0,0,0,1,4,2,STRP-70 Fix integration tests for CI container caching
+stripe-wallet,15884fc3da85,2025-12-04T15:17:14+01:00,2025-12-04,16,7,208,178,2,216,27,5,991,0,0,0,0,1,127,0,1,4,5,STRP-70 Remove dead code
+stripe-wallet,7e08218c0e31,2025-12-05T09:23:54+01:00,2025-12-05,13,0,0,0,4,44,138,8,1292,0,0,0,0,0,0,0,1,217,0,STRP-70 Fix CI integration tests (Sprint 9)
+stripe-wallet,f285ea080921,2025-12-05T10:03:52+01:00,2025-12-05,28,0,0,0,2,6,4,26,20,5,0,0,0,0,0,0,0,0,0,STRP-70 Fix EventDispatcher service not found in CI
+stripe-wallet,a92e1c7d3c3f,2025-12-05T10:04:26+01:00,2025-12-05,1,0,0,0,0,0,0,0,0,0,1,2,2,0,0,0,0,0,0,STRP-70 Update php version in GHA
+stripe-wallet,e4a490ff59d3,2025-12-05T10:54:41+01:00,2025-12-05,9,4,661,5,0,0,0,4,453,65,0,0,0,0,0,0,1,24,0,STRP-70 Webhook reconciliation
+stripe-wallet,b1a27a142f4c,2025-12-05T11:00:17+01:00,2025-12-05,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-70 Fix reconciliation service method name
+stripe-wallet,9cc9b7a8e0d5,2025-12-05T11:18:00+01:00,2025-12-05,6,1,10,6,3,790,0,2,164,0,0,0,0,0,0,0,0,0,0,STRP-70 Webhook reconciliation tests
+stripe-wallet,6dce90cdd9e9,2025-12-05T15:05:25+01:00,2025-12-05,34,14,886,67,14,2927,13,5,1576,0,0,0,0,0,0,0,1,13,0,STRP-70 Webhook reconciliation tests
+stripe-wallet,9d370ed256f5,2025-12-05T15:08:30+01:00,2025-12-05,1,1,32,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,use oxResetFileCache for cache clean & QueryBuilder
+stripe-wallet,6a7f063399c0,2025-12-05T16:41:44+01:00,2025-12-05,3,2,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,STRP-70 Webhook reconciliation tests
+stripe-wallet,0be0fe64e8f9,2025-12-08T16:50:22+01:00,2025-12-08,22,6,548,40,6,722,5,7,1585,0,0,0,0,1,14,5,2,12,2,STRP-70 Webhook contract fullfillment and paydate fix
+stripe-wallet,b895358fdc3c,2025-12-08T22:28:31+00:00,2025-12-08,1,0,0,0,0,0,0,0,0,0,1,2,2,0,0,0,0,0,0,Bump actions/checkout from 5 to 6
+stripe-wallet,6affdd5ceec9,2025-12-09T11:50:22+01:00,2025-12-09,21,0,0,0,0,0,0,21,5710,0,0,0,0,0,0,0,0,0,0,STRP-75 Code review docs
+stripe-wallet,21f5adb90ab5,2025-12-09T12:48:57+01:00,2025-12-09,37,13,874,262,14,1230,303,9,781,26,0,0,0,0,0,0,1,56,3,STRP-75 Refactor contract fullfillment
+stripe-wallet,fe607c289924,2025-12-09T14:29:56+01:00,2025-12-09,5,0,0,0,3,86,34,2,374,501,0,0,0,0,0,0,0,0,0,STRP-75 Refactor contract fullfillment tests
+stripe-wallet,172479b5654b,2025-12-09T14:51:15+01:00,2025-12-09,1,0,0,0,0,0,0,0,0,0,1,2,1,0,0,0,0,0,0,STRP-75 Exclude webhook e2e tests on gha
+stripe-wallet,06db5809b734,2025-12-09T16:24:44+01:00,2025-12-09,46,24,1903,559,12,2715,1078,9,751,0,0,0,0,0,0,0,1,78,10,STRP-75 Refactor 'fatty' event handlers
+stripe-wallet,26c50de3e101,2025-12-15T17:05:12+01:00,2025-12-15,38,2,5,1,2,4,1,33,3781,8,0,0,0,0,0,0,1,41,18,STRP-75 Update docs and refine the code
+stripe-wallet,39f2273cab40,2025-12-15T17:06:07+01:00,2025-12-15,3,0,0,0,0,0,0,3,0,0,0,0,0,0,0,0,0,0,0,STRP-75 Update docs and refine the code
+stripe-wallet,e84d676cc7b6,2025-12-15T22:45:40+00:00,2025-12-15,1,0,0,0,0,0,0,0,0,0,1,3,3,0,0,0,0,0,0,Bump actions/upload-artifact from 4 to 6
+stripe-wallet,e822700a639e,2025-12-15T22:45:43+00:00,2025-12-15,1,0,0,0,0,0,0,0,0,0,1,3,3,0,0,0,0,0,0,Bump actions/cache from 4 to 5
+stripe-wallet,1e32d3fb8e8a,2025-12-16T16:20:12+01:00,2025-12-16,98,28,2024,98,21,3406,23,41,8665,0,0,0,0,6,341,3,2,77,1,STRP-75 Auth - capture later functionality
+stripe-wallet,6c1db2817d2c,2025-12-18T15:08:59+01:00,2025-12-18,7,0,0,0,2,464,2,2,254,0,0,0,0,0,0,0,3,1153,21,add infections tests
+stripe-wallet,aa0be4db8d19,2025-12-29T14:22:05+01:00,2025-12-29,34,22,0,2214,10,0,2809,0,0,0,0,0,0,0,0,0,2,1,8,STRP-76 Extract Shop-Watch to a separate module
+stripe-wallet,3845d89e377c,2026-01-09T14:44:01+01:00,2026-01-09,17,9,38,160,5,5,5,2,316,0,1,4,4,0,0,0,0,0,0,STRP-74 Cleanup the code
+stripe-wallet,e9d04292b32e,2026-01-13T10:47:53+01:00,2026-01-13,46,13,563,22,26,990,127,6,1270,0,0,0,0,0,0,0,1,19,0,STRP-74 Create early order with the contract
+payment-base,0312e84b269d,2026-01-13T12:11:53+01:00,2026-01-13,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,Initial commit
+payment-base,262266ef172f,2026-01-14T15:44:52+01:00,2026-01-14,257,157,11659,0,93,20048,0,0,0,0,2,314,0,0,0,0,5,394,2,STRP-78 Extract the payment component from the porovider-speciefic module
+stripe-wallet,d481e90d2d0c,2026-01-15T12:59:21+01:00,2026-01-15,4,0,0,0,0,0,0,3,701,0,0,0,0,0,0,0,1,10,0,STRP-78 Extract paymenmt component
+payment-base,b38b55c99f79,2026-01-15T13:16:19+01:00,2026-01-15,12,1,7,5,5,197,0,0,0,0,2,23,17,4,838,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,d7b9510a8ab1,2026-01-15T13:17:00+01:00,2026-01-15,160,157,0,11659,0,0,0,2,270,0,0,0,0,0,0,0,1,1,1,STRP-78 Extract paymenmt component
+stripe-wallet,62c6df0a9c1f,2026-01-15T14:01:55+01:00,2026-01-15,3,0,0,0,0,0,0,1,10,0,1,26,0,0,0,0,1,0,1,STRP-78 Extract paymenmt component
+payment-base,63f5bc8be0b5,2026-01-15T14:01:55+01:00,2026-01-15,12,4,3,481,6,1,2279,0,0,0,1,3,3,0,0,0,1,21,1,STRP-78 Extract paymenmt component
+payment-base,20ad65dcf5fc,2026-01-15T14:45:38+01:00,2026-01-15,14,14,98,25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,5971b139b4f8,2026-01-15T14:45:39+01:00,2026-01-15,1,0,0,0,0,0,0,0,0,0,1,2,2,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,e42c6f34b564,2026-01-15T14:53:36+01:00,2026-01-15,2,0,0,0,0,0,0,1,121,26,1,14,5,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,468b821da473,2026-01-15T14:53:36+01:00,2026-01-15,5,5,106,29,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,79e0eebc8ccd,2026-01-15T15:22:08+01:00,2026-01-15,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,73b11c259ff7,2026-01-15T15:36:51+01:00,2026-01-15,2,0,0,0,0,0,0,1,12,6,1,15,13,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,0c419c738679,2026-01-15T16:14:43+01:00,2026-01-15,1,0,0,0,0,0,0,0,0,0,1,2,2,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,aebe4d0255c2,2026-01-15T16:17:53+01:00,2026-01-15,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,165f363c6b30,2026-01-15T16:18:43+01:00,2026-01-15,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,STRP-78 Extract paymenmt component
+payment-base,d16d31af8aa7,2026-01-15T16:18:43+01:00,2026-01-15,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,STRP-78 Extract paymenmt component
+stripe-wallet,7b44c7892307,2026-01-15T16:24:06+01:00,2026-01-15,1,0,0,0,0,0,0,0,0,0,1,2,2,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,d6c65b112536,2026-01-15T16:27:28+01:00,2026-01-15,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,f6e550883375,2026-01-15T16:32:50+01:00,2026-01-15,1,0,0,0,0,0,0,0,0,0,1,13,2,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,ada3a7cfb039,2026-01-15T16:40:01+01:00,2026-01-15,1,0,0,0,0,0,0,0,0,0,1,8,1,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,e6a91ee1c821,2026-01-15T16:59:43+01:00,2026-01-15,199,52,183,183,144,191,20263,0,0,0,0,0,0,0,0,0,3,94,94,STRP-78 Extract paymenmt component
+stripe-wallet,b6cc3960b001,2026-01-15T17:31:48+01:00,2026-01-15,4,3,4,4,1,2,2,0,0,0,0,0,0,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,24fb82ec2586,2026-01-16T08:35:48+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,4,6,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,2ea27c99e5b0,2026-01-16T08:53:34+01:00,2026-01-16,3,0,0,0,2,9,1,0,0,0,1,2,2,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,6ade5aafdd47,2026-01-16T09:20:36+01:00,2026-01-16,7,2,48,8,1,0,278,1,215,0,2,18,1,0,0,0,1,401,243,STRP-78 Extract paymenmt component
+payment-base,cc661d5030de,2026-01-16T09:20:36+01:00,2026-01-16,2,0,0,0,0,0,0,0,0,0,2,66,18,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,a2dc772ce801,2026-01-16T09:20:36+01:00,2026-01-16,2,0,0,0,0,0,0,0,0,0,2,66,18,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,7604f410f77a,2026-01-16T09:24:09+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,3,7,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,e4f69294563e,2026-01-16T09:27:43+01:00,2026-01-16,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,af7fdc328aa7,2026-01-16T09:37:18+01:00,2026-01-16,6,1,17,20,2,4,0,0,0,0,1,1,1,0,0,0,2,22,2,STRP-78 Extract paymenmt component
+payment-base,b293d7fc10a4,2026-01-16T11:28:47+01:00,2026-01-16,22,5,7,7,12,265,83,0,0,0,1,8,2,3,34,34,1,4,2,STRP-78 Extract paymenmt component
+payment-base,cb88cd7e6fbd,2026-01-16T11:33:14+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,125,27,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,1c3f6362d78b,2026-01-16T11:39:03+01:00,2026-01-16,2,0,0,0,1,1,1,0,0,0,1,16,8,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,ed88b0d64e1b,2026-01-16T11:43:48+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,206,169,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,743a68d5d33b,2026-01-16T11:52:42+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,10,0,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,7fcd2c5525c5,2026-01-16T11:57:25+01:00,2026-01-16,2,0,0,0,2,79,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,d2864337d619,2026-01-16T12:12:05+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,1,2,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,36eccaccbf1e,2026-01-16T12:21:29+01:00,2026-01-16,2,0,0,0,0,0,0,0,0,0,1,9,1,1,4,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,767c3e4d6582,2026-01-16T14:02:26+01:00,2026-01-16,2,0,0,0,0,0,0,0,0,0,1,1,5,0,0,0,1,10,2,STRP-78 Extract paymenmt component
+payment-base,6f59e9629ae5,2026-01-16T14:06:13+01:00,2026-01-16,3,0,0,0,0,0,0,0,0,0,1,5,1,1,5,4,1,1,7,STRP-78 Extract paymenmt component
+payment-base,64a88f91a3e9,2026-01-16T14:23:39+01:00,2026-01-16,2,0,0,0,1,24,12,0,0,0,1,3,3,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,11707107fce1,2026-01-16T14:28:17+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,2,2,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,e8319513e4db,2026-01-16T16:23:52+01:00,2026-01-16,5,0,0,0,1,28,0,0,0,0,0,0,0,3,47,100,1,8,4,STRP-78 Extract paymenmt component
+stripe-wallet,c87d51d9f2ff,2026-01-16T16:34:30+01:00,2026-01-16,239,79,565,410,74,413,1404,81,1252,876,0,0,0,0,0,0,5,117,114,STRP-78 Extract paymenmt component
+payment-base,b6becfbd061b,2026-01-16T16:41:52+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,22,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,e72902ca03d0,2026-01-16T16:42:19+01:00,2026-01-16,17,0,0,0,0,0,0,0,0,0,0,0,0,16,1,2319,1,0,339,STRP-78 Extract paymenmt component
+stripe-wallet,eefa24eb9195,2026-01-16T17:26:47+01:00,2026-01-16,40,11,17,390,17,42,44,2,101,2,2,5,5,2,4,4,6,24,24,STRP-78 Extract paymenmt component
+payment-base,781e90e78bb4,2026-01-16T17:26:47+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,5,1,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,fd72673b4e0e,2026-01-16T17:30:57+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,0,4,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,8108f772b3ea,2026-01-16T17:32:40+01:00,2026-01-16,2,0,0,0,0,0,0,0,0,0,1,21,5,0,0,0,1,1,1,STRP-78 Extract paymenmt component
+stripe-wallet,e68528ea0bb2,2026-01-16T17:35:25+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,0,4,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,320e16e364dc,2026-01-16T17:42:27+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,42,2,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,ab80b8cd3277,2026-01-16T17:44:09+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,4,4,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,abbfc674eb18,2026-01-16T18:06:32+01:00,2026-01-16,9,4,17,7,0,0,0,0,0,0,1,4,3,4,6,6,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,3a79386f4b39,2026-01-16T18:09:41+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,158,0,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,933fe21fab46,2026-01-16T18:10:52+01:00,2026-01-16,1,0,0,0,0,0,0,0,0,0,1,1,2,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+stripe-wallet,6b3982c3594f,2026-01-16T18:24:03+01:00,2026-01-16,2,0,0,0,0,0,0,2,139,0,0,0,0,0,0,0,0,0,0,STRP-78 Extract paymenmt component
+payment-base,8820fdc3f4ba,2026-01-19T15:07:14+01:00,2026-01-19,1,0,0,0,0,0,0,0,0,0,1,1,21,0,0,0,0,0,0,update db migration in CI/CD
+stripe-wallet,e7ccdc0d7f8b,2026-01-19T15:20:44+01:00,2026-01-19,2,0,0,0,0,0,0,0,0,0,1,2,38,0,0,0,1,12,4,update db migration in CI/CD
+payment-base,2f89294c7726,2026-01-20T16:22:30+01:00,2026-01-20,65,38,1557,1552,27,1409,4427,0,0,0,0,0,0,0,0,0,0,0,0,STRP-71 Code post-split cleanup
+stripe-wallet,ed51ad4ec706,2026-01-20T16:24:17+01:00,2026-01-20,54,20,981,953,11,1373,460,20,5411,0,1,3,2,0,0,0,2,137,18,STRP-71 Code post-split cleanup
+stripe-wallet,45f1b9d96232,2026-01-21T15:16:20+01:00,2026-01-21,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,update CI/CD
+stripe-wallet,7aa64cbaeeb7,2026-01-23T16:35:33+01:00,2026-01-23,34,14,935,298,9,1116,266,9,3798,0,0,0,0,0,0,0,2,64,497,"clean up code style, handlers and services"
+stripe-wallet,1746bf7c4c7b,2026-01-23T18:26:25+01:00,2026-01-23,7,0,0,0,2,15,15,5,265,122,0,0,0,0,0,0,0,0,0,"clean up code style, handlers and services"
+payment-base,8ee519a8cb28,2026-01-26T10:39:58+01:00,2026-01-26,10,7,0,785,3,0,637,0,0,0,0,0,0,0,0,0,0,0,0,remove dead code
+stripe-wallet,19416693d03d,2026-01-26T15:52:08+01:00,2026-01-26,47,26,517,1024,10,193,148,10,3124,0,0,0,0,0,0,0,1,49,4,clean up tests remove unused code
+stripe-wallet,041c75187dbf,2026-01-26T16:20:29+01:00,2026-01-26,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,12,8,clean up tests remove unused code
+stripe-wallet,6c0b446625df,2026-01-27T10:46:32+01:00,2026-01-27,1,0,0,0,0,0,0,0,0,0,1,3,0,0,0,0,0,0,0,clean up tests remove unused code
+stripe-wallet,64f848cf9a79,2026-01-27T13:09:31+01:00,2026-01-27,2,0,0,0,0,0,0,0,0,0,1,5,0,0,0,0,1,1,0,clean up tests remove unused code
+stripe-wallet,34face0ab60b,2026-01-27T13:29:29+01:00,2026-01-27,1,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,0,0,0,clean up tests remove unused code
+payment-base,3eb9db77a451,2026-01-28T14:05:39+01:00,2026-01-28,27,14,449,605,13,307,1042,0,0,0,0,0,0,0,0,0,0,0,0,clean up tests remove unused code
+payment-base,ec157720ae62,2026-01-28T14:21:59+01:00,2026-01-28,3,2,4,0,1,3,3,0,0,0,0,0,0,0,0,0,0,0,0,clean up tests remove unused code
+stripe-wallet,42c6ca0881af,2026-01-28T14:25:13+01:00,2026-01-28,68,29,244,747,22,249,715,14,1741,4631,1,0,372,0,0,0,2,24,115,STRP-79 Add stock restore after refund and cleanup
+stripe-wallet,994375987c22,2026-01-28T15:42:03+01:00,2026-01-28,7,1,1,1,1,1,1,2,296,78,1,1,1,0,0,0,2,2,1,code cleanup
+payment-base,f01ad5879cf9,2026-01-29T12:08:42+01:00,2026-01-29,8,8,648,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,extract code from stripe-wallet
+payment-base,8a73594d4df2,2026-01-29T13:19:05+01:00,2026-01-29,3,3,30,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,extract code from stripe-wallet
+stripe-wallet,5d6f6ae62702,2026-01-29T14:38:47+01:00,2026-01-29,254,27,368,727,18,209,72,192,1389,0,1,3,24,5,18,25,11,49,3150,STRP-81 Cleanup and API key fix
+stripe-wallet,06af2b48d7f6,2026-01-29T17:14:22+01:00,2026-01-29,645,0,0,0,0,0,0,645,984,1845,0,0,0,0,0,0,0,0,0,Add merchant installation and CRM/ERP integration docs
+payment-base,cb48fe90de50,2026-01-30T11:52:01+01:00,2026-01-30,19,12,238,627,6,11,362,1,569,0,0,0,0,0,0,0,0,0,0,update DTO file structure
+stripe-wallet,cd3429027ce0,2026-01-30T11:54:00+01:00,2026-01-30,23,12,127,119,8,152,100,2,0,588,1,2,2,0,0,0,0,0,0,update DTO file structure
+payment-base,249e5a77ac0d,2026-01-30T12:03:49+01:00,2026-01-30,2,2,251,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,update DTO file structure
+stripe-wallet,3e0555288bd1,2026-01-30T12:10:14+01:00,2026-01-30,95,0,0,0,0,0,0,95,1363,1040,0,0,0,0,0,0,0,0,0,update docs
+stripe-wallet,26dec40d8ff2,2026-02-02T12:12:46+01:00,2026-02-02,30,0,0,0,28,1,2961,0,0,0,1,4,0,0,0,0,1,4,0,add playwright as a submodule
+payment-base,860f8113d372,2026-02-02T13:59:06+01:00,2026-02-02,1,0,0,0,0,0,0,0,0,0,1,39,0,0,0,0,0,0,0,add playwright as a submodule
+stripe-wallet,dc09b86b43ff,2026-02-02T15:13:05+01:00,2026-02-02,2,0,0,0,0,0,0,0,0,0,1,0,4,0,0,0,1,6,0,add playwright as a submodule
+payment-base,7764b9372d77,2026-02-02T16:40:30+01:00,2026-02-02,1,0,0,0,0,0,0,0,0,0,1,18,0,0,0,0,0,0,0,fix docker repo issue
+payment-base,d64c89cd3f94,2026-02-02T17:01:41+01:00,2026-02-02,1,0,0,0,0,0,0,0,0,0,1,10,2,0,0,0,0,0,0,fix docker repo issue
+payment-base,94f0388b719d,2026-02-02T17:06:16+01:00,2026-02-02,1,0,0,0,0,0,0,0,0,0,1,4,4,0,0,0,0,0,0,fix docker repo issue
+payment-base,6e95f1d45955,2026-02-02T17:14:47+01:00,2026-02-02,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,7,2,STRP-84 Migrations composer run
+payment-base,0c35fb79be35,2026-02-02T17:25:26+01:00,2026-02-02,3,1,126,0,0,0,0,0,0,0,1,0,0,0,0,0,1,6,7,STRP-84 App composer plugin for migrations
+payment-base,2c903e39c034,2026-02-02T17:31:34+01:00,2026-02-02,1,0,0,0,0,0,0,0,0,0,1,3,4,0,0,0,0,0,0,STRP-84 App composer plugin for migrations
+stripe-wallet,2c42b456ac60,2026-02-02T17:41:20+01:00,2026-02-02,2,0,0,0,0,0,0,0,0,0,1,3,0,0,0,0,1,1,6,STRP-84 App composer plugin for migrations
+stripe-wallet,4488617592a4,2026-02-03T09:29:42+01:00,2026-02-03,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,1,update gitignore
+stripe-wallet,2e413d1a3851,2026-02-03T09:37:51+01:00,2026-02-03,1,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,0,0,0,update CI/CD
+payment-base,e84b2fdf1c00,2026-02-03T10:13:34+01:00,2026-02-03,1,1,77,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,update CI/CD migrations
+payment-base,e00b090f7076,2026-02-03T10:23:14+01:00,2026-02-03,1,1,21,84,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,update CI/CD migrations
+payment-base,82c1f6aa1192,2026-02-03T10:32:28+01:00,2026-02-03,1,1,13,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,update CI/CD migrations
+stripe-wallet,b9a63b66f541,2026-02-03T10:38:26+01:00,2026-02-03,1,0,0,0,0,0,0,0,0,0,1,3,1,0,0,0,0,0,0,update CI/CD migrations
+payment-base,cc10d016df90,2026-02-03T11:14:24+01:00,2026-02-03,1,0,0,0,0,0,0,0,0,0,1,4,4,0,0,0,0,0,0,update CI/CD migrations
+payment-base,b7174da79213,2026-02-03T11:23:59+01:00,2026-02-03,1,0,0,0,0,0,0,0,0,0,1,1,9,0,0,0,0,0,0,update CI/CD migrations
+payment-base,d88444debdb6,2026-02-03T11:28:33+01:00,2026-02-03,1,0,0,0,0,0,0,0,0,0,1,7,7,0,0,0,0,0,0,update CI/CD migrations
+payment-base,4e536dfed948,2026-02-03T11:40:03+01:00,2026-02-03,2,0,0,0,0,0,0,0,0,0,1,3,3,0,0,0,1,19,0,update CI/CD migrations
+payment-base,3957b5d01fd4,2026-02-03T11:47:24+01:00,2026-02-03,1,0,0,0,0,0,0,0,0,0,1,6,2,0,0,0,0,0,0,update CI/CD migrations
+payment-base,69d8e690d288,2026-02-03T12:00:50+01:00,2026-02-03,2,1,1,1,0,0,0,0,0,0,1,8,4,0,0,0,0,0,0,update CI/CD migrations
+payment-base,31379d9065dc,2026-02-03T12:29:50+01:00,2026-02-03,3,1,1,1,0,0,0,0,0,0,1,3,2,0,0,0,1,1,0,update CI/CD migrations
+stripe-wallet,36ef594104d2,2026-02-03T12:45:41+01:00,2026-02-03,2,0,0,0,0,0,0,0,0,0,1,2,2,0,0,0,1,4,0,update CI/CD migrations
+stripe-wallet,c354877e51c9,2026-02-03T13:45:14+01:00,2026-02-03,1,0,0,0,0,0,0,0,0,0,1,23,3,0,0,0,0,0,0,update CI/CD migrations
+stripe-wallet,772ce7c6f769,2026-02-03T13:49:12+01:00,2026-02-03,1,0,0,0,0,0,0,0,0,0,1,6,0,0,0,0,0,0,0,update CI/CD migrations
+payment-base,122f1b695fcc,2026-02-04T09:30:33+01:00,2026-02-04,31,18,36,187,12,254,351,0,0,0,1,134,1,0,0,0,0,0,0,STRP-85 Code cleanup and refactor
+stripe-wallet,e7e9260e6cb1,2026-02-04T09:31:55+01:00,2026-02-04,108,1,75,4,1,1,1,103,4694,2007,0,0,0,3,32,0,0,0,0,STRP-85 Code cleanup and refactor
+stripe-wallet,6748de1a22b6,2026-02-04T10:48:47+01:00,2026-02-04,18,0,0,0,1,72,3,17,4013,0,0,0,0,0,0,0,0,0,0,STRP-85 Code cleanup and refactor
+stripe-wallet,0d90e5b6c8f0,2026-02-04T10:49:57+01:00,2026-02-04,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-85 Code cleanup and refactor
+payment-base,8419ec8174bf,2026-02-04T11:10:05+01:00,2026-02-04,1,0,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,STRP-85 Code cleanup and refactor
+payment-base,acc968362451,2026-02-04T11:16:11+01:00,2026-02-04,1,0,0,0,1,2,2,0,0,0,0,0,0,0,0,0,0,0,0,fix tests
+payment-base,cbf77616941b,2026-02-04T12:08:21+01:00,2026-02-04,5,3,2,282,2,6,5,0,0,0,0,0,0,0,0,0,0,0,0,fix tests
+payment-base,86cdbceba6d6,2026-02-04T12:24:18+01:00,2026-02-04,2,2,346,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,fix tests
+stripe-wallet,8e3358d2a720,2026-02-04T12:27:56+01:00,2026-02-04,2,1,1,1,0,0,0,1,33,3,0,0,0,0,0,0,0,0,0,fix tests
+stripe-wallet,776d76030436,2026-02-04T12:52:17+01:00,2026-02-04,1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,add e2e suite architecture
+stripe-wallet,b44595ec5cb1,2026-02-05T09:12:13+01:00,2026-02-05,7,1,1,8,0,0,0,0,0,0,1,0,5,4,0,18,1,0,1,remove sStripeDevMode
+stripe-wallet,715d1498e844,2026-02-05T09:12:31+01:00,2026-02-05,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,5,remove OXID6-Stuff
+stripe-wallet,1ff579a31403,2026-02-05T09:14:44+01:00,2026-02-05,6,6,10,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,move logs from osc- to stripe-folder
+stripe-wallet,f1981ee42b5c,2026-02-05T14:38:05+01:00,2026-02-05,13,1,13,0,1,2,11,6,1274,0,1,0,10,3,14,21,1,0,2,STRP-86 Add API keys validation
+stripe-wallet,174963d7df39,2026-02-05T14:51:30+01:00,2026-02-05,7,2,0,72,2,0,145,1,33,2,0,0,0,1,0,2,1,0,1,STRP-86 Cleaup dead code
+stripe-wallet,be1917e1f7e6,2026-02-05T15:04:10+01:00,2026-02-05,1,0,0,0,0,0,0,0,0,0,0,0,0,1,3,3,0,0,0,fix html codes
+stripe-wallet,d355f37e40a9,2026-02-05T15:05:46+01:00,2026-02-05,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,move admin-tpl to correct place
+stripe-wallet,955cda00ed78,2026-02-05T15:07:22+01:00,2026-02-05,12,0,0,0,0,0,0,0,0,0,0,0,0,12,12,602,0,0,0,remove buy-now from assets and resources
+stripe-wallet,e50c21cfbaad,2026-02-05T15:51:52+01:00,2026-02-05,14,0,0,0,0,0,0,0,0,0,0,0,0,14,110,29,0,0,0,add missing translations for JS and TPLs
+stripe-wallet,6ffbd2970fc2,2026-02-05T15:56:18+01:00,2026-02-05,1,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0,0,0,0,use simple CSS from Core
+stripe-wallet,93287b4910dd,2026-02-05T17:11:40+01:00,2026-02-05,5,0,0,0,0,0,0,5,1032,0,0,0,0,0,0,0,0,0,0,STRP-86 Cleaup dead code
+stripe-wallet,93f429835b36,2026-02-05T17:30:00+01:00,2026-02-05,5,3,1,14,2,4,10,0,0,0,0,0,0,0,0,0,0,0,0,code and tests cleanup
+stripe-wallet,868af2b42cb8,2026-02-05T17:32:18+01:00,2026-02-05,3,0,0,0,0,0,0,3,747,6,0,0,0,0,0,0,0,0,0,code and tests cleanup
+payment-base,cf3e6a119003,2026-02-06T11:28:37+01:00,2026-02-06,6,3,314,0,2,474,0,0,0,0,1,4,4,0,0,0,0,0,0,STRP-89 Idempotency feature
+stripe-wallet,91667ad7dab5,2026-02-06T11:36:23+01:00,2026-02-06,16,3,492,2,6,1572,2,6,894,53,0,0,0,0,0,0,1,19,28,STRP-89 Idempotency feature
+payment-base,f54901f6add7,2026-02-06T14:29:24+01:00,2026-02-06,5,3,355,0,2,472,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-87 Transmit customer to provider
+stripe-wallet,630de7929149,2026-02-06T14:34:43+01:00,2026-02-06,56,27,760,1638,20,425,2800,8,1165,362,0,0,0,0,0,0,1,42,2,STRP-87 Transmit customer to provider
+stripe-wallet,2533717be646,2026-02-06T18:55:28+01:00,2026-02-06,53,35,2163,2598,12,943,1519,3,501,2,2,2,2,0,0,0,1,23,7,SOLIDifing
+stripe-wallet,7540c4824567,2026-02-09T11:21:10+01:00,2026-02-09,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-87 clean code
+stripe-wallet,4058d528a3ff,2026-02-09T11:42:14+01:00,2026-02-09,4,0,0,0,0,0,0,4,1474,0,0,0,0,0,0,0,0,0,0,add developer documentation
+stripe-wallet,2a374ca229c4,2026-02-09T14:32:57+01:00,2026-02-09,11,0,0,0,0,0,0,11,8744,0,0,0,0,0,0,0,0,0,0,STRP-88 Mcp/Acp development research
+stripe-wallet,40de9e2a4963,2026-02-11T15:42:52+01:00,2026-02-11,11,0,0,0,1,1,1,9,6079,0,0,0,0,1,4,2,0,0,0,STRP-88 ACP/UCP documentaiton
+stripe-wallet,23443060b707,2026-02-11T16:56:59+01:00,2026-02-11,2,0,0,0,0,0,0,2,489,0,0,0,0,0,0,0,0,0,0,STRP-88 Add docs for complete E2E testing with LLM
+payment-base,d2bec6a8d44c,2026-02-12T16:43:23+01:00,2026-02-12,44,33,2677,0,11,1111,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-88 Add MCP/ACP/UCP core code and tests
+stripe-wallet,999f0ca58bdf,2026-02-12T16:45:22+01:00,2026-02-12,46,13,1263,0,5,1307,0,26,357,103,0,0,0,0,0,0,2,103,0,STRP-88 Add MCP/ACP/UCP support and tests
+stripe-wallet,b4acce0f4390,2026-02-13T17:03:58+01:00,2026-02-13,85,22,1300,58,44,8374,24,18,7460,17,0,0,0,0,0,0,1,165,6,STRP-88 More MCP
+payment-base,2349f75772d7,2026-02-13T17:04:29+01:00,2026-02-13,49,46,1132,57,3,66,3,0,0,0,0,0,0,0,0,0,0,0,0,STRP-88 More MCP
+stripe-wallet,29b487f922f7,2026-02-16T18:00:44+01:00,2026-02-16,36,14,895,18,13,2430,749,4,1894,0,3,545,0,1,1,0,1,57,6,"STRP-88 Added MCP GraphQL, e2e int.tests & a real LLM CLI buying agent"
+payment-base,b0fdd2961ba4,2026-02-16T18:00:44+01:00,2026-02-16,7,6,22,14,1,53,0,0,0,0,0,0,0,0,0,0,0,0,0,"STRP-88 Added MCP GraphQL, e2e int.tests & a real LLM CLI buying agent"
+stripe-wallet,c60ad1265c55,2026-02-16T18:22:17+01:00,2026-02-16,5,1,170,0,3,422,0,0,0,0,0,0,0,0,0,0,1,10,0,"STRP-88 Added MCP GraphQL, e2e int.tests & a real LLM CLI buying agent"
+payment-base,1392892343f2,2026-02-16T18:22:17+01:00,2026-02-16,3,2,41,0,1,47,0,0,0,0,0,0,0,0,0,0,0,0,0,"STRP-88 Added MCP GraphQL, e2e int.tests & a real LLM CLI buying agent"
+stripe-wallet,16a23c708e65,2026-02-16T18:29:29+01:00,2026-02-16,2,0,0,0,0,0,0,0,0,0,2,4,0,0,0,0,0,0,0,"STRP-88 Added MCP GraphQL, e2e int.tests & a real LLM CLI buying agent"
+stripe-wallet,1cdcf6905943,2026-02-17T14:18:47+01:00,2026-02-17,7,3,210,13,0,0,0,4,786,0,0,0,0,0,0,0,0,0,0,STRP-88 MCP Can create orders
+payment-base,c87be9b6cfd8,2026-02-17T14:18:47+01:00,2026-02-17,3,3,41,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-88 MCP Can create orders
+stripe-wallet,dcdd181ccfe4,2026-02-18T13:12:23+01:00,2026-02-18,19,12,228,96,0,0,0,6,720,0,0,0,0,0,0,0,1,6,4,STRP-88 MCP creates order as a gest
+payment-base,d946174f0fdc,2026-02-18T13:31:53+01:00,2026-02-18,1,1,14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-88 MCP creates order as a gest
+stripe-wallet,c1fa5ee3129e,2026-02-18T13:32:57+01:00,2026-02-18,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-88 MCP creates order as a gest - try with paycomp-branch
+stripe-wallet,286c3c67cf11,2026-02-18T13:36:25+01:00,2026-02-18,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-88 MCP creates order as a gest - try with paycomp-branch
+stripe-wallet,3d1a7fdf937d,2026-02-18T13:47:59+01:00,2026-02-18,3,0,0,0,3,361,131,0,0,0,0,0,0,0,0,0,0,0,0,STRP-88 MCP creates order as a gest - try with paycomp-branch
+stripe-wallet,ffbdfd43427b,2026-02-19T13:50:45+01:00,2026-02-19,422,0,0,0,47,6450,0,375,616,175,0,0,0,0,0,0,0,0,0,STRP-88 MCP creates order as a gest - try with paycomp-branch
+stripe-wallet,02be67d74051,2026-02-20T09:32:32+01:00,2026-02-20,4,2,15,113,1,150,1,0,0,0,0,0,0,0,0,0,1,0,10,"STRP-99 MCP, code style and PCI complience"
+payment-base,6d6f22671b7f,2026-02-20T09:32:32+01:00,2026-02-20,8,6,41,7,2,311,0,0,0,0,0,0,0,0,0,0,0,0,0,"STRP-99 MCP, code style and PCI complience"
+stripe-wallet,722bd14de7dd,2026-02-23T12:02:01+01:00,2026-02-23,23,6,131,4,6,530,17,10,2197,0,0,0,0,0,0,0,1,24,0,STRP-99 Code style and complience
+payment-base,45a4c4eae69e,2026-02-23T12:02:01+01:00,2026-02-23,2,0,0,0,2,139,3,0,0,0,0,0,0,0,0,0,0,0,0,STRP-99 Code style and complience
+stripe-wallet,a4f82ae55b7c,2026-02-23T13:20:46+01:00,2026-02-23,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-99 Code style and complience
+stripe-wallet,70cd95b3d8af,2026-02-23T13:31:29+01:00,2026-02-23,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-99 Code style and complience
+stripe-wallet,56ed8024983d,2026-02-23T13:32:48+01:00,2026-02-23,1,0,0,0,0,0,0,1,21,19,0,0,0,0,0,0,0,0,0,STRP-99 Code style and complience
+stripe-wallet,f9462714a021,2026-02-23T13:43:01+01:00,2026-02-23,55,11,464,20,14,1618,0,26,7522,4,1,1,0,2,21,3,1,51,0,STRP-102 Data access management measures
+payment-base,36f7a2b20193,2026-02-24T15:01:07+01:00,2026-02-24,18,11,316,14,7,810,46,0,0,0,0,0,0,0,0,0,0,0,0,STRP-102 Data access control measures
+stripe-wallet,9978478b8b8d,2026-02-24T15:33:56+01:00,2026-02-24,15,3,527,0,0,0,0,1,541,0,0,0,0,6,1169,0,5,565,0,up
+stripe-wallet,a8f91c9b7e33,2026-02-24T15:33:56+01:00,2026-02-24,21,4,557,4,0,0,0,1,541,0,0,0,0,11,1856,139,5,565,0,up
+stripe-wallet,f0d8c3239575,2026-02-25T10:09:33+01:00,2026-02-25,3,1,2,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2967,2959,STRP-91 Upgrade Stripe SDK 18->19.3
+payment-base,17aaea8e418a,2026-02-25T13:39:15+01:00,2026-02-25,4,3,4,4,1,7,12,0,0,0,0,0,0,0,0,0,0,0,0,hot fix
+stripe-wallet,8fda499f4a5f,2026-02-25T13:39:16+01:00,2026-02-25,6,0,0,0,0,0,0,0,0,0,0,0,0,5,58,129,1,2,1,hot fix
+stripe-wallet,1913db557f82,2026-02-25T15:31:14+01:00,2026-02-25,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,opc footer
+stripe-wallet,3ce156fe0530,2026-02-25T15:31:14+01:00,2026-02-25,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,opc footer
+stripe-wallet,08f507b83237,2026-02-26T14:37:49+01:00,2026-02-26,6,2,18,2,1,34,0,3,240,0,0,0,0,0,0,0,0,0,0,STRP-101 Refund order recalculation
+stripe-wallet,6d38650ee271,2026-02-27T11:46:44+01:00,2026-02-27,18,4,286,200,6,671,296,8,818,0,0,0,0,0,0,0,0,0,0,STRP-103 Payment intentions to include discounts
+payment-base,0385c34c0dea,2026-02-27T16:20:20+01:00,2026-02-27,3,2,54,25,1,42,4,0,0,0,0,0,0,0,0,0,0,0,0,STRP-103 Payment intentions to include discounts
+stripe-wallet,d63df3748fc1,2026-02-27T16:43:07+01:00,2026-02-27,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,106,1,add license
+payment-base,7a813555b58b,2026-02-27T16:45:43+01:00,2026-02-27,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,105,0,add license
+stripe-wallet,ec0a9ec196ea,2026-03-02T11:01:19+01:00,2026-03-02,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Merge branch 'b-7.4.x-discounts-in-payment-intentions-STRP-103' into b-7.4.x
+payment-base,e69be987ebe2,2026-03-02T17:03:30+01:00,2026-03-02,7,5,54,2,1,22,0,0,0,0,0,0,0,0,0,0,1,0,105,STRP-100 Order cancellation on back or cancel
+stripe-wallet,4fd8529357e4,2026-03-02T17:10:42+01:00,2026-03-02,475,6,254,8,9,1809,467,459,1018,17887,1,1,1,0,0,0,0,0,0,STRP-100 Order cancellation on back or cancel
+stripe-wallet,d06372d80b5b,2026-03-03T00:13:14+00:00,2026-03-03,1,0,0,0,0,0,0,0,0,0,1,3,3,0,0,0,0,0,0,Bump actions/upload-artifact from 4 to 7
+stripe-wallet,8bcdf1887327,2026-03-04T11:08:45+01:00,2026-03-04,16,5,109,5,0,0,0,0,0,0,0,0,0,10,696,167,1,17,0,up
+stripe-wallet,45ca8c5a45c0,2026-03-04T11:08:45+01:00,2026-03-04,17,5,109,5,0,0,0,0,0,0,0,0,0,11,1006,176,1,17,0,up
+stripe-wallet,acdb815edce9,2026-03-09T14:59:55+01:00,2026-03-09,3,1,135,10,0,0,0,0,0,0,0,0,0,1,20,72,1,4,0,up
+stripe-wallet,f1d0bf87555c,2026-03-09T14:59:55+01:00,2026-03-09,8,1,135,10,0,0,0,0,0,0,0,0,0,6,52,142,1,4,0,up
+stripe-wallet,ff32bf5576e2,2026-03-11T19:49:10+01:00,2026-03-11,3,2,11,3,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,up
+stripe-wallet,dd1d267430bf,2026-03-11T19:49:10+01:00,2026-03-11,4,3,21,3,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,up
+stripe-wallet,4274de028ef8,2026-03-13T10:57:44+01:00,2026-03-13,2,1,4,4,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,provide new middleware-urls
+stripe-wallet,dbb6388f41ee,2026-03-17T11:11:44+01:00,2026-03-17,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,fix url back to osm
+stripe-wallet,b2dd5bd79a81,2026-03-17T12:30:20+01:00,2026-03-17,9,3,1,67,1,1,1,0,0,0,0,0,0,3,0,48,2,0,39,remove cron-functionality
+stripe-wallet,2ecc517ef4ac,2026-03-17T15:03:10+01:00,2026-03-17,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,change version number
+stripe-wallet,eff9d6f32891,2026-03-19T14:49:55+01:00,2026-03-19,4,4,8,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,add Timestamp to log files
+stripe-wallet,a5a2510d9bf9,2026-03-19T16:48:13+01:00,2026-03-19,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0,add CHANGELOG.md
+stripe-wallet,96106a9623a9,2026-03-23T16:11:11+01:00,2026-03-23,4,3,114,2,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,STRP-105 Release coupon on cancelled payment
+stripe-wallet,ae5e04f3e44f,2026-03-23T16:21:47+01:00,2026-03-23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Merge branch 'b-7.4.x-coupon-fail-STRP-105' into b-7.4.x
+stripe-wallet,7d6c24b57829,2026-03-24T14:10:46+01:00,2026-03-24,6,1,3,2,1,179,0,3,289,0,0,0,0,1,19,0,0,0,0,STRP-105 Release coupon on cancelled payment
+stripe-wallet,72bab0d7326b,2026-03-24T14:59:30+01:00,2026-03-24,17,3,8,5,4,124,41,9,3157,0,0,0,0,1,1,72,0,0,0,STRP-109 Code cleanup
+stripe-wallet,39b24fd6651e,2026-03-25T10:05:48+01:00,2026-03-25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Merge remote-tracking branch 'origin/b-7.4.x-one-page-checkout' into b-7.4.x-one-page-checkout
+stripe-wallet,b4c7a5290094,2026-03-25T12:00:06+01:00,2026-03-25,5,1,15,9,1,11,1,0,0,0,1,3,3,1,1,1,1,2,2,STRP-96 Naming consistency
+stripe-wallet,b1b4120cda12,2026-03-25T13:25:12+01:00,2026-03-25,1,1,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,fix
+stripe-wallet,72ca8a7dc471,2026-03-25T13:26:09+01:00,2026-03-25,2,1,21,3,1,41,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-112 Fix recurring customer email send
+payment-base,92986bc680d3,2026-03-25T14:19:25+01:00,2026-03-25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Merge branch 'b-7.4.x' into b-7.5.x
+stripe-wallet,14e304b2ecfe,2026-03-25T14:42:57+01:00,2026-03-25,69,0,0,0,65,649,1153,0,0,0,2,11,11,0,0,0,2,4,4,STRP-110 Add PHPUnit 12 support; drop PHPUnit 11
+stripe-wallet,9f6fd26c0a0d,2026-03-26T16:43:00+01:00,2026-03-26,12,3,103,74,0,0,0,0,0,0,0,0,0,8,376,87,1,6,1,up
+stripe-wallet,be15835bea4f,2026-03-27T11:41:43+01:00,2026-03-27,2,0,0,0,1,1,1,0,0,0,1,1,1,0,0,0,0,0,0,STRP-110 Add PHPUnit 12 support; drop PHPUnit 11
+stripe-wallet,a0132287bc9f,2026-03-27T11:42:06+01:00,2026-03-27,1,0,0,0,0,0,0,0,0,0,1,95,0,0,0,0,0,0,0,add playwright tests
+stripe-wallet,3dd0d9b7d713,2026-03-27T13:13:50+01:00,2026-03-27,1,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,0,0,0,update ci
+stripe-wallet,93eb981756fe,2026-03-27T14:50:33+01:00,2026-03-27,1,0,0,0,0,0,0,0,0,0,1,2,2,0,0,0,0,0,0,update ci
+stripe-wallet,e872953e9b6c,2026-03-27T14:54:39+01:00,2026-03-27,1,0,0,0,0,0,0,0,0,0,1,4,1,0,0,0,0,0,0,update ci
+stripe-wallet,81543689dbd2,2026-03-31T12:35:42+02:00,2026-03-31,1,1,4,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,up
+stripe-wallet,cde7cf57e290,2026-03-31T15:19:11+02:00,2026-03-31,6,2,15,11,0,0,0,0,0,0,0,0,0,1,2,1,3,209,178,Stripe-OPC integration
+stripe-wallet,79574331d7fe,2026-03-31T15:19:11+02:00,2026-03-31,4,1,5,11,0,0,0,0,0,0,0,0,0,0,0,0,3,210,178,Stripe-OPC integration test
+payment-base,a3fed2db8b2f,2026-03-31T15:20:33+02:00,2026-03-31,5,4,255,0,0,0,0,0,0,0,1,7,7,0,0,0,0,0,0,Stripe-OPC integration
+stripe-wallet,440c0a4ea547,2026-04-01T13:11:01+02:00,2026-04-01,3,1,10,0,0,0,0,0,0,0,0,0,0,1,2,1,1,0,1,Stripe-OPC integration
+stripe-wallet,fd795522924b,2026-04-01T13:15:26+02:00,2026-04-01,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,OPC-integration CI test temp
+stripe-wallet,4424d227d2de,2026-04-01T15:51:19+02:00,2026-04-01,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,OPC-integration CI test temp
+stripe-wallet,ab8a544423cd,2026-04-02T12:45:27+02:00,2026-04-02,16,2,335,0,1,295,0,12,1404,0,0,0,0,1,169,0,0,0,0,OPC-integration
+stripe-wallet,006e4e3b269a,2026-04-02T16:30:29+02:00,2026-04-02,24,0,0,0,16,1167,142,7,834,49,1,293,0,0,0,0,0,0,0,STRP-111 Load tests init
+payment-base,4dfd42f66645,2026-04-07T13:36:59+02:00,2026-04-07,4,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,3,107,2,change LICENSE
+stripe-wallet,b7684c2c0a59,2026-04-07T13:42:48+02:00,2026-04-07,8,0,0,0,0,0,0,7,7,7,0,0,0,0,0,0,1,1,1,change LICENSE
+stripe-wallet,8b961e2ae370,2026-04-08T13:15:41+02:00,2026-04-08,69,10,393,42,12,383,14,42,1181,4,0,0,0,3,371,169,2,116,87,STRP-122 Partial capture and refund
+stripe-wallet,83c78d93f7a2,2026-04-08T13:15:41+02:00,2026-04-08,1,0,0,0,0,0,0,0,0,0,0,0,0,1,25,21,0,0,0,STRP-118 Stripe button exclusion on non-stripe methods
+stripe-wallet,95971ded345b,2026-04-08T18:38:51+02:00,2026-04-08,12,3,26,5,4,641,1,3,193,0,0,0,0,1,5,3,1,2,0,STRP-118 Manual capture order capture and refund fix
+stripe-wallet,3ff33c27bef3,2026-04-13T18:47:18+02:00,2026-04-13,9,8,286,3,0,0,0,0,0,0,0,0,0,0,0,0,1,11,0,OPC support enhancement
+stripe-wallet,21899916c09f,2026-04-15T17:24:55+02:00,2026-04-15,5,2,24,1,2,10,6,1,42,0,0,0,0,0,0,0,0,0,0,STRP-121 Cancelled orders fix
+stripe-wallet,0eaeb011e842,2026-04-15T19:19:29+02:00,2026-04-15,3,0,0,0,0,0,0,3,396,0,0,0,0,0,0,0,0,0,0,docs update
+stripe-wallet,ac7e55907a71,2026-04-16T11:23:02+02:00,2026-04-16,8,5,30,15,1,31,0,2,170,0,0,0,0,0,0,0,0,0,0,STRP-120 Lang and shp params in return and cancel urls
+stripe-wallet,9694481449ea,2026-04-16T13:18:24+02:00,2026-04-16,8,3,64,46,2,97,1,2,191,0,0,0,0,0,0,0,1,4,0,STRP-116 Special characters filter
+stripe-wallet,5685c0422ea2,2026-04-16T13:47:47+02:00,2026-04-16,6,0,0,0,1,108,0,2,216,0,0,0,0,3,35,0,0,0,0,STRP-118 Security review
+stripe-wallet,9d4c3b7b266b,2026-04-16T14:02:31+02:00,2026-04-16,1,0,0,0,0,0,0,1,277,0,0,0,0,0,0,0,0,0,0,STRP-118 Security report on OXID core
+stripe-wallet,47c73723a476,2026-04-16T15:37:25+02:00,2026-04-16,1,0,0,0,0,0,0,0,0,0,1,0,6,0,0,0,0,0,0,playwright-CI update
+stripe-wallet,2f70ae780156,2026-04-16T15:55:37+02:00,2026-04-16,1,0,0,0,0,0,0,0,0,0,1,6,0,0,0,0,0,0,0,playwright-CI update
+stripe-wallet,aa310964c5b3,2026-04-16T16:00:10+02:00,2026-04-16,1,0,0,0,0,0,0,0,0,0,1,21,3,0,0,0,0,0,0,playwright-CI update
+stripe-wallet,a0f17254931a,2026-04-17T14:01:32+02:00,2026-04-17,3,0,0,0,0,0,0,0,0,0,0,0,0,3,0,7,0,0,0,STRP-114 Remove legacy notice block in admin stripe
+stripe-wallet,945f2363e0c7,2026-04-17T16:09:19+02:00,2026-04-17,10,5,59,63,2,71,31,0,0,0,0,0,0,3,119,24,0,0,0,STRP-124-125 Stripe order tab refund capture fixes
+stripe-wallet,621b5e4e9261,2026-04-21T20:05:26+02:00,2026-04-21,17,6,239,869,9,161,1290,1,186,0,0,0,0,0,0,0,1,46,29,event system unification
+payment-base,cff81beb4aeb,2026-04-21T20:05:26+02:00,2026-04-21,21,14,770,0,7,692,0,0,0,0,0,0,0,0,0,0,0,0,0,event system unification
+stripe-wallet,8bf1796fdbbe,2026-04-21T20:10:51+02:00,2026-04-21,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,event system unification
+stripe-wallet,ee8462fca039,2026-04-22T10:44:39+02:00,2026-04-22,1,0,0,0,0,0,0,0,0,0,1,13,0,0,0,0,0,0,0,event system unification
+payment-base,9fcd4937bde4,2026-04-22T14:08:42+02:00,2026-04-22,2,1,2,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,event system unification
+stripe-wallet,a7196d796e2e,2026-04-22T15:26:30+02:00,2026-04-22,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,event system unification
+stripe-wallet,1b7eb8da4023,2026-04-22T16:41:07+02:00,2026-04-22,4,1,22,77,2,22,0,0,0,0,0,0,0,0,0,0,1,19,0,event system unification
+stripe-wallet,7169fa694a83,2026-04-22T16:42:04+02:00,2026-04-22,2,1,25,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,event system unification
+payment-base,0a1918c6ef3f,2026-04-22T16:42:04+02:00,2026-04-22,4,3,235,0,1,199,0,0,0,0,0,0,0,0,0,0,0,0,0,event system unification
+stripe-wallet,14c14fd4f1eb,2026-04-23T09:11:07+02:00,2026-04-23,7,0,0,0,0,0,0,4,350,0,0,0,0,3,7,109,0,0,0,unification
+stripe-wallet,bdb458626f82,2026-04-23T16:33:21+02:00,2026-04-23,24,5,325,500,10,202,898,2,680,2,1,0,1,3,75,117,3,41,10,unification
+payment-base,db5d3506932a,2026-04-23T16:33:21+02:00,2026-04-23,27,11,615,149,7,502,0,0,0,0,0,0,0,3,162,0,6,105,6,unification
+stripe-wallet,5279bbd876e5,2026-05-04T16:14:20+02:00,2026-05-04,49,6,72,7,5,282,3,37,194,0,0,0,0,0,0,0,1,5,0,STRP-120 Language switch in return/cancel URL
+stripe-wallet,f72c5853ac43,2026-05-05T10:46:59+02:00,2026-05-05,8,0,0,0,1,65,0,4,1064,0,1,69,7,0,0,0,2,1,1,CI fix after unification
+payment-base,8847a7f7ef27,2026-05-05T10:46:59+02:00,2026-05-05,5,0,0,0,2,116,1,1,145,0,1,59,8,0,0,0,1,26,0,CI fix
+stripe-wallet,320242fc934d,2026-05-05T15:00:39+02:00,2026-05-05,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,CI fix
+stripe-wallet,a5d437cf3d7b,2026-05-07T16:36:04+02:00,2026-05-07,11,1,18,0,2,141,1,8,1275,0,0,0,0,0,0,0,0,0,0,Sprint 101 step 1: Add AGB reader methods to ControllerRequestHelper
+stripe-wallet,1d6bc48e2d44,2026-05-07T16:39:41+02:00,2026-05-07,4,1,36,2,3,352,0,0,0,0,0,0,0,0,0,0,0,0,0,Sprint 101 steps 2-5: AGB gate in StripeOrderController (T1-T6 green)
+stripe-wallet,53fb519040a3,2026-05-07T16:41:26+02:00,2026-05-07,2,0,0,0,0,0,0,0,0,0,0,0,0,2,60,35,0,0,0,Sprint 101 step 6: Wire agb-validation Stimulus controller to Stripe order button
+stripe-wallet,d39db5e01247,2026-05-07T16:44:45+02:00,2026-05-07,3,0,0,0,0,0,0,3,511,0,0,0,0,0,0,0,0,0,0,"Sprint 101: Move sprint to done/, write completion report, update status.md"
+stripe-wallet,945a9729a926,2026-05-07T18:49:23+02:00,2026-05-07,8,0,0,0,1,1,1,1,142,0,0,0,0,6,79,28,0,0,0,STRP-123: Send ord_agb in Stripe checkout AJAX request
+stripe-wallet,0ac0075b87d7,2026-05-07T21:04:21+02:00,2026-05-07,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,agb button
+payment-base,fbb15d2953d4,2026-05-08T13:49:09+02:00,2026-05-08,365,242,545,545,111,608,608,0,0,0,3,24,24,5,7,7,4,34,34,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,a97a38a92dae,2026-05-08T13:49:50+02:00,2026-05-08,161,74,263,263,68,300,300,12,2297,7,2,33,33,1,1,1,4,153,153,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,d2492fbb202c,2026-05-08T14:24:38+02:00,2026-05-08,1,0,0,0,0,0,0,0,0,0,1,52,59,0,0,0,0,0,0,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,9ec5fb967213,2026-05-08T14:28:51+02:00,2026-05-08,1,0,0,0,0,0,0,0,0,0,1,5,5,0,0,0,0,0,0,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,2644ff5f5253,2026-05-08T14:57:29+02:00,2026-05-08,2,0,0,0,0,0,0,0,0,0,2,7,7,0,0,0,0,0,0,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,1f183d1a3380,2026-05-08T17:11:08+02:00,2026-05-08,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,203,194,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+payment-base,270f72701c9f,2026-05-08T17:29:24+02:00,2026-05-08,2,0,0,0,0,0,0,2,16,16,0,0,0,0,0,0,0,0,0,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,7b3249ebb5f0,2026-05-08T21:19:02+02:00,2026-05-08,1,0,0,0,0,0,0,1,76,67,0,0,0,0,0,0,0,0,0,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+payment-base,740abf4cd1ad,2026-05-08T21:19:02+02:00,2026-05-08,35,0,0,0,0,0,0,35,14308,0,0,0,0,0,0,0,0,0,0,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+payment-base,87468cea79d6,2026-05-13T11:00:45+02:00,2026-05-13,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,7213f43123e5,2026-05-13T13:14:40+02:00,2026-05-13,51,0,0,0,1,1,1,49,15489,0,0,0,0,0,0,0,1,20,0,STRP-135 Add docs
+stripe-wallet,8a46a95a8f23,2026-05-13T13:37:11+02:00,2026-05-13,4,3,41,8,1,117,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-AUTOCAP-REFUND Sprint 2: propagate capturedAmount on payment_intent.succeeded
+payment-base,fae16289f523,2026-05-13T13:37:35+02:00,2026-05-13,7,3,221,13,2,168,1,2,125,0,0,0,0,0,0,0,0,0,0,STRP-AUTOCAP-REFUND Sprint 2c: convention-based provider-event routing
+stripe-wallet,f5b210ea9943,2026-05-13T13:59:45+02:00,2026-05-13,33,1,16,0,0,0,0,32,1641,1156,0,0,0,0,0,0,0,0,0,STRP-AUTOCAP-REFUND Sprint 2 follow-up: also propagate amount in PaymentIntentSucceededHandler
+stripe-wallet,2be244506f60,2026-05-13T14:10:28+02:00,2026-05-13,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,7,1,STRP-AUTOCAP-REFUND: make WebhookLogServiceInterface public
+payment-base,d8058fa9a296,2026-05-13T14:17:43+02:00,2026-05-13,1,1,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-AUTOCAP-REFUND fix: PaymentContract::commitToOrder() persists committedAt
+stripe-wallet,d3d98d7a2b13,2026-05-15T16:03:56+02:00,2026-05-15,39,4,8,57,1,0,117,34,1162,1641,0,0,0,0,0,0,0,0,0,STRP-AUTOCAP-REFUND-CORRECTION: revert Sprint 2 webhook propagation
+payment-base,01aa868eab33,2026-05-15T17:42:56+02:00,2026-05-15,6,3,98,2,3,48,3,0,0,0,0,0,0,0,0,0,0,0,0,external refund requests
+stripe-wallet,0f4e4d2de0fd,2026-05-15T18:05:40+02:00,2026-05-15,18,16,138,38,1,107,1,0,0,0,0,0,0,0,0,0,1,18,0,external refund requests
+stripe-wallet,8854893ab00c,2026-05-18T09:58:03+02:00,2026-05-18,2,1,76,0,1,140,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-AUTOCAP-REFUND: add missing StripePaymentCaptureStatusQuery class
+stripe-wallet,67661fb516c7,2026-05-18T14:28:50+02:00,2026-05-18,11,4,177,15,3,472,0,3,698,0,0,0,0,0,0,0,1,13,0,STRP-131 Partial refund fix
+stripe-wallet,208d5bbc5b09,2026-05-18T17:40:58+02:00,2026-05-18,13,2,65,12,2,240,1,8,2093,0,0,0,0,1,62,3,0,0,0,STRP-134 Slow loading on Payment tab
+payment-base,e10340ba3e6f,2026-05-19T14:38:03+02:00,2026-05-19,8,5,531,78,2,739,0,0,0,0,0,0,0,0,0,0,1,19,0,STRP-135 Refund desision logic transfered to PaymentBase
+stripe-wallet,8a5085d48c9b,2026-05-19T16:24:24+02:00,2026-05-19,2,0,0,0,1,1,1,0,0,0,0,0,0,1,7,59,0,0,0,STRP-134 Loading spinner and blur layer on the Payment tab
+payment-base,085362bcbdb4,2026-05-19T16:24:24+02:00,2026-05-19,7,0,0,0,1,124,0,5,965,0,0,0,0,1,131,1,0,0,0,STRP-134 Loading spinner and blur layer on the Payment tab
+stripe-wallet,aec97ce3740a,2026-05-20T11:12:28+02:00,2026-05-20,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,STRP-142 Add dependancies.yaml
+payment-base,4a4e20897ba2,2026-05-21T09:51:37+02:00,2026-05-21,2,1,30,30,1,132,0,0,0,0,0,0,0,0,0,0,0,0,0,fixing integration_tests
+stripe-wallet,de398567712a,2026-05-21T10:54:22+02:00,2026-05-21,8,0,0,0,1,1,1,6,688,0,1,6,6,0,0,0,0,0,0,fixing ci
+stripe-wallet,25058041d85b,2026-05-21T12:06:50+02:00,2026-05-21,2,1,2,2,0,0,0,1,55,0,0,0,0,0,0,0,0,0,0,fixing ci
+stripe-wallet,3feb4d8df575,2026-05-21T12:12:51+02:00,2026-05-21,1,0,0,0,0,0,0,0,0,0,1,23,6,0,0,0,0,0,0,fixing installation
+stripe-wallet,3a50c1c6a20d,2026-05-22T11:36:14+02:00,2026-05-22,61,20,1184,146,19,1706,1067,12,2267,0,1,73,24,6,165,14,3,36,4,STRP-144 Webhook registration
+payment-base,6d6223a905dc,2026-05-26T11:21:35+02:00,2026-05-26,11,0,0,0,0,0,0,11,63,63,0,0,0,0,0,0,0,0,0,docs update
+stripe-wallet,43f74ff24795,2026-05-26T16:26:56+02:00,2026-05-26,9,0,0,0,1,1,1,4,505,0,0,0,0,3,295,33,1,9,6,STRP-146 Hidable API keys in admin module config
+stripe-wallet,2ee1976e14d8,2026-05-26T16:26:56+02:00,2026-05-26,7,0,0,0,0,0,0,4,505,0,0,0,0,3,246,25,0,0,0,STRP-146 Hidable API keys in admin module config
+stripe-wallet,691abfd13cf6,2026-05-27T10:28:49+02:00,2026-05-27,1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,Update playwright submodule to current projects/Stripe tip
+stripe-wallet,6d4c0e16cc5b,2026-05-27T16:02:54+02:00,2026-05-27,12,3,10,4,8,205,92,0,0,0,0,0,0,0,0,0,1,3,0,STRP-145 Sprint 114.1: inject ShopAdapterInterface for transaction shopId (fix multi-shop audit)
+stripe-wallet,b73e918b7a77,2026-05-27T16:21:03+02:00,2026-05-27,6,3,70,26,3,146,56,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.2: gate Stripe address-validation bypass on explicit session flag
+stripe-wallet,ca5d2b9eb966,2026-05-27T16:57:19+02:00,2026-05-27,4,1,15,3,2,650,243,1,111,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.3: security tests exercise the real controllers (no re-implementation)
+stripe-wallet,1446076eab2a,2026-05-27T17:12:25+02:00,2026-05-27,1,0,0,0,1,665,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.4a: characterization tests for all 7 webhook event types
+stripe-wallet,4a0c0b9d3aa0,2026-05-27T17:32:12+02:00,2026-05-27,26,13,696,544,12,993,1143,0,0,0,0,0,0,0,0,0,1,77,14,STRP-145 Sprint 114.4b: tagged webhook-handler registry; remove dead handlers (OCP)
+stripe-wallet,74b1a5af7719,2026-05-27T17:41:14+02:00,2026-05-27,6,2,0,102,3,0,836,0,0,0,0,0,0,0,0,0,1,0,30,STRP-145 Sprint 114.5 (O2): Delete StripeCaptureService + StripeRefundService — refs code-review 114
+stripe-wallet,0a716d4c9a00,2026-05-27T17:43:15+02:00,2026-05-27,4,2,2,148,2,0,31,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.5 (O4): Remove dead ConfigurationValidator methods — refs code-review 114
+stripe-wallet,1305600ffae7,2026-05-27T17:44:48+02:00,2026-05-27,4,2,2,62,2,4,90,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.5 (O5): Remove Stripe3DSRequiredEvent — dispatched with no handler — refs code-review 114
+stripe-wallet,adcf49563910,2026-05-27T17:46:10+02:00,2026-05-27,2,1,0,67,1,0,71,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.5 (O6): Remove dead StripeStatusMapper methods — refs code-review 114
+stripe-wallet,e6c84622fc8d,2026-05-27T17:47:15+02:00,2026-05-27,2,1,4,168,1,2,309,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.5 (O7): Remove speculative Payment model methods — refs code-review 114
+stripe-wallet,92ddd9d30e08,2026-05-27T17:49:12+02:00,2026-05-27,5,3,0,56,2,2,56,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.5 (O8): Remove dead getSessionDetails() and getShopBaseUrl() — refs code-review 114
+stripe-wallet,65e5c80c419b,2026-05-27T17:49:38+02:00,2026-05-27,1,1,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.5 (O9): Delete QUICK_RETURN_MAX constant + phpstan-ignore — refs code-review 114
+stripe-wallet,e23ee133c27d,2026-05-27T17:51:37+02:00,2026-05-27,1,0,0,0,0,0,0,1,251,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.5: Completion report
+stripe-wallet,b23f3de1350c,2026-05-27T18:01:24+02:00,2026-05-27,3,1,0,183,1,0,1,0,0,0,0,0,0,0,0,0,1,0,11,STRP-145 Sprint 114.6: remove redundant LazyStripeAdapter (orphaned after 114.5)
+stripe-wallet,e7853c751a7e,2026-05-27T18:11:32+02:00,2026-05-27,2,1,117,0,1,224,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.7 (converter): centralize cents math via AmountConverter — refs code-review 114 (D1)
+stripe-wallet,eaa30b5ce29a,2026-05-27T18:16:23+02:00,2026-05-27,4,3,40,13,1,154,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.7 (batch A): centralize cents math via AmountConverter — refs code-review 114 (D1)
+stripe-wallet,80403af5e0f9,2026-05-27T18:19:53+02:00,2026-05-27,7,6,36,22,1,114,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.7 (batch B): centralize cents math via AmountConverter — refs code-review 114 (D1)
+stripe-wallet,d359bf4ef750,2026-05-27T18:22:40+02:00,2026-05-27,4,3,21,7,1,121,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.7 (batch C): centralize cents math via AmountConverter — refs code-review 114 (D1)
+stripe-wallet,cf8223b21875,2026-05-27T18:24:09+02:00,2026-05-27,1,0,0,0,0,0,0,1,172,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.7 (report): completion report for AmountConverter centralization
+stripe-wallet,4f7bf58370d1,2026-05-27T21:30:39+02:00,2026-05-27,4,3,135,68,1,227,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.8 (IdempotentExecutor): extract generic idempotency wrapper — refs code-review 114 (D5)
+stripe-wallet,53205e13a5d6,2026-05-27T21:35:07+02:00,2026-05-27,5,3,73,21,1,106,0,0,0,0,0,0,0,0,0,0,1,15,0,STRP-145 Sprint 114.8 (ContractRefundRecorder): extract refund recording with FULFILLED guard — refs code-review 114 (D3)
+stripe-wallet,d7dc30687cd6,2026-05-27T21:37:42+02:00,2026-05-27,5,3,88,58,1,157,0,0,0,0,0,0,0,0,0,0,1,10,0,STRP-145 Sprint 114.8 (PaymentIntentResolver): extract PI-id resolution chain — refs code-review 114 (D4)
+stripe-wallet,e3a43e0e66f5,2026-05-27T21:40:50+02:00,2026-05-27,5,4,52,45,1,80,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.8 (AbstractStripeRequestHandler): pull up logEvent() from 7 handlers — refs code-review 114 (D4)
+stripe-wallet,6c867146b8e3,2026-05-27T21:45:41+02:00,2026-05-27,3,3,20,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.8 (fixup): PHPStan level-max clean-up for IdempotentExecutor — refs code-review 114 (D5)
+stripe-wallet,1732dbc9d93e,2026-05-27T21:47:06+02:00,2026-05-27,1,0,0,0,0,0,0,1,106,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.8 (report): completion report for DRY request handlers — refs code-review 114
+stripe-wallet,b9d2a373cd66,2026-05-27T21:56:34+02:00,2026-05-27,5,3,26,18,2,109,2,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.9 (D2): make getSecretKey() a thin alias for getToken() — refs code-review 114
+stripe-wallet,cea7e0126e99,2026-05-27T21:59:12+02:00,2026-05-27,6,5,33,31,1,96,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.9 (D7): add PAYMENT_PREFIX + isStripePaymentMethod() to StripeDefinitions — refs code-review 114
+stripe-wallet,5b3b4e491912,2026-05-27T22:05:31+02:00,2026-05-27,2,1,31,12,1,171,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.9 (D6): consolidate stale-checkout cleanup into ControllerRequestHelper — refs code-review 114
+stripe-wallet,13c25f4211d7,2026-05-27T22:07:26+02:00,2026-05-27,5,3,113,74,1,169,0,0,0,0,0,0,0,0,0,0,1,7,0,STRP-145 Sprint 114.9 (D8): extract OpcModalSessionReader — centralise OPC modal-session key and resolution logic — refs code-review 114
+stripe-wallet,c027ecb7cae1,2026-05-27T22:09:22+02:00,2026-05-27,2,1,6,2,1,80,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.9 (D9): make stripeHasApiKeys() delegate to service isConfigured() — refs code-review 114
+stripe-wallet,fa315f409e7d,2026-05-27T22:11:03+02:00,2026-05-27,2,1,6,1,1,2,1,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.9 (fixup): PHPStan array-type annotation in OpcModalSessionReader; integration test mock uses getToken() — refs code-review 114
+stripe-wallet,dda2cb746c2e,2026-05-27T22:12:16+02:00,2026-05-27,1,0,0,0,0,0,0,1,135,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.9 (report): completion report for config & session helper consolidation — refs code-review 114
+stripe-wallet,4f3e822fc42e,2026-05-28T08:58:46+02:00,2026-05-28,25,1,17,26,2,97,1,22,2002,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.10a (L3): drop spurious instanceof PaymentContract downcasts
+stripe-wallet,d7f2255ce119,2026-05-28T09:01:26+02:00,2026-05-28,3,1,34,47,1,113,0,0,0,0,0,0,0,0,0,0,1,1,0,STRP-145 Sprint 114.10a (A3): refund handler resolves PI via agnostic resolver
+stripe-wallet,0d2e48e3c337,2026-05-28T09:31:47+02:00,2026-05-28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,WIP on b-7.4.x-code-review-STRP-145: d7f2255 STRP-145 Sprint 114.10a (A3): refund handler resolves PI via agnostic resolver
+stripe-wallet,a8e6cec3e01a,2026-05-28T09:31:47+02:00,2026-05-28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,index on b-7.4.x-code-review-STRP-145: d7f2255 STRP-145 Sprint 114.10a (A3): refund handler resolves PI via agnostic resolver
+payment-base,3450ce719d30,2026-05-28T09:35:16+02:00,2026-05-28,2,1,38,0,1,100,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.10a (A2): add NormalizedPaymentStatus to payment-base (additive)
+stripe-wallet,350b013c6092,2026-05-28T09:35:24+02:00,2026-05-28,1,1,17,8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.10a (A2): move normalized status constants to payment-base (additive)
+payment-base,d8709e981f1f,2026-05-28T09:46:54+02:00,2026-05-28,4,2,12,0,2,56,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.10a (currency-DTO): add optional currency to Capture/RefundPaymentRequest (additive)
+stripe-wallet,4469d350ac08,2026-05-28T09:47:02+02:00,2026-05-28,4,3,14,12,1,58,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.10a (currency-DTO): add optional currency field to Capture/RefundPaymentRequest (additive)
+stripe-wallet,2f79eb95471e,2026-05-28T09:48:49+02:00,2026-05-28,1,0,0,0,0,0,0,1,218,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.10a: completion report
+stripe-wallet,fd7fd294c487,2026-05-28T10:01:54+02:00,2026-05-28,7,6,419,0,1,385,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.10b (DTOs+mapper): introduce neutral DTOs at adapter boundary
+stripe-wallet,e69e5d50607a,2026-05-28T10:47:36+02:00,2026-05-28,33,18,215,262,15,1123,280,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.10b (Phase 2-4): seal Stripe SDK types inside Adapter boundary
+stripe-wallet,4a4efe8b9a73,2026-05-28T10:48:21+02:00,2026-05-28,1,0,0,0,0,0,0,1,130,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.10b: completion report
+stripe-wallet,7b65e61fcf96,2026-05-28T11:56:23+02:00,2026-05-28,4,2,0,10,2,28,0,0,0,0,0,0,0,0,0,0,0,0,0,"STRP-145 Sprint 114.11a (S7): drop redundant in-code getPriority(), use services.yaml tag — refs code-review 114"
+stripe-wallet,b0e79bd8bd31,2026-05-28T12:01:17+02:00,2026-05-28,5,3,70,2,1,302,0,0,0,0,0,0,0,0,0,0,1,6,0,"STRP-145 Sprint 114.11a (S6): inject StripeClientFactory into StripeWebhookEndpointApi; add CRUD tests — refs code-review 114 (S6, §8)"
+stripe-wallet,7ae17bb1d083,2026-05-28T12:07:56+02:00,2026-05-28,6,4,61,24,2,186,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.11a (S5): eliminate ad-hoc ContainerFactory calls; use init() + getter seams — refs code-review 114
+stripe-wallet,e92c8c4a22e3,2026-05-28T12:09:47+02:00,2026-05-28,1,0,0,0,0,0,0,1,149,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.11a: completion report
+stripe-wallet,ad1087504da8,2026-05-28T12:18:06+02:00,2026-05-28,7,3,125,46,3,200,39,0,0,0,0,0,0,0,0,0,1,8,0,STRP-145 Sprint 114.11b (S2): split ModuleConfigurationService — extract StripeUrlBuilder + ModuleDescriptionProvider — refs code-review 114
+stripe-wallet,04f647ab3844,2026-05-28T12:22:31+02:00,2026-05-28,4,2,12,12,2,133,4,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.11b (S3): move capturable-state policy from handler to CaptureService — refs code-review 114
+stripe-wallet,ddecd3295d75,2026-05-28T12:27:34+02:00,2026-05-28,7,2,93,51,4,229,3,0,0,0,0,0,0,0,0,0,1,5,0,STRP-145 Sprint 114.11b (S4): split OrderRefundViewDataProvider — extract StripeTransactionHistoryBuilder — refs code-review 114
+stripe-wallet,ddc0df9b4a8b,2026-05-28T12:33:14+02:00,2026-05-28,4,2,26,37,1,24,26,0,0,0,0,0,0,0,0,0,1,1,1,STRP-145 Sprint 114.11b (S3 complete): remove PI pre-resolution from handler; service owns full contract capture flow — refs code-review 114
+stripe-wallet,f0f15df7cc16,2026-05-28T12:34:14+02:00,2026-05-28,1,0,0,0,0,0,0,1,150,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.11b: completion report
+stripe-wallet,a0c10ca2889b,2026-05-28T12:48:39+02:00,2026-05-28,19,17,123,42,2,63,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.12 (Group 1 — constants): replace magic status/mode/type literals — refs code-review 114 (C4)
+stripe-wallet,182c7b93bbd3,2026-05-28T12:59:52+02:00,2026-05-28,2,2,122,67,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.12 (Group 2 — long methods): split createCheckoutSession + others — refs code-review 114 (C2)
+stripe-wallet,615e2f57c0a4,2026-05-28T13:18:25+02:00,2026-05-28,12,12,77,48,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"STRP-145 Sprint 114.12 (Group 3 — hygiene): early returns, explicit imports, null safety, docs/URLs — refs code-review 114 (C3,C5,C6,C7,C8)"
+stripe-wallet,e1b7005c8c83,2026-05-28T13:19:28+02:00,2026-05-28,1,0,0,0,0,0,0,1,171,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.12: completion report
+stripe-wallet,ac015efd55db,2026-05-28T13:40:25+02:00,2026-05-28,6,0,0,0,6,99,78,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.13 (T3+T5): kill no-value/tautological tests; switch to interface mocks — refs code-review 114
+stripe-wallet,19f971b90c4f,2026-05-28T13:41:21+02:00,2026-05-28,1,0,0,0,1,11,70,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.13 (T4): drop test-of-test-helper self-verification — refs code-review 114
+stripe-wallet,21384023e5d2,2026-05-28T13:43:12+02:00,2026-05-28,2,1,23,14,1,146,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.13 (O10): StripeEventTranslator instanceof ladder → mapping table + tests — refs code-review 114
+stripe-wallet,8f8ea6992e1c,2026-05-28T13:46:59+02:00,2026-05-28,4,1,7,1,3,439,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.13 (§8 coverage): add tests for OxidContractLinkedOrderUpdater + OxidSessionWriter + StripeCheckoutFooter — refs code-review 114
+stripe-wallet,e1652da0e2a6,2026-05-28T13:53:19+02:00,2026-05-28,8,0,0,0,8,102,119,0,0,0,0,0,0,0,0,0,0,0,0,STRP-145 Sprint 114.13 (T6): gate creds-dependent integration tests; container-boot now hard-fails — refs code-review 114
+stripe-wallet,1ff2960c5671,2026-05-28T14:05:25+02:00,2026-05-28,22,2,0,2,0,0,0,19,642,0,0,0,0,0,0,0,1,1,1,STRP-145 fix CI styles: remove blank line before class closing brace
+stripe-wallet,12cb786a5264,2026-05-29T10:51:32+02:00,2026-05-29,3,0,0,0,0,0,0,0,0,0,0,0,0,3,12,1,0,0,0,STRP-145 Code review
+payment-base,98d5d37f6ead,2026-05-29T19:12:21+02:00,2026-05-29,54,33,1842,0,19,1565,0,0,0,0,0,0,0,0,0,0,2,116,1,STRP-129 Add user input abstract validation mechanism
+stripe-wallet,13b81edf17a7,2026-05-29T19:13:29+02:00,2026-05-29,131,90,956,87,24,1202,18,6,1650,0,1,7,5,9,536,12,1,73,24,STRP-129 Add user input abstract validation mechanism
+payment-base,361d9bc189c4,2026-06-02T15:39:30+02:00,2026-06-02,46,44,110,43,1,6,0,0,0,0,0,0,0,0,0,0,1,15,0,clean up classes
+payment-base,8fcf26ff26f6,2026-06-02T16:35:19+02:00,2026-06-02,2,0,0,0,0,0,0,2,286,0,0,0,0,0,0,0,0,0,0,add docs: validation system
+stripe-wallet,a4165cbe4d10,2026-06-03T15:13:25+02:00,2026-06-03,4,1,33,0,0,0,0,0,0,0,0,0,0,3,21,8,0,0,0,STRP-129 Add user input abstract validation mechanism
+stripe-wallet,a19aac081211,2026-06-03T16:17:15+02:00,2026-06-03,1,0,0,0,0,0,0,0,0,0,1,0,3,0,0,0,0,0,0,playwright runs on manual only
+stripe-wallet,1a6cc156da2e,2026-06-05T13:47:29+02:00,2026-06-05,30,11,518,16,10,1299,15,5,933,0,0,0,0,3,44,0,1,31,0,STRP-129 Add user input abstract validation mechanism
+payment-base,57736fd61e68,2026-06-08T12:01:07+02:00,2026-06-08,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0,RC-1 release
+stripe-wallet,8292dc3d2190,2026-06-08T12:50:34+02:00,2026-06-08,1,0,0,0,0,0,0,0,0,0,0,0,0,1,6,5,0,0,0,emit an event with validation errors
+stripe-wallet,fcfed0edc03f,2026-06-08T13:44:38+02:00,2026-06-08,10,0,0,0,1,1,1,3,371,0,0,0,0,6,104,14,0,0,0,STRP-138-139 Place order button
+stripe-wallet,9a2c0029270a,2026-06-08T16:18:44+02:00,2026-06-08,1,0,0,0,0,0,0,0,0,0,1,21,3,0,0,0,0,0,0,external playwright CI run on trigger
+stripe-wallet,02a8bf48ae62,2026-06-08T16:29:45+02:00,2026-06-08,1,0,0,0,0,0,0,0,0,0,1,10,1,0,0,0,0,0,0,external playwright CI run on trigger
+stripe-wallet,dd021485dc33,2026-06-09T13:09:28+02:00,2026-06-09,17,0,0,0,16,1586,0,0,0,0,1,271,0,0,0,0,0,0,0,Add locust load tests
+stripe-wallet,a1c85a41bcdd,2026-06-09T13:35:45+02:00,2026-06-09,1,0,0,0,0,0,0,0,0,0,1,39,30,0,0,0,0,0,0,Add locust load tests
+stripe-wallet,40ca5041bcc0,2026-06-09T14:07:53+02:00,2026-06-09,1,0,0,0,1,3,1,0,0,0,0,0,0,0,0,0,0,0,0,Fix Locust browse scenario firing zero requests
+stripe-wallet,35b3e199b912,2026-06-09T14:09:43+02:00,2026-06-09,2,0,0,0,1,98,0,0,0,0,0,0,0,1,19,1,0,0,0,OPC-47 Forward consent flags from Stripe footer to processCheckout
+stripe-wallet,cb4133d2b5dc,2026-06-09T14:09:43+02:00,2026-06-09,2,0,0,0,1,98,0,0,0,0,0,0,0,1,19,1,0,0,0,OPC-47 Forward consent flags from Stripe footer to processCheckout
+stripe-wallet,3f92304f031d,2026-06-09T14:09:51+02:00,2026-06-09,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,chore(metadata): bump module version to 3.0.1
+stripe-wallet,b1e5a17cdbd3,2026-06-09T14:09:51+02:00,2026-06-09,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,chore(metadata): bump module version to 3.0.1
+stripe-wallet,ddc522327061,2026-06-09T14:22:25+02:00,2026-06-09,1,0,0,0,0,0,0,0,0,0,1,25,0,0,0,0,0,0,0,Ensure shop php container is up before load-test checks
+stripe-wallet,18184926f7ff,2026-06-09T14:36:01+02:00,2026-06-09,2,0,0,0,1,14,1,0,0,0,1,223,137,0,0,0,0,0,0,Refactor Locust load test to run against an in-Action shop
+stripe-wallet,58daa17ab580,2026-06-09T14:44:11+02:00,2026-06-09,1,0,0,0,0,0,0,0,0,0,1,24,10,0,0,0,0,0,0,Make Stripe test-mode config self-reporting and non-fatal
+stripe-wallet,8635f2a7d390,2026-06-09T15:03:45+02:00,2026-06-09,1,0,0,0,0,0,0,0,0,0,1,5,3,0,0,0,0,0,0,Fix ModuleSettingBridge namespace + follow SEO redirect in reachability check
+stripe-wallet,bb37f8a0ebd6,2026-06-09T15:09:26+02:00,2026-06-09,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,Point setup-python pip cache at requirements-chart.txt
+stripe-wallet,89b4b421284a,2026-06-09T15:24:39+02:00,2026-06-09,2,0,0,0,1,3,0,0,0,0,1,13,1,0,0,0,0,0,0,Stop gating on throughput floor; seed a real product anid for discovery
+stripe-wallet,5def23d24e6c,2026-06-10T12:40:26+02:00,2026-06-10,1,0,0,0,0,0,0,0,0,0,1,46,28,0,0,0,0,0,0,update CI
+stripe-wallet,34da98f36e23,2026-06-10T12:51:26+02:00,2026-06-10,2,0,0,0,1,1,1,0,0,0,1,64,13,0,0,0,0,0,0,update CI locust
+stripe-wallet,290f97957f22,2026-06-10T12:59:56+02:00,2026-06-10,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,update CI playwright
+stripe-wallet,883fb3414348,2026-06-10T13:01:44+02:00,2026-06-10,2,0,0,0,0,0,0,0,0,0,2,49,26,0,0,0,0,0,0,locustests
+stripe-wallet,2211c7ea8d98,2026-06-10T13:47:15+02:00,2026-06-10,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,updte gitignore
+stripe-wallet,53bc326316db,2026-06-10T14:20:14+02:00,2026-06-10,1,0,0,0,0,0,0,0,0,0,1,5,1,0,0,0,0,0,0,ci(load-test): use libasound2t64 for Chromium deps on Ubuntu 24.04
+stripe-wallet,45ab8cc6c083,2026-06-10T14:41:37+02:00,2026-06-10,1,0,0,0,1,8,2,0,0,0,0,0,0,0,0,0,0,0,0,test CI
+stripe-wallet,7229dec06a5d,2026-06-10T16:30:40+02:00,2026-06-10,2,1,10,6,1,16,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-149 Validation extended with unicode
+stripe-wallet,aefc04570ac4,2026-06-10T19:35:11+02:00,2026-06-10,10,0,0,0,4,160,7,5,539,0,1,8,1,0,0,0,0,0,0,load tests
+stripe-wallet,e759518c8341,2026-06-10T20:10:29+02:00,2026-06-10,1,0,0,0,0,0,0,0,0,0,1,14,12,0,0,0,0,0,0,k6 tests
+stripe-wallet,72c11347b11f,2026-06-12T10:34:54+02:00,2026-06-12,2,0,0,0,1,25,0,0,0,0,1,14,3,0,0,0,0,0,0,ci(load-test-locust): add OXID CE branch selector + order-execute coverage
+stripe-wallet,c1a02ffa277b,2026-06-12T10:43:54+02:00,2026-06-12,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,k6 tests
+stripe-wallet,c2d7c1fff855,2026-06-12T10:50:45+02:00,2026-06-12,1,0,0,0,0,0,0,0,0,0,1,4,1,0,0,0,0,0,0,ci(load-test-locust): pin PHP 8.3 for b-7.5.x shop branch
+stripe-wallet,eb3c243e2b97,2026-06-12T11:46:00+02:00,2026-06-12,5,0,0,0,4,488,1,0,0,0,1,88,1,0,0,0,0,0,0,ci(load-test-k6): produce statistics + capacity charts like the Locust run
+stripe-wallet,13e127e82960,2026-06-12T12:23:47+02:00,2026-06-12,3,0,0,0,2,62,12,0,0,0,1,21,5,0,0,0,0,0,0,ci(load-test-locust): show user-set run parameters in the report
+stripe-wallet,e9ecb501d353,2026-06-12T12:24:29+02:00,2026-06-12,3,0,0,0,0,0,0,3,3,3,0,0,0,0,0,0,0,0,0,load tests
+stripe-wallet,4041793b1e3a,2026-06-12T13:15:13+02:00,2026-06-12,1,0,0,0,0,0,0,0,0,0,1,12,4,0,0,0,0,0,0,ci(load-test-k6): make shop URL a workflow input + show it everywhere
+stripe-wallet,d93f8aba07af,2026-06-12T13:25:52+02:00,2026-06-12,4,0,0,0,3,499,52,0,0,0,1,3,1,0,0,0,0,0,0,"ci(load-test-k6): add Web Vitals, saturation, per-scenario + threshold stats"
+stripe-wallet,8d62299dd667,2026-06-15T16:50:59+02:00,2026-06-15,7,1,63,10,2,39,3,4,522,0,0,0,0,0,0,0,0,0,0,STRP-157 Per-line summation in CO-session
+payment-base,7bc2ef9d79de,2026-06-16T13:18:48+02:00,2026-06-16,5,0,0,0,3,73,0,0,0,0,0,0,0,0,0,0,2,15,1,STRP-157 Per-line summation in CO-session
+stripe-wallet,d613b3e06f31,2026-06-16T13:24:05+02:00,2026-06-16,3,0,0,0,0,0,0,3,398,0,0,0,0,0,0,0,0,0,0,STRP-157 Per-line summation in CO-session
+payment-base,e409993c5bbd,2026-06-16T13:24:05+02:00,2026-06-16,13,6,208,0,7,676,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-157 Per-line summation in CO-session
+payment-base,b97a693c1b1c,2026-06-16T16:46:46+02:00,2026-06-16,2,0,0,0,0,0,0,0,0,0,0,0,0,2,16,0,0,0,0,STRP-155 Payment base translations
+stripe-wallet,94b64eef7258,2026-06-17T16:03:33+02:00,2026-06-17,12,6,70,8,5,548,6,1,0,0,0,0,0,0,0,0,0,0,0,STRP-151-2-3 Stripe Payment admin capture refund values
+stripe-wallet,315a155d0527,2026-06-17T16:31:24+02:00,2026-06-17,5,0,0,0,0,0,0,5,690,0,0,0,0,0,0,0,0,0,0,STRP-151-2-3 Stripe Payment admin capture refund values
+stripe-wallet,fe73f9a0cb42,2026-06-17T18:00:47+02:00,2026-06-17,1,0,0,0,0,0,0,0,0,0,1,5,1,0,0,0,0,0,0,ci(development): restore-only on install cache to stop duplicate-save race
+stripe-wallet,bda62c60b5e0,2026-06-18T14:42:26+02:00,2026-06-18,1,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,0,0,0,STRP-151 Admin config styles
+stripe-wallet,15c140e9ee10,2026-06-22T10:46:21+02:00,2026-06-22,1,1,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-159 Strings translations
+stripe-wallet,e981a53df843,2026-06-22T13:33:39+02:00,2026-06-22,13,2,71,0,2,459,1,3,451,0,0,0,0,6,21,10,0,0,0,STRP-138 AGB complience
+payment-base,4c381bcc310a,2026-06-22T16:07:00+02:00,2026-06-22,12,8,239,52,4,404,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-160 Float math fixures
+stripe-wallet,d18ddcbbcf2a,2026-06-22T16:15:56+02:00,2026-06-22,7,3,69,75,1,72,0,3,451,0,0,0,0,0,0,0,0,0,0,STRP-160 Float math fixures
+stripe-wallet,a4246296f30c,2026-06-23T10:52:58+02:00,2026-06-23,2,0,0,0,0,0,0,2,121,0,0,0,0,0,0,0,0,0,0,STRP-160 Float math docs added
+payment-base,09eb5b8d4f63,2026-06-23T10:52:58+02:00,2026-06-23,1,0,0,0,0,0,0,1,168,0,0,0,0,0,0,0,0,0,0,STRP-160 Float math docs added
+stripe-wallet,a2129e4c8144,2026-06-23T12:54:26+02:00,2026-06-23,21,0,0,0,18,953,0,2,275,0,1,408,0,0,0,0,0,0,0,STRP-161 Security tests
+stripe-wallet,46aa30091d74,2026-06-23T14:34:41+02:00,2026-06-23,51,12,320,8,15,1997,41,7,852,1,3,465,1,12,412,59,2,53,5,STRP-147 Logging and stability improvements
+stripe-wallet,190ae1b5d61c,2026-06-23T14:36:07+02:00,2026-06-23,2,0,0,0,0,0,0,0,0,0,0,0,0,1,105,30,1,1,1,OPC-90 Render per-field validation feedback in OPC modal (v3.0.2)
+payment-base,ac65aa74a668,2026-06-24T19:09:09+02:00,2026-06-24,3,1,34,3,2,275,0,0,0,0,0,0,0,0,0,0,0,0,0,STRP-147 Logging imporovements
+payment-base,d194c9ef434c,2026-06-25T10:44:33+02:00,2026-06-25,1,0,0,0,0,0,0,0,0,0,1,351,0,0,0,0,0,0,0,STRP-147 Integration tests on Oxid7.5
+payment-base,ea465c51c106,2026-06-25T10:46:19+02:00,2026-06-25,2,0,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,STRP-147 Integration tests on Oxid7.5
+payment-base,3dff157229a5,2026-06-25T11:55:42+02:00,2026-06-25,55,1,42,15,53,659,667,0,0,0,1,0,0,0,0,0,0,0,0,STRP-147 Integration tests on Oxid7.5
+stripe-wallet,b25edcbeb1a9,2026-06-25T14:00:34+02:00,2026-06-25,1,0,0,0,0,0,0,0,0,0,1,4,4,0,0,0,0,0,0,STRP-147 Update CI
+stripe-wallet,6891b4e56128,2026-06-25T14:42:21+02:00,2026-06-25,11,0,0,0,0,0,0,3,31,17,0,0,0,8,52,33,0,0,0,STRP-147 Logs managements
+stripe-wallet,d708f2a926e8,2026-06-25T14:44:56+02:00,2026-06-25,2,0,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,STRP-147 Logs managements
+stripe-wallet,09119402724c,2026-06-26T13:17:37+02:00,2026-06-26,141,0,0,0,139,692,1338,0,0,0,2,16,4,0,0,0,0,0,0,STRP-147 Fix CI 7.5
+payment-base,23152b5575e2,2026-06-26T14:13:31+02:00,2026-06-26,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,5,1,Release v1.0.0
+stripe-wallet,fb5453547505,2026-06-26T14:16:46+02:00,2026-06-26,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,10,STRP-147 Release rpeparation
+stripe-wallet,482470d4896f,2026-06-26T15:21:28+02:00,2026-06-26,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,STRP-147 Release rpeparation v3.0.3
+stripe-wallet,c621fa03366b,2026-06-29T17:30:02+02:00,2026-06-29,2,1,47,10,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,update static content cycle
+stripe-wallet,58464a792a48,2026-07-02T12:49:49+02:00,2026-07-02,18,5,259,4,8,807,1,0,0,0,2,8,8,0,0,0,3,4,1,STRP-79 Show proper message if a product unbuyable
+stripe-wallet,6e828a242d6b,2026-07-02T13:55:46+02:00,2026-07-02,562,178,18417,0,237,44534,0,75,19803,0,13,3199,0,39,7726,0,20,11436,0,Stripe payment module v3.1-rc.1 (squashed history)
+stripe-wallet,d9a01eff634b,2026-07-02T14:05:41+02:00,2026-07-02,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,2,2,v3.1.0-rc.1
+stripe-wallet,79aef08ba779,2026-07-03T14:14:26+02:00,2026-07-03,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,update gitignore
+stripe-wallet,d07c2a1ce6e9,2026-07-06T13:56:51+02:00,2026-07-06,4,4,30,12,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,fix(di): remove parent::__construct calls in 4 FileLoggerFactory classes
+stripe-wallet,9b5c48321d5d,2026-07-07T22:53:26+00:00,2026-07-07,1,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,build(deps): Bump actions/setup-node from 4 to 6
+stripe-wallet,53926b06d1b7,2026-07-07T22:53:39+00:00,2026-07-07,3,0,0,0,0,0,0,0,0,0,3,10,10,0,0,0,0,0,0,build(deps): Bump actions/cache from 4 to 6
+stripe-wallet,88a9f49c75b9,2026-07-07T22:53:43+00:00,2026-07-07,6,0,0,0,0,0,0,0,0,0,6,20,20,0,0,0,0,0,0,build(deps): Bump actions/checkout from 5 to 7
+payment-base,52fb454161a3,2026-07-08T16:13:01+02:00,2026-07-08,4,1,51,0,1,11,10,0,0,0,0,0,0,1,1,0,1,8,0,small updates
+stripe-wallet,8e1093fe300f,2026-07-13T16:10:22+02:00,2026-07-13,2,1,4,2,0,0,0,0,0,0,0,0,0,0,0,0,1,4,10,Use ValidationBaseFactory instead of direct ValidationBaseInterface binding
+stripe-wallet,39d47d62c3cc,2026-07-13T16:48:00+02:00,2026-07-13,1,0,0,0,1,22,11,0,0,0,0,0,0,0,0,0,0,0,0,Update UserDataValidatorTest to use ValidationBaseFactory
+stripe-wallet,7634f595c905,2026-07-13T18:34:45+02:00,2026-07-13,1,0,0,0,0,0,0,0,0,0,1,5,0,0,0,0,0,0,0,Fix path repository conflicts in CI workflow
+stripe-wallet,76b995093f7b,2026-07-14T10:02:49+02:00,2026-07-14,3,1,114,0,1,197,0,0,0,0,0,0,0,0,0,0,1,11,0,"OPC-96 subscribe to modal-reopen event, release stranded reservations"
+stripe-wallet,4c89da1efbe9,2026-07-14T11:21:07+02:00,2026-07-14,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,5,0,test run
+stripe-wallet,75d5f1c123aa,2026-07-14T11:40:57+02:00,2026-07-14,7,4,12,30,3,76,13,0,0,0,0,0,0,0,0,0,0,0,0,"Fix isolated unit tests: gating regression, validator wiring, optional-OPC stub"
+stripe-wallet,2e0e5dc37e5c,2026-07-14T11:58:50+02:00,2026-07-14,3,1,14,4,2,31,14,0,0,0,0,0,0,0,0,0,0,0,0,Make OPC cleanup handler unit-testable without shop bootstrap
+stripe-wallet,f07a6eb66514,2026-07-17T17:04:49+02:00,2026-07-17,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,14,8,Isolate ContractTokenService from the shared TokenServiceInterface
+payment-base,a27f0187b8b7,2026-07-22T17:19:57+02:00,2026-07-22,9,4,35,15,4,105,8,0,0,0,0,0,0,1,5,4,0,0,0,Remove provider-specific leaks from agnostic base
+stripe-wallet,79ff170d377c,2026-07-22T17:20:04+02:00,2026-07-22,3,1,5,0,1,7,7,0,0,0,0,0,0,1,4,0,0,0,0,Declare provider explicitly; own Stripe brand color
+stripe-wallet,ef96bca9dc14,2026-07-23T15:03:11+02:00,2026-07-23,5,0,0,0,0,0,0,5,419,0,0,0,0,0,0,0,0,0,0,"Add ""iframe instead of checkout button"" sprint plan (2026-07-23)"
+payment-base,57e325ecf696,2026-07-23T15:51:34+02:00,2026-07-23,7,2,72,0,1,75,0,0,0,0,0,0,0,2,4,0,2,12,0,"IFRAME-01: add ""Use iframe instead of checkout button"" flag + agnostic accessor"
+stripe-wallet,73c56c4f579a,2026-07-23T16:08:23+02:00,2026-07-23,6,5,51,5,1,110,1,0,0,0,0,0,0,0,0,0,0,0,0,IFRAME-02a: thread Stripe Embedded Checkout client_secret through session core
+stripe-wallet,41f5c74efcb0,2026-07-23T16:12:34+02:00,2026-07-23,3,1,21,4,1,24,2,0,0,0,0,0,0,0,0,0,1,2,0,IFRAME-02b: StripePaymentHandler drives embedded mode via the payment-base flag
+stripe-wallet,69d8677464e4,2026-07-23T16:20:39+02:00,2026-07-23,3,1,28,6,1,55,0,0,0,0,0,0,0,1,66,4,0,0,0,IFRAME-02c: footer widget mounts Stripe Embedded Checkout inline in iframe mode
+stripe-wallet,185d572da2bd,2026-07-23T17:39:39+02:00,2026-07-23,9,3,29,5,1,40,2,0,0,0,0,0,0,4,41,6,1,1,0,IFRAME-02e: embedded checkout on the STANDARD order page (not just OPC)
+stripe-wallet,d58631cc3bf6,2026-07-23T17:48:17+02:00,2026-07-23,3,0,0,0,0,0,0,0,0,0,0,0,0,3,53,5,0,0,0,IFRAME-02e: eager-mount embedded checkout on the standard order page
+stripe-wallet,55d948dc9582,2026-07-29T15:47:48+02:00,2026-07-29,6,0,0,0,1,1,1,0,0,0,0,0,0,5,181,51,0,0,0,IFRAME-02f: render standard order page without the classic button in iframe mode
+stripe-wallet,75ee3ddd767c,2026-07-29T15:57:23+02:00,2026-07-29,2,0,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,ci: point full-tests at payment-base b-7.4.x-iframe-checkout
+stripe-wallet,1ce8c9597e24,2026-07-31T14:43:47+02:00,2026-07-31,4,0,0,0,1,7,0,0,0,0,2,24,0,1,103,2,0,0,0,IFRAME (OPC): Stripe footer widget eager-mounts Embedded Checkout inline
+stripe-wallet,e3842dac199b,2026-07-31T17:41:42+02:00,2026-07-31,2,0,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,ci: point full-tests at payment-base b-7.4.x (iframe work merged to base main)
+payment-base,746ca6e8ca1b,2026-08-11T14:30:32+02:00,2026-08-11,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,v1.1.0
+payment-base,1505a5910d95,2026-08-11T14:30:32+02:00,2026-08-11,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,4,0,v1.1.0
+stripe-wallet,1ddc7c653d01,2026-08-11T14:32:17+02:00,2026-08-11,4,0,0,0,0,0,0,0,0,0,0,0,0,2,5,5,2,3,4,v3.2.0
+stripe-wallet,5515e68c5789,2026-08-11T14:32:17+02:00,2026-08-11,4,0,0,0,0,0,0,0,0,0,0,0,0,2,5,5,2,3,4,v3.2.0
+payment-base,0801070bd66a,2026-08-12T16:11:06+02:00,2026-08-12,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,v3.2.0
+stripe-wallet,965786eb0fd4,2026-08-12T16:34:25+02:00,2026-08-12,2,1,15,0,0,0,0,0,0,0,0,0,0,0,0,0,1,8,0,feat(opc-125): declare iframe UI topology for OPC (rev-56)
+stripe-wallet,840f9d852ead,2026-08-13T10:22:26+02:00,2026-08-13,2,1,0,15,0,0,0,0,0,0,0,0,0,0,0,0,1,0,8,feat(opc-125): drop sPaymentHandlerUiTopology setting + getModuleId (rev-57)
+stripe-wallet,d293c2a6205e,2026-08-18T11:26:32+02:00,2026-08-18,1,0,0,0,0,0,0,0,0,0,0,0,0,1,40,1,0,0,0,IFRAME (OPC-132): Embedded Checkout page-global singleton + mount serialisation
+stripe-wallet,d0b31dffb7a0,2026-08-19T13:20:47+02:00,2026-08-19,6,1,56,18,1,91,3,4,1732,0,0,0,0,0,0,0,0,0,0,Sprint 133 S1 (F3): thread currency into partial-refund conversion
+stripe-wallet,8f606e9a0cfa,2026-08-19T13:27:07+02:00,2026-08-19,8,5,233,33,3,273,7,0,0,0,0,0,0,0,0,0,0,0,0,"Sprint 133 S2 (F2): key refund idempotency by request, not by payment"
+payment-base,bd7797e4eeb7,2026-08-19T13:27:07+02:00,2026-08-19,1,1,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Sprint 133 S2 (F2): add optional idempotencyKey to RefundPaymentRequest
+payment-base,3daae7f07ba4,2026-08-19T13:27:07+02:00,2026-08-19,1,1,9,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Sprint 133 S2 (F2): add optional idempotencyKey to RefundPaymentRequest
+stripe-wallet,017a066c5e80,2026-08-19T13:36:36+02:00,2026-08-19,16,7,202,61,8,275,19,0,0,0,0,0,0,0,0,0,1,9,0,"Sprint 133 S3 (F8): real idempotency - native keys, required repo, lock reaper"
+stripe-wallet,f99835808af8,2026-08-19T13:42:59+02:00,2026-08-19,3,1,26,8,1,49,8,0,0,0,0,0,0,0,0,0,1,8,0,Sprint 133 S4 (F1): Radar reports honestly instead of forging a clean score
+payment-base,c143f71f3f92,2026-08-19T13:42:59+02:00,2026-08-19,3,2,92,1,1,108,0,0,0,0,0,0,0,0,0,0,0,0,0,Sprint 133 S4 (F1): separate the fraud audit record from the blocking policy
+payment-base,6fa30c7ced3b,2026-08-19T13:42:59+02:00,2026-08-19,3,2,92,1,1,108,0,0,0,0,0,0,0,0,0,0,0,0,0,Sprint 133 S4 (F1): separate the fraud audit record from the blocking policy
+stripe-wallet,a78f3d68df82,2026-08-19T13:46:41+02:00,2026-08-19,8,7,127,22,1,69,0,0,0,0,0,0,0,0,0,0,0,0,0,"Sprint 133 S7 (F7): one currency resolver, zero hardcoded 'EUR'"
+stripe-wallet,cac000d66c8f,2026-08-19T13:49:13+02:00,2026-08-19,3,1,56,2,1,103,4,0,0,0,0,0,0,0,0,0,1,3,0,Sprint 133 S6 (F6): confirmPayment consults Stripe instead of always saying yes
+stripe-wallet,4a8df2f32c89,2026-08-19T13:53:27+02:00,2026-08-19,5,1,94,9,4,245,15,0,0,0,0,0,0,0,0,0,0,0,0,Sprint 133 S5 (F4): webhook guards fail closed instead of warn-and-continue
+stripe-wallet,cbbe171f738b,2026-08-19T13:55:38+02:00,2026-08-19,5,2,85,19,2,142,9,0,0,0,0,0,0,0,0,0,1,10,0,"Sprint 133 S8 (F5): wire the return-session scorer, advisory-first"
+stripe-wallet,1f6cc19e66ce,2026-08-19T13:57:55+02:00,2026-08-19,1,0,0,0,0,0,0,1,158,0,0,0,0,0,0,0,0,0,0,Sprint 133: Phase A completion report
+stripe-wallet,9cdfe41a6950,2026-08-19T13:58:13+02:00,2026-08-19,1,0,0,0,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,Revert unrelated tests/e2e/playwright submodule pointer
+stripe-wallet,4959da814227,2026-08-19T16:36:10+02:00,2026-08-19,2,0,0,0,0,0,0,0,0,0,2,32,12,0,0,0,0,0,0,ci: fix composer resolution — payment-base alias and dev stability
+stripe-wallet,6868ec4c4c89,2026-08-19T16:58:26+02:00,2026-08-19,9,4,52,7,4,147,2,0,0,0,0,0,0,0,0,0,1,3,0,"Sprint 133 S9 (F9): ""unknown amount"" stops masquerading as zero"
+stripe-wallet,e03a4f40adc7,2026-08-19T17:02:43+02:00,2026-08-19,5,3,106,24,2,179,1,0,0,0,0,0,0,0,0,0,0,0,0,"Sprint 133 S10-S12 (F10, F11, F12): stop inferring, inventing and mislabelling"
+stripe-wallet,aa7409e09bd8,2026-08-19T17:07:37+02:00,2026-08-19,10,7,103,7,2,226,0,0,0,0,0,0,0,0,0,0,1,6,0,"Sprint 133 S13-S14 (F13, F14): mode-scoped webhook secret, required shop id"
+stripe-wallet,2500d13b477e,2026-08-19T17:09:57+02:00,2026-08-19,3,2,27,13,1,48,0,0,0,0,0,0,0,0,0,0,0,0,0,"Sprint 133 S15 (F15): one invariant, one reaction"
+payment-base,1f193b256ffc,2026-08-19T17:09:57+02:00,2026-08-19,1,1,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Sprint 133 S15 (F15): complete the contract transition surface
+payment-base,67a6531904d4,2026-08-19T17:09:57+02:00,2026-08-19,1,1,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Sprint 133 S15 (F15): complete the contract transition surface
+stripe-wallet,9cd704de7bc9,2026-08-19T17:14:33+02:00,2026-08-19,4,3,24,0,0,0,0,0,0,0,0,0,0,0,0,0,1,9,0,Sprint 133 S16 (F16): log the remaining silent handler exits
+payment-base,9ca004a1b9e4,2026-08-19T17:14:33+02:00,2026-08-19,3,2,47,2,1,43,0,0,0,0,0,0,0,0,0,0,0,0,0,Sprint 133 S16 (F16): silent exits become visible
+payment-base,d91413e1790c,2026-08-19T17:14:33+02:00,2026-08-19,3,2,47,2,1,43,0,0,0,0,0,0,0,0,0,0,0,0,0,Sprint 133 S16 (F16): silent exits become visible
+stripe-wallet,41e6bce7137c,2026-08-19T17:15:33+02:00,2026-08-19,1,0,0,0,0,0,0,1,109,0,0,0,0,0,0,0,0,0,0,Sprint 133: Phase B completion report
+stripe-wallet,a11f2730ff32,2026-08-19T18:06:58+02:00,2026-08-19,1,0,0,0,0,0,0,1,224,0,0,0,0,0,0,0,0,0,0,Sprint 133: consolidated delivery report (Phases A+B)
+stripe-wallet,5fbafec68ecf,2026-08-20T09:25:10+02:00,2026-08-20,11,5,205,23,4,192,3,0,0,0,0,0,0,1,6,0,1,8,0,"Sprint 133 S18-S20 (F18, F19, F20): Phase C, minus the controller extraction"
+payment-base,825c7d2ed6bf,2026-08-20T09:25:10+02:00,2026-08-20,3,3,34,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Sprint 133 S20 (F20): one canonical accessor style, and say which mode"
+payment-base,d18f2a88b032,2026-08-20T09:25:10+02:00,2026-08-20,3,3,34,6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"Sprint 133 S20 (F20): one canonical accessor style, and say which mode"
+stripe-wallet,3fb851c70391,2026-08-20T09:35:18+02:00,2026-08-20,2,0,0,0,0,0,0,2,100,6,0,0,0,0,0,0,0,0,0,Sprint 133: Phase C completion + delivery report update
+stripe-wallet,9d631d91cad1,2026-08-20T10:04:08+02:00,2026-08-20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,Merge remote-tracking branch 'origin/b-7.4.x' into b-7.4.x-honest-failure-paths
+stripe-wallet,6541049ea670,2026-08-20T10:04:43+02:00,2026-08-20,2,0,0,0,0,0,0,0,0,0,2,2,10,0,0,0,0,0,0,ci: point payment-base back at b-7.4.x
+payment-base,d343df0425df,2026-08-20T10:18:22+02:00,2026-08-20,2,0,0,0,0,0,0,0,0,0,2,2,2,0,0,0,0,0,0,ci: require the module with @dev so composer resolution is deterministic
+payment-base,b0c4f3f566ca,2026-08-20T10:42:02+02:00,2026-08-20,1,0,0,0,0,0,0,0,0,0,1,14,0,0,0,0,0,0,0,ci(7.4): pin the migration wrapper to the b-7.4.x branch

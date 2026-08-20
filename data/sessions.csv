@@ -1,0 +1,228 @@
+session_id,date,start_local,end_local,duration_minutes,commits,commits_per_hour,files_changed,insertions,deletions,ai_coauthored_commits,repos,authors
+1,2025-10-21,09:22,10:42,80,6,4.51,150,70444,4,0,stripe-wallet,Daniil Tkachev+Deve L. Oper+dantweb+dependabot[bot]
+2,2025-10-21,17:26,17:26,0,1,,16,7182,0,0,stripe-wallet,Daniil Tkachev
+3,2025-10-22,11:39,12:22,43,2,2.8,20,10317,1510,0,stripe-wallet,Daniil Tkachev
+4,2025-10-22,15:12,16:06,54,2,2.24,19,1199,22,0,stripe-wallet,Daniil Tkachev
+5,2025-10-23,12:12,15:32,199,9,2.71,100,4579,6297,0,stripe-wallet,Daniil Tkachev
+6,2025-10-24,13:37,15:59,142,7,2.96,55,1666,69,0,stripe-wallet,Daniil Tkachev
+7,2025-10-26,19:40,19:40,0,1,,13,15721,0,0,stripe-wallet,Daniil Tkachev
+8,2025-10-27,14:21,16:19,119,5,2.53,9,2585,29,0,stripe-wallet,Daniil Tkachev
+9,2025-10-27,17:59,19:02,63,3,2.84,55,77831,54,0,stripe-wallet,Daniil Tkachev
+10,2025-10-30,12:37,12:37,0,1,,137,26120,360,0,stripe-wallet,Daniil Tkachev
+11,2025-10-31,10:50,13:32,162,10,3.71,204,13101,1160,0,stripe-wallet,Daniil Tkachev
+12,2025-10-31,16:53,16:53,0,1,,23,3841,782,0,stripe-wallet,Daniil Tkachev
+13,2025-11-03,12:31,17:02,271,21,4.66,41,543,282,0,stripe-wallet,Daniil Tkachev
+14,2025-11-04,11:52,14:32,160,10,3.74,62,33661,381,0,stripe-wallet,Daniil Tkachev
+15,2025-11-05,15:06,17:37,151,6,2.39,24,2718,199,0,stripe-wallet,Bartosz Sosnowski+Daniil Tkachev
+16,2025-11-06,11:05,13:05,120,11,5.52,47,62773,772,0,stripe-wallet,Bartosz Sosnowski+Daniil Tkachev
+17,2025-11-07,08:57,10:29,92,8,5.22,129,44790,85,0,stripe-wallet,Bartek Sosnowski+Daniil Tkachev
+18,2025-11-07,12:05,12:41,36,4,6.63,6,69,23,0,stripe-wallet,Daniil Tkachev
+19,2025-11-07,14:13,14:13,0,1,,31,4850,64,0,stripe-wallet,Daniil Tkachev
+20,2025-11-07,17:32,17:51,19,3,9.46,20,1522,12,0,stripe-wallet,Bartosz Sosnowski+Daniil Tkachev
+21,2025-11-11,09:45,09:45,0,1,,0,0,0,0,stripe-wallet,Bartosz Sosnowski
+22,2025-11-11,12:02,16:31,270,9,2.0,22,430,121,0,stripe-wallet,Bartek Sosnowski+Bartosz Sosnowski
+23,2025-11-12,12:10,14:41,151,4,1.59,49,11438,1125,0,stripe-wallet,Bartosz Sosnowski+Daniil Tkachev
+24,2025-11-12,16:32,17:03,30,2,3.94,5,40,13,0,stripe-wallet,Daniil Tkachev
+25,2025-11-13,11:43,11:43,0,1,,23,6305,102,0,stripe-wallet,Bartosz Sosnowski
+26,2025-11-17,16:26,16:26,0,1,,55,16649,210,0,stripe-wallet,Bartosz Sosnowski
+27,2025-11-19,08:57,08:57,0,1,,60,12291,38,0,stripe-wallet,Daniil Tkachev
+28,2025-11-19,16:23,16:23,0,1,,57,11490,1206,0,stripe-wallet,Bartosz Sosnowski
+29,2025-11-19,19:00,20:17,77,2,1.56,10,82,570,0,stripe-wallet,Bartosz Sosnowski
+30,2025-11-20,13:39,13:39,0,1,,2,123,22,0,stripe-wallet,Bartosz Sosnowski
+31,2025-11-24,12:26,12:27,1,2,,46,3906,1128,0,stripe-wallet,Bartosz Sosnowski
+32,2025-11-25,13:42,13:42,0,2,,20,964,162,0,stripe-wallet,Bartosz Sosnowski
+33,2025-11-26,10:26,10:26,0,1,,1,23,0,0,stripe-wallet,Daniil Tkachev
+34,2025-11-26,13:01,13:01,0,1,,6,377,20,0,stripe-wallet,Bartosz Sosnowski
+35,2025-11-26,15:22,17:51,149,11,4.42,35,3831,699,0,stripe-wallet,Daniil Tkachev
+36,2025-11-27,07:12,07:12,0,1,,1,82,33,0,stripe-wallet,Daniil Tkachev
+37,2025-11-27,10:03,10:03,0,1,,2,55,39,0,stripe-wallet,Bartosz Sosnowski
+38,2025-11-27,13:09,13:09,0,1,,0,0,0,0,stripe-wallet,Daniil Tkachev
+39,2025-11-28,13:34,13:34,0,1,,78,10493,1464,0,stripe-wallet,Daniil Tkachev
+40,2025-11-28,18:17,18:30,13,2,9.44,19,2830,31,0,stripe-wallet,Daniil Tkachev
+41,2025-12-01,10:35,16:51,376,9,1.44,212,8360,151740,0,stripe-wallet,Daniil Tkachev
+42,2025-12-02,11:40,11:40,0,1,,50,9788,1231,0,stripe-wallet,Daniil Tkachev
+43,2025-12-02,13:14,15:31,136,8,3.52,63,7066,437,0,stripe-wallet,Daniil Tkachev
+44,2025-12-03,09:12,09:12,0,1,,29,6973,0,0,stripe-wallet,Daniil Tkachev
+45,2025-12-03,11:05,11:05,0,1,,24,2142,799,0,stripe-wallet,Daniil Tkachev
+46,2025-12-03,13:15,13:53,38,3,4.68,204,1862,505,0,stripe-wallet,Daniil Tkachev
+47,2025-12-03,15:53,15:53,0,1,,20,1985,5,0,stripe-wallet,Daniil Tkachev
+48,2025-12-04,11:30,12:22,52,4,4.63,45,5411,444,0,stripe-wallet,Daniil Tkachev
+49,2025-12-04,15:17,15:17,0,1,,16,1546,210,0,stripe-wallet,Daniil Tkachev
+50,2025-12-05,09:23,11:18,114,6,3.16,58,3684,226,2,stripe-wallet,Daniil Tkachev
+51,2025-12-05,15:05,15:08,3,2,38.92,35,5434,91,0,stripe-wallet,Daniil Tkachev+Mario Lorenz
+52,2025-12-05,16:41,16:41,0,1,,3,0,3,0,stripe-wallet,Daniil Tkachev
+53,2025-12-08,16:50,16:50,0,1,,22,2881,52,0,stripe-wallet,Daniil Tkachev
+54,2025-12-08,22:28,22:28,0,1,,1,2,2,0,stripe-wallet,dependabot[bot]
+55,2025-12-09,11:50,12:48,59,2,2.05,58,8651,594,0,stripe-wallet,Daniil Tkachev
+56,2025-12-09,14:29,14:51,21,2,5.63,6,462,536,0,stripe-wallet,Daniil Tkachev
+57,2025-12-09,16:24,16:24,0,1,,46,5447,1647,0,stripe-wallet,Daniil Tkachev
+58,2025-12-15,17:05,17:06,1,2,,41,3831,28,0,stripe-wallet,Daniil Tkachev
+59,2025-12-15,22:45,22:45,0,2,,2,6,6,0,stripe-wallet,dependabot[bot]
+60,2025-12-16,16:20,16:20,0,1,,98,14513,125,0,stripe-wallet,Daniil Tkachev
+61,2025-12-18,15:08,15:08,0,1,,7,1871,23,0,stripe-wallet,Daniil Tkachev
+62,2025-12-29,14:22,14:22,0,1,,34,1,5031,0,stripe-wallet,Daniil Tkachev
+63,2026-01-09,14:44,14:44,0,1,,17,363,169,0,stripe-wallet,Daniil Tkachev
+64,2026-01-13,10:47,12:11,84,2,1.43,47,2844,149,0,payment-base+stripe-wallet,Daniil Tkachev+Deve L. Oper
+65,2026-01-14,15:44,15:44,0,1,,257,32415,2,0,payment-base,Daniil Tkachev
+66,2026-01-15,12:59,17:31,272,21,4.62,427,2983,35111,0,payment-base+stripe-wallet,Daniil Tkachev
+67,2026-01-16,08:35,09:37,62,8,7.8,23,877,606,0,payment-base+stripe-wallet,Daniil Tkachev
+68,2026-01-16,11:28,12:21,53,8,9.11,32,769,336,0,payment-base,Daniil Tkachev
+69,2026-01-16,14:02,14:28,26,4,9.28,8,51,36,0,payment-base,Daniil Tkachev
+70,2026-01-16,16:23,18:24,120,15,7.49,322,3022,6096,0,payment-base+stripe-wallet,Daniil Tkachev
+71,2026-01-19,15:07,15:20,14,2,8.89,3,15,63,0,payment-base+stripe-wallet,Daniil Tkachev
+72,2026-01-20,16:22,16:24,2,2,67.29,119,10871,7412,0,payment-base+stripe-wallet,Daniil Tkachev
+73,2026-01-21,15:16,15:16,0,1,,1,1,1,0,stripe-wallet,Daniil Tkachev
+74,2026-01-23,16:35,16:35,0,1,,34,5913,1061,0,stripe-wallet,Daniil Tkachev
+75,2026-01-23,18:26,18:26,0,1,,7,280,137,0,stripe-wallet,Daniil Tkachev
+76,2026-01-26,10:39,10:39,0,1,,10,0,1422,0,payment-base,Daniil Tkachev
+77,2026-01-26,15:52,16:20,28,2,4.23,48,3895,1184,0,stripe-wallet,Daniil Tkachev
+78,2026-01-27,10:46,10:46,0,1,,1,3,0,0,stripe-wallet,Daniil Tkachev
+79,2026-01-27,13:09,13:29,20,2,6.01,3,8,0,0,stripe-wallet,Daniil Tkachev
+80,2026-01-28,14:05,15:42,96,4,2.49,105,3322,8312,0,payment-base+stripe-wallet,Daniil Tkachev
+81,2026-01-29,12:08,14:38,150,3,1.2,265,2714,4032,0,payment-base+stripe-wallet,Daniil Tkachev
+82,2026-01-29,17:14,17:14,0,1,,645,984,1845,0,stripe-wallet,Daniil Tkachev
+83,2026-01-30,11:52,12:10,18,4,13.17,139,2713,2838,0,payment-base+stripe-wallet,Daniil Tkachev
+84,2026-02-02,12:12,12:12,0,1,,30,9,2961,0,stripe-wallet,Daniil Tkachev
+85,2026-02-02,13:59,17:41,222,9,2.43,13,223,29,0,payment-base+stripe-wallet,Daniil Tkachev
+86,2026-02-03,09:29,13:49,260,16,3.7,21,207,128,0,payment-base+stripe-wallet,Daniil Tkachev
+87,2026-02-04,09:30,12:52,202,10,2.97,170,9703,2850,0,payment-base+stripe-wallet,Daniil Tkachev
+88,2026-02-05,09:12,09:14,3,3,71.52,14,11,47,0,stripe-wallet,Mario Lorenz
+89,2026-02-05,14:38,17:32,174,10,3.44,62,3250,930,0,stripe-wallet,Daniil Tkachev+Mario Lorenz
+90,2026-02-06,11:28,11:36,8,2,15.45,22,3769,89,0,payment-base+stripe-wallet,Daniil Tkachev
+91,2026-02-06,14:29,14:34,5,2,22.57,61,3219,4802,0,payment-base+stripe-wallet,Daniil Tkachev
+92,2026-02-06,18:55,18:55,0,1,,53,3632,4128,0,stripe-wallet,Daniil Tkachev
+93,2026-02-09,11:21,11:42,21,2,5.7,5,1474,1,0,stripe-wallet,Daniil Tkachev
+94,2026-02-09,14:32,14:32,0,1,,11,8744,0,0,stripe-wallet,Daniil Tkachev
+95,2026-02-11,15:42,16:56,74,2,1.62,13,6573,3,0,stripe-wallet,Daniil Tkachev
+96,2026-02-12,16:43,16:45,2,2,60.5,90,6818,103,0,payment-base+stripe-wallet,Daniil Tkachev
+97,2026-02-13,17:03,17:04,1,2,,134,18497,165,0,payment-base+stripe-wallet,Daniil Tkachev
+98,2026-02-16,18:00,18:29,29,5,10.43,53,6591,787,0,payment-base+stripe-wallet,Daniil Tkachev
+99,2026-02-17,14:18,14:18,0,2,,10,1037,22,0,payment-base+stripe-wallet,Daniil Tkachev
+100,2026-02-18,13:12,13:47,36,5,8.43,25,1331,233,0,payment-base+stripe-wallet,Daniil Tkachev
+101,2026-02-19,13:50,13:50,0,1,,422,7066,175,0,stripe-wallet,Daniil Tkachev
+102,2026-02-20,09:32,09:32,0,2,,12,517,131,0,payment-base+stripe-wallet,Daniil Tkachev
+103,2026-02-23,12:02,13:43,101,6,3.56,83,12721,72,0,payment-base+stripe-wallet,Daniil Tkachev
+104,2026-02-24,15:01,15:33,33,3,5.49,54,7447,203,0,payment-base+stripe-wallet,Bartosz Sosnowski+Daniil Tkachev
+105,2026-02-25,10:09,10:09,0,1,,3,2969,2959,0,stripe-wallet,Daniil Tkachev
+106,2026-02-25,13:39,13:39,0,2,,10,71,146,0,payment-base+stripe-wallet,Daniil Tkachev
+107,2026-02-25,15:31,15:31,0,2,,2,2,2,0,stripe-wallet,Bartosz Sosnowski
+108,2026-02-26,14:37,14:37,0,1,,6,292,2,0,stripe-wallet,Daniil Tkachev
+109,2026-02-27,11:46,11:46,0,1,,18,1775,496,0,stripe-wallet,Daniil Tkachev
+110,2026-02-27,16:20,16:45,25,3,7.09,6,307,30,0,payment-base+stripe-wallet,Daniil Tkachev+Mario Lorenz
+111,2026-03-02,11:01,11:01,0,1,,0,0,0,0,stripe-wallet,Daniil Tkachev
+112,2026-03-02,17:03,17:10,7,2,16.67,482,3158,18470,0,payment-base+stripe-wallet,Daniil Tkachev
+113,2026-03-03,00:13,00:13,0,1,,1,3,3,0,stripe-wallet,dependabot[bot]
+114,2026-03-04,11:08,11:08,0,2,,33,1954,353,0,stripe-wallet,Bartosz Sosnowski
+115,2026-03-09,14:59,14:59,0,2,,11,350,234,0,stripe-wallet,Bartosz Sosnowski
+116,2026-03-11,19:49,19:49,0,2,,7,34,8,0,stripe-wallet,Bartosz Sosnowski
+117,2026-03-13,10:57,10:57,0,1,,2,5,5,0,stripe-wallet,Mario Lorenz
+118,2026-03-17,11:11,12:30,79,2,1.53,10,3,156,0,stripe-wallet,Mario Lorenz
+119,2026-03-17,15:03,15:03,0,1,,1,1,1,0,stripe-wallet,Mario Lorenz
+120,2026-03-19,14:49,14:49,0,1,,4,8,4,0,stripe-wallet,Mario Lorenz
+121,2026-03-19,16:48,16:48,0,1,,1,9,0,0,stripe-wallet,Mario Lorenz
+122,2026-03-23,16:11,16:21,11,2,11.32,4,115,3,0,stripe-wallet,Daniil Tkachev
+123,2026-03-24,14:10,14:59,49,2,2.46,23,3780,120,0,stripe-wallet,Daniil Tkachev
+124,2026-03-25,10:05,10:05,0,1,,0,0,0,0,stripe-wallet,Bartosz Sosnowski
+125,2026-03-25,12:00,14:42,163,5,1.84,77,758,1189,0,payment-base+stripe-wallet,Bartosz Sosnowski+Daniil Tkachev
+126,2026-03-26,16:43,16:43,0,1,,12,485,162,0,stripe-wallet,Bartosz Sosnowski
+127,2026-03-27,11:41,11:42,0,2,,3,97,2,0,stripe-wallet,Daniil Tkachev
+128,2026-03-27,13:13,13:13,0,1,,1,2,0,0,stripe-wallet,Daniil Tkachev
+129,2026-03-27,14:50,14:54,4,2,29.27,2,6,3,0,stripe-wallet,Daniil Tkachev
+130,2026-03-31,12:35,12:35,0,1,,1,4,1,0,stripe-wallet,Bartosz Sosnowski
+131,2026-03-31,15:19,15:20,1,3,131.71,15,703,386,0,payment-base+stripe-wallet,Daniil Tkachev
+132,2026-04-01,13:11,13:15,4,2,27.17,4,13,3,0,stripe-wallet,Daniil Tkachev
+133,2026-04-01,15:51,15:51,0,1,,1,1,1,0,stripe-wallet,Daniil Tkachev
+134,2026-04-02,12:45,12:45,0,1,,16,2203,0,0,stripe-wallet,Daniil Tkachev
+135,2026-04-02,16:30,16:30,0,1,,24,2294,191,0,stripe-wallet,Daniil Tkachev
+136,2026-04-07,13:36,13:42,6,2,20.63,12,116,11,0,payment-base+stripe-wallet,Mario Lorenz
+137,2026-04-08,13:15,13:15,0,2,,70,2469,337,0,stripe-wallet,Daniil Tkachev
+138,2026-04-08,18:38,18:38,0,1,,12,867,9,0,stripe-wallet,Daniil Tkachev
+139,2026-04-13,18:47,18:47,0,1,,9,297,3,0,stripe-wallet,Bartosz Sosnowski
+140,2026-04-15,17:24,17:24,0,1,,5,76,7,0,stripe-wallet,Daniil Tkachev
+141,2026-04-15,19:19,19:19,0,1,,3,396,0,0,stripe-wallet,Daniil Tkachev
+142,2026-04-16,11:23,11:23,0,1,,8,231,15,0,stripe-wallet,Daniil Tkachev
+143,2026-04-16,13:18,14:02,44,3,4.08,15,992,47,0,stripe-wallet,Daniil Tkachev
+144,2026-04-16,15:37,16:00,23,3,7.91,3,27,9,0,stripe-wallet,Daniil Tkachev
+145,2026-04-17,14:01,14:01,0,1,,3,0,7,0,stripe-wallet,Daniil Tkachev
+146,2026-04-17,16:09,16:09,0,1,,10,249,118,0,stripe-wallet,Daniil Tkachev
+147,2026-04-21,20:05,20:10,5,3,33.23,39,2095,2189,0,payment-base+stripe-wallet,Daniil Tkachev
+148,2026-04-22,10:44,10:44,0,1,,1,13,0,0,stripe-wallet,Daniil Tkachev
+149,2026-04-22,14:08,16:42,153,5,1.96,13,527,79,0,payment-base+stripe-wallet,Daniil Tkachev
+150,2026-04-23,09:11,09:11,0,1,,7,357,109,0,stripe-wallet,Daniil Tkachev
+151,2026-04-23,16:33,16:33,0,2,,51,2707,1683,0,payment-base+stripe-wallet,Daniil Tkachev
+152,2026-05-04,16:14,16:14,0,1,,49,553,10,0,stripe-wallet,dantweb
+153,2026-05-05,10:46,10:46,0,2,,13,1545,17,0,payment-base+stripe-wallet,Daniil Tkachev
+154,2026-05-05,15:00,15:00,0,1,,1,1,1,0,stripe-wallet,Daniil Tkachev
+155,2026-05-07,16:36,16:44,9,4,27.64,20,2393,38,4,stripe-wallet,Daniil Tkachev
+156,2026-05-07,18:49,18:49,0,1,,8,222,29,1,stripe-wallet,Daniil Tkachev
+157,2026-05-07,21:04,21:04,0,1,,1,1,0,0,stripe-wallet,Daniil Tkachev
+158,2026-05-08,13:49,14:57,68,5,4.39,530,4329,2046,0,payment-base+stripe-wallet,Daniil Tkachev
+159,2026-05-08,17:11,17:29,18,2,6.57,3,219,210,0,payment-base+stripe-wallet,Daniil Tkachev
+160,2026-05-08,21:19,21:19,0,2,,36,14384,67,0,payment-base+stripe-wallet,Daniil Tkachev
+161,2026-05-13,11:00,11:00,0,1,,1,2,2,0,payment-base,Daniil Tkachev
+162,2026-05-13,13:14,14:17,63,6,5.71,97,17854,1180,5,payment-base+stripe-wallet,Daniil Tkachev
+163,2026-05-15,16:03,16:03,0,1,,39,1170,1815,1,stripe-wallet,Daniil Tkachev
+164,2026-05-15,17:42,18:05,23,2,5.28,24,409,44,0,payment-base+stripe-wallet,Daniil Tkachev
+165,2026-05-18,09:58,09:58,0,1,,2,216,0,1,stripe-wallet,Daniil Tkachev
+166,2026-05-18,14:28,14:28,0,1,,11,1360,15,0,stripe-wallet,Daniil Tkachev
+167,2026-05-18,17:40,17:40,0,1,,13,2460,16,0,stripe-wallet,Daniil Tkachev
+168,2026-05-19,14:38,14:38,0,1,,8,1289,78,0,payment-base,Daniil Tkachev
+169,2026-05-19,16:24,16:24,0,2,,9,1228,61,0,payment-base+stripe-wallet,Daniil Tkachev
+170,2026-05-20,11:12,11:12,0,1,,1,2,0,0,stripe-wallet,Daniil Tkachev
+171,2026-05-21,09:51,12:12,141,4,1.7,13,937,45,0,payment-base+stripe-wallet,Daniil Tkachev
+172,2026-05-22,11:36,11:36,0,1,,61,5431,1255,0,stripe-wallet,Daniil Tkachev
+173,2026-05-26,11:21,11:21,0,1,,11,63,63,0,payment-base,Daniil Tkachev
+174,2026-05-26,16:26,16:26,0,2,,16,1561,65,0,stripe-wallet,Daniil Tkachev
+175,2026-05-27,10:28,10:28,0,1,,1,1,1,1,stripe-wallet,dantweb
+176,2026-05-27,16:02,18:24,141,19,8.07,95,4907,4390,19,stripe-wallet,Daniil Tkachev
+177,2026-05-27,21:30,22:12,42,13,18.74,46,2053,351,13,stripe-wallet,Daniil Tkachev
+178,2026-05-28,08:58,14:05,307,31,6.07,197,8883,1333,27,payment-base+stripe-wallet,Daniil Tkachev
+179,2026-05-29,10:51,10:51,0,1,,3,12,1,0,stripe-wallet,Daniil Tkachev
+180,2026-05-29,19:12,19:13,1,2,105.88,185,7947,147,0,payment-base+stripe-wallet,Daniil Tkachev
+181,2026-06-02,15:39,16:35,56,2,2.15,48,417,43,0,payment-base,Daniil Tkachev
+182,2026-06-03,15:13,16:17,64,2,1.88,5,54,11,0,stripe-wallet,Daniil Tkachev
+183,2026-06-05,13:47,13:47,0,1,,30,2825,31,0,stripe-wallet,Daniil Tkachev
+184,2026-06-08,12:01,13:44,104,3,1.74,12,491,20,0,payment-base+stripe-wallet,Daniil Tkachev
+185,2026-06-08,16:18,16:29,11,2,10.89,2,31,4,0,stripe-wallet,Daniil Tkachev
+186,2026-06-09,13:09,15:24,135,13,5.77,33,2443,187,11,stripe-wallet,Bartosz Sosnowski+Daniil Tkachev
+187,2026-06-10,12:40,14:41,121,7,3.47,9,175,71,1,stripe-wallet,Daniil Tkachev
+188,2026-06-10,16:30,16:30,0,1,,2,26,6,0,stripe-wallet,Daniil Tkachev
+189,2026-06-10,19:35,20:10,35,2,3.4,11,721,20,0,stripe-wallet,Daniil Tkachev
+190,2026-06-12,10:34,13:25,171,8,2.81,20,1220,84,6,stripe-wallet,Daniil Tkachev
+191,2026-06-15,16:50,16:50,0,1,,7,624,13,0,stripe-wallet,Daniil Tkachev
+192,2026-06-16,13:18,13:24,5,3,34.07,21,1370,1,0,payment-base+stripe-wallet,Daniil Tkachev
+193,2026-06-16,16:46,16:46,0,1,,2,16,0,0,payment-base,Daniil Tkachev
+194,2026-06-17,16:03,18:00,117,3,1.54,18,1313,15,1,stripe-wallet,Daniil Tkachev
+195,2026-06-18,14:42,14:42,0,1,,1,4,0,0,stripe-wallet,Daniil Tkachev
+196,2026-06-22,10:46,10:46,0,1,,1,2,2,0,stripe-wallet,Daniil Tkachev
+197,2026-06-22,13:33,13:33,0,1,,13,1002,11,0,stripe-wallet,Daniil Tkachev
+198,2026-06-22,16:07,16:15,9,2,13.43,19,1235,127,0,payment-base+stripe-wallet,Daniil Tkachev
+199,2026-06-23,10:52,10:52,0,2,,3,289,0,0,payment-base+stripe-wallet,Daniil Tkachev
+200,2026-06-23,12:54,12:54,0,1,,21,1636,0,0,stripe-wallet,Daniil Tkachev
+201,2026-06-23,14:34,14:36,1,2,83.72,53,4205,146,0,stripe-wallet,Bartosz Sosnowski+Daniil Tkachev
+202,2026-06-24,19:09,19:09,0,1,,3,309,3,0,payment-base,Daniil Tkachev
+203,2026-06-25,10:44,11:55,71,3,2.53,58,1054,684,0,payment-base,Daniil Tkachev
+204,2026-06-25,14:00,14:44,44,3,4.06,14,89,56,0,stripe-wallet,Daniil Tkachev
+205,2026-06-26,13:17,15:21,124,4,1.94,144,715,1354,0,payment-base+stripe-wallet,Daniil Tkachev
+206,2026-06-29,17:30,17:30,0,1,,2,48,11,0,stripe-wallet,Daniil Tkachev
+207,2026-07-02,12:49,14:05,76,3,2.37,582,106195,16,0,stripe-wallet,Daniil Tkachev
+208,2026-07-03,14:14,14:14,0,1,,1,1,0,0,stripe-wallet,Daniil Tkachev
+209,2026-07-06,13:56,13:56,0,1,,4,30,12,0,stripe-wallet,Bartosz Sosnowski
+210,2026-07-07,22:53,22:53,0,3,,10,31,31,0,stripe-wallet,dependabot[bot]
+211,2026-07-08,16:13,16:13,0,1,,4,71,10,0,payment-base,Daniil Tkachev
+212,2026-07-13,16:10,16:48,38,2,3.19,3,30,23,2,stripe-wallet,Daniil Tkachev
+213,2026-07-13,18:34,18:34,0,1,,1,5,0,1,stripe-wallet,Daniil Tkachev
+214,2026-07-14,10:02,11:58,116,4,2.07,14,460,61,3,stripe-wallet,Bartosz Sosnowski+Daniil Tkachev
+215,2026-07-17,17:04,17:04,0,1,,1,14,8,1,stripe-wallet,Daniil Tkachev
+216,2026-07-22,17:19,17:20,0,2,,12,161,34,2,payment-base+stripe-wallet,Daniil Tkachev
+217,2026-07-23,15:03,17:48,165,7,2.54,36,1103,40,7,payment-base+stripe-wallet,Daniil Tkachev
+218,2026-07-29,15:47,15:57,10,2,12.52,8,184,54,2,stripe-wallet,Daniil Tkachev
+219,2026-07-31,14:43,14:43,0,1,,4,134,2,1,stripe-wallet,Daniil Tkachev
+220,2026-07-31,17:41,17:41,0,1,,2,2,2,1,stripe-wallet,Daniil Tkachev
+221,2026-08-11,14:30,14:32,2,4,137.14,10,24,18,0,payment-base+stripe-wallet,Daniil Tkachev
+222,2026-08-12,16:11,16:34,23,2,5.15,3,24,1,1,payment-base+stripe-wallet,Bartosz Sosnowski+Daniil Tkachev
+223,2026-08-13,10:22,10:22,0,1,,2,0,23,1,stripe-wallet,Bartosz Sosnowski
+224,2026-08-18,11:26,11:26,0,1,,1,40,1,1,stripe-wallet,Bartosz Sosnowski
+225,2026-08-19,13:20,13:58,37,14,22.44,64,4465,240,14,payment-base+stripe-wallet,Daniil Tkachev
+226,2026-08-19,16:36,18:06,91,12,7.93,43,1497,70,12,payment-base+stripe-wallet,Daniil Tkachev
+227,2026-08-20,09:25,10:42,77,8,6.24,24,597,56,7,payment-base+stripe-wallet,Daniil Tkachev
