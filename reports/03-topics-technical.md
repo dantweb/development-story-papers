@@ -81,6 +81,40 @@ PSP integrations, with the honest failure modes most write-ups omit.
 > That rests on runtime traces, not source, and remains the topic's most
 > interesting unverified claim — it asserts the *implemented* machine is
 > narrower than the *designed* one, which source inspection cannot settle.
+>
+> ### Jira verification — ✅ **the design has a documented, pre-AI motivation**
+>
+> The topic argues the contract-first design is "a principled answer" to
+> state restoration across the redirect boundary. Jira shows that problem was
+> being **filed as defects two years before the design existed**, on the legacy
+> module:
+>
+> | Issue | Filed | Reporter | Summary |
+> |---|---|---|---|
+> | `STRP-40` | 2024-09-18 | Daniel Paniagua | "Session does not match if `shop_redirect_url` is used in subshop" |
+> | `STRP-1` | 2024-11-22 | Zerfas Razvan | "Navigating back from the external pay page causes the fields on Stripe Credit card to no longer…" |
+>
+> The design decision itself is ticketed — `STRP-74` (2025-12-09, Daniil)
+> *"[Stripe] Change flow and create not_finished order along with the
+> contract"* — so the early-order-creation choice the topic reconstructs from
+> sprint docs has an independent record with a date.
+>
+> **⚠️ The important finding is on the cost side, and it strengthens the topic's
+> honesty.** The paper claims the design *creates* a class of failure. Jira
+> quantifies it: the redirect/state-restoration class **kept producing bugs
+> after the redesign**, all filed by the tester, not the pair:
+>
+> - `STRP-105` (2026-03-06) "Coupon becomes invalid after returning from the external payment page"
+> - `STRP-120` (2026-04-08) "Language switches from English to German on the Thank You page after payment"
+> - `STRP-121` (2026-04-08) "Cancelled order remains as unfinished in Shop BE and is removed only after a new order is created"
+> - `STRP-141` "Cancelled orders do not update internal status to 'Cancelled'"
+> - `STRP-138` (2026-06) "Order now button stays disabled after returning from external payment page"
+>
+> So the arc is: a defect class documented from 2024 → a principled redesign in
+> late 2025 → **the same class still generating tester-filed bugs through mid
+> 2026**, though now as state-*synchronisation* faults rather than total session
+> loss. That is a more useful and more publishable claim than "the design solved
+> it," and it is only visible with the tracker.
 
 ---
 
@@ -149,6 +183,35 @@ orchestration with provider isolation enforced by DI, not discipline alone.
 > framing the paper should adopt: **these refactors reduced per-unit complexity
 > while aggregate code held flat or grew.** A before/after pair quoting only the
 > shrinking file overstates the simplification.
+>
+> ### Jira verification — ◐ **the multi-channel claim is partly aspirational**
+>
+> The component structure is ticketed as the topic describes: `STRP-59`
+> "[Component] Event System", `STRP-61` "[Component] Webhook Processing",
+> `STRP-68` "WebhooksController Implement", `STRP-63` "Capture & Refund
+> Operations" (6 commits), `STRP-69` admin capture/refund/cancel (12 commits),
+> `STRP-144` "Add webhook to stripe connect operation".
+>
+> **But the MCP channel — one of the five the thesis claims — is still open.**
+> `STRP-88` "[Component][Stripe] MCP + ACP development" carries **20 commits and
+> status `To Do`**, and `STRP-95` "[MCP] Add-On Module for MCP Order
+> Confirmation" is also `To Do`. The thesis sentence "lets one business-logic
+> core serve storefront, admin, webhook, REST, and MCP channels" should be
+> written in the conditional for MCP: code exists, the work item does not claim
+> completion.
+>
+> `STRP-88` is also a **data-quality specimen worth a footnote**: its description
+> is a pasted AI-authored research document that begins *"Sprint: 47 …
+> **Status: Complete**"* while the Jira status field reads `To Do`. The same
+> ticket asserts both states. This is the tracker analogue of the
+> journal-vs-artifact divergence the flagship paper documents, and a caution
+> against reading either field as authoritative.
+>
+> The cross-module refund claim gains support from the defect side: `STRP-131`
+> "Partial refund is not possible after partial capture" and `STRP-122`
+> "Transaction history and partial capture/refund on Stripe Dash" are
+> tester-visible behaviour on exactly the path the translator abstraction
+> serves.
 
 ---
 
@@ -230,6 +293,35 @@ and a criterion — *count consumers that use the narrow type* — for detecting
 > corpus) and the claim that the framework's factory/dispatcher *blocks* full
 > segregation. The latter is an architectural argument about OXID, testable only
 > by attempting the refactor.
+>
+> ### Jira verification — ⚠️ **none of this work was ticketed**
+>
+> A deliberate search of all 156 issues finds **no ticket for the ISP split, the
+> `LazyStripeAdapter` build-or-delete decision, or the Sprint-132 discovery that
+> the split was fake.** The nearest issues are generic umbrellas: `STRP-75`
+> "[Component][Stripe] Do code review and cleanup" (8 commits), `STRP-85`
+> "[Component][Stripe] Code cleanup" (5), and `STRP-145` "DevLog review"
+> (**64 commits**).
+>
+> This is itself a result, and it sharpens the topic's contribution. The entire
+> arc the paper reconstructs — a 26-method interface, a metrics-gate-driven
+> "split", a proxy built and deleted, and a self-correction two months later —
+> happened **entirely inside the developer–assistant loop, invisible to the
+> project's tracker.** Nobody asked for it, nobody reviewed it as a work item,
+> and no acceptance criteria constrained it.
+>
+> Two implications for the paper:
+>
+> 1. **The "silent failure under a metrics gate" thesis is stronger than
+>    stated.** ISP theatre survived not only because no consumer used the narrow
+>    types, but because the work had no external reviewer at all — the only
+>    feedback signal was PHPMD, which the baseline had silenced. A gate was the
+>    *sole* arbiter of an architectural decision.
+> 2. **Architectural refactoring is the blind spot of all three corpora.** Jira
+>    sees requirements and defects; git sees diffs; only the dev log records
+>    intent. For design-archaeology work of this kind the journal is
+>    irreplaceable, which is worth saying plainly given how much of this
+>    programme is spent correcting it.
 
 ---
 
@@ -383,6 +475,42 @@ bug-finding technique* for money code.
 > side effect* of the DRY refactor rather than sought (the causal claim, and the
 > topic's most interesting contribution), and that the preceding review missed
 > them. Both rest on `117` §4. The *fix* is verifiable; the *serendipity* is not.
+>
+> ### Jira verification — ✅ **money is the defect-dense area, and BCMath is a live ticket**
+>
+> **The "deliberate restraint" claim is confirmed as a tracked decision, not an
+> omission.** `STRP-160` "OXCore and PaymentBase Float Math" (Story, created
+> **2026-06-22**, status **QA**) has the description: *"add floating point BCMath
+> or TBD to the PaymentBase for any math ops."* The topic presents "No BCMath
+> anywhere… BCMath *deferred* until a concrete decimal defect appears" as
+> engineering restraint; Jira shows the deferral was **written down as an open
+> work item**, which is materially stronger than restraint-by-silence. It is
+> still unresolved at the end of the record — so the paper should describe this
+> as an *open* design question, not a settled one.
+>
+> Its sibling `STRP-157` "OXID checkout arythmetics issue" (2026-06-11, 4
+> commits) confirms the same problem surfacing at the framework boundary the
+> topic names.
+>
+> **Money is measurably where the defects clustered.** At least six
+> tester-visible bugs concern amounts:
+>
+> | Issue | Summary |
+> |---|---|
+> | `STRP-103` | "Grand total price differs between cart and checkout payment page" (3 commits) |
+> | `STRP-137` | "Refund amount is calculated as negative after capture" |
+> | `STRP-150` | "Refund Amount Field Is Prefilled With More Than the Remaining Refundable Amount" |
+> | `STRP-125` | "Full amount is not prefilled in Capture and Refund amount field" |
+> | `STRP-131` | "Partial refund is not possible after partial capture" |
+> | `STRP-152` | "Capture Amount Field Is Prefilled With Incorrect Remaining Amount…" (**`Not a bug`**) |
+>
+> This independently corroborates the topic's premise that monetary arithmetic is
+> the hazard area — and adds a nuance the internal record misses: the *four*
+> truncation bugs the DRY refactor found were a **different set** from the
+> amount bugs the tester filed. Two discovery mechanisms, two disjoint yields.
+> That comparison — refactoring-as-bug-finding versus black-box testing, on the
+> same subsystem — is a genuinely novel result available only by joining the
+> corpora, and it is the strongest paper this topic can now write.
 
 ---
 

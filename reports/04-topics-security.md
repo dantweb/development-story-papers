@@ -6,12 +6,17 @@ Extended abstracts. Grounded in the AI-authored security audit, the remediation
 sprints, the CI pentest suite, and `architecture/04-webhook-processing.md`.
 Paths relative to `docs/dev_logs/daniil_dev_log/` unless prefixed `architecture/`.
 
-**Git verification.** Named guards, sanitizers, and fail-closed fixes have been
-checked against the current tree and the commit history of both repositories
-(dataset: [`../data/`](../data/)). Security claims verified **best of all four
-topic files** — the fixes are structural and therefore visible in source. The
-limit is inherent and worth stating up front: git can confirm that a control
-*exists*, never that it is *sufficient*.
+**Git and Jira verification.** Named guards, sanitizers, and fail-closed fixes
+have been checked against the current tree and commit history of both
+repositories, and against the 156-issue Jira export (dataset:
+[`../data/`](../data/)). Security claims verified **best of all four topic
+files** — the fixes are structural and therefore visible in source. The limit is
+inherent and worth stating up front: git can confirm that a control *exists*,
+never that it is *sufficient*.
+
+The Jira pass adds one finding that changes SEC-2's framing substantially: **the
+validation subsystem was requirements-driven by the project's tester, not
+designed on the developers' initiative.**
 
 A meta-point for both topics: **security was run by the AI as a first-class
 workstream** — a 28-finding formal audit mapped to PCI-DSS v4.0 / GDPR / BSI
@@ -135,6 +140,44 @@ design structurally avoids
 > AI-authored and self-scored. Presence of a control is measurable; adequacy of a
 > control is not. The topic's candor — documenting what was wrong first and what
 > is still open — remains its strongest feature and its least verifiable one.
+>
+> ### Jira verification — ✅ **the security workstream is externally corroborated**
+>
+> The topic's meta-point — that security ran as a **first-class workstream** —
+> is confirmed by the tracker rather than only by the audit document:
+>
+> | Issue | Status | Commits | What it is |
+> |---|---|---|---|
+> | `STRP-64` | Done | 18 | "[Component] Security & Fraud Prevention" |
+> | `STRP-99` | Done | 7 | "[Component][Stripe] Secutiry complience PCI, GDPR" — the audit's parent |
+> | `STRP-108` | Done | 0 | "[SECURITY] Create an audit and fix findings" |
+> | `STRP-102` | Done | 2 | "[Stripe] PEN/CSRF/brute force abuse test" |
+> | `STRP-161` | Release Candidate | 1 | "PEN Test tests on pay1" (created 2026-06-22) |
+> | `STRP-89` | Done | 2 | "[Component]Idempotency feature implementation" |
+> | `STRP-86` | Passed QA | 3 | "[Stripe] API Keys chaos" |
+> | `STRP-146` | Passed QA | 2 | "Hide API keys, add 'show key' icons" |
+>
+> Two specifics worth citing. `STRP-89` is the idempotency story the topic tells
+> in three stages, and its Jira description **links directly to the dev-log file
+> on GitHub** — the tracker and the journal cross-reference each other, which is
+> useful provenance for any paper quoting both. `STRP-146` is the **L1 API-key
+> handling finding** the topic records as "accepted-risk"; it was subsequently
+> ticketed and delivered, so the accepted risk was later reduced — an update the
+> journal's snapshot does not contain.
+>
+> **⚠️ One open security item predates the whole AI phase and is still open.**
+> `STRP-50` "Fix Security Alerts StripeMiddleWare" (Story, created
+> **2025-07-15** by Mario Lorenz, linking to the `stripe-middleware` repository's
+> GitHub security page) has status **`To Do`**. It is outside the two modules
+> this programme measures, but it belongs in the topic's "honest open items"
+> section alongside C3-replay: the *middleware* component carried unresolved
+> security alerts throughout the period in which the module was being hardened.
+>
+> **Still not verifiable from any corpus:** the 28 findings, their severity mix,
+> the CVSS scores and the burn-down. Jira does not contain the audit's findings
+> as issues — they lived only in the AI-authored report — so the audit remains
+> **self-scored with no independent tracker record**, which is the single largest
+> caveat on this topic.
 
 ---
 
@@ -246,3 +289,58 @@ allowlist validation invites.
 > not artifacts. The NFC-normalization follow-up is likewise unverifiable as
 > "flagged" — git shows no NFC normalization in the tree, which is consistent
 > with the item still being open, but silence is not evidence.
+>
+> ### Jira verification — ⚠️⚠️ **the subsystem was QA-driven, not developer-initiated**
+>
+> This is the most consequential correction in the topic pass. The abstract
+> presents the validation subsystem as a design initiative — a considered answer
+> to a gap the developers identified ("exactly one rule: `trim()` + non-empty").
+> The tracker shows the causal chain ran the other way, and it starts with the
+> **tester**:
+>
+> | Date | Issue | Reporter | What |
+> |---|---|---|---|
+> | 2026-04-01 | `STRP-116` **Bug** | **Zerfas Razvan (QA)** | "Special characters in account details **block payment completion**" |
+> | 2026-04-20 | `STRP-129` **Task** | **Zerfas Razvan (QA)** | "Define Allowed Special Characters for Account / Billing & Shipping Address Fields" — *"Review and enforce input validation rules… Current validation should be updated"* |
+> | 2026-06-10 | `STRP-149` Story | Daniil Tkachev | "Validation - non-ascii latin symbols issue" — *"Allowd symbols from national alphabets, not only orthodox Latin"* |
+>
+> `STRP-129` **is** Sprint 119 — the dev-log file the abstract cites is named
+> `sprint-119-strp-129-user-address-validation.md`. So the entire `ValidationBase`
+> engine, the character-class grammar, the seven-guard chain and the central
+> endpoint were built to satisfy **a requirements task written by the project's
+> tester**, filed nineteen days after that tester found the absence of validation
+> as a payment-blocking bug.
+>
+> Three consequences, and they improve the topic rather than damage it:
+>
+> 1. **The gap was found by black-box testing, not by design review.** The
+>    abstract's "the gap, precisely" section reconstructs the missing validation
+>    from source reading; in reality a tester hit it from the outside first. That
+>    is a cleaner and more transferable finding: *a legacy shop's missing input
+>    validation surfaces as a payment failure before it surfaces as a security
+>    concern.*
+> 2. **The allowlist-too-strict failure was also caught externally.** The abstract
+>    reports the `Müllerstraße` / Polish `ł` problem as a **self-audit** that
+>    caught a too-narrow happy-path test. Jira's ordering suggests the
+>    over-strictness was in the field as `STRP-116` before the widening story
+>    `STRP-149` existed. The honest version — *allowlist validation was tightened
+>    on QA's instruction and then had to be loosened again after QA found it
+>    blocking real customers* — is a better cautionary tale than a self-caught
+>    slip, and it is exactly the failure mode allowlist validation invites.
+> 3. **Related tester-filed defects confirm the surface.** `STRP-97` "Proper
+>    Error Message Is Not Displayed for Invalid Delivery Address", `STRP-148` "A
+>    validation message should be displayed when user attempts to proceed…" and
+>    `STRP-104` "Maintenance Mode Activated When Attempting to Place an Order with
+>    Invalid…" all describe the same boundary from outside.
+>
+> The DRY-payoff claim survives intact and is now better evidenced: `STRP-129`
+> "Define Allowed Special Characters" (4 commits) and the admin extensions needed
+> **zero `payment-base` changes**, which is what "adding the entry IS the feature
+> toggle" means in practice.
+>
+> **Recommended reframing.** Retitle the thesis around the discovery path, not
+> just the design: a centralized provider-aware validation subsystem is the right
+> answer, *and* the requirement for it came from a tester filing a payment-failure
+> bug — which is how input-validation debt actually gets discovered in a legacy
+> shop. That reframing costs the topic nothing and makes it considerably harder to
+> dismiss as a post-hoc architecture story.

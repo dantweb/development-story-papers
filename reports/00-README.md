@@ -45,6 +45,21 @@ All machine-extracted to [`../data/`](../data/); schema and caveats in
 | **SEC-1** async money boundary | ✅ fixes present and fail-closed; scores and burn-down not verifiable |
 | **SEC-2** central validation | ✅ **7/7** guards confirmed by exact class name |
 
+### Per-topic Jira outcomes
+
+| Topic | Jira outcome |
+|---|---|
+| **PM-1** | ⚠️ deepened — a second granularity failure (one commit, two tickets); **no artifact is a reliable unit of work**: 4 umbrella issues absorb most history, 39% of commits carry no ticket, and architectural refactors have no tickets at all |
+| **PM-2** | ⚠️ **missing an actor** — verification had a second, institutional layer (a dedicated tester); 0/61 refs fabricated, 1 misattributed |
+| **PM-3** | ❌ **estimate-vs-actual is impossible** — all Jira time fields empty; withdraw part (a) |
+| **TECH-1** | ✅ the redirect-boundary defect class is documented from **2024**, pre-dating the design — and kept producing tester-filed bugs *after* it |
+| **TECH-2** | ◐ MCP channel is `To Do` with 20 commits; `STRP-88` asserts both "Status: Complete" (body) and `To Do` (field) |
+| **TECH-3** | ⚠️ **none of this work was ticketed** — ISP theatre survived with PHPMD as its *only* reviewer |
+| **TECH-4** | ✅ a dedicated `Core Bug` status exists — 3 defects triaged to the OXID platform |
+| **TECH-5** | ✅ BCMath deferral is a **live open ticket** (`STRP-160`); money is measurably the defect-dense area, and refactoring vs black-box testing yielded **disjoint** bug sets |
+| **SEC-1** | ✅ security ran as a tracked workstream; ⚠️ `STRP-50` middleware security alerts open since 2025-07 |
+| **SEC-2** | ⚠️⚠️ **QA-driven, not developer-initiated** — the tester filed the payment-failure bug *and* wrote the requirements task that became Sprint 119 |
+
 ### What Corpus C (Jira) changed
 
 | Finding | Effect |

@@ -109,10 +109,31 @@ rests on that anchor plus qualitative evidence elsewhere.
 > analysis should be the **ticket**, not the sub-sprint: tickets exist
 > independently of the agent's plan, so collapse against them is unambiguous.
 >
+> **Tickets are not the unit of work either.** If the sub-sprint fails as a unit,
+> the obvious alternative is the Jira issue — but the distribution is just as
+> skewed. Four umbrella issues absorb the bulk of the history: `STRP-145` "DevLog
+> review" (**64 commits**), `STRP-78` "Extract Component" (57), `STRP-52` "Develop
+> Strategy" (33), `STRP-60` "Provider SDK integration" (32). Meanwhile **39% of
+> commits carry no ticket reference at all**, and only **61 of 156 issues (39%)**
+> have any commit against them.
+>
+> **And a whole class of work is untracked.** A search of all 156 issues finds
+> **no ticket** for the ISP split, the `LazyStripeAdapter` build-and-delete, or
+> the Sprint-132 self-correction (see TECH-3's block in
+> `03-topics-technical.md`). Architectural refactoring happened entirely inside
+> the developer–assistant loop, invisible to the tracker.
+>
+> The synthesis this topic should reach: **no single artifact in this project is a
+> reliable unit of work.** Sub-sprints don't map to commits, commits often don't
+> map to tickets, tickets are either umbrellas or absent, and the most
+> architecturally consequential work has no ticket at all. That is a substantive
+> negative finding about AI-assisted project management, and it is stronger than
+> the decomposition heuristic the abstract originally proposed.
+>
 > **Still not measurable:** per-dispatch compute (the 15 dispatches, 8–165 min)
-> and first-pass gate success remain single-sourced to `117`. Jira adds nothing
-> here — its `Sprint` field holds only two values and has **no relation** to the
-> journal's Sprint 1→133 numbering.
+> and first-pass gate success remain single-sourced to `117`. Jira's `Sprint`
+> field holds only two values and has **no relation** to the journal's Sprint
+> 1→133 numbering.
 
 ---
 
