@@ -28,6 +28,7 @@ All machine-extracted to [`../data/`](../data/); schema and caveats in
 | [`02-topics-project-management.md`](02-topics-project-management.md) | **3 project-management topics** as extended abstracts, each with a **Git verification** block. | A + B | Proposals, verified |
 | [`03-topics-technical.md`](03-topics-technical.md) | **5 technical topics** as extended abstracts, each with a **Git verification** block. | A + B | Proposals, verified |
 | [`04-topics-security.md`](04-topics-security.md) | **2 security topics** as extended abstracts, each with a **Git verification** block. | A + B | Proposals, verified |
+| [`06-novelty-assessment.md`](06-novelty-assessment.md) | **Internal review: what would survive peer review.** Tiers every contribution, names the claims to drop, recommends a reframing and venues. Read this first if you are deciding what to write up. | — | Review |
 | [`05-measurements.md`](05-measurements.md) | **17 topics with measured results** — M-1…M-10 now show journal-reported beside git-measured values; M-11…M-17 are git-only measurables. | A + B | Data catalog, revised |
 
 ### Verification outcomes at a glance
@@ -44,6 +45,15 @@ All machine-extracted to [`../data/`](../data/); schema and caveats in
 | **TECH-5** money as a type | ✅ confirmed, and the consolidation **held**: 0 raw cents-math sites remain |
 | **SEC-1** async money boundary | ✅ fixes present and fail-closed; scores and burn-down not verifiable |
 | **SEC-2** central validation | ✅ **7/7** guards confirmed by exact class name |
+
+### Novelty, in one line
+
+The contribution is **methodological, not thesis-driven**: the value is that a
+project's self-account was audited against two independent machine records and
+found to diverge in specific, directional ways. The "discipline over cleverness"
+thesis is the *least* novel element and cannot be established at n=1 — see
+[`06-novelty-assessment.md`](06-novelty-assessment.md), which recommends
+demoting it to framing and leading with the audit.
 
 ### Per-topic Jira outcomes
 

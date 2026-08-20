@@ -32,6 +32,7 @@ record and the machine records are used to check each other.
 | [`reports/03-topics-technical.md`](reports/03-topics-technical.md) | 5 technical topics (extended abstracts). |
 | [`reports/04-topics-security.md`](reports/04-topics-security.md) | 2 security topics (extended abstracts). |
 | [`reports/05-measurements.md`](reports/05-measurements.md) | 10 topics with measured results, sourced to dev-log files. |
+| [`reports/06-novelty-assessment.md`](reports/06-novelty-assessment.md) | **Internal review of scientific novelty** — what would survive peer review, what to drop, recommended reframing and venue fit. |
 | [`data/`](data/) | 11 files of git- and Jira-derived measurables + [`data/README.md`](data/README.md) schema and reproduction commands. |
 
 ## Headline findings
@@ -91,6 +92,33 @@ under-counted completion, and shipped tests that tested nothing — each caught 
 "trust-but-verify".
 
 The developer's one-line thesis, recorded in the log: **"Discipline > cleverness."**
+
+## What is actually new here
+
+Assessed in [`reports/06-novelty-assessment.md`](reports/06-novelty-assessment.md).
+Short version: **the headline thesis is the weakest part.** "Discipline >
+cleverness" is close to conventional wisdom by 2026 and cannot be established
+from n=1 with no counterfactual and six model generations inside the study
+window. The defensible contributions are methodological:
+
+1. **Auditing a self-account against machine records — and publishing the
+   corrections.** A candid daily journal still diverged systematically:
+   undersampled its active days 2.2×, understated its flagship epic by 41%,
+   narrated a measured idle period as active, omitted the QA function entirely.
+2. **`Co-Authored-By` trailers measure convention adoption, not AI involvement** —
+   0% before 2026-05-07, 86% by August, six model strings in four months. A dated
+   counterexample to a technique currently gaining traction.
+3. **The productivity narrative structurally omits QA labour** — invisible in both
+   the journal and git, visible only in the tracker.
+4. **Test-to-source write ratio as a falsifiable proxy** for a self-reported
+   process claim — real in volume, demonstrably hollow in places.
+5. **Refactoring and black-box testing yielded disjoint defect sets** on the same
+   subsystem, connecting to the classic inspection-vs-testing literature.
+6. **Provenance loss is invisible from inside a repository** — two mechanisms, one
+   orphan recovered from a stale checkout, all counts therefore lower bounds.
+
+The engineering and security topics are practitioner-grade, not research-grade,
+and the assessment says so.
 
 ## Status & caveats
 
