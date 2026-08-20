@@ -23,8 +23,8 @@ transmitting but should not be presented as findings. Lessons carrying `[B]` or
 ## LL-1 — Orchestrating a Stateless Agent: the dispatch is the only real boundary
 
 **Audience:** engineers running coding agents on non-trivial codebases.
-**Form:** engineering blog post or internal playbook. **Highest practical value
-in the set.**
+**Venue:** QCon / GOTO AI-assisted-development track; InfoQ as the written form.
+**Highest practical value in the set.**
 
 ### The lessons
 
@@ -74,7 +74,8 @@ join to reconstruct.
 ## LL-2 — Trust but Verify: auditing what the agent says it did
 
 **Audience:** anyone accepting agent-authored completion reports.
-**Form:** engineering blog post; the cost/yield argument also suits a talk.
+**Venue:** ACM Queue or IEEE Software "Practitioner's Digest" — the cost/yield
+argument is magazine-column shaped.
 
 ### The lessons
 
@@ -108,7 +109,9 @@ join to reconstruct.
 ## LL-3 — Test Volume Is Not Verification
 
 **Audience:** teams whose agents write most of their tests.
-**Form:** conference talk. The strongest counter-intuitive material available.
+**Venue:** EuroSTAR, Agile Testing Days, or TestBash. The strongest
+counter-intuitive material in the set, and **the one to submit first** — low
+effort, no sensitive material, no approval dependency.
 
 ### The lessons
 
@@ -145,8 +148,10 @@ Quality was a property of the loop, not of any commit.
 ## LL-4 — Refactoring as a Defect-Detection Channel
 
 **Audience:** technical leads deciding where to spend review effort.
-**Form:** research short paper (see N-5 in
-[`06-novelty-assessment.md`](06-novelty-assessment.md)) or a deep-dive post.
+**Venue:** ACM Queue or IEEE Software as practitioner experience *now*; a research
+short paper **only after** the designed comparison specified in
+[`06-novelty-assessment.md`](06-novelty-assessment.md) §2.5 — the disjointness is
+untestable as it stands.
 
 ### The lessons
 
@@ -177,8 +182,8 @@ Quality was a property of the loop, not of any commit.
 ## LL-5 — Your Repository Is the Audit Trail
 
 **Audience:** engineering managers, and anyone in a regulated domain.
-**Form:** internal policy note; the provenance material also suits an MSR methods
-note.
+**Venue:** split it — LeadDev for the management half, a PCI SSC Community Meeting
+or OWASP AppSec for the compliance half, MSR for the provenance methods note.
 
 ### The lessons
 
@@ -224,9 +229,13 @@ note.
 
 ## LL-6 — The AI Pair Still Needs an Independent Tester
 
-**Audience:** anyone sizing a team around AI-assisted development. **Form:**
-the most important write-up in this document — a talk or an article aimed
-squarely at the "solo dev + agent" narrative.
+**Audience:** anyone sizing a team around AI-assisted development.
+**Venue:** LeadDev primary (its audience makes exactly this decision); EuroSTAR /
+TestBash secondary; IEEE Software for the written version. The most important
+write-up in this document, aimed squarely at the "solo dev + agent" narrative —
+and **gated**: it reports named colleagues' work patterns, so it does not ship
+without their agreement and role-level anonymisation (see *Before anything
+ships*).
 
 ### The lessons
 
@@ -268,8 +277,10 @@ tester's effort.
 
 ## LL-7 — Money and the Last Mile: fail-closed or fail expensively
 
-**Audience:** payment integrators. **Form:** practitioner article; the
-individual defects also make good conference war stories.
+**Audience:** payment integrators.
+**Venue:** OWASP AppSec (Global or EU); International PHP Conference or SymfonyCon
+for the integrator audience; BSides for the war-story cut. **Gated** on security
+disclosure — it describes real vulnerabilities in a shipped payment module.
 
 ### The lessons
 
@@ -314,7 +325,9 @@ individual defects also make good conference war stories.
 ## LL-8 — The Environment Costs More Than the Logic
 
 **Audience:** teams shipping framework-coupled modules across repositories.
-**Form:** practitioner field guide.
+**Venue:** OXID Commons, International PHP Conference, phpCE, or DevOpsDays —
+niche, but these are the audiences living in the niche. Unblocked; good second
+submission after LL-3.
 
 ### The lessons
 
@@ -489,6 +502,113 @@ expensive or impossible later.
 | 12 | Verify every agent claim with a grep | 1–2 minutes; errors ran in both directions `[A]``[B]` |
 
 ---
+
+## Where to publish each of these
+
+[`06-novelty-assessment.md`](06-novelty-assessment.md) §5 routes the *research*
+contributions (MSR / EMSE / ICSE-SEIP). This section routes the **practitioner**
+material, which has a different and much larger set of homes — and a gating
+problem the research route does not have (see "Before anything ships" below).
+
+Conference names are the established annual events; **every CFP window and format
+needs checking before you plan around it**, and nothing here should be read as a
+current call.
+
+### Recommended primary venue per topic
+
+| Topic | Primary venue | Why it fits | Effort |
+|---|---|---|---|
+| **LL-1** stateless-agent orchestration | **QCon** or **GOTO** (AI-assisted-development track); **InfoQ** article as the written form | The hook is a *negative* result — a naming convention that measurably did not work — which these audiences reward over another "how we use agents" talk | Medium |
+| **LL-2** trust but verify | **ACM Queue**, or **IEEE Software** "Practitioner's Digest" | A cost/yield argument with numbers is exactly the magazine-column shape; 1–2 min per claim against a documented catch rate | Medium |
+| **LL-3** test volume ≠ verification | **EuroSTAR**, **Agile Testing Days**, or **TestBash** / Ministry of Testing | The strongest testing-community talk in the set: 1.69:1 test-to-source **and** hollow tests plus 34% silent skips *in the same project*. Counter-intuitive, and the audience is professionally invested | **Low — do this first** |
+| **LL-4** refactoring as defect detection | **ACM Queue** or **IEEE Software** now; a research short paper only after a designed comparison | Publishable as practitioner experience immediately. As research it needs the controlled study 06 §6 specifies — the disjointness is untestable as it stands | Medium |
+| **LL-5** repository as audit trail | Split it: **LeadDev** (the management half) and a **PCI SSC Community Meeting** or **OWASP AppSec** (the compliance half); MSR for the methods note | Two genuinely different audiences. Managers care about instrumenting from day one; compliance people care that a release procedure destroyed an audit trail on PCI-obligated software | Medium |
+| **LL-6** the AI pair needs a tester | **LeadDev** primary; **EuroSTAR** / **TestBash** secondary; **IEEE Software** for the written version | The most important topic in the document and the best-evidenced (χ² = 199.4, Cramér's V = 0.859). LeadDev's audience sizes teams, which is exactly the decision this finding informs | High — **gated**, see below |
+| **LL-7** money and the last mile | **OWASP AppSec** (Global or EU); **International PHP Conference** / **SymfonyCon** for the integrator audience; **BSides** for the war-story cut | "Existence of a control is not invocation of a control" — HMAC tokens that existed, were tested, and were never called — is a strong AppSec talk on its own | Medium — **gated** |
+| **LL-8** environment costs more than logic | **OXID Commons**, **International PHP Conference**, **phpCE**, or **DevOpsDays** | Framework-coupled cross-repo CI is niche, and these are precisely the audiences living in that niche | Low |
+
+### Secondary and opportunistic homes
+
+- **OXID Commons** — the employer's own conference is the natural first home for
+  anything module-specific (LL-7, LL-8, and TECH-1's redirect-boundary story).
+  Lowest barrier, most directly useful audience, and the approval problem below
+  largely evaporates for an internal-facing audience.
+- **FOSDEM** PHP/e-commerce devrooms — short slots, good for a single lesson
+  rather than a whole topic.
+- **Local PHP user groups and BSides chapters** — the right place to rehearse
+  LL-7 and LL-8 before a bigger CFP.
+- **A single long-form engineering blog post** covering the day-one checklist is
+  probably the highest-reach, lowest-effort artifact in this entire programme,
+  and it needs no venue at all.
+
+### Suggested sequence
+
+1. **LL-3 to a testing conference.** Lowest effort, strongest counter-intuitive
+   hook, no sensitive material, and no dependency on anyone's approval.
+2. **LL-8 to OXID Commons / a PHP conference.** Also unblocked, and it rehearses
+   the corpus in front of a friendly audience.
+3. **The day-one checklist as a blog post.** Cheap, reusable, and it becomes the
+   thing everything else links to.
+4. **LL-6 to LeadDev — once gated items clear.** This is the one worth real
+   effort, and the one that must not be rushed.
+5. **LL-7 to OWASP AppSec** after security review (below).
+6. **LL-2 / LL-4 / LL-5 as written pieces** on a slower track; magazine lead
+   times are long and these lose nothing by waiting.
+
+### Before anything ships: three gates
+
+These are not formalities. Two of them can stop publication outright, and they
+are the reason the venue table above marks LL-6 and LL-7 as *gated*.
+
+**1. Employer approval and material classification.** Every corpus here is
+internal OXID material: dev logs, an unremediated-at-the-time security audit,
+Jira contents, and commit history from private repositories. Nothing external
+ships without sign-off, and the security audit in particular (`STRP-99`,
+`STRP-108`) should be assumed **not** publishable in detail.
+
+**2. Named-colleague data — the hard one.** LL-6's central finding is a statement
+about **identifiable individuals' work patterns**: one person filed 52 Stories and
+zero Bugs; another filed 37 of 40 Bugs and zero Stories; a third filed 26 Tasks.
+That is performance-adjacent data about named colleagues, derived from a tracker
+they did not consent to have analysed. Publishing it externally without their
+agreement would be wrong regardless of what the licence on the data says.
+
+Required before LL-6 goes anywhere external:
+
+- ask the tester and the project manager directly, showing them the actual
+  numbers and the framing;
+- **anonymise by role** ("the tester", "the project manager") in any external
+  version — the finding is about *structure*, and loses nothing without names;
+- offer them review of the draft, and co-authorship if they want it. 06 §6
+  already lists their corroboration as the cheapest high-value addition to the
+  research paper; asking permission and asking for corroboration are the same
+  conversation.
+
+The same applies, more sharply, to the **`bf32d77` instruction-violation
+incident**, which is currently narrated with a commit hash attributable to a
+named author. Externally it should be described as a process failure without the
+hash, or dropped.
+
+**3. Security disclosure.** LL-7 describes real vulnerabilities in a shipped
+payment module: an IDOR on the money path (`validateToken()` never called), a
+webhook-secret check shipped commented out, a TOCTOU idempotency race. All are
+reported fixed and verified present in the current tree, but external
+publication needs confirmation that **released versions** are patched, that
+merchants have upgraded, and that nothing still-open is disclosed by
+implication — note `STRP-50` (middleware security alerts) has been open since
+2025-07-15. Follow OXID's disclosure process, not a conference deadline.
+
+### What not to publish
+
+- **The security audit's findings, scores, or burn-down** as security results.
+  They are AI-authored and self-scored with no independent tracker record
+  (LL-7 lesson 7). Present them as claims the project made about itself, or not
+  at all.
+- **Any "N× faster" framing.** Tier X above; there is no counterfactual.
+- **Named-colleague statistics** externally, per gate 2.
+- **Live commit hashes or ticket ids** in external material, unless the
+  repositories are public by then — they are internal references and they date
+  the material without adding anything a reader can use.
 
 ## Lessons we cannot support
 
