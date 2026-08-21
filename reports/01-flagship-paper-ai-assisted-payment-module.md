@@ -706,6 +706,19 @@ gives **χ² = 199.4, df = 6, p = 2.6e-40, Cramér's V = 0.859**. (These corpora
 censuses rather than samples, so the null being rejected is "reporter is
 independent of issue type," not a claim about projects in general — see §7.2.)
 
+This finding has a published theoretical frame, and the paper should use it rather
+than claim discovery. Agarwal, Miller, Kästner and Vasilescu
+(arXiv:2607.07980), synthesising 3,100 coded practitioner documents into a causal
+model, argue that *"review is the control point through which a coding agent's
+effect on software is decided, and that AI does not fix the sign of that effect:
+the team sets it, through the expertise its humans bring and how it structures
+the review process."* Their theory is explicitly falsifiable and rests on
+discourse; **§4.12a is a measured instance of it** — one team, one structure, and
+a near-deterministic association (V = 0.859) between role and defect discovery.
+Garousi (arXiv:2606.05770) independently characterises the "oversight burden" of
+AI-assisted work qualitatively but does not ask *who* bears it. Full positioning
+in `08-literature-review.md` §5.2.
+
 This is the single most important addition in this revision, because it changes
 what the case is evidence *for*. The paper's thesis — that a process harness
 makes AI-assisted output trustworthy — was built from the journal's account of

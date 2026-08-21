@@ -1,6 +1,6 @@
 # Literature Review — which published problems this corpus can speak to
 
-*Written 2026-08-21*
+*Written 2026-08-21 · priority-1 search on role separation run the same day (§5.2)*
 
 [`06-novelty-assessment.md`](06-novelty-assessment.md) §6 names the missing
 related-work section as **the single largest gap in this programme** and the most
@@ -425,39 +425,147 @@ the template for that design.
 **Verdict: SUPPORTS**, and supplies both the lineage and the experimental template
 we lack. Also **CHALLENGES US** on rigour.
 
-### 5.2 Defect-reporting and role-separation literature **[secondary]**
+### 5.2 Who files the defects in an AI-assisted team — **priority-1 search, run 2026-08-21**
 
-**What we found, and did not find.** Searches surfaced work on defect-report
-*quality* and on bug-report classification, and an observation that repositories
-with testing frameworks and coverage tools report more bugs — but **no paper
-directly formulating the question our strongest result answers**: in an
-AI-assisted team, *who* generates the defect reports?
+This was flagged as the outstanding search that determines whether N-3 — our
+strongest result — is a genuine gap or a quantified instance. It has now been run
+across four angles: QA role in AI-assisted teams; issue-tracker reporter analysis;
+who finds bugs in AI-generated code; and oversight-burden measurement.
 
-**Our result (N-3).** Reporter × issue type in Jira is near-deterministic: the
-developer working with the assistant filed **52 Stories and zero Bugs**; a
-dedicated tester filed **37 of the project's 40 Bugs (92.5%) and zero Stories**;
-a project manager filed **26 of 50 Tasks and nothing else**. Fisher exact on the
-2×2 **p = 6.7e-26**; full table **χ² = 199.4, df 6, Cramér's V = 0.859**.
+**Result: N-3 is *not* an unexplored question — and that is a better outcome than
+a gap.** The question is posed, and a falsifiable theory about it exists. What
+does not exist is the **measurement**. N-3 is that measurement.
 
-Two consequences for the literature:
+#### 5.2.1 Garousi — *Human Oversight and Overload: Two Hidden and Costly Burdens of AI-Assisted Software Engineering* (arXiv:2606.05770, June 2026) **[abstract]**
 
-1. **The "solo developer + agent" framing that dominates AI-assisted-development
-   discourse is an artifact of whose record is read.** This QA function is
-   invisible in the developer's journal (Corpus A) and invisible in git (which
-   sees only committers). It appears only in the issue tracker. Studies drawing on
-   commits or developer self-report will systematically omit it.
-2. **Productivity attribution is confounded by unmeasured QA capacity.** Our
-   result cannot size that confound — but it can demonstrate that it exists and is
-   large in at least one case.
+**Their position.** Two overlooked burdens of AI-assisted SE: (1) "the constant
+need for human oversight and inspection of AI-generated artifacts," and (2)
+cognitive overload from the volume of AI suggestions. Oversight is framed as
+non-optional — "engineers must review, validate, and sometimes rework what AI
+produces." Related practitioner work defines **oversight burden** as the
+cumulative effort to review, validate, repair and integrate AI-generated
+artifacts, including inspection time, debugging of subtle errors, and the
+cognitive effort of verifying correctness.
 
-If this gap is real after a proper search, N-3 is the most novel finding in the
-programme. If prior work has posed it, our contribution narrows to a quantified
-instance. **This is the highest-priority literature question outstanding.**
+**What the paper is and is not.** It synthesises "recent opinions from
+practitioners" and states its aim as opening a conversation. It contains **no
+measurement**, **no role-separation analysis**, and **no issue-tracker data**. It
+does not ask *who* performs the oversight.
 
-**Verdict: possibly a GAP; at minimum a quantified instance.** Requires a targeted
-search before any novelty claim (§7).
+**Our contribution against it.** N-3 answers the unasked half of their question
+with a measurement: in this project the oversight was performed by **someone
+other than the engineer who used the AI**. The developer working with the
+assistant filed **52 Stories and zero Bugs**; a dedicated tester filed **37 of 40
+Bugs (92.5%) and zero Stories** (Fisher **p = 6.7e-26**; full reporter×type table
+**χ² = 199.4, df 6, Cramér's V = 0.859**). Their burden was not merely large — it
+was **borne by a distinct role**, which changes what mitigating it means. "Teams
+should handle oversight" and "teams need a person whose job is oversight" are
+different recommendations, and only the second follows from measurement.
 
----
+**Verdict: INSTANTIATES and sharpens.** We supply the missing quantitative case
+for a burden they characterise qualitatively, and add the role dimension they do
+not raise.
+
+#### 5.2.2 Agarwal, Miller, Kästner, Vasilescu — *3100 Opinions on Code Review in an AI World: Building Causal Theory from Practitioner Discourse* (arXiv:2607.07980, July 2026) **[abstract, verbatim]**
+
+**This is the most important paper found in the entire review, and it changes
+N-3's framing.**
+
+Their method: 38,709 grey-literature documents filtered to those substantively
+about code review, a stratified random sample of **3,100** coded via an
+LLM-assisted pipeline, yielding a causal model of **26 constructs and 67
+relationships** (64 directed, 3 contested). Their organizing claim, verbatim:
+
+> "review is the control point through which a coding agent's effect on software
+> is decided, and that AI does not fix the sign of that effect: the team sets it,
+> through the expertise its humans bring and how it structures the review
+> process."
+
+They explicitly turn "AI is changing code review" into **falsifiable propositions
+with named constructs and moderators**.
+
+**Three points of contact, and one of them is uncanny.**
+
+1. **N-3 is a measured data point on their central proposition.** They claim the
+   team sets the sign through how it structures review. Our team structured it with
+   a dedicated tester who filed 92.5% of the defect reports, and the association is
+   near-deterministic (V = 0.859). That is exactly the kind of evidence a
+   falsifiable proposition needs and that discourse synthesis cannot supply.
+2. **They state our own methodological problem before we did.** Their motivating
+   observational analysis finds agent-authored PRs "reviewed less often, merged
+   several times faster, and discussed less" — *"yet the direction of these trends
+   flips under different but equally defensible analysis choices, so the traces
+   establish what is changing without explaining why."* We independently hit the
+   same wall: our two framings of N-13 **disagree in sign** (threshold split +3
+   points; Spearman ρ = −0.024), which is why we report it as *no association*
+   rather than picking the flattering direction. Their observation is the general
+   statement of our specific experience, and it retroactively validates reporting
+   both framings.
+3. **Their diagnosis of repository mining is our diagnosis of the journal.** They
+   say traces show *what* changes without explaining *why*, and turn to
+   practitioner discourse for mechanism. Our programme does the mirror image: we
+   have the mechanism (Corpus A, a daily journal) and add machine records for the
+   *what*. **The two papers are methodologically complementary halves** — theory
+   from discourse at scale, versus measurement plus mechanism on one project.
+   That is a strong framing for a citation and for a venue pitch.
+
+**Verdict: SUPPORTS bidirectionally, and reframes N-3** from "novel question" to
+"missing measurement for a named published proposition" — which is more citable,
+not less, because it enters an active conversation with a specific theory to test.
+
+#### 5.2.3 Reporter-type analysis pre-dates AI, but asks a different question **[secondary]**
+
+Huo et al. compared bug reports written by **developers versus users** and found
+differences significant enough to affect prediction models; related work
+(Bettenburg, Zimmermann and others) studies gaps between what reports contain and
+what developers need. Reporter *reputation*, severity and blocker status are
+established determinants of fix time.
+
+So reporter-type analysis is a recognised dimension of issue-tracker mining — but
+the contrast is **developer vs end user**, the outcome of interest is **report
+quality or fix-time prediction**, and the setting is **pre-agentic**. Our contrast
+is *developer-who-used-the-AI vs dedicated tester*, and our outcome is **which
+role generates defect discovery at all**. Adjacent lineage, different question.
+
+**Verdict: adjacent — supplies precedent for the method, not for the finding.**
+
+#### 5.2.4 Practitioner and grey-literature evidence on the burden's size **[secondary — treat with care]**
+
+Widely circulated non-peer-reviewed analyses report that AI-authored PRs carry
+**~10.83 issues each vs 6.45** for human PRs, **1.4× more critical** and **1.7×
+more major** issues, PRs ~18% larger, and review-time increases as high as
+**441%**. These are vendor or blog analyses, not peer-reviewed studies, and should
+be cited only as practitioner discourse — which is precisely how §5.2.2 treats
+such material, and a reason to prefer their coded synthesis over the raw claims.
+
+If even directionally right, they **strengthen our N-3 narrative** (oversight is
+heavy) while **underscoring our limit**: we cannot size the tester's effort,
+because Jira's time-tracking fields are empty for all 156 issues.
+
+#### 5.2.5 Adoption-rate context for N-2 **[secondary]**
+
+*Agentic Much? Adoption of Coding Agents on GitHub* (TOSEM; arXiv:2601.18341)
+estimates **22.20%–28.66%** agent adoption as of 21 February 2026, and its
+companion *Agentic Very Much!* (arXiv:2606.07448) finds adoption more than twice
+as high, and more intensive, in newly created projects. Useful calibration: our
+project's trailer coverage (20.8% overall, 86% by August 2026) sits far above
+ecosystem adoption in its late period — consistent with a mature single-project
+convention rather than a representative sample, which is one more reason our
+trailer series cannot be read as an adoption curve.
+
+#### 5.2.6 Revised status of N-3
+
+| Before this search | After |
+|---|---|
+| "Possibly a gap; requires targeted search before any novelty claim." | **Not a gap.** The oversight-burden question is posed (§5.2.1) and a falsifiable causal theory about team structure exists (§5.2.2). |
+| Novelty claim: unverified | Novelty claim: **the measurement**, not the question. N-3 supplies quantitative, artifact-derived evidence for a proposition that currently rests on practitioner discourse. |
+| Risk | The risk is no longer "someone already found this." It is **n=1**: one team's structure cannot confirm a proposition about team structure in general. |
+
+**What to do with it.** Cite §5.2.2 as the theoretical frame and position N-3 as a
+test case rather than a discovery. Drop any claim that the question is unexplored.
+And note in the paper what would raise this from a data point to a result: the
+same reporter×type analysis across several AI-assisted projects with differing QA
+staffing — a cheap multi-case study, since it needs only issue-tracker exports.
 
 ## 6. Where the literature challenges us — consolidated
 
@@ -478,10 +586,11 @@ Worth reading as a list, because it is the part a reviewer will assemble anyway.
 
 Ordered by how much a novelty claim depends on them.
 
-1. **Role separation / who files defects in AI-assisted teams** (§5.2). N-3 is our
-   strongest result and we have not found the literature that would tell us
-   whether it is new. Search: QA role in AI-assisted teams; defect-report
-   provenance; issue-tracker reporter analysis.
+1. ~~**Role separation / who files defects in AI-assisted teams.**~~ **RUN
+   2026-08-21 — see §5.2.** Outcome: not a gap. The question is posed (Garousi,
+   arXiv:2606.05770) and a falsifiable causal theory exists (Agarwal et al.,
+   arXiv:2607.07980); N-3 is the missing *measurement*, not a new question. Its
+   residual risk is n=1, not priority.
 2. **Self-report vs artifact divergence in engineering journals** (§1.2). METR
    covers perceived productivity; we claim divergence in *documented activity*.
    Search: diary-study validity in SE, developer-log accuracy, experience
@@ -516,12 +625,16 @@ Ordered by how much a novelty claim depends on them.
 | 3.3 | CI theatre | 49.7% failure but a measured 11-point improvement | **COMPLICATES** |
 | 1.3 | AI code introduces surviving debt | our CI-based null cannot see code smells | **CHALLENGES US** |
 | 1.1 | Copilot RCT 55.8% faster | no control arm; dispersion 6.93 means no central rate to quote | **CANNOT ADDRESS** |
-| 5.2 | Who files defects in AI-assisted teams | Cramér's V = 0.859 role separation; tester filed 92.5% of bugs | **possible GAP** |
+| 5.2.1 | Oversight burden characterised, never measured (Garousi) | V = 0.859 role separation; the tester, not the AI's user, bore it | **INSTANTIATES + sharpens** |
+| 5.2.2 | "The team sets the sign, through how it structures review" — falsifiable proposition (Agarwal et al.) | one measured team; and they state our sign-flip problem independently | **SUPPORTS bidirectionally** |
+| 5.2.5 | Ecosystem agent-adoption 22–29% (Feb 2026) | our 20.8% overall / 86% late is a project convention, not an adoption curve | **calibrates N-2** |
 
 **The pattern.** Our strongest contributions are to the **methodology** of studying
-AI-assisted engineering (§2) and to the **CI-cost literature** (§3), not to the
-productivity-effect literature (§1), where we have nothing a controlled study
-does not have more of. That distribution matches
+AI-assisted engineering (§2), to the **CI-cost literature** (§3), and — after the
+priority-1 search — as the **missing measurement** for an existing causal theory
+of how team structure decides an agent's effect (§5.2). Not to the
+productivity-effect literature (§1), where we have nothing a controlled study does
+not have more of. That distribution matches
 [`06-novelty-assessment.md`](06-novelty-assessment.md) §5's three-paper split
 independently, which is mild evidence the split is right.
 
@@ -545,5 +658,10 @@ independently, which is mild evidence the split is right.
 - [Insights into Continuous Integration Build Failures](https://www.researchgate.net/publication/318124591_Insights_into_Continuous_Integration_Build_Failures)
 - [Continuous Integration Theater](https://arxiv.org/pdf/1907.01602)
 - [Individual differences limit predicting well-being and productivity using software repositories](https://link.springer.com/article/10.1007/s10664-021-09977-1) — EMSE 2021
-- [Agentic Very Much! Adoption of Coding Agent in New GitHub Projects](https://arxiv.org/pdf/2606.07448) — *not yet read*
-- [3100 Opinions on Code Review in an AI World](https://arxiv.org/pdf/2607.07980) — *not yet read*
+- [Human Oversight and Overload: Two Hidden and Costly Burdens of AI-Assisted Software Engineering](https://arxiv.org/abs/2606.05770) — Garousi, June 2026
+- [3100 Opinions on Code Review in an AI World: Building Causal Theory from Practitioner Discourse](https://arxiv.org/abs/2607.07980) — Agarwal, Miller, Kästner, Vasilescu, July 2026
+- [Agentic Much? Adoption of Coding Agents on GitHub](https://arxiv.org/abs/2601.18341) — TOSEM ([ACM](https://dl.acm.org/doi/abs/10.1145/3822180))
+- [Agentic Very Much! Adoption of Coding Agent in New GitHub Projects](https://arxiv.org/abs/2606.07448)
+- [Early Adoption of Agentic Coding Tools by GitHub Projects](https://arxiv.org/abs/2607.14037) — *not yet read*
+- [Mining Issue Trackers: Concepts and Techniques](https://arxiv.org/html/2403.05716v1) — for the reporter-type lineage (Huo et al., Bettenburg et al., Zimmermann et al.)
+- [The End of Code Review: Coding Agents Supersede Human Inspection](https://arxiv.org/html/2606.13175) — *not yet read; states the opposing position to §5.2.2*

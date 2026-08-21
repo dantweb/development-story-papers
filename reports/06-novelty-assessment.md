@@ -90,7 +90,7 @@ grading of every claim in the programme is in
 
 | Item | Evidence class | Statistic | p |
 |---|---|---|---|
-| **N-3** QA labour omitted | **tested** | Fisher on `[[52,0],[0,37]]`; full table **χ² = 199.4**, df 6, **Cramér's V = 0.859** | **6.7e-26** / **2.6e-40** |
+| **N-3** QA labour omitted *(measurement for an existing theory — see 08 §5.2)* | **tested** | Fisher on `[[52,0],[0,37]]`; full table **χ² = 199.4**, df 6, **Cramér's V = 0.859** | **6.7e-26** / **2.6e-40** |
 | **N-2** trailers ≠ authorship | **tested** | 2/466 vs 147/250 across 2026-05-07, Fisher exact | **5.2e-81** |
 | **N-4** test-to-source ratio | **tested** | 11/11 months by sign test; bootstrap 95% CI **[1.39, 2.06]** | **0.0010** |
 | **N-11** peak ≠ rate *(new, §2.7)* | **tested** | **dispersion index 6.93** vs Poisson 1.0; χ² = 984.4, df 142 | **4.7e-126** |
@@ -183,6 +183,20 @@ own.
 
 ### N-3. The productivity narrative structurally omits the QA labour
 
+> **Reframed 2026-08-21 after the priority-1 literature search**
+> ([`08-literature-review.md`](08-literature-review.md) §5.2). This is **not an
+> unexplored question**. The oversight burden is already characterised
+> qualitatively (Garousi, arXiv:2606.05770 — but with no measurement, no
+> role-separation analysis and no tracker data), and a **falsifiable causal
+> theory** already claims that *"the team sets the sign, through the expertise its
+> humans bring and how it structures the review process"* (Agarwal, Miller,
+> Kästner, Vasilescu, arXiv:2607.07980, from 3,100 coded practitioner documents).
+> N-3's contribution is therefore **the measurement, not the question** — the
+> artifact-derived evidence those papers lack. That is a *stronger* position than
+> a gap: it enters an active conversation with a named proposition to test. The
+> residual risk shifts accordingly, from "someone already found this" to **n=1 —
+> one team's structure cannot settle a proposition about team structure.**
+
 The dominant framing in AI-assisted development discourse is the *solo developer
 plus agent*. This corpus shows that framing is an artifact of **whose record you
 read**.
@@ -210,8 +224,12 @@ and that the field's usual data sources cannot see.** That is a confound with a
 mechanism, and it is under-argued.
 
 **Limits to state plainly:** n=1; roles are inferred from reporting behaviour,
-not job titles; there is no work-log to size the tester's effort; and no
-counterfactual project without a tester. This is hypothesis-generating.
+not job titles; there is no work-log to size the tester's effort (Jira's time
+fields are empty for all 156 issues); and no counterfactual project without a
+tester. Given §5.2.2's theory already exists, this is best positioned as
+**hypothesis-testing on a single case**, not hypothesis-generating — and the cheap
+upgrade is the same reporter×type analysis across several AI-assisted projects
+with differing QA staffing, which needs only issue-tracker exports.
 
 ### N-4. Test-to-source write ratio as an artifact-derived check on a process claim
 
@@ -532,7 +550,11 @@ publication gates in `07-lessons-learned.md` immediately.
 
 ### 5.4 Venue fit
 
-- **Papers 1 and 2** — **MSR**, **EMSE**, or **ICSE-SEIP**.
+- **Papers 1 and 2** — **MSR**, **EMSE**, or **ICSE-SEIP**. Paper 1 should cite
+  Agarwal et al. (arXiv:2607.07980) as its theoretical frame for N-3 and position
+  the result as a test case; the two works are methodologically complementary
+  halves — theory from discourse at scale, versus measurement plus mechanism on
+  one project.
 - **Paper 3** — **MSR** is the natural home (it is a repository-mining result);
   **ICSE-SEIP** or **ESEM** also fit, and ESEM arguably best, since the
   contribution is an empirical hypothesis test rather than a mining technique.
@@ -574,7 +596,10 @@ Ordered by how likely each is to sink the papers.
    *Debt Behind the AI Boom* — our CI-based null cannot see the static issues
    they measure. Still outstanding: the targeted search for §5.2 of that review,
    which determines whether **N-3 is a genuine gap or a quantified instance**.
-   Until that search is done, N-3's novelty claim is unverified.
+   **That search was run on 2026-08-21** (§5.2 of the review): N-3 is **not** a
+   gap — it is the missing measurement for an existing falsifiable theory, which
+   is a better position but a different claim, and N-3 above is reframed
+   accordingly.
 2. **Explicit renunciation of causal claims.** The papers should state once, up
    front, that no causal attribution is available — not bury it in threats to
    validity.
