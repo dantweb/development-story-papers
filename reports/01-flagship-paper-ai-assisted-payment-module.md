@@ -1118,6 +1118,12 @@ write ratio** (§4.7) and the **absence of crunch** (§4.4): the project's own
 output profile is what a disciplined process looks like from the outside, and
 neither figure depends on the project's testimony about itself.
 
+A third strand, from Corpus D: **CI failure did not scale with the amount of code
+changed** (§4.13c, Fisher p = 0.66, ρ = −0.024). That matters for this question
+because it locates the friction *outside* the code the process governs — the
+harness cannot be credited or blamed for failures that were indifferent to what
+was written.
+
 The strongest negative evidence is §6.5: the same project shipped tests that
 tested nothing, and a suppression that hid a crash, until later audits caught
 them — plus §6.6, a release that discarded its own history. The honest reading
@@ -1157,7 +1163,15 @@ underpowered or out of reach is maintained in
 - **No counterfactual.** There is no non-AI arm, so we cannot attribute velocity
   to the assistant versus the harness versus the person.
 - **Single framework, single domain.** One legacy PHP e-commerce platform, one
-  payment integration.
+  payment integration. Corpus D sharpens why this matters: half of all pipeline
+  outcomes were environmental friction specific to *this* framework's build and
+  namespace-generation behaviour (§4.13), so the CI results describe a
+  framework-coupled cross-repo PHP project and should not be read as a property
+  of AI-assisted development.
+- **An unmeasured CI-composition shift.** Workflow mix changed across the period
+  (Playwright E2E and load tests arrive later), so part of the 57% → 46%
+  improvement in §4.13e may be composition rather than reliability. The split
+  point is chosen, not derived.
 
 ### 7.3 Data-integrity caveats (revised)
 
@@ -1186,14 +1200,25 @@ underpowered or out of reach is maintained in
   precision.
 - **Still single-sourced:** findings-closed counts and quality-gate pass rates
   are not derivable from git and rest on AI-authored completion reports (§4.5).
-- **Survivorship, all three corpora:** the journal is written by the party being
-  studied; the Jira export is a snapshot with no transition history; and the git
+- **Survivorship, all four corpora:** the journal is written by the party being
+  studied; the Jira export is a snapshot with no transition history; the git
   record lost provenance twice during the study window — a mainline squash and
-  the deletion of at least two feature branches (§6.6). The second was
-  detectable only by comparing against a stale local checkout, so **we cannot
-  rule out further losses we have no witness for.** Aggregate figures are
-  reported over the history reachable from the canonical remote, which is a
-  lower bound on what was actually committed.
+  the deletion of at least two feature branches (§6.6); and Corpus D adds a
+  **third mechanism** — 234 of 979 runs (24%) point at `head_sha` values
+  reachable from no ref, and GitHub retains run history only for a limited
+  window, so runs older than it are **already unrecoverable** (§4.13f). The
+  branch-deletion loss was detectable only by comparing against a stale local
+  checkout, so **we cannot rule out further losses we have no witness for.**
+  Aggregate figures are reported over what survived, which is a lower bound on
+  what happened.
+- **Corpus D is partial in both directions and measures friction, not defects:**
+  745/979 runs (76%) join to a known commit and only 444/716 commits (62%) have
+  any run, so per-commit CI figures are a lower bound on activity;
+  `duration_seconds` is wall-clock including queueing, not billable compute; the
+  40 workflow *names* include renames of one pipeline; and a `failure`
+  conclusion conflates broken builds with flaky E2E, cancelled infrastructure and
+  expired credentials. The 49.7% figure is a **friction rate**, not a defect
+  rate, and §4.13 is worded accordingly.
 
 ### 7.4 What generalizes
 
@@ -1218,7 +1243,20 @@ period as active, and miscounted its flagship epic in both directions. Projects
 that intend to be studied, or audited, should treat commit-level provenance as
 the primary record and prose as commentary on it.
 
-Fourth, and the strongest methodological lesson of this revision: **a single
+Fourth, and the one substantive engineering claim in this paper that is both
+tested and transferable: **in framework-coupled, cross-repo work, build failure
+is independent of change size.** Commits of ≥500 insertions failed at 63% against
+60% for smaller ones — Fisher p = 0.66, Spearman ρ = −0.024 (§4.13c). The
+competing hypothesis is falsifiable and specific: if pipeline failures were
+defects in changed logic, failure probability must rise with the volume of changed
+logic. It does not, at all. Two practical consequences follow, and neither is
+specific to this project: **sizing commits does not protect the build**, and
+effort spent on environment hardening pays measurably — this project's failure
+rate fell 11 points (§4.13e, p = 0.0014). This is the paper's clearest instance of
+a result available *only* by joining corpora: neither the commit record nor the CI
+record alone can produce it.
+
+Fifth, and the strongest methodological lesson of this revision: **a single
 actor's record cannot describe a multi-actor system.** The journal is a
 developer's log, so it documents the developer's process in fine detail and omits
 the tester entirely — yet an independent human filing 92.5% of the defect reports
@@ -1237,12 +1275,23 @@ synthesis, bug-fix rates) and industrial adoption surveys, but differs in unit
 of analysis: a **single system followed for months**, with process and failures
 recorded contemporaneously. Methodologically this revision moves the paper
 closer to mining-software-repositories (MSR) practice — commit-level extraction,
-session reconstruction from timestamps, authorship-trailer analysis — applied to
-a partly AI-authored corpus, and combines it with an experience-report narrative
-that MSR work usually lacks. The pairing is the methodological contribution: the
-journal supplies mechanism, the commit record supplies measurement, and each
-catches the other's errors. A full related-work section is deferred to the venue
-draft.
+session reconstruction from timestamps, authorship-trailer analysis, issue-tracker
+joins, and CI-outcome mining — applied to a partly AI-authored corpus, and
+combines it with an experience-report narrative that MSR work usually lacks.
+
+The pairing is the methodological contribution: **the journal supplies mechanism,
+the machine records supply measurement, and each catches the other's errors.**
+Two literatures are adjacent and should be engaged in the venue draft. The
+**CI/build-failure mining** literature (studies of build-breakage prediction and
+its features on public CI corpora) is the natural comparison for §4.13 — notably
+because a recurring finding there is that change-size features *do* carry
+predictive signal, which makes this project's flat non-association (p = 0.66,
+ρ = −0.024) a case that needs explaining rather than a confirmation. The
+**inspection-versus-testing** experiments of the Basili era are the lineage for
+the disjoint-yield observation in `03-topics-technical.md` (TECH-5).
+
+A full related-work section is deferred to the venue draft, and it is this
+paper's largest missing piece.
 
 ---
 
@@ -1263,6 +1312,14 @@ is the paper's thesis: **the quality of AI-assisted output tracked the rigidity
 of the process harness around it** — TDD as a hard boundary, quality gates as the
 definition of done, single-phase sequential dispatches, and cheap mandatory
 verification of every agent claim.
+
+And a fourth machine record — 979 CI runs — reframes where the effort actually
+went. Continuous integration failed on **half of all runs (49.7%)**, consumed
+**169.5 hours** of wall-clock against roughly 140 hours of measured human
+activity, and spent 53% of that on runs that failed. Most tellingly, that failure
+was **statistically independent of how much code a commit changed** (p = 0.66,
+ρ = −0.024): the dominant cost of this project was not writing the logic, and not
+the logic being wrong, but the environment the logic had to build in.
 
 One qualification belongs in the conclusion rather than a footnote. The harness
 was not the whole apparatus: an independent human tester filed 92.5% of this
@@ -1321,6 +1378,12 @@ revision). Divergences are the point of the table.
 | Lead time | not tracked | median 17 d (n=39, weak) | C only |
 | Estimate vs actual | plan/actual pairs in sprint docs | **all Jira time fields empty** | **not recoverable** |
 | Journal "sprints" | 1 → 133 | Jira `Sprint` has **2 values** — unrelated concepts | **terminology hazard** |
+| CI outcomes | "CI/infra was the largest cluster" | **487 failure / 453 success / 39 cancelled of 979 runs — 49.7%** | **D quantifies A** |
+| CI time cost | not tracked | **169.5 h** wall-clock; **90.1 h (53%)** in failing runs; vs ≈140 h human sessions | D only |
+| Failure vs commit size | not considered | **no association** — 63% (≥500 ins.) vs 60%; Fisher **p = 0.66**, ρ = −0.024 | **D-only, tested null** |
+| CI trend | hardening described | **57% → 46%** failure across 2026-04-01, Fisher **p = 0.0014** | **D confirms A** |
+| AI commits vs CI | not claimed | **59% vs 61%** failing (p = 0.88) — confounded null | D only |
+| CI provenance | unremarked | **234/979 runs (24%)** on no surviving ref; older runs past retention **gone** | **D-only failure** |
 
 ## Appendix B — Primary artifacts
 
@@ -1348,8 +1411,10 @@ Git (Corpus B), key commits:
 
 ## Appendix C — Dataset
 
-Eight CSVs in [`../data/`](../data/), schema and reproduction commands in
-[`../data/README.md`](../data/README.md):
+Fourteen CSVs in [`../data/`](../data/), with schema, caveats and reproduction
+commands in [`../data/README.md`](../data/README.md), the export scripts
+(`fetch_actions.sh`, `build_actions.py`), and `stats.py`, which recomputes every
+statistical test cited in this paper:
 
 | File | Grain | Rows |
 |---|---|---|
@@ -1364,7 +1429,11 @@ Eight CSVs in [`../data/`](../data/), schema and reproduction commands in
 | `jira-stripe.csv` | one Jira issue (raw export, 129 cols) | 156 |
 | `jira_issues.csv` | one Jira issue, normalized + joined to commits | 156 |
 | `jira_roles.csv` | one Jira reporter × issue type | 10 |
+| `actions_runs.csv` | one workflow run, joined to its commit and that commit's LOC | 979 |
+| `actions_by_commit.csv` | one commit with ≥1 run: LOC beside run outcomes | 444 |
+| `actions_workflows.csv` | repo × workflow | 41 |
 
-Every figure in §4 and Appendix A is a direct aggregation over these files.
-Author email addresses, Jira account ids, watcher lists and issue description
-bodies are deliberately excluded; display names and summaries only.
+Every figure in §4 and Appendix A is a direct aggregation over these files, and
+every p-value is reproducible with `python3 data/stats.py`. Author email
+addresses, Jira account ids, watcher lists and issue description bodies are
+deliberately excluded; display names, summaries and actor logins only.

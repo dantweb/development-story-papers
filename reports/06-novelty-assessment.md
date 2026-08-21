@@ -434,45 +434,124 @@ State this plainly rather than letting a reviewer discover it.
 ## 5. Recommended reframing
 
 The flagship paper is currently *"an AI helped build a payment module, and
-discipline was why it worked."* That is the weak version.
+discipline was why it worked."* That is the weak version. Three papers fall out
+of this corpus, and the allocation matters — two of them are about *measurement*
+and one is about the *phenomenon*, which is a distinction §5.3 turns on.
 
-The strong version is:
+### 5.1 Paper 1 — the audit (the reframed flagship)
 
 > **What a project's own record gets wrong about itself: auditing an AI-assisted
-> development journal against its commit and issue history.**
-
-Under that title:
+> development journal against its commit, issue and CI history.**
 
 - **N-1 becomes the contribution** — a methods result for empirical AI-SE, and
   its strength is **enumerative**: it does not need a p-value and should not
   claim one.
-- The **tested** results (N-3, N-2, N-4, N-11, N-12) become the paper's hard
-  evidence, led by **N-3** at Cramér's V = 0.859 — the one finding no reviewer can
-  wave away.
+- The **tested** results become the paper's hard evidence — **N-3** (Cramér's
+  V = 0.859, the one finding no reviewer can wave away), then **N-2**, **N-4**,
+  **N-11**, **N-12**, **N-13**.
 - The six numbered findings become **evidence**, not the point.
-- The **three retractions become credibility**, not embarrassment. A paper that
+- The **retractions become credibility**, not embarrassment. A paper that
   withdraws its own "single-developer" claim, withdraws its authorship claim for
-  seven of ten months, and corrects a rate by an order of magnitude is *more*
-  trustworthy, and reviewers reward that when it is framed as method rather than
+  seven of ten months, corrects a rate by an order of magnitude, and downgrades
+  its own "refuted" to *underpowered* after running the test is **more**
+  trustworthy — and reviewers reward that when it is framed as method rather than
   apology.
 - The **harness thesis becomes background** — the thing the journal claimed,
   which the audit partially confirms (N-4) and partially cannot reach.
 
-A **second paper** falls out cleanly, and it may be the more citable one:
+**On N-13's placement here:** the flagship should *report* it (§4.13 already
+does) as one more instance of the journal's account being testable against
+machine records — the journal asserted an environmental cost story, and the CI
+data confirms it by a route the journal never had. But the flagship should not
+*develop* it, because its subject is the audit method, not payment-module CI. The
+development belongs in Paper 3.
+
+### 5.2 Paper 2 — the negative results (measurement)
 
 > **Every corpus is compromised: negative results on measuring AI-assisted
 > software engineering.**
 
-Assembling N-2 (trailers measure convention), N-6 (provenance is destroyed and
-the loss is invisible), N-10 (no reliable unit of work), the absence of estimate
-data in **all three** corpora, and the untracked-architecture blind spot. A
-coherent negative-results contribution, and the field currently lacks one.
+Assembling **N-2** (trailers measure convention adoption, not AI involvement),
+**N-6** (provenance is destroyed by at least three mechanisms and the loss is
+invisible from inside the repository), **N-10** (no artifact is a reliable unit of
+work), the absence of estimate data in **all four** corpora, and the
+untracked-architecture blind spot. A coherent negative-results contribution, and
+the field currently lacks one.
 
-**Venue fit:** the reframed flagship and the negative-results paper suit
-**MSR**, **EMSE**, or **ICSE-SEIP**. The technical and security topics, as
-written, suit practitioner venues or industry tracks — not research tracks. TECH-5
-(N-5) is the exception and could stand as a research short paper if the
-inspection-vs-testing lineage is made explicit.
+Corpus D strengthens this paper without changing its shape: it supplies a
+**third, independent provenance-loss mechanism** (24% of runs point at
+`head_sha` values on deleted branches, and GitHub's retention window silently
+discards older runs), and a fourth corpus with **no effort data** — so "instrument
+effort prospectively or lose it" is now supported four ways rather than three.
+
+### 5.3 Paper 3 — where the cost actually goes (new, and N-13 anchors it)
+
+> **Environmental, not logical: build failure is independent of change size in a
+> framework-coupled AI-assisted project.**
+
+**This is the paper N-13 should carry, and it is a different kind of paper from
+the other two.** Papers 1 and 2 are about how badly software engineering *measures
+itself*. This one makes a claim about the *engineering*, and it is the only
+Tier-1 result that does.
+
+The spine:
+
+| Element | Evidence |
+|---|---|
+| CI failure is the modal outcome | **487/979 runs failed (49.7%)** across 40 workflow names over ten months |
+| The machine outspends the humans | **169.5 h** CI wall-clock vs ≈140 h measured human session time; **90.1 h (53%)** in failing runs |
+| **The central result — a measured non-association** | ≥500 insertions fail **63%**, <500 fail **60%**; Fisher **p = 0.66**, Spearman **ρ = −0.024** |
+| Hardening works, measurably | **57% → 46%** failure across 2026-04-01, Fisher **p = 0.0014** |
+| Supporting qualitative account | the namespace-generation break (five falsified CI iterations), cross-repo dependency auth, PHP 8.2/8.3 skew — `03-topics-technical.md` TECH-4 |
+| Companion result | **N-5**, disjoint defect yields from refactoring vs black-box testing on the same subsystem |
+
+**Why the null is the argument, and how to write it so a reviewer sees that.**
+State the competing hypothesis first and commit to its prediction: if these
+failures were defects in changed logic, failure probability must rise with the
+volume of changed logic. Then show there is no gradient at all — not a weak one,
+ρ = −0.024. The environmental account survives *because* the logical account made
+a falsifiable prediction that failed. Framed that way it is a hypothesis test, not
+an absence of evidence; framed carelessly ("we found no correlation") it reads as
+a failed analysis. That framing choice is the difference between publishable and
+rejected.
+
+**What this paper must concede.** `failure` conflates broken builds with flaky
+E2E, cancelled infrastructure and expired credentials, so it measures *friction*
+rather than defect density — and a critic will say the non-association is
+therefore unsurprising. The honest answer is that this is the point: half of all
+pipeline outcomes were friction of a kind indifferent to the code, which is
+itself the finding. Also: 62% commit coverage, a chosen split point for the trend,
+changing workflow composition across it, and n=1 project.
+
+**Feasibility note.** This is the cheapest of the three papers to write. The data
+is already exported and joined (`../data/actions_runs.csv`,
+`../data/actions_by_commit.csv`), the tests are already implemented
+(`../data/stats.py` T9a–T9c), and — unlike Papers 1 and 2 — it needs **no
+named-colleague consent** and touches no security material, so it clears the
+publication gates in `07-lessons-learned.md` immediately.
+
+### 5.4 Venue fit
+
+- **Papers 1 and 2** — **MSR**, **EMSE**, or **ICSE-SEIP**.
+- **Paper 3** — **MSR** is the natural home (it is a repository-mining result);
+  **ICSE-SEIP** or **ESEM** also fit, and ESEM arguably best, since the
+  contribution is an empirical hypothesis test rather than a mining technique.
+- The technical and security topics as written suit practitioner venues or
+  industry tracks — not research tracks. **TECH-5 (N-5)** is the exception and
+  could stand as a research short paper if the inspection-versus-testing lineage
+  is made explicit; it is also the natural companion result inside Paper 3.
+- Practitioner routing for all eight lessons is in
+  [`07-lessons-learned.md`](07-lessons-learned.md).
+
+### 5.5 Suggested order
+
+1. **Paper 3** first — cheapest, ungated, self-contained, and it establishes the
+   corpus in a venue before the more argumentative papers arrive.
+2. **Paper 2** second — negative results are easier to land once the data is
+   already cited, and it needs no consent work either.
+3. **Paper 1** last — the most valuable and the most gated: it depends on
+   named-colleague consent for N-3 (see `07-lessons-learned.md`, "Before anything
+   ships") and on the related-work search in §6 below.
 
 ---
 
