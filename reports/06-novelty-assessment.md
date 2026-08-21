@@ -559,10 +559,22 @@ publication gates in `07-lessons-learned.md` immediately.
 
 Ordered by how likely each is to sink the papers.
 
-1. **A related-work section.** Currently deferred in the flagship and absent
-   everywhere else. This is the largest gap and the most likely reason for
-   rejection. Every Tier-1 claim above needs a search behind it, and some will
-   move down.
+1. **A related-work section — now partly closed, and one Tier-1 item is at
+   risk.** [`08-literature-review.md`](08-literature-review.md) locates published
+   work for most Tier-1 claims and grades each as instantiates / supports /
+   complicates / counterexample / challenges-us. Net effect on this assessment:
+   **N-2 gains its strongest venue fit** (it is a single-project ground-truth case
+   for the perils catalogued by *Promises, Perils, and (Timely) Heuristics for
+   Mining Coding Agent Activity*, MSR 2026); **N-13 must be reframed** —
+   the build-failure literature reports churn features as predictive, so our
+   claim is "no predictive value *here*", with *Is this Build Failure Related to
+   my Patch?* (13.33% patch-unrelated failures) supplying the mechanism; **N-5
+   gains a lineage and an experimental template** (Basili & Selby: techniques
+   detect different fault classes); and **M-26 is challenged outright** by
+   *Debt Behind the AI Boom* — our CI-based null cannot see the static issues
+   they measure. Still outstanding: the targeted search for §5.2 of that review,
+   which determines whether **N-3 is a genuine gap or a quantified instance**.
+   Until that search is done, N-3's novelty claim is unverified.
 2. **Explicit renunciation of causal claims.** The papers should state once, up
    front, that no causal attribution is available — not bury it in threats to
    validity.

@@ -37,6 +37,7 @@ divergences rather than the agreements.
 |---|---|
 | the whole argument | [`01-flagship-paper…`](01-flagship-paper-ai-assisted-payment-module.md) |
 | to decide **what is worth writing up** | [`06-novelty-assessment.md`](06-novelty-assessment.md) — read this *first* if you are choosing a paper |
+| **which published problems we can speak to** | [`08-literature-review.md`](08-literature-review.md) |
 | to know **what we would tell the next team** | [`07-lessons-learned.md`](07-lessons-learned.md) |
 | a specific number, with its source and caveat | [`05-measurements.md`](05-measurements.md) |
 | candidate papers on one theme | [`02`](02-topics-project-management.md) (management), [`03`](03-topics-technical.md) (technical), [`04`](04-topics-security.md) (security) |
@@ -54,6 +55,7 @@ divergences rather than the agreements.
 | [`04-topics-security.md`](04-topics-security.md) | **2 security topics** (SEC-1, SEC-2), same treatment. | A+B+C | Proposals, verified |
 | [`05-measurements.md`](05-measurements.md) | **27 measured results.** M-1…M-10 show journal-reported beside git-measured values; M-11…M-17 are git-only; M-18…M-22 are Jira-only; M-23…M-27 are Actions-derived. Each carries its metric, source, what it demonstrates, and the caveat that bears on it. | A+B+C | Data catalog |
 | [`06-novelty-assessment.md`](06-novelty-assessment.md) | **What would survive peer review.** Tiers all **13** contributions (N-1…N-13) by novelty *and* by evidence class — tested / census / n=1 / mixed / untestable, with statistics. Names the claims to drop, recommends a reframing and research venues. | — | Review |
+| [`08-literature-review.md`](08-literature-review.md) | **What published problems this corpus can speak to.** 13 entries against real papers, each graded **instantiates / supports / complicates / counterexample / challenges-us / cannot-address**, plus a consolidated list of where the literature undercuts *us* and six priority searches still outstanding. | — | Review |
 | [`07-lessons-learned.md`](07-lessons-learned.md) | **8 practitioner topics** (LL-1…LL-8) — what we would tell the next team. Each graded by evidence class and routed to a **named venue**; plus the full inference grading (Tiers S/D/U/N/X), a 12-item day-one checklist, a submission sequence, three publication gates, and the lessons the evidence **cannot** support. | A+B+C | Proposals |
 
 ---
