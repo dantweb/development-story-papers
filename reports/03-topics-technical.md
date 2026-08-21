@@ -396,7 +396,37 @@ PHP modules — the class of failure most under-documented and most expensive.
 > for "this is the framework's fault" is itself evidence for the topic's central
 > claim about framework coupling.
 >
-> **Not measurable from git or Jira:** the five falsified CI iterations, the
+> ### Actions verification (2026-08-21) — ✅✅ **the topic's central thesis is now measured**
+>
+> This topic claimed the environment, not application logic, was the dominant
+> source of hard failure. Corpus D tests it directly and the result is emphatic:
+>
+> | Measure | Value |
+> |---|---|
+> | Workflow runs | **979** (2025-10-21 → 2026-08-20), 40 workflow names |
+> | Outcomes | **487 failure / 453 success / 39 cancelled — 49.7% failure** |
+> | CI wall-clock | **169.5 h**, of which **90.1 h (53%)** in failing runs |
+> | vs human session time | ≈140.1 h — **the machine spent longer than the humans** |
+> | Failure vs commit size | ≥500 insertions **63%**, <500 **60%** — Fisher **p = 0.66**, Spearman **ρ = −0.024** |
+> | Trend | 57% → 46% failure across 2026-04-01, Fisher **p = 0.0014** |
+>
+> **The zero correlation with commit size is the strongest evidence the topic
+> has.** If these were logic failures they would scale with the volume of changed
+> logic; they do not, at all. That is precisely what an environmental account
+> predicts — dependency auth, version skew, namespace-generation ordering and
+> flaky E2E are indifferent to line count. A thesis that previously rested on
+> narrated sagas now rests on a measured non-association.
+>
+> The 11-point improvement (p = 0.0014) also gives the topic something it lacked:
+> evidence that the permanent regression probes and converged dependency auth
+> *worked*, rather than just being recommended.
+>
+> **New caveat this data introduces.** A `failure` conclusion is friction, not
+> necessarily a broken build — cancelled infrastructure, flaky E2E and expired
+> credentials all land there. And 24% of runs point at `head_sha` values on
+> deleted branches, so the corpus inherits the survivorship problem too.
+>
+> **Not measurable from git, Jira or Actions:** the five falsified CI iterations, the
 > last-green→red windows (those come from CI/server timestamps, not commits), the
 > four backslash-escape forms, and the `generated/` interleaving mechanism. This
 > topic remains the most journal-dependent of the five, which is worth stating

@@ -190,3 +190,68 @@ print(f"  out-of-hours commits: {len(oh)} on {len(byday)} distinct days")
 print(f"  largest single day: {top[0]} with {top[1]} ({100*top[1]/len(oh):.0f}% of all out-of-hours)")
 p=binom_sf_two_sided(top[1],len(oh),1/len(byday))
 print(f"  exact binomial vs uniform over those {len(byday)} days: p = {fmt_p(p)}")
+
+print()
+print("="*74)
+print("T9  GitHub Actions: CI failure rate, and does commit size predict it?")
+print("="*74)
+A=list(csv.DictReader(open(D+'actions_runs.csv')))
+B=list(csv.DictReader(open(D+'actions_by_commit.csv')))
+con=Counter(x['conclusion'] for x in A)
+n=len(A)
+print(f"  runs = {n}: success {con['success']}, failure {con['failure']}, cancelled {con['cancelled']}")
+print(f"  failure rate = {100*con['failure']/n:.1f}%")
+p=binom_sf_two_sided(con['failure'], con['success']+con['failure'], 0.5)
+print(f"  exact binomial, failures vs successes = 50/50:  p = {fmt_p(p)}  (i.e. indistinguishable from a coin flip)")
+ci=sum(int(x['duration_seconds']) for x in A if x['duration_seconds'])
+print(f"  total CI wall-clock = {ci/3600:.1f} h  (vs ~140.1 h of measured human session time)")
+wasted=sum(int(x['duration_seconds']) for x in A if x['duration_seconds'] and x['conclusion']=='failure')
+print(f"  wall-clock in FAILING runs = {wasted/3600:.1f} h ({100*wasted/ci:.0f}% of CI time)")
+
+print()
+print("  -- does commit size predict CI failure? (per-commit, n=%d) --" % len(B))
+big=[x for x in B if int(x['insertions'])>=500]; small=[x for x in B if int(x['insertions'])<500]
+a=sum(int(x['any_failure']) for x in big); b=len(big)-a
+c=sum(int(x['any_failure']) for x in small); d=len(small)-c
+print(f"    >=500 insertions: {a}/{len(big)} commits had >=1 failing run ({100*a/len(big):.0f}%)")
+print(f"    < 500 insertions: {c}/{len(small)} ({100*c/len(small):.0f}%)")
+print(f"    Fisher exact, two-sided:  p = {fmt_p(fisher_2x2(a,b,c,d))}")
+# rank correlation insertions vs any_failure
+ins=np.array([int(x['insertions']) for x in B],dtype=float)
+fail=np.array([int(x['any_failure']) for x in B],dtype=float)
+def rankdata(v):
+    o=np.argsort(v,kind='mergesort'); r=np.empty(len(v)); r[o]=np.arange(1,len(v)+1)
+    # average ties
+    vals,inv,cnt=np.unique(v,return_inverse=True,return_counts=True)
+    means=np.zeros(len(vals))
+    for i in range(len(vals)):
+        means[i]=r[v==vals[i]].mean()
+    return means[inv]
+rx,ry=rankdata(ins),rankdata(fail)
+rho=np.corrcoef(rx,ry)[0,1]
+t=rho*math.sqrt((len(B)-2)/max(1e-12,1-rho**2))
+# two-sided p from normal approx
+pz=2*(1-0.5*(1+math.erf(abs(t)/math.sqrt(2))))
+print(f"    Spearman rho(insertions, any_failure) = {rho:.3f},  approx p = {fmt_p(pz)}")
+
+print()
+print("  -- AI-trailered commits vs the rest --")
+ai=[x for x in B if x['ai_coauthored']=='1']; na=[x for x in B if x['ai_coauthored']=='0']
+if ai and na:
+    a=sum(int(x['any_failure']) for x in ai); b=len(ai)-a
+    c=sum(int(x['any_failure']) for x in na); d=len(na)-c
+    print(f"    AI-trailered:  {a}/{len(ai)} with a failing run ({100*a/len(ai):.0f}%)")
+    print(f"    not trailered: {c}/{len(na)} ({100*c/len(na):.0f}%)")
+    print(f"    Fisher exact, two-sided:  p = {fmt_p(fisher_2x2(a,b,c,d))}")
+
+print()
+print("  -- failure rate by half of the record --")
+mid='2026-04-01'
+for lab,sel in (('before '+mid,[x for x in A if x['created_at'][:10]<mid]),('from '+mid,[x for x in A if x['created_at'][:10]>=mid])):
+    cc=Counter(x['conclusion'] for x in sel)
+    tot=cc['success']+cc['failure']
+    if tot: print(f"    {lab:<16} {cc['failure']}/{tot} failed ({100*cc['failure']/tot:.0f}%)")
+e=[x for x in A if x['created_at'][:10]<mid]; l=[x for x in A if x['created_at'][:10]>=mid]
+ea=sum(1 for x in e if x['conclusion']=='failure'); eb=sum(1 for x in e if x['conclusion']=='success')
+la=sum(1 for x in l if x['conclusion']=='failure'); lb=sum(1 for x in l if x['conclusion']=='success')
+print(f"    Fisher exact, two-sided:  p = {fmt_p(fisher_2x2(ea,eb,la,lb))}")

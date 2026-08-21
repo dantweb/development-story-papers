@@ -1,0 +1,445 @@
+repo,sha,date,author,insertions,deletions,files_changed,src_ins,tests_ins,docs_ins,ci_ins,ai_coauthored,ticket_ref,runs,success,failure,cancelled,any_failure,all_success,first_conclusion,last_conclusion,max_run_attempt,total_ci_seconds,workflows,subject
+stripe-wallet,15aae949b4ef,2025-10-21,Daniil Tkachev,1124,2,31,0,245,0,510,0,STRP-52,2,2,0,0,0,1,success,success,1,105,2,STRP-52 Add gha
+stripe-wallet,dda199473637,2025-10-21,Daniil Tkachev,7182,0,16,0,0,7182,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,76,1,STRP-52 Add block-chain-aware inventory manager concept design
+stripe-wallet,15ab62a76997,2025-10-22,Daniil Tkachev,4566,1510,6,0,0,4566,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,14,1,STRP-52 Add block-chain-aware inventory manager concept design
+stripe-wallet,919e68aa9730,2025-10-22,Daniil Tkachev,5751,0,14,0,0,5751,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,88,1,STRP-52 Add booking platform concept design
+stripe-wallet,fd4dea92ba3b,2025-10-22,Daniil Tkachev,829,2,1,0,0,829,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,77,1,STRP-52 Update smart contract implementation plan
+stripe-wallet,dbc20eed67dc,2025-10-22,Daniil Tkachev,370,20,18,0,370,0,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,80,1,STRP-52 Add tests for smart contracts
+stripe-wallet,6ccc4135a0f4,2025-10-23,Daniil Tkachev,2088,3,9,0,0,2088,0,0,STRP-52,2,1,1,0,1,0,failure,success,1,128,2,STRP-52 Update smart contract implementation plan
+stripe-wallet,8e51bd4109de,2025-10-23,Daniil Tkachev,6,4,1,0,0,0,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,85,1,STRP-52 Update smart contract implementation plan
+stripe-wallet,621a12ccfd91,2025-10-23,Daniil Tkachev,94,4,20,93,0,0,1,0,STRP-52,1,0,1,0,1,0,failure,failure,1,360,1,STRP-52 Add basic module structure
+stripe-wallet,60b8b7d9c063,2025-10-23,Daniil Tkachev,1,2,1,0,0,0,1,0,STRP-52,1,0,1,0,1,0,failure,failure,1,381,1,STRP-52 Add basic module structure
+stripe-wallet,e33aa7a35913,2025-10-23,Daniil Tkachev,21,15,1,0,0,0,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,361,1,STRP-52 Add basic module structure
+stripe-wallet,7147053002e9,2025-10-23,Daniil Tkachev,2,2,2,0,0,0,1,0,STRP-52,1,0,1,0,1,0,failure,failure,1,350,1,STRP-52 Add basic module structure
+stripe-wallet,b254410f9f46,2025-10-23,Daniil Tkachev,643,5302,9,0,0,643,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,358,1,STRP-52 Update docs and implementation plan
+stripe-wallet,db69ed03d975,2025-10-23,Daniil Tkachev,781,241,24,0,142,638,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,369,1,STRP-52 Update test structure and docs
+stripe-wallet,9e3db896a4bd,2025-10-24,Daniil Tkachev,32,3,3,0,30,0,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,380,1,STRP-52 Update test structure and docs
+stripe-wallet,47706f4b7c8c,2025-10-24,Daniil Tkachev,128,32,15,84,36,0,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,357,1,STRP-52 Module structure test run
+stripe-wallet,c3bb4cb785e7,2025-10-24,Daniil Tkachev,669,14,8,0,30,0,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,356,1,STRP-52 Migrations and related tests
+stripe-wallet,250ca5efc3ea,2025-10-24,Daniil Tkachev,0,0,4,0,0,0,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,358,1,STRP-52 Migrations and related tests
+stripe-wallet,66b6dc64eb34,2025-10-24,Daniil Tkachev,825,2,13,0,824,0,1,0,STRP-52,1,0,1,0,1,0,failure,failure,1,370,1,STRP-52 Migrations and related tests
+stripe-wallet,6a0514ab02b2,2025-10-24,Daniil Tkachev,5,5,5,0,5,0,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,348,1,STRP-52 Migrations and related tests
+stripe-wallet,40fa0a9b13c4,2025-10-24,Daniil Tkachev,7,13,7,0,6,0,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,359,1,STRP-52 Migrations and related tests
+stripe-wallet,eb1e1bddc4d8,2025-10-26,Daniil Tkachev,15721,0,13,0,0,15721,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,391,1,STRP-52 Add research papers concept ideas
+stripe-wallet,8c3dc1360ee9,2025-10-27,Daniil Tkachev,3,13,1,0,0,0,3,0,STRP-52,1,0,1,0,1,0,failure,failure,1,351,1,STRP-52 Update install recipe script
+stripe-wallet,8631e660726e,2025-10-27,Daniil Tkachev,10,8,1,0,0,0,10,0,STRP-52,1,0,1,0,1,0,failure,failure,1,354,1,STRP-52 Update install recipe script
+stripe-wallet,f3bf279e694c,2025-10-27,Daniil Tkachev,8,4,3,0,0,0,7,0,STRP-52,1,0,1,0,1,0,failure,failure,1,394,1,STRP-52 Update install recipe script
+stripe-wallet,5981b4f6b485,2025-10-27,Daniil Tkachev,5,4,1,0,0,0,5,0,STRP-52,1,0,1,0,1,0,failure,failure,1,461,1,STRP-52 Update install recipe script
+stripe-wallet,90bcf2b18670,2025-10-27,Daniil Tkachev,2559,0,3,0,0,2559,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,334,1,STRP-52 Add researchb and biz hypotethae
+stripe-wallet,b1f02f6b22fa,2025-10-27,Daniil Tkachev,15858,0,35,0,0,15858,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,322,1,STRP-52 Add research and biz hypotethae
+stripe-wallet,ab42f981dd2b,2025-10-27,Daniil Tkachev,61941,48,13,0,0,61941,0,0,STRP-52,1,0,1,0,1,0,failure,failure,1,348,1,STRP-52 Add research and biz hypotethae
+stripe-wallet,24a8b4252097,2025-10-27,Daniil Tkachev,32,6,7,0,0,32,0,0,STRP-52,2,0,2,0,1,0,failure,failure,1,634,1,STRP-52 Update biz-diagrams
+stripe-wallet,f896e70e2111,2025-10-30,Daniil Tkachev,26120,360,137,2584,4751,18740,45,0,STRP-59,5,3,2,0,1,0,failure,success,1,804,4,STRP-59 Add contract and event layers
+stripe-wallet,d906cbf4a5ea,2025-10-31,Daniil Tkachev,6494,26,44,2234,1554,2661,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,332,1,STRP-60 Add provider SDK adapter integration
+stripe-wallet,7a6d50d74004,2025-10-31,Daniil Tkachev,1654,2,28,447,810,397,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,314,1,STRP-60 Add webhook system
+stripe-wallet,a60d52d96f6a,2025-10-31,Daniil Tkachev,83,15,11,30,53,0,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,316,1,STRP-60 Update styles
+stripe-wallet,c5bba94e5938,2025-10-31,Daniil Tkachev,120,31,3,105,15,0,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,300,1,STRP-60 Update styles
+stripe-wallet,b7cde7d8833c,2025-10-31,Daniil Tkachev,0,9,9,0,0,0,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,311,1,STRP-60 Update styles
+stripe-wallet,df0437f25218,2025-10-31,Daniil Tkachev,2651,800,53,104,252,2295,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,342,1,STRP-60 Update models handling
+stripe-wallet,2c0523cb5048,2025-10-31,Daniil Tkachev,1624,93,30,174,8,1442,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,396,1,STRP-60 Update interface pattern
+stripe-wallet,1bfd15ab4f65,2025-10-31,Daniil Tkachev,199,89,20,199,0,0,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,344,1,STRP-60 Style fix
+stripe-wallet,517e31ed6f8a,2025-10-31,Daniil Tkachev,195,77,5,180,15,0,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,307,1,STRP-60 Style fix
+stripe-wallet,8873315d1360,2025-10-31,Daniil Tkachev,81,18,1,81,0,0,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,331,1,STRP-60 Style fix
+stripe-wallet,cdb3a8067656,2025-10-31,Daniil Tkachev,3841,782,23,867,1265,555,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,80,1,STRP-60 Update migrations
+stripe-wallet,2cfbb7928462,2025-11-03,Daniil Tkachev,5,5,2,0,5,0,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,79,1,STRP-60 Update migrations
+stripe-wallet,03368794a5eb,2025-11-03,Daniil Tkachev,10,22,4,0,0,0,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,81,1,STRP-60 Update migrations
+stripe-wallet,10c7f3f09192,2025-11-03,Daniil Tkachev,386,2,4,0,0,0,14,0,STRP-60,1,0,1,0,1,0,failure,failure,1,78,1,STRP-60 Update migrations
+stripe-wallet,de98e837212f,2025-11-03,Daniil Tkachev,4,2,1,0,0,0,4,0,STRP-60,1,0,1,0,1,0,failure,failure,1,72,1,STRP-60 Update migrations
+stripe-wallet,0581b697ed6d,2025-11-03,Daniil Tkachev,0,1,2,0,0,0,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,73,1,STRP-60 Update migrations
+stripe-wallet,5c157a5b8465,2025-11-03,Daniil Tkachev,8,20,3,0,0,0,1,0,STRP-60,1,0,1,0,1,0,failure,failure,1,75,1,STRP-60 Update migrations
+stripe-wallet,8540b1be4994,2025-11-03,Daniil Tkachev,4,2,1,0,0,0,4,0,STRP-60,1,0,1,0,1,0,failure,failure,1,69,1,STRP-60 Update migrations
+stripe-wallet,e1a5e1f7f65a,2025-11-03,Daniil Tkachev,2,2,1,0,0,0,2,0,STRP-60,1,0,1,0,1,0,failure,failure,1,69,1,STRP-60 Update migrations
+stripe-wallet,11ceb64b333d,2025-11-03,Daniil Tkachev,0,1,1,0,0,0,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,83,1,STRP-60 Update migrations
+stripe-wallet,9d5cea4f5d04,2025-11-03,Daniil Tkachev,1,1,1,0,0,0,1,0,STRP-60,1,0,1,0,1,0,failure,failure,1,315,1,STRP-60 Update migrations
+stripe-wallet,5387efe84220,2025-11-03,Daniil Tkachev,1,1,1,0,0,0,1,0,STRP-60,1,0,1,0,1,0,failure,failure,1,305,1,STRP-60 Update migrations
+stripe-wallet,b5ba02a41314,2025-11-03,Daniil Tkachev,40,19,8,0,39,0,1,0,STRP-60,1,0,1,0,1,0,failure,failure,1,320,1,STRP-60 Update migrations
+stripe-wallet,18914aedfef0,2025-11-03,Daniil Tkachev,1,0,1,0,0,0,1,0,STRP-60,1,0,1,0,1,0,failure,failure,1,336,1,STRP-60 Update migrations
+stripe-wallet,fec5369985c1,2025-11-03,Daniil Tkachev,3,3,1,0,3,0,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,350,1,STRP-60 Update migrations
+stripe-wallet,79df62b18f7a,2025-11-03,Daniil Tkachev,2,2,1,0,0,0,2,0,STRP-60,1,0,1,0,1,0,failure,failure,1,320,1,STRP-60 Update migrations
+stripe-wallet,af70deee1f66,2025-11-03,Daniil Tkachev,4,0,1,0,0,0,4,0,STRP-60,1,0,1,0,1,0,failure,failure,1,313,1,STRP-60 Update migrations
+stripe-wallet,5c4e8e82be17,2025-11-03,Daniil Tkachev,48,15,1,0,48,0,0,0,STRP-60,1,0,1,0,1,0,failure,failure,1,349,1,STRP-60 Update tests
+stripe-wallet,879f75a35623,2025-11-03,Daniil Tkachev,2,173,1,0,0,0,2,0,STRP-60,1,0,1,0,1,0,failure,failure,1,331,1,STRP-60 Update tests
+stripe-wallet,39a1c5045986,2025-11-03,Daniil Tkachev,17,3,2,0,15,0,2,0,STRP-60,1,0,1,0,1,0,failure,failure,1,353,1,STRP-60 Update tests
+stripe-wallet,814739702606,2025-11-03,Daniil Tkachev,2,3,1,0,0,0,2,0,STRP-60,1,0,1,0,1,0,failure,failure,1,320,1,STRP-60 Update tests
+stripe-wallet,2753d64e7005,2025-11-03,Daniil Tkachev,3,5,3,0,2,0,1,0,STRP-60,4,2,2,0,1,0,failure,success,1,476,3,STRP-60 Update tests
+stripe-wallet,d27bccc9cc7a,2025-11-04,Daniil Tkachev,1,1,1,0,0,0,1,0,,1,0,1,0,1,0,failure,failure,1,329,1,Fix gha
+stripe-wallet,70b2fbd14d49,2025-11-04,Daniil Tkachev,14,21,4,0,12,0,2,0,STRP-63,1,0,1,0,1,0,failure,failure,1,320,1,STRP-63 Update github actions and migrations test
+stripe-wallet,be1f2c352a09,2025-11-04,Daniil Tkachev,6,1,2,0,0,0,4,0,STRP-64,1,0,1,0,1,0,failure,failure,1,81,1,STRP-64 Update development.yml
+stripe-wallet,d6a5271babee,2025-11-04,Daniil Tkachev,30,1,2,0,0,0,30,0,STRP-64,1,0,1,0,1,0,failure,failure,1,344,1,STRP-64 Update gha
+stripe-wallet,c010d5f303ec,2025-11-04,Daniil Tkachev,1,1,1,0,0,0,1,0,STRP-64,1,0,1,0,1,0,failure,failure,1,330,1,STRP-64 Update gha
+stripe-wallet,ce2f6e96e577,2025-11-04,Daniil Tkachev,28,14,1,0,0,0,28,0,STRP-64,1,0,1,0,1,0,failure,failure,1,328,1,STRP-64 Update gha
+stripe-wallet,93b16bd5f6fb,2025-11-04,Daniil Tkachev,2,49,3,0,0,0,0,0,STRP-64,2,0,2,0,1,0,failure,failure,1,633,1,STRP-64 Update gha
+stripe-wallet,8b445001d839,2025-11-04,Daniil Tkachev,1,1,1,0,0,0,1,0,STRP-64,2,0,2,0,1,0,failure,failure,1,680,1,STRP-64 Update gha
+stripe-wallet,25da9a0c5d50,2025-11-04,Daniil Tkachev,33569,285,46,513,750,32157,4,0,STRP-63,1,0,1,0,1,0,failure,failure,1,334,1,STRP-63 Create capture and refund
+stripe-wallet,eb00a15ed528,2025-11-05,Daniil Tkachev,61,5,5,54,6,0,1,0,STRP-63,1,1,0,0,0,1,success,success,1,355,1,STRP-63 Update doctrine styles
+stripe-wallet,9a1b2378fb0c,2025-11-05,Daniil Tkachev,483,0,1,0,0,483,0,0,STRP-63,2,2,0,0,0,1,success,success,1,693,1,STRP-63 Update code quality standards
+stripe-wallet,0ea6d8b0f0da,2025-11-05,Daniil Tkachev,11,3,2,0,10,0,0,0,STRP-63,1,0,1,0,1,0,failure,failure,1,329,1,STRP-63 Fix tests
+stripe-wallet,1098cd3b0efe,2025-11-05,Bartosz Sosnowski,44,49,2,0,12,0,0,0,,1,0,1,0,1,0,failure,failure,1,71,1,Metadada and configuration validation
+stripe-wallet,4f0ec374e097,2025-11-06,Bartosz Sosnowski,295,328,8,48,215,0,0,0,,1,0,1,0,1,0,failure,failure,1,334,1,Module settings handling
+stripe-wallet,e2e82e314318,2025-11-06,Bartosz Sosnowski,24,13,1,24,0,0,0,0,,1,0,1,0,1,0,failure,failure,1,334,1,Code style fixes
+stripe-wallet,9d32ea30cab7,2025-11-06,Bartosz Sosnowski,9,6,2,9,0,0,0,0,,1,0,1,0,1,0,failure,failure,1,337,1,Code style fixes
+stripe-wallet,cbffcd0a7dbb,2025-11-06,Bartosz Sosnowski,37,9,2,11,26,0,0,0,STRP-54,1,1,0,0,0,1,success,success,1,306,1,STRP-54 Code style fixes
+stripe-wallet,146f7f25ceb2,2025-11-06,Bartosz Sosnowski,334,0,3,66,173,0,95,0,STRP-54,1,1,0,0,0,1,success,success,1,334,1,"STRP-54 Code style fixes, pre commit checks script"
+stripe-wallet,5486b1988982,2025-11-06,Bartosz Sosnowski,57,39,1,0,0,57,0,0,STRP-54,2,2,0,0,0,1,success,success,1,667,1,STRP-54 task progress update
+stripe-wallet,88675079936c,2025-11-07,Bartek Sosnowski,0,0,0,0,0,0,0,0,STRP-54,1,1,0,0,0,1,success,success,1,364,1,Merge pull request #3 from OXID-eSales/b-7.4.x-STRP-54
+stripe-wallet,32b0150f5025,2025-11-07,Daniil Tkachev,1,3,2,0,0,1,0,0,STRP-64,1,0,1,0,1,0,failure,failure,1,355,1,STRP-64 Update stripe adapter
+stripe-wallet,059996a8c7ca,2025-11-07,Daniil Tkachev,2935,2,19,769,1428,737,1,0,STRP-64,1,0,1,0,1,0,failure,failure,1,329,1,STRP-64 Update styles
+stripe-wallet,3dc17a414c34,2025-11-07,Daniil Tkachev,4,6,1,0,0,0,4,0,STRP-64,1,0,1,0,1,0,failure,failure,1,327,1,STRP-64 Update styles check CI/CD
+stripe-wallet,ea975cad878f,2025-11-07,Daniil Tkachev,1,0,1,0,0,0,1,0,STRP-64,1,0,1,0,1,0,failure,failure,1,335,1,STRP-64 Update styles check CI/CD
+stripe-wallet,ddc752c8bf8e,2025-11-07,Daniil Tkachev,2,3,2,0,1,0,1,0,STRP-64,1,0,1,0,1,0,failure,failure,1,326,1,STRP-64 Update styles check CI/CD
+stripe-wallet,0dac8752f466,2025-11-07,Daniil Tkachev,1,1,1,0,0,0,1,0,STRP-64,1,0,0,1,0,0,cancelled,cancelled,1,78,1,STRP-64 Update styles check CI/CD
+stripe-wallet,96759f502a4a,2025-11-07,Daniil Tkachev,65,16,2,0,14,0,51,0,STRP-64,1,0,0,1,0,0,cancelled,cancelled,1,172,1,STRP-64 Update styles check CI/CD
+stripe-wallet,cd92f5b75393,2025-11-07,Daniil Tkachev,1,3,1,0,0,0,1,0,STRP-64,2,2,0,0,0,1,success,success,1,661,1,STRP-64 Update styles check CI/CD
+stripe-wallet,d9e9d968f607,2025-11-07,Bartosz Sosnowski,539,6,9,318,0,0,0,0,STRP-54,1,0,1,0,1,0,failure,failure,1,337,1,STRP-54 Configuration - tokens fetch
+stripe-wallet,6bb523458c5f,2025-11-07,Daniil Tkachev,444,0,2,0,175,269,0,0,STRP-64,3,3,0,0,0,1,success,success,1,1749,2,STRP-64 Update Stripe adapter SDK tests
+stripe-wallet,95a0c421e126,2025-11-11,Bartosz Sosnowski,0,0,0,0,0,0,0,0,STRP-54,1,0,1,0,1,0,failure,failure,1,759,1,Merge remote-tracking branch 'origin/b-7.4.x-STRP-54' into b-7.4.x-STRP-54
+stripe-wallet,7129d568f01c,2025-11-11,Bartosz Sosnowski,96,48,10,47,44,0,0,0,STRP-54,1,0,0,1,0,0,cancelled,cancelled,1,306,1,STRP-54 Refactor
+stripe-wallet,ee0e7b7b815c,2025-11-11,Bartosz Sosnowski,207,0,1,0,207,0,0,0,STRP-54,1,0,1,0,1,0,failure,failure,1,730,1,STRP-54 Stripe client factory test
+stripe-wallet,7aafc05b1484,2025-11-11,Bartosz Sosnowski,17,9,1,0,17,0,0,0,STRP-54,1,0,1,0,1,0,failure,failure,1,747,1,STRP-54 corrected test
+stripe-wallet,cca80a2f833b,2025-11-11,Bartosz Sosnowski,2,2,2,2,0,0,0,0,STRP-54,1,0,1,0,1,0,failure,failure,1,739,1,STRP-54 CS fix
+stripe-wallet,764366ed7741,2025-11-11,Bartosz Sosnowski,2,2,2,1,0,0,0,0,STRP-54,2,1,1,0,1,0,failure,success,1,1510,1,STRP-54 Changed config class namespace
+stripe-wallet,5d4153fb0b34,2025-11-11,Bartek Sosnowski,0,0,0,0,0,0,0,0,STRP-54,1,1,0,0,0,1,success,success,1,754,1,Merge pull request #4 from OXID-eSales/b-7.4.x-STRP-54
+stripe-wallet,c3ab54741f9b,2025-11-11,Bartosz Sosnowski,96,50,4,0,21,75,0,0,STRP-54,1,1,0,0,0,1,success,success,1,777,1,STRP-54 minor updates
+stripe-wallet,c11ad7f09728,2025-11-12,Daniil Tkachev,3,1,2,0,1,0,2,0,STRP-66,1,0,1,0,1,0,failure,failure,1,762,1,STRP-66 Paymentwatch implementation
+stripe-wallet,10d77ae53b58,2025-11-12,Daniil Tkachev,0,1,1,0,0,0,0,0,STRP-66,1,0,1,0,1,0,failure,failure,1,749,1,STRP-66 Paymentwatch implementation
+stripe-wallet,c0eebb94070c,2025-11-12,Daniil Tkachev,4,3,2,0,0,0,4,0,STRP-66,1,0,1,0,1,0,failure,failure,1,763,1,STRP-66 Paymentwatch implementation
+stripe-wallet,53e5de807d12,2025-11-12,Daniil Tkachev,36,10,3,10,4,22,0,0,STRP-66,3,3,0,0,0,1,success,success,1,1581,2,STRP-66 Paymentwatch implementation
+stripe-wallet,0b0fc0fa7c12,2025-11-19,Daniil Tkachev,12291,38,60,1367,1840,8478,27,0,STRP-67,1,0,1,0,1,0,failure,failure,1,901,1,STRP-67 Order details and refund in admin
+stripe-wallet,c55614439e94,2025-11-26,Daniil Tkachev,23,0,1,0,0,0,0,0,,1,1,0,0,0,1,success,success,1,763,1,update dev readme
+stripe-wallet,cc9048120f99,2025-11-26,Daniil Tkachev,11,309,9,5,2,0,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,902,1,STRP-67 Fix styles
+stripe-wallet,21cf1374d3d6,2025-11-26,Daniil Tkachev,1,1,1,0,0,0,1,0,STRP-67,1,0,1,0,1,0,failure,failure,1,909,1,STRP-67  Update install script
+stripe-wallet,0c47cca072dd,2025-11-26,Daniil Tkachev,1,1,1,1,0,0,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,915,1,STRP-67 OrderController and EventSystem integration
+stripe-wallet,95afea68f19d,2025-11-26,Daniil Tkachev,84,24,7,47,31,0,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,908,1,STRP-67 Controller refactor
+stripe-wallet,c40b93bf1d4b,2025-11-26,Daniil Tkachev,190,5,3,1,7,182,0,0,STRP-67,1,0,0,1,0,0,cancelled,cancelled,1,707,1,STRP-67 Add e2e integration test for the Order State Machine
+stripe-wallet,dbe8b3850546,2025-11-26,Daniil Tkachev,778,0,1,0,778,0,0,0,STRP-67,1,0,0,1,0,0,cancelled,cancelled,1,659,1,STRP-67 Add e2e integration test for the Order State Machine
+stripe-wallet,323ecb88e355,2025-11-26,Daniil Tkachev,400,341,2,0,320,80,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,907,1,STRP-67 Add e2e integration test for the Order State Machine
+stripe-wallet,00fad17372b3,2025-11-26,Daniil Tkachev,1118,14,7,8,938,156,16,0,STRP-67,1,0,1,0,1,0,failure,failure,1,894,1,STRP-67 Add full data flow integration tests
+stripe-wallet,7e9e0858dfe1,2025-11-26,Daniil Tkachev,981,0,2,0,770,211,0,0,STRP-67,1,1,0,0,0,1,success,success,1,881,1,STRP-67 Add Controller-EventSystem integration test
+stripe-wallet,f0a780771866,2025-11-26,Daniil Tkachev,218,0,1,0,0,218,0,0,STRP-67,1,1,0,0,0,1,success,success,1,898,1,STRP-67 Add Controller-EventSystem integration docs
+stripe-wallet,c37df187377c,2025-11-27,Daniil Tkachev,82,33,1,0,0,0,0,0,STRP-67,1,1,0,0,0,1,success,success,1,938,1,STRP-67 Admin view order details mocked
+stripe-wallet,1ee5263a2c7d,2025-11-27,Bartosz Sosnowski,55,39,2,55,0,0,0,0,,1,0,1,0,1,0,failure,failure,1,5,1,custom id splitted to singular meta entries
+stripe-wallet,056fd016ed1a,2025-11-28,Daniil Tkachev,10493,1464,78,2455,3050,4946,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,974,1,STRP-67 Shop controllers and event system integration
+stripe-wallet,8de1b61440b4,2025-11-28,Daniil Tkachev,732,0,1,0,0,732,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,882,1,STRP-67 Architecture review
+stripe-wallet,f7a976b7cb65,2025-11-28,Daniil Tkachev,2098,31,18,1,23,2073,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,896,1,STRP-67 Fix metadata.php controller registration
+stripe-wallet,2875e8858250,2025-12-01,Daniil Tkachev,8,12,5,8,0,0,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,909,1,STRP-67 Refine the code styles
+stripe-wallet,460ed7dcd161,2025-12-01,Daniil Tkachev,459,16,9,225,184,0,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,1108,1,STRP-67 Upadate SDK Key delivery
+stripe-wallet,dda90e30528e,2025-12-01,Daniil Tkachev,1272,3,9,78,462,732,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,887,1,STRP-67 Fix StripeConnect
+stripe-wallet,839ce4a98490,2025-12-01,Daniil Tkachev,766,151414,126,256,39,429,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,928,1,STRP-67 Fix order creation after redirect
+stripe-wallet,209a0fb34283,2025-12-01,Daniil Tkachev,679,30,17,214,82,0,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,905,1,STRP-67 Fix order creation after redirect
+stripe-wallet,87821df92982,2025-12-01,Daniil Tkachev,1505,38,11,112,946,447,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,964,1,STRP-67 Fix order creation after redirect
+stripe-wallet,6e253a499b7c,2025-12-01,Daniil Tkachev,3025,227,33,34,16,2902,73,0,STRP-67,1,0,1,0,1,0,failure,failure,1,889,1,STRP-67 Architecture review and style check
+stripe-wallet,ea6350dcad0a,2025-12-01,Daniil Tkachev,351,0,1,0,0,351,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,933,1,STRP-67 Status fixation
+stripe-wallet,7540a6f20227,2025-12-01,Daniil Tkachev,295,0,1,0,0,295,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,903,1,STRP-67 Status fixation
+stripe-wallet,0d3f101802fa,2025-12-02,Daniil Tkachev,9788,1231,50,1228,3818,4701,3,0,STRP-67,1,0,1,0,1,0,failure,failure,1,868,1,STRP-67 Return url security validation
+stripe-wallet,17f55892b838,2025-12-02,Daniil Tkachev,384,26,10,0,0,190,0,0,STRP-67,1,0,1,0,1,0,failure,failure,1,947,1,STRP-67 Order creation fixed
+stripe-wallet,d2b216302e0c,2025-12-02,Daniil Tkachev,5288,315,25,838,940,3367,0,0,STRP-69,1,0,1,0,1,0,failure,failure,1,884,1,STRP-69 Admin order details refund view works
+stripe-wallet,9aa74fe0e9da,2025-12-02,Daniil Tkachev,170,43,4,149,19,0,0,0,STRP-69,1,0,1,0,1,0,failure,failure,1,908,1,STRP-69 Admin order details refund view works
+stripe-wallet,42989e467302,2025-12-02,Daniil Tkachev,118,39,1,0,0,118,0,0,STRP-69,1,0,1,0,1,0,failure,failure,1,885,1,STRP-69 Admin order details refund -- report
+stripe-wallet,7b7ebaf1eee2,2025-12-02,Daniil Tkachev,937,0,4,0,0,937,0,0,STRP-69,1,0,1,0,1,0,failure,failure,1,926,1,STRP-69 Admin order details refund -- update docs visuals
+stripe-wallet,2f7f749ef80b,2025-12-02,Daniil Tkachev,9,0,9,0,0,9,0,0,STRP-69,1,0,1,0,1,0,failure,failure,1,923,1,STRP-69 Admin order details refund -- update docs visuals [SVG]
+stripe-wallet,183a9a2be428,2025-12-02,Daniil Tkachev,157,0,1,0,0,157,0,0,STRP-69,1,0,1,0,1,0,failure,failure,1,942,1,STRP-69 Add refund flow
+stripe-wallet,65e45925149e,2025-12-02,Daniil Tkachev,3,14,9,3,0,0,0,0,STRP-69,1,1,0,0,0,1,success,success,1,905,1,STRP-69 Style fix
+stripe-wallet,9387556176ae,2025-12-03,Daniil Tkachev,6973,0,29,0,3152,3821,0,0,STRP-69,1,1,0,0,0,1,success,success,1,922,1,STRP-69 Add Webhook and e2e Playwright scaffold
+stripe-wallet,a3dddc832f6b,2025-12-03,Daniil Tkachev,2142,799,24,192,1452,498,0,0,STRP-69,2,0,2,0,1,0,failure,failure,1,1927,1,STRP-69 Add Webhook and e2e Playwright scaffold
+stripe-wallet,b657aab819e0,2025-12-03,Daniil Tkachev,1234,265,10,8,28,1190,0,0,STRP-69,1,1,0,0,0,1,success,success,1,916,1,STRP-69 Admin refund update and e2e tests
+stripe-wallet,859513b7b97b,2025-12-03,Daniil Tkachev,627,238,193,22,155,438,0,0,STRP-69,1,0,0,1,0,0,cancelled,cancelled,1,238,1,STRP-69 Update docs and core event handling
+stripe-wallet,6a062a96fb7f,2025-12-03,Daniil Tkachev,1,2,1,0,0,0,1,0,STRP-69,2,2,0,0,0,1,success,success,1,1828,1,STRP-69 Run migrations test on GHA
+stripe-wallet,9d370ed256f5,2025-12-05,Mario Lorenz,32,11,1,32,0,0,0,0,,1,1,0,0,0,1,success,success,1,925,1,use oxResetFileCache for cache clean & QueryBuilder
+stripe-wallet,6a7f063399c0,2025-12-05,Daniil Tkachev,0,3,3,0,0,0,0,0,STRP-70,1,1,0,0,0,1,success,success,1,736,1,STRP-70 Webhook reconciliation tests
+stripe-wallet,0be0fe64e8f9,2025-12-08,Daniil Tkachev,2881,52,22,548,722,1585,0,0,STRP-70,2,1,1,0,1,0,failure,success,1,964,2,STRP-70 Webhook contract fullfillment and paydate fix
+stripe-wallet,b895358fdc3c,2025-12-08,dependabot[bot],2,2,1,0,0,0,2,0,,2,0,2,0,1,0,failure,failure,1,1177,1,Bump actions/checkout from 5 to 6
+stripe-wallet,6affdd5ceec9,2025-12-09,Daniil Tkachev,5710,0,21,0,0,5710,0,0,STRP-75,1,1,0,0,0,1,success,success,1,1000,1,STRP-75 Code review docs
+stripe-wallet,21f5adb90ab5,2025-12-09,Daniil Tkachev,2941,594,37,874,1230,781,0,0,STRP-75,1,0,1,0,1,0,failure,failure,1,708,1,STRP-75 Refactor contract fullfillment
+stripe-wallet,fe607c289924,2025-12-09,Daniil Tkachev,460,535,5,0,86,374,0,0,STRP-75,1,0,1,0,1,0,failure,failure,1,779,1,STRP-75 Refactor contract fullfillment tests
+stripe-wallet,172479b5654b,2025-12-09,Daniil Tkachev,2,1,1,0,0,0,2,0,STRP-75,1,1,0,0,0,1,success,success,1,725,1,STRP-75 Exclude webhook e2e tests on gha
+stripe-wallet,06db5809b734,2025-12-09,Daniil Tkachev,5447,1647,46,1903,2715,751,0,0,STRP-75,1,1,0,0,0,1,success,success,1,720,1,STRP-75 Refactor 'fatty' event handlers
+stripe-wallet,26c50de3e101,2025-12-15,Daniil Tkachev,3831,28,38,5,4,3781,0,0,STRP-75,1,1,0,0,0,1,success,success,1,793,1,STRP-75 Update docs and refine the code
+stripe-wallet,39f2273cab40,2025-12-15,Daniil Tkachev,0,0,3,0,0,0,0,0,STRP-75,3,3,0,0,0,1,success,success,1,1552,2,STRP-75 Update docs and refine the code
+stripe-wallet,e84d676cc7b6,2025-12-15,dependabot[bot],3,3,1,0,0,0,3,0,,2,2,0,0,0,1,success,success,1,896,1,Bump actions/upload-artifact from 4 to 6
+stripe-wallet,e822700a639e,2025-12-15,dependabot[bot],3,3,1,0,0,0,3,0,,2,2,0,0,0,1,success,success,1,906,1,Bump actions/cache from 4 to 5
+stripe-wallet,1e32d3fb8e8a,2025-12-16,Daniil Tkachev,14513,125,98,2024,3406,8665,0,0,STRP-75,4,4,0,0,0,1,success,success,1,1583,3,STRP-75 Auth - capture later functionality
+stripe-wallet,6c1db2817d2c,2025-12-18,Daniil Tkachev,1871,23,7,0,464,254,0,0,,1,1,0,0,0,1,success,success,1,827,1,add infections tests
+stripe-wallet,aa0be4db8d19,2025-12-29,Daniil Tkachev,1,5031,34,0,0,0,0,0,STRP-76,6,6,0,0,0,1,success,success,1,1616,5,STRP-76 Extract Shop-Watch to a separate module
+stripe-wallet,3845d89e377c,2026-01-09,Daniil Tkachev,363,169,17,38,5,316,4,0,STRP-74,1,1,0,0,0,1,success,success,1,555,1,STRP-74 Cleanup the code
+stripe-wallet,e9d04292b32e,2026-01-13,Daniil Tkachev,2842,149,46,563,990,1270,0,0,STRP-74,2,2,0,0,0,1,success,success,1,1115,1,STRP-74 Create early order with the contract
+stripe-wallet,d481e90d2d0c,2026-01-15,Daniil Tkachev,711,0,4,0,0,701,0,0,STRP-78,1,0,1,0,1,0,failure,failure,1,93,1,STRP-78 Extract paymenmt component
+stripe-wallet,d7b9510a8ab1,2026-01-15,Daniil Tkachev,271,11660,160,0,0,270,0,0,STRP-78,1,0,1,0,1,0,failure,failure,1,90,1,STRP-78 Extract paymenmt component
+stripe-wallet,62c6df0a9c1f,2026-01-15,Daniil Tkachev,36,1,3,0,0,10,26,0,STRP-78,1,0,1,0,1,0,failure,failure,1,74,1,STRP-78 Extract paymenmt component
+stripe-wallet,5971b139b4f8,2026-01-15,Daniil Tkachev,2,2,1,0,0,0,2,0,STRP-78,1,0,1,0,1,0,failure,failure,1,71,1,STRP-78 Extract paymenmt component
+stripe-wallet,e42c6f34b564,2026-01-15,Daniil Tkachev,135,31,2,0,0,121,14,0,STRP-78,1,0,1,0,1,0,failure,failure,1,73,1,STRP-78 Extract paymenmt component
+stripe-wallet,73b11c259ff7,2026-01-15,Daniil Tkachev,27,19,2,0,0,12,15,0,STRP-78,1,0,1,0,1,0,failure,failure,1,2253,1,STRP-78 Extract paymenmt component
+stripe-wallet,0c419c738679,2026-01-15,Daniil Tkachev,2,2,1,0,0,0,2,0,STRP-78,1,0,1,0,1,0,failure,failure,2,283,1,STRP-78 Extract paymenmt component
+stripe-wallet,7b44c7892307,2026-01-15,Daniil Tkachev,2,2,1,0,0,0,2,0,STRP-78,1,0,1,0,1,0,failure,failure,1,271,1,STRP-78 Extract paymenmt component
+stripe-wallet,d6c65b112536,2026-01-15,Daniil Tkachev,1,1,1,0,0,0,1,0,STRP-78,1,0,1,0,1,0,failure,failure,1,261,1,STRP-78 Extract paymenmt component
+stripe-wallet,f6e550883375,2026-01-15,Daniil Tkachev,13,2,1,0,0,0,13,0,STRP-78,1,0,1,0,1,0,failure,failure,1,298,1,STRP-78 Extract paymenmt component
+stripe-wallet,ada3a7cfb039,2026-01-15,Daniil Tkachev,8,1,1,0,0,0,8,0,STRP-78,1,0,1,0,1,0,failure,failure,1,532,1,STRP-78 Extract paymenmt component
+stripe-wallet,e6a91ee1c821,2026-01-15,Daniil Tkachev,468,20540,199,183,191,0,0,0,STRP-78,1,0,1,0,1,0,failure,failure,1,528,1,STRP-78 Extract paymenmt component
+stripe-wallet,b6cc3960b001,2026-01-15,Daniil Tkachev,6,6,4,4,2,0,0,0,STRP-78,1,0,1,0,1,0,failure,failure,2,27,1,STRP-78 Extract paymenmt component
+stripe-wallet,24fb82ec2586,2026-01-16,Daniil Tkachev,4,6,1,0,0,0,4,0,STRP-78,1,0,1,0,1,0,failure,failure,1,549,1,STRP-78 Extract paymenmt component
+stripe-wallet,2ea27c99e5b0,2026-01-16,Daniil Tkachev,11,3,3,0,9,0,2,0,STRP-78,1,0,1,0,1,0,failure,failure,1,531,1,STRP-78 Extract paymenmt component
+stripe-wallet,6ade5aafdd47,2026-01-16,Daniil Tkachev,682,530,7,48,0,215,18,0,STRP-78,1,0,1,0,1,0,failure,failure,1,532,1,STRP-78 Extract paymenmt component
+stripe-wallet,c87d51d9f2ff,2026-01-16,Daniil Tkachev,2347,2804,239,565,413,1252,0,0,STRP-78,1,0,1,0,1,0,failure,failure,1,81,1,STRP-78 Extract paymenmt component
+stripe-wallet,e72902ca03d0,2026-01-16,Daniil Tkachev,1,2658,17,0,0,0,0,0,STRP-78,1,0,1,0,1,0,failure,failure,1,94,1,STRP-78 Extract paymenmt component
+stripe-wallet,eefa24eb9195,2026-01-16,Daniil Tkachev,193,469,40,17,42,101,5,0,STRP-78,1,0,1,0,1,0,failure,failure,1,106,1,STRP-78 Extract paymenmt component
+stripe-wallet,fd72673b4e0e,2026-01-16,Daniil Tkachev,0,4,1,0,0,0,0,0,STRP-78,1,0,1,0,1,0,failure,failure,1,95,1,STRP-78 Extract paymenmt component
+stripe-wallet,e68528ea0bb2,2026-01-16,Daniil Tkachev,0,4,1,0,0,0,0,0,STRP-78,1,0,0,1,0,0,cancelled,cancelled,1,452,1,STRP-78 Extract paymenmt component
+stripe-wallet,320e16e364dc,2026-01-16,Daniil Tkachev,42,2,1,0,0,0,42,0,STRP-78,1,1,0,0,0,1,success,success,1,570,1,STRP-78 Extract paymenmt component
+stripe-wallet,abbfc674eb18,2026-01-16,Daniil Tkachev,27,16,9,17,0,0,4,0,STRP-78,1,0,0,1,0,0,cancelled,cancelled,1,294,1,STRP-78 Extract paymenmt component
+stripe-wallet,3a79386f4b39,2026-01-16,Daniil Tkachev,158,0,1,0,0,0,158,0,STRP-78,1,0,0,1,0,0,cancelled,cancelled,1,79,1,STRP-78 Extract paymenmt component
+stripe-wallet,933fe21fab46,2026-01-16,Daniil Tkachev,1,2,1,0,0,0,1,0,STRP-78,1,1,0,0,0,1,success,success,1,625,1,STRP-78 Extract paymenmt component
+stripe-wallet,6b3982c3594f,2026-01-16,Daniil Tkachev,139,0,2,0,0,139,0,0,STRP-78,2,2,0,0,0,1,success,success,1,1204,1,STRP-78 Extract paymenmt component
+stripe-wallet,e7ccdc0d7f8b,2026-01-19,Daniil Tkachev,14,42,2,0,0,0,2,0,,2,2,0,0,0,1,success,success,1,609,2,update db migration in CI/CD
+stripe-wallet,ed51ad4ec706,2026-01-20,Daniil Tkachev,7905,1433,54,981,1373,5411,3,0,STRP-71,2,1,1,0,1,0,success,failure,1,765,1,STRP-71 Code post-split cleanup
+stripe-wallet,45f1b9d96232,2026-01-21,Daniil Tkachev,1,1,1,0,0,0,1,0,,2,2,0,0,0,1,success,success,1,751,2,update CI/CD
+stripe-wallet,7aa64cbaeeb7,2026-01-23,Daniil Tkachev,5913,1061,34,935,1116,3798,0,0,,1,1,0,0,0,1,success,success,1,605,1,"clean up code style, handlers and services"
+stripe-wallet,1746bf7c4c7b,2026-01-23,Daniil Tkachev,280,137,7,0,15,265,0,0,,1,1,0,0,0,1,success,success,1,618,1,"clean up code style, handlers and services"
+stripe-wallet,19416693d03d,2026-01-26,Daniil Tkachev,3883,1176,47,517,193,3124,0,0,,1,1,0,0,0,1,success,success,1,562,1,clean up tests remove unused code
+stripe-wallet,041c75187dbf,2026-01-26,Daniil Tkachev,12,8,1,0,0,0,0,0,,2,2,0,0,0,1,success,success,1,1194,1,clean up tests remove unused code
+stripe-wallet,6c0b446625df,2026-01-27,Daniil Tkachev,3,0,1,0,0,0,3,0,,1,1,0,0,0,1,success,success,1,558,1,clean up tests remove unused code
+stripe-wallet,64f848cf9a79,2026-01-27,Daniil Tkachev,6,0,2,0,0,0,5,0,,1,1,0,0,0,1,success,success,1,593,1,clean up tests remove unused code
+stripe-wallet,34face0ab60b,2026-01-27,Daniil Tkachev,2,0,1,0,0,0,2,0,,2,2,0,0,0,1,success,success,1,1231,1,clean up tests remove unused code
+stripe-wallet,42c6ca0881af,2026-01-28,Daniil Tkachev,2258,6580,68,244,249,1741,0,0,STRP-79,1,1,0,0,0,1,success,success,1,623,1,STRP-79 Add stock restore after refund and cleanup
+stripe-wallet,994375987c22,2026-01-28,Daniil Tkachev,301,82,7,1,1,296,1,0,,2,2,0,0,0,1,success,success,1,1893,1,code cleanup
+stripe-wallet,5d6f6ae62702,2026-01-29,Daniil Tkachev,2036,3998,254,368,209,1389,3,0,STRP-81,1,1,0,0,0,1,success,success,1,581,1,STRP-81 Cleanup and API key fix
+stripe-wallet,06af2b48d7f6,2026-01-29,Daniil Tkachev,984,1845,645,0,0,984,0,0,,2,2,0,0,0,1,success,success,1,1242,1,Add merchant installation and CRM/ERP integration docs
+stripe-wallet,cd3429027ce0,2026-01-30,Daniil Tkachev,281,809,23,127,152,0,2,0,,1,0,0,1,0,0,cancelled,cancelled,1,424,1,update DTO file structure
+stripe-wallet,3e0555288bd1,2026-01-30,Daniil Tkachev,1363,1040,95,0,0,1363,0,0,,3,1,2,0,1,0,failure,success,3,261,2,update docs
+stripe-wallet,26dec40d8ff2,2026-02-02,Daniil Tkachev,9,2961,30,0,1,0,4,0,,1,1,0,0,0,1,success,success,1,745,1,add playwright as a submodule
+stripe-wallet,dc09b86b43ff,2026-02-02,Daniil Tkachev,6,4,2,0,0,0,0,0,,1,0,1,0,1,0,failure,failure,1,314,1,add playwright as a submodule
+stripe-wallet,2c42b456ac60,2026-02-02,Daniil Tkachev,4,6,2,0,0,0,3,0,STRP-84,1,0,1,0,1,0,failure,failure,1,86,1,STRP-84 App composer plugin for migrations
+stripe-wallet,4488617592a4,2026-02-03,Daniil Tkachev,2,1,1,0,0,0,0,0,,1,0,1,0,1,0,failure,failure,1,104,1,update gitignore
+stripe-wallet,2e413d1a3851,2026-02-03,Daniil Tkachev,2,0,1,0,0,0,2,0,,1,0,1,0,1,0,failure,failure,1,723,1,update CI/CD
+stripe-wallet,b9a63b66f541,2026-02-03,Daniil Tkachev,3,1,1,0,0,0,3,0,,1,1,0,0,0,1,success,success,1,706,1,update CI/CD migrations
+stripe-wallet,36ef594104d2,2026-02-03,Daniil Tkachev,6,2,2,0,0,0,2,0,,2,1,1,0,1,0,success,failure,1,1184,1,update CI/CD migrations
+stripe-wallet,c354877e51c9,2026-02-03,Daniil Tkachev,23,3,1,0,0,0,23,0,,1,0,1,0,1,0,failure,failure,2,90,1,update CI/CD migrations
+stripe-wallet,772ce7c6f769,2026-02-03,Daniil Tkachev,6,0,1,0,0,0,6,0,,2,2,0,0,0,1,success,success,1,817,1,update CI/CD migrations
+stripe-wallet,e7e9260e6cb1,2026-02-04,Daniil Tkachev,4802,2012,108,75,1,4694,0,0,STRP-85,1,0,1,0,1,0,failure,failure,1,404,1,STRP-85 Code cleanup and refactor
+stripe-wallet,6748de1a22b6,2026-02-04,Daniil Tkachev,4085,3,18,0,72,4013,0,0,STRP-85,1,1,0,0,0,1,success,success,1,424,1,STRP-85 Code cleanup and refactor
+stripe-wallet,0d90e5b6c8f0,2026-02-04,Daniil Tkachev,1,1,1,0,0,0,1,0,STRP-85,1,1,0,0,0,1,success,success,1,664,1,STRP-85 Code cleanup and refactor
+stripe-wallet,8e3358d2a720,2026-02-04,Daniil Tkachev,34,4,2,1,0,33,0,0,,1,1,0,0,0,1,success,success,1,649,1,fix tests
+stripe-wallet,776d76030436,2026-02-04,Daniil Tkachev,1,1,1,0,1,0,0,0,,1,1,0,0,0,1,success,success,1,651,1,add e2e suite architecture
+stripe-wallet,f1981ee42b5c,2026-02-05,Daniil Tkachev,1303,44,13,13,2,1274,0,0,STRP-86,1,1,0,0,0,1,success,success,1,661,1,STRP-86 Add API keys validation
+stripe-wallet,174963d7df39,2026-02-05,Daniil Tkachev,33,222,7,0,0,33,0,0,STRP-86,2,2,0,0,0,1,success,success,1,1306,1,STRP-86 Cleaup dead code
+stripe-wallet,93287b4910dd,2026-02-05,Daniil Tkachev,1032,0,5,0,0,1032,0,0,STRP-86,1,1,0,0,0,1,success,success,1,681,1,STRP-86 Cleaup dead code
+stripe-wallet,93f429835b36,2026-02-05,Daniil Tkachev,5,24,5,1,4,0,0,0,,1,1,0,0,0,1,success,success,1,696,1,code and tests cleanup
+stripe-wallet,868af2b42cb8,2026-02-05,Daniil Tkachev,747,6,3,0,0,747,0,0,,1,1,0,0,0,1,success,success,1,664,1,code and tests cleanup
+stripe-wallet,91667ad7dab5,2026-02-06,Daniil Tkachev,2977,85,16,492,1572,894,0,0,STRP-89,2,2,0,0,0,1,success,success,1,1505,1,STRP-89 Idempotency feature
+stripe-wallet,630de7929149,2026-02-06,Daniil Tkachev,2392,4802,56,760,425,1165,0,0,STRP-87,1,0,1,0,1,0,failure,failure,1,677,1,STRP-87 Transmit customer to provider
+stripe-wallet,2533717be646,2026-02-06,Daniil Tkachev,3632,4128,53,2163,943,501,2,0,,1,0,1,0,1,0,failure,failure,1,631,1,SOLIDifing
+stripe-wallet,7540c4824567,2026-02-09,Daniil Tkachev,0,1,1,0,0,0,0,0,STRP-87,1,1,0,0,0,1,success,success,1,680,1,STRP-87 clean code
+stripe-wallet,4058d528a3ff,2026-02-09,Daniil Tkachev,1474,0,4,0,0,1474,0,0,,3,3,0,0,0,1,success,success,1,711,3,add developer documentation
+stripe-wallet,2a374ca229c4,2026-02-09,Daniil Tkachev,8744,0,11,0,0,8744,0,0,STRP-88,1,1,0,0,0,1,success,success,1,692,1,STRP-88 Mcp/Acp development research
+stripe-wallet,40de9e2a4963,2026-02-11,Daniil Tkachev,6084,3,11,0,1,6079,0,0,STRP-88,1,1,0,0,0,1,success,success,1,647,1,STRP-88 ACP/UCP documentaiton
+stripe-wallet,23443060b707,2026-02-11,Daniil Tkachev,489,0,2,0,0,489,0,0,STRP-88,1,1,0,0,0,1,success,success,1,655,1,STRP-88 Add docs for complete E2E testing with LLM
+stripe-wallet,999f0ca58bdf,2026-02-12,Daniil Tkachev,3030,103,46,1263,1307,357,0,0,STRP-88,1,0,1,0,1,0,failure,failure,1,663,1,STRP-88 Add MCP/ACP/UCP support and tests
+stripe-wallet,b4acce0f4390,2026-02-13,Daniil Tkachev,17299,105,85,1300,8374,7460,0,0,STRP-88,1,0,1,0,1,0,failure,failure,1,667,1,STRP-88 More MCP
+stripe-wallet,29b487f922f7,2026-02-16,Daniil Tkachev,5822,773,36,895,2430,1894,545,0,STRP-88,1,0,1,0,1,0,failure,failure,1,663,1,"STRP-88 Added MCP GraphQL, e2e int.tests & a real LLM CLI buying agent"
+stripe-wallet,c60ad1265c55,2026-02-16,Daniil Tkachev,602,0,5,170,422,0,0,0,STRP-88,1,0,1,0,1,0,failure,failure,1,658,1,"STRP-88 Added MCP GraphQL, e2e int.tests & a real LLM CLI buying agent"
+stripe-wallet,16a23c708e65,2026-02-16,Daniil Tkachev,4,0,2,0,0,0,4,0,STRP-88,1,0,1,0,1,0,failure,failure,1,703,1,"STRP-88 Added MCP GraphQL, e2e int.tests & a real LLM CLI buying agent"
+stripe-wallet,1cdcf6905943,2026-02-17,Daniil Tkachev,996,13,7,210,0,786,0,0,STRP-88,1,0,1,0,1,0,failure,failure,1,679,1,STRP-88 MCP Can create orders
+stripe-wallet,dcdd181ccfe4,2026-02-18,Daniil Tkachev,954,100,19,228,0,720,0,0,STRP-88,1,0,1,0,1,0,failure,failure,1,657,1,STRP-88 MCP creates order as a gest
+stripe-wallet,c1fa5ee3129e,2026-02-18,Daniil Tkachev,1,1,1,0,0,0,1,0,STRP-88,1,0,1,0,1,0,failure,failure,1,89,1,STRP-88 MCP creates order as a gest - try with paycomp-branch
+stripe-wallet,286c3c67cf11,2026-02-18,Daniil Tkachev,1,1,1,0,0,0,1,0,STRP-88,1,0,1,0,1,0,failure,failure,1,628,1,STRP-88 MCP creates order as a gest - try with paycomp-branch
+stripe-wallet,3d1a7fdf937d,2026-02-18,Daniil Tkachev,361,131,3,0,361,0,0,0,STRP-88,1,1,0,0,0,1,success,success,1,623,1,STRP-88 MCP creates order as a gest - try with paycomp-branch
+stripe-wallet,ffbdfd43427b,2026-02-19,Daniil Tkachev,7066,175,422,0,6450,616,0,0,STRP-88,1,1,0,0,0,1,success,success,1,700,1,STRP-88 MCP creates order as a gest - try with paycomp-branch
+stripe-wallet,02be67d74051,2026-02-20,Daniil Tkachev,165,124,4,15,150,0,0,0,STRP-99,1,0,1,0,1,0,failure,failure,1,645,1,"STRP-99 MCP, code style and PCI complience"
+stripe-wallet,722bd14de7dd,2026-02-23,Daniil Tkachev,2882,21,23,131,530,2197,0,0,STRP-99,1,0,1,0,1,0,failure,failure,1,682,1,STRP-99 Code style and complience
+stripe-wallet,a4f82ae55b7c,2026-02-23,Daniil Tkachev,1,1,1,0,0,0,1,0,STRP-99,1,1,0,0,0,1,success,success,1,666,1,STRP-99 Code style and complience
+stripe-wallet,56ed8024983d,2026-02-23,Daniil Tkachev,21,19,1,0,0,21,0,0,STRP-99,2,2,0,0,0,1,success,success,1,714,2,STRP-99 Code style and complience
+stripe-wallet,f9462714a021,2026-02-23,Daniil Tkachev,9677,27,55,464,1618,7522,1,0,STRP-102,2,2,0,0,0,1,success,success,1,1292,1,STRP-102 Data access management measures
+stripe-wallet,f0d8c3239575,2026-02-25,Daniil Tkachev,2969,2959,3,2,0,0,0,0,STRP-91,2,2,0,0,0,1,success,success,1,1327,1,STRP-91 Upgrade Stripe SDK 18->19.3
+stripe-wallet,8fda499f4a5f,2026-02-25,Daniil Tkachev,60,130,6,0,0,0,0,0,,2,2,0,0,0,1,success,success,1,1287,1,hot fix
+stripe-wallet,08f507b83237,2026-02-26,Daniil Tkachev,292,2,6,18,34,240,0,0,STRP-101,2,2,0,0,0,1,success,success,1,1320,1,STRP-101 Refund order recalculation
+stripe-wallet,d63df3748fc1,2026-02-27,Mario Lorenz,106,1,2,0,0,0,0,0,,1,1,0,0,0,1,success,success,1,646,1,add license
+stripe-wallet,6d38650ee271,2026-02-27,Daniil Tkachev,1775,496,18,286,671,818,0,0,STRP-103,1,1,0,0,0,1,success,success,1,637,1,STRP-103 Payment intentions to include discounts
+stripe-wallet,ec0a9ec196ea,2026-03-02,Daniil Tkachev,0,0,0,0,0,0,0,0,STRP-103,2,2,0,0,0,1,success,success,1,680,2,Merge branch 'b-7.4.x-discounts-in-payment-intentions-STRP-103' into b-7.4.x
+stripe-wallet,4fd8529357e4,2026-03-02,Daniil Tkachev,3082,18363,475,254,1809,1018,1,0,STRP-100,2,2,0,0,0,1,success,success,1,1288,1,STRP-100 Order cancellation on back or cancel
+stripe-wallet,d06372d80b5b,2026-03-03,dependabot[bot],3,3,1,0,0,0,3,0,,1,0,1,0,1,0,failure,failure,1,64,1,Bump actions/upload-artifact from 4 to 7
+stripe-wallet,f1d0bf87555c,2026-03-09,Bartosz Sosnowski,191,152,8,135,0,0,0,0,,1,0,1,0,1,0,failure,failure,1,440,1,up
+stripe-wallet,dd1d267430bf,2026-03-11,Bartosz Sosnowski,22,4,4,21,1,0,0,0,,1,0,1,0,1,0,failure,failure,1,664,1,up
+stripe-wallet,2ecc517ef4ac,2026-03-17,Mario Lorenz,1,1,1,0,0,0,0,0,,1,1,0,0,0,1,success,success,1,652,1,change version number
+stripe-wallet,a5a2510d9bf9,2026-03-19,Mario Lorenz,9,0,1,0,0,0,0,0,,2,2,0,0,0,1,success,success,1,1341,1,add CHANGELOG.md
+stripe-wallet,96106a9623a9,2026-03-23,Daniil Tkachev,115,3,4,114,0,0,1,0,STRP-105,1,1,0,0,0,1,success,success,1,682,1,STRP-105 Release coupon on cancelled payment
+stripe-wallet,ae5e04f3e44f,2026-03-23,Daniil Tkachev,0,0,0,0,0,0,0,0,STRP-105,1,1,0,0,0,1,success,success,1,771,1,Merge branch 'b-7.4.x-coupon-fail-STRP-105' into b-7.4.x
+stripe-wallet,7d6c24b57829,2026-03-24,Daniil Tkachev,490,2,6,3,179,289,0,0,STRP-105,2,2,0,0,0,1,success,success,1,1311,1,STRP-105 Release coupon on cancelled payment
+stripe-wallet,72bab0d7326b,2026-03-24,Daniil Tkachev,3290,118,17,8,124,3157,0,0,STRP-109,2,2,0,0,0,1,success,success,1,1302,1,STRP-109 Code cleanup
+stripe-wallet,b4c7a5290094,2026-03-25,Daniil Tkachev,32,16,5,15,11,0,3,0,STRP-96,2,2,0,0,0,1,success,success,1,1254,1,STRP-96 Naming consistency
+stripe-wallet,72ca8a7dc471,2026-03-25,Daniil Tkachev,62,3,2,21,41,0,0,0,STRP-112,2,2,0,0,0,1,success,success,1,1309,1,STRP-112 Fix recurring customer email send
+stripe-wallet,14e304b2ecfe,2026-03-25,Daniil Tkachev,664,1168,69,0,649,0,11,0,STRP-110,1,1,0,0,0,1,success,success,1,1596,1,STRP-110 Add PHPUnit 12 support; drop PHPUnit 11
+stripe-wallet,a0132287bc9f,2026-03-27,Daniil Tkachev,95,0,1,0,0,0,95,0,,2,1,0,1,0,0,cancelled,success,1,6641,2,add playwright tests
+stripe-wallet,3dd0d9b7d713,2026-03-27,Daniil Tkachev,2,0,1,0,0,0,2,0,,2,1,0,1,0,0,cancelled,success,1,6829,2,update ci
+stripe-wallet,93eb981756fe,2026-03-27,Daniil Tkachev,2,2,1,0,0,0,2,0,,2,0,0,2,0,0,cancelled,cancelled,1,548,2,update ci
+stripe-wallet,e872953e9b6c,2026-03-27,Daniil Tkachev,4,1,1,0,0,0,4,0,,2,0,0,2,0,0,cancelled,cancelled,1,2778,2,update ci
+stripe-wallet,81543689dbd2,2026-03-31,Bartosz Sosnowski,4,1,1,4,0,0,0,0,,1,0,1,0,1,0,failure,failure,1,716,1,up
+stripe-wallet,cde7cf57e290,2026-03-31,Daniil Tkachev,226,190,6,15,0,0,0,0,,3,1,1,1,1,0,success,failure,1,1099,2,Stripe-OPC integration
+stripe-wallet,440c0a4ea547,2026-04-01,Daniil Tkachev,12,2,3,10,0,0,0,0,,1,1,0,0,0,1,success,success,1,628,1,Stripe-OPC integration
+stripe-wallet,fd795522924b,2026-04-01,Daniil Tkachev,1,1,1,0,0,0,1,0,,1,0,1,0,1,0,failure,failure,1,99,1,OPC-integration CI test temp
+stripe-wallet,4424d227d2de,2026-04-01,Daniil Tkachev,1,1,1,0,0,0,1,0,,1,1,0,0,0,1,success,success,1,629,1,OPC-integration CI test temp
+stripe-wallet,ab8a544423cd,2026-04-02,Daniil Tkachev,2203,0,16,335,295,1404,0,0,,2,0,2,0,1,0,failure,failure,1,663,2,OPC-integration
+stripe-wallet,006e4e3b269a,2026-04-02,Daniil Tkachev,2294,191,24,0,1167,834,293,0,STRP-111,2,1,1,0,1,0,success,failure,1,8422,2,STRP-111 Load tests init
+stripe-wallet,b7684c2c0a59,2026-04-07,Mario Lorenz,8,8,8,0,0,7,0,0,,2,0,2,0,1,0,failure,failure,1,9846,2,change LICENSE
+stripe-wallet,83c78d93f7a2,2026-04-08,Daniil Tkachev,25,21,1,0,0,0,0,0,STRP-118,3,2,1,0,1,0,success,success,1,10199,2,STRP-118 Stripe button exclusion on non-stripe methods
+stripe-wallet,95971ded345b,2026-04-08,Daniil Tkachev,867,9,12,26,641,193,0,0,STRP-118,2,1,0,1,0,0,success,cancelled,1,971,2,STRP-118 Manual capture order capture and refund fix
+stripe-wallet,8b961e2ae370,2026-04-08,Daniil Tkachev,2444,316,69,393,383,1181,0,0,STRP-122,3,1,2,0,1,0,success,failure,1,9132,2,STRP-122 Partial capture and refund
+stripe-wallet,3ff33c27bef3,2026-04-13,Bartosz Sosnowski,297,3,9,286,0,0,0,0,,3,0,3,0,1,0,failure,failure,1,1437,2,OPC support enhancement
+stripe-wallet,21899916c09f,2026-04-15,Daniil Tkachev,76,7,5,24,10,42,0,0,STRP-121,3,2,1,0,1,0,success,success,1,9436,2,STRP-121 Cancelled orders fix
+stripe-wallet,0eaeb011e842,2026-04-15,Daniil Tkachev,396,0,3,0,0,396,0,0,,2,1,1,0,1,0,failure,success,1,8609,2,docs update
+stripe-wallet,ac7e55907a71,2026-04-16,Daniil Tkachev,231,15,8,30,31,170,0,0,STRP-120,3,2,1,0,1,0,success,failure,1,1952,2,STRP-120 Lang and shp params in return and cancel urls
+stripe-wallet,9694481449ea,2026-04-16,Daniil Tkachev,356,47,8,64,97,191,0,0,STRP-116,3,2,1,0,1,0,success,success,1,1557,2,STRP-116 Special characters filter
+stripe-wallet,5685c0422ea2,2026-04-16,Daniil Tkachev,359,0,6,0,108,216,0,0,STRP-118,3,2,1,0,1,0,success,failure,1,1871,2,STRP-118 Security review
+stripe-wallet,9d4c3b7b266b,2026-04-16,Daniil Tkachev,277,0,1,0,0,277,0,0,STRP-118,2,1,0,1,0,0,cancelled,success,2,3724,2,STRP-118 Security report on OXID core
+stripe-wallet,47c73723a476,2026-04-16,Daniil Tkachev,0,6,1,0,0,0,0,0,,2,0,1,1,1,0,cancelled,failure,2,1213,2,playwright-CI update
+stripe-wallet,2f70ae780156,2026-04-16,Daniil Tkachev,6,0,1,0,0,0,6,0,,2,0,1,1,1,0,failure,cancelled,1,10132,2,playwright-CI update
+stripe-wallet,aa310964c5b3,2026-04-16,Daniil Tkachev,21,3,1,0,0,0,21,0,,2,0,1,1,1,0,cancelled,failure,1,10383,2,playwright-CI update
+stripe-wallet,a0f17254931a,2026-04-17,Daniil Tkachev,0,7,3,0,0,0,0,0,STRP-114,2,1,1,0,1,0,success,failure,1,10175,2,STRP-114 Remove legacy notice block in admin stripe
+stripe-wallet,945f2363e0c7,2026-04-17,Daniil Tkachev,249,118,10,59,71,0,0,0,STRP-124,3,2,1,0,1,0,success,failure,1,8642,2,STRP-124-125 Stripe order tab refund capture fixes
+stripe-wallet,621b5e4e9261,2026-04-21,Daniil Tkachev,632,2188,17,239,161,186,0,0,,2,0,1,1,1,0,failure,cancelled,1,1341,2,event system unification
+stripe-wallet,8bf1796fdbbe,2026-04-21,Daniil Tkachev,1,1,1,0,0,0,1,0,,2,1,0,1,0,0,success,cancelled,1,975,2,event system unification
+stripe-wallet,ee8462fca039,2026-04-22,Daniil Tkachev,13,0,1,0,0,0,13,0,,1,1,0,0,0,1,success,success,1,676,1,event system unification
+stripe-wallet,1b7eb8da4023,2026-04-22,Daniil Tkachev,63,77,4,22,22,0,0,0,,2,1,1,0,1,0,failure,success,1,8188,2,event system unification
+stripe-wallet,7169fa694a83,2026-04-22,Daniil Tkachev,26,1,2,25,1,0,0,0,,2,1,1,0,1,0,failure,success,1,8249,2,event system unification
+stripe-wallet,a7196d796e2e,2026-04-22,Daniil Tkachev,1,1,1,0,0,0,1,0,,1,1,0,0,0,1,success,success,1,658,1,event system unification
+stripe-wallet,14c14fd4f1eb,2026-04-23,Daniil Tkachev,357,109,7,0,0,350,0,0,,3,2,1,0,1,0,success,success,1,10097,2,unification
+stripe-wallet,bdb458626f82,2026-04-23,Daniil Tkachev,1323,1528,24,325,202,680,0,0,,3,0,3,0,1,0,failure,failure,1,9460,2,unification
+stripe-wallet,5279bbd876e5,2026-05-04,dantweb,553,10,49,72,282,194,0,0,STRP-120,1,0,1,0,1,0,failure,failure,1,1528,1,STRP-120 Language switch in return/cancel URL
+stripe-wallet,f72c5853ac43,2026-05-05,Daniil Tkachev,1199,8,8,0,65,1064,69,0,,2,0,2,0,1,0,failure,failure,1,184,2,CI fix after unification
+stripe-wallet,320242fc934d,2026-05-05,Daniil Tkachev,1,1,1,0,0,0,1,0,,2,1,1,0,1,0,success,failure,1,786,2,CI fix
+stripe-wallet,0ac0075b87d7,2026-05-07,Daniil Tkachev,1,0,1,0,0,1,0,0,,3,2,1,0,1,0,success,failure,1,1335,2,agb button
+stripe-wallet,a97a38a92dae,2026-05-08,Daniil Tkachev,3047,757,161,263,300,2297,33,0,STRP-135,1,0,1,0,1,0,failure,failure,1,99,1,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,d2492fbb202c,2026-05-08,Daniil Tkachev,52,59,1,0,0,0,52,0,STRP-135,1,0,1,0,1,0,failure,failure,2,91,1,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,9ec5fb967213,2026-05-08,Daniil Tkachev,5,5,1,0,0,0,5,0,STRP-135,1,0,1,0,1,0,failure,failure,1,85,1,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,2644ff5f5253,2026-05-08,Daniil Tkachev,7,7,2,0,0,0,7,0,STRP-135,1,1,0,0,0,1,success,success,1,638,1,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,1f183d1a3380,2026-05-08,Daniil Tkachev,203,194,1,0,0,0,0,0,STRP-135,1,1,0,0,0,1,success,success,1,654,1,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,7b3249ebb5f0,2026-05-08,Daniil Tkachev,76,67,1,0,0,76,0,0,STRP-135,1,1,0,0,0,1,success,success,1,646,1,STRP-135 PaymentComponent -> PaymentBase namespace refactoring
+stripe-wallet,7213f43123e5,2026-05-13,Daniil Tkachev,15510,1,51,0,1,15489,0,0,STRP-135,1,1,0,0,0,1,success,success,1,650,1,STRP-135 Add docs
+stripe-wallet,0f4e4d2de0fd,2026-05-15,Daniil Tkachev,263,39,18,138,107,0,0,0,,3,0,3,0,1,0,failure,failure,2,273,2,external refund requests
+stripe-wallet,8854893ab00c,2026-05-18,Daniil Tkachev,216,0,2,76,140,0,0,1,,2,1,1,0,1,0,failure,success,1,691,2,STRP-AUTOCAP-REFUND: add missing StripePaymentCaptureStatusQuery class
+stripe-wallet,67661fb516c7,2026-05-18,Daniil Tkachev,1360,15,11,177,472,698,0,0,STRP-131,3,2,1,0,1,0,success,success,1,1382,2,STRP-131 Partial refund fix
+stripe-wallet,208d5bbc5b09,2026-05-18,Daniil Tkachev,2460,16,13,65,240,2093,0,0,STRP-134,3,0,3,0,1,0,failure,failure,1,1374,2,STRP-134 Slow loading on Payment tab
+payment-base,085362bcbdb4,2026-05-19,Daniil Tkachev,1220,1,7,0,124,965,0,0,STRP-134,1,0,1,0,1,0,failure,failure,1,390,1,STRP-134 Loading spinner and blur layer on the Payment tab
+stripe-wallet,8a5085d48c9b,2026-05-19,Daniil Tkachev,8,60,2,0,1,0,0,0,STRP-134,2,0,2,0,1,0,failure,failure,2,134,2,STRP-134 Loading spinner and blur layer on the Payment tab
+stripe-wallet,aec97ce3740a,2026-05-20,Daniil Tkachev,2,0,1,0,0,0,0,0,STRP-142,2,0,2,0,1,0,failure,failure,1,1354,2,STRP-142 Add dependancies.yaml
+payment-base,4a4e20897ba2,2026-05-21,Daniil Tkachev,162,30,2,30,132,0,0,0,,2,2,0,0,0,1,success,success,1,621,1,fixing integration_tests
+stripe-wallet,de398567712a,2026-05-21,Daniil Tkachev,695,7,8,0,1,688,6,0,,1,0,1,0,1,0,failure,failure,2,673,1,fixing ci
+stripe-wallet,25058041d85b,2026-05-21,Daniil Tkachev,57,2,2,2,0,55,0,0,,1,1,0,0,0,1,success,success,1,671,1,fixing ci
+stripe-wallet,3feb4d8df575,2026-05-21,Daniil Tkachev,23,6,1,0,0,0,23,0,,3,2,1,0,1,0,success,success,1,1354,2,fixing installation
+stripe-wallet,3a50c1c6a20d,2026-05-22,Daniil Tkachev,5431,1255,61,1184,1706,2267,73,0,STRP-144,3,2,1,0,1,0,success,failure,1,1481,2,STRP-144 Webhook registration
+payment-base,6d6223a905dc,2026-05-26,Daniil Tkachev,63,63,11,0,0,63,0,0,,1,1,0,0,0,1,success,success,1,357,1,docs update
+stripe-wallet,2ee1976e14d8,2026-05-26,Daniil Tkachev,751,25,7,0,0,505,0,0,STRP-146,1,1,0,0,0,1,success,success,1,695,1,STRP-146 Hidable API keys in admin module config
+stripe-wallet,43f74ff24795,2026-05-26,Daniil Tkachev,810,40,9,0,1,505,0,0,STRP-146,2,1,1,0,1,0,success,failure,1,704,2,STRP-146 Hidable API keys in admin module config
+stripe-wallet,691abfd13cf6,2026-05-27,dantweb,1,1,1,0,1,0,0,1,,2,1,1,0,1,0,success,failure,1,686,2,Update playwright submodule to current projects/Stripe tip
+stripe-wallet,dda2cb746c2e,2026-05-27,Daniil Tkachev,135,0,1,0,0,135,0,1,STRP-145,1,0,1,0,1,0,failure,failure,1,1218,1,STRP-145 Sprint 114.9 (report): completion report for config & session helper consolidation — refs code-review 114
+payment-base,d8709e981f1f,2026-05-28,Daniil Tkachev,68,0,4,12,56,0,0,1,STRP-145,2,2,0,0,0,1,success,success,1,694,1,STRP-145 Sprint 114.10a (currency-DTO): add optional currency to Capture/RefundPaymentRequest (additive)
+stripe-wallet,1ff2960c5671,2026-05-28,Daniil Tkachev,643,3,22,0,0,642,0,0,STRP-145,3,2,0,1,0,0,success,success,1,874,2,STRP-145 fix CI styles: remove blank line before class closing brace
+stripe-wallet,12cb786a5264,2026-05-29,Daniil Tkachev,12,1,3,0,0,0,0,0,STRP-145,3,1,2,0,1,0,success,failure,1,870,2,STRP-145 Code review
+payment-base,98d5d37f6ead,2026-05-29,Daniil Tkachev,3523,1,54,1842,1565,0,0,0,STRP-129,2,2,0,0,0,1,success,success,1,728,1,STRP-129 Add user input abstract validation mechanism
+stripe-wallet,13b81edf17a7,2026-05-29,Daniil Tkachev,4424,146,131,956,1202,1650,7,0,STRP-129,2,1,1,0,1,0,failure,success,1,431,2,STRP-129 Add user input abstract validation mechanism
+payment-base,361d9bc189c4,2026-06-02,Daniil Tkachev,131,43,46,110,6,0,0,0,,1,1,0,0,0,1,success,success,1,318,1,clean up classes
+payment-base,8fcf26ff26f6,2026-06-02,Daniil Tkachev,286,0,2,0,0,286,0,0,,1,1,0,0,0,1,success,success,1,338,1,add docs: validation system
+stripe-wallet,a4165cbe4d10,2026-06-03,Daniil Tkachev,54,8,4,33,0,0,0,0,STRP-129,2,1,1,0,1,0,failure,success,1,406,2,STRP-129 Add user input abstract validation mechanism
+stripe-wallet,a19aac081211,2026-06-03,Daniil Tkachev,0,3,1,0,0,0,0,0,,1,1,0,0,0,1,success,success,1,427,1,playwright runs on manual only
+stripe-wallet,1a6cc156da2e,2026-06-05,Daniil Tkachev,2825,31,30,518,1299,933,0,0,STRP-129,2,2,0,0,0,1,success,success,1,855,1,STRP-129 Add user input abstract validation mechanism
+payment-base,57736fd61e68,2026-06-08,Daniil Tkachev,9,0,1,0,0,0,0,0,,2,2,0,0,0,1,success,success,1,669,1,RC-1 release
+stripe-wallet,8292dc3d2190,2026-06-08,Daniil Tkachev,6,5,1,0,0,0,0,0,,1,1,0,0,0,1,success,success,1,417,1,emit an event with validation errors
+stripe-wallet,fcfed0edc03f,2026-06-08,Daniil Tkachev,476,15,10,0,1,371,0,0,STRP-138,1,1,0,0,0,1,success,success,1,432,1,STRP-138-139 Place order button
+stripe-wallet,9a2c0029270a,2026-06-08,Daniil Tkachev,21,3,1,0,0,0,21,0,,2,1,1,0,1,0,success,failure,1,463,2,external playwright CI run on trigger
+stripe-wallet,02a8bf48ae62,2026-06-08,Daniil Tkachev,10,1,1,0,0,0,10,0,,3,1,1,1,1,0,success,cancelled,1,2696,2,external playwright CI run on trigger
+stripe-wallet,dd021485dc33,2026-06-09,Daniil Tkachev,1857,0,17,0,1586,0,271,0,,9,3,5,1,1,0,success,failure,1,1184,3,Add locust load tests
+stripe-wallet,a1c85a41bcdd,2026-06-09,Daniil Tkachev,39,30,1,0,0,0,39,0,,1,1,0,0,0,1,success,success,1,403,1,Add locust load tests
+stripe-wallet,40ca5041bcc0,2026-06-09,Daniil Tkachev,3,1,1,0,3,0,0,1,,4,2,2,0,1,0,success,failure,1,1012,2,Fix Locust browse scenario firing zero requests
+stripe-wallet,b1e5a17cdbd3,2026-06-09,Bartosz Sosnowski,1,1,1,0,0,0,0,1,,1,1,0,0,0,1,success,success,1,475,1,chore(metadata): bump module version to 3.0.1
+stripe-wallet,ddc522327061,2026-06-09,Daniil Tkachev,25,0,1,0,0,0,25,1,,3,1,1,1,1,0,success,failure,1,568,2,Ensure shop php container is up before load-test checks
+stripe-wallet,3f92304f031d,2026-06-09,Bartosz Sosnowski,1,1,1,0,0,0,0,1,,2,2,0,0,0,1,success,success,1,842,1,chore(metadata): bump module version to 3.0.1
+stripe-wallet,18184926f7ff,2026-06-09,Daniil Tkachev,237,138,2,0,14,0,223,1,,3,2,1,0,1,0,success,failure,1,1023,2,Refactor Locust load test to run against an in-Action shop
+stripe-wallet,58daa17ab580,2026-06-09,Daniil Tkachev,24,10,1,0,0,0,24,1,,2,1,1,0,1,0,success,failure,1,699,2,Make Stripe test-mode config self-reporting and non-fatal
+stripe-wallet,8635f2a7d390,2026-06-09,Daniil Tkachev,5,3,1,0,0,0,5,1,,2,1,1,0,1,0,success,failure,1,609,2,Fix ModuleSettingBridge namespace + follow SEO redirect in reachability check
+stripe-wallet,bb37f8a0ebd6,2026-06-09,Daniil Tkachev,1,0,1,0,0,0,1,1,,2,1,1,0,1,0,success,failure,1,757,2,Point setup-python pip cache at requirements-chart.txt
+stripe-wallet,89b4b421284a,2026-06-09,Daniil Tkachev,16,1,2,0,3,0,13,1,,3,2,1,0,1,0,success,failure,1,1154,2,Stop gating on throughput floor; seed a real product anid for discovery
+stripe-wallet,5def23d24e6c,2026-06-10,Daniil Tkachev,46,28,1,0,0,0,46,0,,2,1,0,1,0,0,success,cancelled,1,1122,2,update CI
+stripe-wallet,34da98f36e23,2026-06-10,Daniil Tkachev,65,14,2,0,1,0,64,0,,3,1,2,0,1,0,success,failure,1,925,3,update CI locust
+stripe-wallet,290f97957f22,2026-06-10,Daniil Tkachev,1,0,1,0,0,0,1,0,,5,1,4,0,1,0,success,failure,1,1207,3,update CI playwright
+stripe-wallet,883fb3414348,2026-06-10,Daniil Tkachev,49,26,2,0,0,0,49,0,,4,1,3,0,1,0,success,failure,1,8692,4,locustests
+stripe-wallet,45ab8cc6c083,2026-06-10,Daniil Tkachev,8,2,1,0,8,0,0,0,,1,1,0,0,0,1,success,success,1,538,1,test CI
+stripe-wallet,7229dec06a5d,2026-06-10,Daniil Tkachev,26,6,2,10,16,0,0,0,STRP-149,3,2,1,0,1,0,success,failure,1,1167,2,STRP-149 Validation extended with unicode
+stripe-wallet,aefc04570ac4,2026-06-10,Daniil Tkachev,707,8,10,0,160,539,8,0,,5,2,3,0,1,0,success,failure,1,1296,3,load tests
+stripe-wallet,e759518c8341,2026-06-10,Daniil Tkachev,14,12,1,0,0,0,14,0,,2,1,1,0,1,0,success,failure,1,649,2,k6 tests
+stripe-wallet,72c11347b11f,2026-06-12,Daniil Tkachev,39,3,2,0,25,0,14,1,,2,1,1,0,1,0,success,failure,1,771,2,ci(load-test-locust): add OXID CE branch selector + order-execute coverage
+stripe-wallet,c1a02ffa277b,2026-06-12,Daniil Tkachev,1,1,1,0,0,0,1,0,,3,1,2,0,1,0,success,failure,1,2672,3,k6 tests
+stripe-wallet,c2d7c1fff855,2026-06-12,Daniil Tkachev,4,1,1,0,0,0,4,1,,7,1,6,0,1,0,success,failure,1,3489,2,ci(load-test-locust): pin PHP 8.3 for b-7.5.x shop branch
+stripe-wallet,eb3c243e2b97,2026-06-12,Daniil Tkachev,576,2,5,0,488,0,88,1,,6,1,5,0,1,0,success,failure,1,7180,4,ci(load-test-k6): produce statistics + capacity charts like the Locust run
+stripe-wallet,e9ecb501d353,2026-06-12,Daniil Tkachev,3,3,3,0,0,3,0,0,,9,2,5,2,1,0,success,failure,1,8448,3,load tests
+stripe-wallet,d93f8aba07af,2026-06-12,Daniil Tkachev,502,53,4,0,499,0,3,1,,9,3,5,1,1,0,success,success,1,14178,4,"ci(load-test-k6): add Web Vitals, saturation, per-scenario + threshold stats"
+stripe-wallet,8d62299dd667,2026-06-15,Daniil Tkachev,624,13,7,63,39,522,0,0,STRP-157,2,2,0,0,0,1,success,success,1,832,1,STRP-157 Per-line summation in CO-session
+payment-base,7bc2ef9d79de,2026-06-16,Daniil Tkachev,88,1,5,0,73,0,0,0,STRP-157,2,0,2,0,1,0,failure,failure,1,232,1,STRP-157 Per-line summation in CO-session
+payment-base,e409993c5bbd,2026-06-16,Daniil Tkachev,884,0,13,208,676,0,0,0,STRP-157,1,1,0,0,0,1,success,success,1,311,1,STRP-157 Per-line summation in CO-session
+stripe-wallet,d613b3e06f31,2026-06-16,Daniil Tkachev,398,0,3,0,0,398,0,0,STRP-157,1,1,0,0,0,1,success,success,1,409,1,STRP-157 Per-line summation in CO-session
+payment-base,b97a693c1b1c,2026-06-16,Daniil Tkachev,16,0,2,0,0,0,0,0,STRP-155,1,1,0,0,0,1,success,success,2,318,1,STRP-155 Payment base translations
+stripe-wallet,94b64eef7258,2026-06-17,Daniil Tkachev,618,14,12,70,548,0,0,0,STRP-151,1,0,1,0,1,0,failure,failure,1,214,1,STRP-151-2-3 Stripe Payment admin capture refund values
+stripe-wallet,315a155d0527,2026-06-17,Daniil Tkachev,690,0,5,0,0,690,0,0,STRP-151,1,0,1,0,1,0,failure,failure,2,225,1,STRP-151-2-3 Stripe Payment admin capture refund values
+stripe-wallet,fe73f9a0cb42,2026-06-17,Daniil Tkachev,5,1,1,0,0,0,5,1,,2,2,0,0,0,1,success,success,1,832,1,ci(development): restore-only on install cache to stop duplicate-save race
+stripe-wallet,bda62c60b5e0,2026-06-18,Daniil Tkachev,4,0,1,0,0,0,0,0,STRP-151,1,1,0,0,0,1,success,success,1,436,1,STRP-151 Admin config styles
+stripe-wallet,15c140e9ee10,2026-06-22,Daniil Tkachev,2,2,1,2,0,0,0,0,STRP-159,1,1,0,0,0,1,success,success,1,385,1,STRP-159 Strings translations
+stripe-wallet,e981a53df843,2026-06-22,Daniil Tkachev,1002,11,13,71,459,451,0,0,STRP-138,2,2,0,0,0,1,success,success,1,788,1,STRP-138 AGB complience
+payment-base,4c381bcc310a,2026-06-22,Daniil Tkachev,643,52,12,239,404,0,0,0,STRP-160,2,1,1,0,1,0,success,failure,1,673,1,STRP-160 Float math fixures
+stripe-wallet,d18ddcbbcf2a,2026-06-22,Daniil Tkachev,592,75,7,69,72,451,0,0,STRP-160,2,1,1,0,1,0,success,failure,1,685,1,STRP-160 Float math fixures
+stripe-wallet,a4246296f30c,2026-06-23,Daniil Tkachev,121,0,2,0,0,121,0,0,STRP-160,1,1,0,0,0,1,success,success,1,405,1,STRP-160 Float math docs added
+payment-base,09eb5b8d4f63,2026-06-23,Daniil Tkachev,168,0,1,0,0,168,0,0,STRP-160,1,1,0,0,0,1,success,success,1,342,1,STRP-160 Float math docs added
+stripe-wallet,a2129e4c8144,2026-06-23,Daniil Tkachev,1636,0,21,0,953,275,408,0,STRP-161,3,3,0,0,0,1,success,success,1,938,2,STRP-161 Security tests
+stripe-wallet,190ae1b5d61c,2026-06-23,Bartosz Sosnowski,106,31,2,0,0,0,0,0,,3,3,0,0,0,1,success,success,1,1264,1,OPC-90 Render per-field validation feedback in OPC modal (v3.0.2)
+stripe-wallet,46aa30091d74,2026-06-23,Daniil Tkachev,4099,115,51,320,1997,852,465,0,STRP-147,2,1,1,0,1,0,success,failure,1,530,2,STRP-147 Logging and stability improvements
+payment-base,ac65aa74a668,2026-06-24,Daniil Tkachev,309,3,3,34,275,0,0,0,STRP-147,1,1,0,0,0,1,success,success,1,303,1,STRP-147 Logging imporovements
+payment-base,d194c9ef434c,2026-06-25,Daniil Tkachev,351,0,1,0,0,0,351,0,STRP-147,2,0,0,2,0,0,cancelled,cancelled,1,225,1,STRP-147 Integration tests on Oxid7.5
+payment-base,ea465c51c106,2026-06-25,Daniil Tkachev,2,2,2,0,0,0,2,0,STRP-147,2,1,1,0,1,0,failure,success,1,683,2,STRP-147 Integration tests on Oxid7.5
+payment-base,3dff157229a5,2026-06-25,Daniil Tkachev,701,682,55,42,659,0,0,0,STRP-147,4,4,0,0,0,1,success,success,1,1278,2,STRP-147 Integration tests on Oxid7.5
+stripe-wallet,b25edcbeb1a9,2026-06-25,Daniil Tkachev,4,4,1,0,0,0,4,0,STRP-147,2,1,1,0,1,0,success,failure,1,780,2,STRP-147 Update CI
+stripe-wallet,6891b4e56128,2026-06-25,Daniil Tkachev,83,50,11,0,0,31,0,0,STRP-147,2,1,1,0,1,0,success,failure,1,820,2,STRP-147 Logs managements
+stripe-wallet,d708f2a926e8,2026-06-25,Daniil Tkachev,2,2,2,0,0,0,2,0,STRP-147,2,1,1,0,1,0,success,failure,1,770,2,STRP-147 Logs managements
+stripe-wallet,09119402724c,2026-06-26,Daniil Tkachev,708,1342,141,0,692,0,16,0,STRP-147,4,4,0,0,0,1,success,success,1,1570,2,STRP-147 Fix CI 7.5
+payment-base,23152b5575e2,2026-06-26,Daniil Tkachev,5,1,1,0,0,0,0,0,,4,4,0,0,0,1,success,success,1,1517,2,Release v1.0.0
+stripe-wallet,fb5453547505,2026-06-26,Daniil Tkachev,1,10,1,0,0,0,0,0,STRP-147,4,4,0,0,0,1,success,success,1,1753,2,STRP-147 Release rpeparation
+stripe-wallet,482470d4896f,2026-06-26,Daniil Tkachev,1,1,1,0,0,0,0,0,STRP-147,2,2,0,0,0,1,success,success,1,785,2,STRP-147 Release rpeparation v3.0.3
+stripe-wallet,c621fa03366b,2026-06-29,Daniil Tkachev,48,11,2,47,0,0,0,0,,2,1,1,0,1,0,failure,success,1,786,2,update static content cycle
+stripe-wallet,58464a792a48,2026-07-02,Daniil Tkachev,1078,14,18,259,807,0,8,0,STRP-79,4,4,0,0,0,1,success,success,1,1777,2,STRP-79 Show proper message if a product unbuyable
+stripe-wallet,6e828a242d6b,2026-07-02,Daniil Tkachev,105115,0,562,18417,44534,19803,3199,0,,2,2,0,0,0,1,success,success,1,894,2,Stripe payment module v3.1-rc.1 (squashed history)
+stripe-wallet,d9a01eff634b,2026-07-02,Daniil Tkachev,2,2,2,0,0,0,0,0,,6,6,0,0,0,1,success,success,1,2895,2,v3.1.0-rc.1
+stripe-wallet,d07c2a1ce6e9,2026-07-06,Bartosz Sosnowski,30,12,4,30,0,0,0,0,,7,1,6,0,1,0,failure,success,1,2609,3,fix(di): remove parent::__construct calls in 4 FileLoggerFactory classes
+stripe-wallet,9b5c48321d5d,2026-07-07,dependabot[bot],1,1,1,0,0,0,1,0,,2,0,2,0,1,0,failure,failure,1,198,2,build(deps): Bump actions/setup-node from 4 to 6
+stripe-wallet,53926b06d1b7,2026-07-07,dependabot[bot],10,10,3,0,0,0,10,0,,2,0,2,0,1,0,failure,failure,1,141,2,build(deps): Bump actions/cache from 4 to 6
+stripe-wallet,88a9f49c75b9,2026-07-07,dependabot[bot],20,20,6,0,0,0,20,0,,2,0,2,0,1,0,failure,failure,1,136,2,build(deps): Bump actions/checkout from 5 to 7
+payment-base,52fb454161a3,2026-07-08,Daniil Tkachev,71,10,4,51,11,0,0,0,,2,2,0,0,0,1,success,success,1,659,2,small updates
+stripe-wallet,8e1093fe300f,2026-07-13,Daniil Tkachev,8,12,2,4,0,0,0,1,,2,0,2,0,1,0,failure,failure,1,372,2,Use ValidationBaseFactory instead of direct ValidationBaseInterface binding
+stripe-wallet,39d47d62c3cc,2026-07-13,Daniil Tkachev,22,11,1,0,22,0,0,1,,2,0,2,0,1,0,failure,failure,1,363,2,Update UserDataValidatorTest to use ValidationBaseFactory
+stripe-wallet,7634f595c905,2026-07-13,Daniil Tkachev,5,0,1,0,0,0,5,1,,2,0,2,0,1,0,failure,failure,1,788,2,Fix path repository conflicts in CI workflow
+stripe-wallet,76b995093f7b,2026-07-14,Bartosz Sosnowski,322,0,3,114,197,0,0,1,,4,0,4,0,1,0,failure,failure,1,1576,2,"OPC-96 subscribe to modal-reopen event, release stranded reservations"
+stripe-wallet,4c89da1efbe9,2026-07-14,Daniil Tkachev,5,0,1,0,0,0,0,0,,2,0,2,0,1,0,failure,failure,1,841,2,test run
+stripe-wallet,75d5f1c123aa,2026-07-14,Daniil Tkachev,88,43,7,12,76,0,0,1,,2,0,2,0,1,0,failure,failure,1,910,2,"Fix isolated unit tests: gating regression, validator wiring, optional-OPC stub"
+stripe-wallet,2e0e5dc37e5c,2026-07-14,Daniil Tkachev,45,18,3,14,31,0,0,1,,2,2,0,0,0,1,success,success,1,845,2,Make OPC cleanup handler unit-testable without shop bootstrap
+stripe-wallet,f07a6eb66514,2026-07-17,Daniil Tkachev,14,8,1,0,0,0,0,1,,2,2,0,0,0,1,success,success,1,827,2,Isolate ContractTokenService from the shared TokenServiceInterface
+payment-base,a27f0187b8b7,2026-07-22,Daniil Tkachev,145,27,9,35,105,0,0,1,,2,2,0,0,0,1,success,success,1,3872,2,Remove provider-specific leaks from agnostic base
+stripe-wallet,79ff170d377c,2026-07-22,Daniil Tkachev,16,7,3,5,7,0,0,1,,2,2,0,0,0,1,success,success,1,5284,2,Declare provider explicitly; own Stripe brand color
+stripe-wallet,ef96bca9dc14,2026-07-23,Daniil Tkachev,419,0,5,0,0,419,0,1,,2,2,0,0,0,1,success,success,1,750,2,"Add ""iframe instead of checkout button"" sprint plan (2026-07-23)"
+payment-base,57e325ecf696,2026-07-23,Daniil Tkachev,163,0,7,72,75,0,0,1,,4,4,0,0,0,1,success,success,1,1866,2,"IFRAME-01: add ""Use iframe instead of checkout button"" flag + agnostic accessor"
+stripe-wallet,55d948dc9582,2026-07-29,Daniil Tkachev,182,52,6,0,1,0,0,1,,2,0,2,0,1,0,failure,failure,1,265,2,IFRAME-02f: render standard order page without the classic button in iframe mode
+stripe-wallet,75ee3ddd767c,2026-07-29,Daniil Tkachev,2,2,2,0,0,0,2,1,,2,2,0,0,0,1,success,success,1,873,2,ci: point full-tests at payment-base b-7.4.x-iframe-checkout
+stripe-wallet,1ce8c9597e24,2026-07-31,Daniil Tkachev,134,2,4,0,7,0,24,1,,2,2,0,0,0,1,success,success,1,881,2,IFRAME (OPC): Stripe footer widget eager-mounts Embedded Checkout inline
+stripe-wallet,e3842dac199b,2026-07-31,Daniil Tkachev,2,2,2,0,0,0,2,1,,4,4,0,0,0,1,success,success,1,2287,2,ci: point full-tests at payment-base b-7.4.x (iframe work merged to base main)
+payment-base,1505a5910d95,2026-08-11,Daniil Tkachev,4,0,1,0,0,0,0,0,,4,4,0,0,0,1,success,success,1,1472,2,v1.1.0
+stripe-wallet,5515e68c5789,2026-08-11,Daniil Tkachev,8,9,4,0,0,0,0,0,,4,0,4,0,1,0,failure,failure,1,530,2,v3.2.0
+stripe-wallet,1ddc7c653d01,2026-08-11,Daniil Tkachev,8,9,4,0,0,0,0,0,,2,0,2,0,1,0,failure,failure,1,221,2,v3.2.0
+payment-base,746ca6e8ca1b,2026-08-11,Daniil Tkachev,4,0,1,0,0,0,0,0,,2,2,0,0,0,1,success,success,1,624,2,v1.1.0
+stripe-wallet,965786eb0fd4,2026-08-12,Bartosz Sosnowski,23,0,2,15,0,0,0,1,,2,0,2,0,1,0,failure,failure,1,332,2,feat(opc-125): declare iframe UI topology for OPC (rev-56)
+stripe-wallet,840f9d852ead,2026-08-13,Bartosz Sosnowski,0,23,2,0,0,0,0,1,,2,0,2,0,1,0,failure,failure,1,233,2,feat(opc-125): drop sPaymentHandlerUiTopology setting + getModuleId (rev-57)
+stripe-wallet,d293c2a6205e,2026-08-18,Bartosz Sosnowski,40,1,1,0,0,0,0,1,,2,0,2,0,1,0,failure,failure,1,209,2,IFRAME (OPC-132): Embedded Checkout page-global singleton + mount serialisation
+stripe-wallet,9cdfe41a6950,2026-08-19,Daniil Tkachev,1,1,1,0,1,0,0,1,,2,0,2,0,1,0,failure,failure,1,219,2,Revert unrelated tests/e2e/playwright submodule pointer
+payment-base,6fa30c7ced3b,2026-08-19,Daniil Tkachev,200,1,3,92,108,0,0,1,,2,1,1,0,1,0,success,failure,1,434,2,Sprint 133 S4 (F1): separate the fraud audit record from the blocking policy
+stripe-wallet,4959da814227,2026-08-19,Daniil Tkachev,32,12,2,0,0,0,32,1,,2,2,0,0,0,1,success,success,1,784,2,ci: fix composer resolution — payment-base alias and dev stability
+payment-base,d91413e1790c,2026-08-19,Daniil Tkachev,90,2,3,47,43,0,0,1,,2,1,1,0,1,0,success,failure,1,558,2,Sprint 133 S16 (F16): silent exits become visible
+stripe-wallet,41e6bce7137c,2026-08-19,Daniil Tkachev,109,0,1,0,0,109,0,1,,2,2,0,0,0,1,success,success,1,870,2,Sprint 133: Phase B completion report
+stripe-wallet,a11f2730ff32,2026-08-19,Daniil Tkachev,224,0,1,0,0,224,0,1,,2,2,0,0,0,1,success,success,1,772,2,Sprint 133: consolidated delivery report (Phases A+B)
+payment-base,d18f2a88b032,2026-08-20,Daniil Tkachev,34,6,3,34,0,0,0,1,,2,1,1,0,1,0,success,failure,1,450,2,"Sprint 133 S20 (F20): one canonical accessor style, and say which mode"
+stripe-wallet,5fbafec68ecf,2026-08-20,Daniil Tkachev,411,26,11,205,192,0,0,1,,2,2,0,0,0,1,success,success,1,798,2,"Sprint 133 S18-S20 (F18, F19, F20): Phase C, minus the controller extraction"
+stripe-wallet,3fb851c70391,2026-08-20,Daniil Tkachev,100,6,2,0,0,100,0,1,,2,2,0,0,0,1,success,success,1,709,2,Sprint 133: Phase C completion + delivery report update
+payment-base,825c7d2ed6bf,2026-08-20,Daniil Tkachev,34,6,3,34,0,0,0,1,,2,1,1,0,1,0,failure,success,1,515,2,"Sprint 133 S20 (F20): one canonical accessor style, and say which mode"
+stripe-wallet,6541049ea670,2026-08-20,Daniil Tkachev,2,10,2,0,0,0,2,1,,2,2,0,0,0,1,success,success,1,864,2,ci: point payment-base back at b-7.4.x
+payment-base,d343df0425df,2026-08-20,Daniil Tkachev,2,2,2,0,0,0,2,1,,2,1,1,0,1,0,failure,success,1,447,2,ci: require the module with @dev so composer resolution is deterministic
+payment-base,b0c4f3f566ca,2026-08-20,Daniil Tkachev,14,0,1,0,0,0,14,1,,2,2,0,0,0,1,success,success,1,654,2,ci(7.4): pin the migration wrapper to the b-7.4.x branch

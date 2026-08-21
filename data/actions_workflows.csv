@@ -1,0 +1,42 @@
+repo,workflow_name,runs,success,failure,cancelled,failure_rate_pct,median_duration_seconds,total_duration_seconds,first_run,last_run
+stripe-wallet,Development,631,303,310,18,49.1,600,342086,2025-10-21,2026-06-25
+stripe-wallet,Playwright E2E,64,0,50,14,78.1,46,161203,2026-03-27,2026-06-12
+stripe-wallet,Stripe full tests OXID CE 7.4,55,29,26,0,47.3,396,20127,2026-06-25,2026-08-20
+stripe-wallet,Stripe full tests OXID CE 7.5,55,29,26,0,47.3,396,22685,2026-06-25,2026-08-20
+stripe-wallet,Load Test (Locust),46,1,42,3,91.3,341,13848,2026-06-09,2026-06-12
+payment-base,Tests on OXID 7.5,28,21,7,0,25.0,367,11935,2026-06-25,2026-08-20
+payment-base,Tests on OXID 7.4,28,17,11,0,39.3,350,10801,2026-06-25,2026-08-20
+payment-base,Development,22,16,4,2,18.2,329,6519,2026-05-20,2026-06-25
+stripe-wallet,Load Test (k6 scenarios),7,3,2,2,28.6,2094,15763,2026-06-12,2026-06-12
+stripe-wallet,Load Test — Stripe Payment,5,1,4,0,80.0,164,666,2026-06-10,2026-06-10
+stripe-wallet,Stripe full tests onm OXID CE 7.4,4,4,0,0,0.0,422,1654,2026-06-25,2026-06-25
+stripe-wallet,Stripe full tests onm OXID CE 7.5,4,0,4,0,100.0,387,1008,2026-06-25,2026-06-25
+stripe-wallet,Stripe full tests onm OX7.4,2,1,1,0,50.0,401,506,2026-06-25,2026-06-25
+stripe-wallet,github_actions in /. - Update #1130745325,1,1,0,0,0.0,50,50,2025-10-21,2025-10-21
+stripe-wallet,github_actions in /. - Update #1130745346,1,1,0,0,0.0,55,55,2025-10-21,2025-10-21
+stripe-wallet,github_actions in /. - Update #1136135671,1,1,0,0,0.0,39,39,2025-10-27,2025-10-27
+stripe-wallet,github_actions in / for actions/upload-artifact - Update #1139358927,1,1,0,0,0.0,45,45,2025-10-31,2025-10-31
+stripe-wallet,github_actions in / for actions/upload-artifact - Update #1139359752,1,1,0,0,0.0,42,42,2025-10-31,2025-10-31
+stripe-wallet,github_actions in /. - Update #1142711606,1,1,0,0,0.0,39,39,2025-11-03,2025-11-03
+stripe-wallet,github_actions in / for actions/upload-artifact - Update #1143170744,1,1,0,0,0.0,43,43,2025-11-04,2025-11-04
+stripe-wallet,github_actions in / for actions/upload-artifact - Update #1143171560,1,1,0,0,0.0,47,47,2025-11-04,2025-11-04
+stripe-wallet,github_actions in /. - Update #1148601272,1,1,0,0,0.0,239,239,2025-11-10,2025-11-10
+stripe-wallet,github_actions in /. - Update #1155659433,1,1,0,0,0.0,43,43,2025-11-17,2025-11-17
+stripe-wallet,github_actions in /. - Update #1177959130,1,1,0,0,0.0,40,40,2025-12-08,2025-12-08
+stripe-wallet,github_actions in /. - Update #1183629573,1,1,0,0,0.0,42,42,2025-12-15,2025-12-15
+stripe-wallet,github_actions in /. - Update #1189062816,1,1,0,0,0.0,43,43,2025-12-22,2025-12-22
+stripe-wallet,github_actions in /. - Update #1193423089,1,1,0,0,0.0,41,41,2025-12-29,2025-12-29
+stripe-wallet,github_actions in /. - Update #1199937341,1,1,0,0,0.0,43,43,2026-01-05,2026-01-05
+stripe-wallet,github_actions in /. - Update #1201994112,1,1,0,0,0.0,42,42,2026-01-07,2026-01-07
+stripe-wallet,github_actions in /. - Update #1201995263,1,1,0,0,0.0,39,39,2026-01-07,2026-01-07
+stripe-wallet,github_actions in /. - Update #1207383023,1,1,0,0,0.0,35,35,2026-01-13,2026-01-13
+stripe-wallet,github_actions in /. - Update #1214006718,1,1,0,0,0.0,35,35,2026-01-19,2026-01-19
+stripe-wallet,github_actions in /. - Update #1221894208,1,1,0,0,0.0,30,30,2026-01-27,2026-01-27
+stripe-wallet,github_actions in /. - Update #1231500708,1,1,0,0,0.0,50,50,2026-02-03,2026-02-03
+stripe-wallet,github_actions in /. - Update #1238982846,1,1,0,0,0.0,40,40,2026-02-10,2026-02-10
+stripe-wallet,github_actions in /. - Update #1246114314,1,1,0,0,0.0,36,36,2026-02-16,2026-02-16
+stripe-wallet,github_actions in /. - Update #1255660497,1,1,0,0,0.0,44,44,2026-02-23,2026-02-23
+stripe-wallet,github_actions in /. - Update #1265913569,1,1,0,0,0.0,54,54,2026-03-03,2026-03-03
+stripe-wallet,Graph Update: pip in /tests/load/locust #1404781122,1,1,0,0,0.0,60,60,2026-06-09,2026-06-09
+stripe-wallet,Security Pentest (black-box),1,1,0,0,0.0,176,176,2026-06-23,2026-06-23
+stripe-wallet,github_actions in /. - Update #1451682421,1,1,0,0,0.0,71,71,2026-07-07,2026-07-07

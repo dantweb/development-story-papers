@@ -13,6 +13,7 @@ with its own audience and form — built from lessons the project actually paid 
 - **`[A]`** journal-reported (self-reported prose; candid but not independent)
 - **`[B]`** git-measured (716 commits, 2025-10-21 → 2026-08-20)
 - **`[C]`** Jira-measured (156 issues, 2023-05-30 → 2026-06-22)
+- **`[D]`** Actions-measured (979 workflow runs, 2025-10-21 → 2026-08-20)
 
 Lessons carrying only `[A]` are **experience, not evidence** — they are worth
 transmitting but should not be presented as findings. Lessons carrying `[B]` or
@@ -331,25 +332,42 @@ submission after LL-3.
 
 ### The lessons
 
-1. **The dominant cost was build and integration, not application logic.** `[A]`+`[B]`
+1. **The dominant cost was build and integration, not application logic.** `[A]`+`[B]`+`[D]`
    The largest incident cluster was CI/infra and cross-repo dependency auth;
    `ci`-path churn totals **288 file-changes**, and the *same* cross-repo composer
    resolution problem is still being fixed on **2026-08-19**, the final week of
-   the record.
-2. **And it leaves the least trace.** `[A]`+`[B]` The rename day (2026-05-08)
+   the record. **Now measured:** of **979 workflow runs, 487 failed and 453
+   succeeded — a 49.7% failure rate**, consuming **169.5 h of CI wall-clock**
+   (more than the ≈140 h of measured human session time), **53% of it in failing
+   runs**.
+2. **Build failure did not scale with change size — so stop sizing commits to
+   protect the build.** `[D]`+`[B]` Commits of ≥500 insertions had a failing run
+   **63%** of the time; commits under 500, **60%**. Fisher **p = 0.66**, Spearman
+   **ρ = −0.024** — no association at all. This is the clearest evidence for the
+   whole topic: environmental failures are indifferent to how much code you
+   changed, so the mitigation is fixing the environment, not trimming diffs.
+3. **CI hardening measurably worked.** `[D]` The failure rate fell from **57% to
+   46%** across 2026-04-01 (Fisher **p = 0.0014**) — the permanent regression
+   probes and converged dependency auth show up as an outcome, not just a
+   recommendation. Worth knowing that this class of work pays off, because it
+   rarely feels like it does.
+4. **Watch the metric's honesty:** a red pipeline is *friction*, not proof of a
+   broken build — cancelled runs, flaky E2E and expired credentials all land as
+   `failure`. Measure it anyway; just do not call it defect density.
+5. **And it leaves the least trace.** `[A]`+`[B]` The rename day (2026-05-08)
    touched **565 unique files across 9 commits** — all **9 sharing one
    identical subject line**. A day the journal describes as five distinct failure
    modes and a four-hour CI loop is, in the artifact, nine indistinguishable
    commits. The most expensive class of work is the least reconstructible.
-3. **Local-vs-CI divergence is the first triage question.** `[A]` A unified-
+6. **Local-vs-CI divergence is the first triage question.** `[A]` A unified-
    namespace break survived **five falsified CI iterations** because `generated/`
    persisted locally from a pre-unification run and local never reproduced it.
-4. **A token fallback masks a missing token.** `[A]` `|| secrets.GITHUB_TOKEN`
+7. **A token fallback masks a missing token.** `[A]` `|| secrets.GITHUB_TOKEN`
    turns a clear auth failure into a confusing permissions error. Fail loudly.
-5. **Watch for version skew between local and CI**, `[A]` e.g. a PHPStan baseline
+8. **Watch for version skew between local and CI**, `[A]` e.g. a PHPStan baseline
    that differs between local PHP 8.3 and CI 8.2 — and for a mechanical rename
    needing four distinct byte-level escape forms of the same namespace string.
-6. **Add a permanent probe for every environment bug you fix.** `[A]` Three TDD
+9. **Add a permanent probe for every environment bug you fix.** `[A]` Three TDD
    probes were added after the namespace break specifically to fail fast if it
    recurred.
 
@@ -390,8 +408,20 @@ incomplete-gamma tail, percentile bootstrap at 20,000 resamples).
 | **T5** | Cadence is bursty, not steady (LL-1) | overdispersion vs Poisson | mean 5.01, variance 34.71 → **dispersion index 6.93** (Poisson expects 1.0), χ² = 984.4, df 142 | **4.7e-126** |
 | **T6** | Issue→code coverage depends on issue type (LL-6) | χ² independence | Story **69%**, Bug **42%**, Task **8%**, Sub-task **0%**; χ² = 47.4, df 3 | **2.9e-10** |
 | **T8** | Out-of-hours work is concentrated, not diffuse (LL-8) | exact binomial vs uniform over the 11 affected days | **13 of 29** out-of-hours commits on 2026-05-27 alone (45%) | **4.8e-07** |
+| **T9a** | **CI failure is uncorrelated with commit size** (LL-8) — a *negative* result, and the topic's strongest evidence | Fisher exact on ≥500 vs <500 insertions; Spearman on the same | 63% vs 60%; **ρ = −0.024** | **0.66** ← *null, deliberately* |
+| **T9b** | CI hardening measurably worked (LL-8) | Fisher exact, pre/post 2026-04-01 | 57% → **46%** failure over 940 decided runs | **0.0014** |
+| **T9c** | AI-trailered commits are no more CI-fragile (LL-2, LL-8) | Fisher exact | 59% vs 61% — heavily confounded, see M-26 | **0.88** ← *null* |
 
-These seven are the lessons that can be stated as findings with a test behind
+**On the two deliberate nulls (T9a, T9c).** A p-value of 0.66 normally means
+"we learned nothing." Here T9a is the opposite: the hypothesis under test is
+*"bigger commits break CI"*, and its failure is the positive evidence for the
+environmental account of this project's costs. Absence of a gradient where a
+logic-failure model predicts a steep one is a real finding, and it is reported as
+such rather than buried. T9c is a genuine null and is confounded (trailered
+commits cluster in a period when the failure rate was already falling) — it
+rebuts a common assumption without establishing its converse.
+
+These ten are the lessons that can be stated as findings with a test behind
 them. **T2 is the strongest result in the entire corpus** — a Cramér's V of 0.859
 on a 4×3 table is a near-deterministic association, and it is the finding that
 most changes how the case study should be read.
@@ -407,6 +437,9 @@ different in kind — and citing a p-value for them would be a category error.
 | Journal undersampled its own active days (LL-5) | 47 documented vs **105** with commits in-window (**2.2×**) |
 | The cents-math consolidation held (LL-4) | **zero** raw `* 100` sites remain outside the converter |
 | The no-`setState()` invariant is structural (LL-3) | `function setState` occurs **zero** times in either `src/` |
+| CI failed on half of all runs (LL-8) | **487 failure / 453 success / 39 cancelled** of 979 |
+| CI wall-clock exceeded human session time (LL-8) | **169.5 h** vs ≈140.1 h; **90.1 h (53%)** in failing runs |
+| CI provenance is also lost (LL-5) | **234 of 979 runs (24%)** point at `head_sha` on no surviving ref; older runs past GitHub's retention window are gone |
 | The ISP split is cosmetic (LL-1, LL-6) | **exactly zero** consumers typehint any of the 4 narrow sub-interfaces |
 | No ticket references were fabricated (LL-2) | **0 of 61** across 436 ticket-bearing commits |
 | Provenance was lost twice (LL-5) | 491 commits only on `LEGACY`; 1 commit reachable from **no** remote ref |

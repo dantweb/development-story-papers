@@ -1,7 +1,7 @@
 # Research Reports — index
 
-*Created 2026-07-07 · **all seven reports revised 2026-08-20** against the git and
-Jira records*
+*Created 2026-07-07 · **all seven reports revised 2026-08-21** against the git,
+Jira and GitHub Actions records*
 
 Research write-ups mined from the OXID eShop Stripe payment module's development
 record, treated as a longitudinal, single-subject case study of AI-assisted
@@ -10,22 +10,23 @@ independent machine records** rather than taken at its word.
 
 ---
 
-## 1. The three corpora
+## 1. The four corpora
 
 | | Corpus | Span | Size | What only it can tell you |
 |---|---|---|---|---|
 | **A** | the dev log | 2025-11-26 → 2026-07-02 | 462 markdown files, ≈113,098 lines, + the curated `architecture/` set | *intent* — why a decision was made, and the process rules |
 | **B** | the commit record | 2025-10-21 → 2026-08-20 | 716 commits (`stripe-wallet` 586, `payment-base` 130) | *what actually landed*, and when, to the minute |
 | **C** | the Jira issue record | 2023-05-30 → 2026-06-22 | 156 issues of project STRP | *who asked for the work and who found the defects* |
+| **D** | the GitHub Actions history | 2025-10-21 → 2026-08-20 | 979 workflow runs, joined to commits on `head_sha` | *what happened to each commit after it landed* |
 
-A is self-reported prose. B and C are machine records, extracted to
-[`../data/`](../data/) — 11 CSVs, a schema and caveats document
+A is self-reported prose. B, C and D are machine records, extracted to
+[`../data/`](../data/) — 14 CSVs, a schema and caveats document
 ([`../data/README.md`](../data/README.md)), and
 [`../data/stats.py`](../data/stats.py), which recomputes every statistical test
 cited anywhere in these reports.
 
 Each corpus is blind to something the others see. That is the point: the
-programme's central method is **using B and C to test A**, and reporting the
+programme's central method is **using B, C and D to test A**, and reporting the
 divergences rather than the agreements.
 
 ---
@@ -51,8 +52,8 @@ divergences rather than the agreements.
 | [`02-topics-project-management.md`](02-topics-project-management.md) | **3 PM topics** (PM-1…PM-3) as extended abstracts, each with **Git** and **Jira verification** blocks. | A+B+C | Proposals, verified |
 | [`03-topics-technical.md`](03-topics-technical.md) | **5 technical topics** (TECH-1…TECH-5), same treatment. | A+B+C | Proposals, verified |
 | [`04-topics-security.md`](04-topics-security.md) | **2 security topics** (SEC-1, SEC-2), same treatment. | A+B+C | Proposals, verified |
-| [`05-measurements.md`](05-measurements.md) | **22 measured results.** M-1…M-10 show journal-reported beside git-measured values; M-11…M-17 are git-only; M-18…M-22 are Jira-only. Each carries its metric, source, what it demonstrates, and the caveat that bears on it. | A+B+C | Data catalog |
-| [`06-novelty-assessment.md`](06-novelty-assessment.md) | **What would survive peer review.** Tiers all **12** contributions (N-1…N-12) by novelty *and* by evidence class — tested / census / n=1 / mixed / untestable, with statistics. Names the claims to drop, recommends a reframing and research venues. | — | Review |
+| [`05-measurements.md`](05-measurements.md) | **27 measured results.** M-1…M-10 show journal-reported beside git-measured values; M-11…M-17 are git-only; M-18…M-22 are Jira-only; M-23…M-27 are Actions-derived. Each carries its metric, source, what it demonstrates, and the caveat that bears on it. | A+B+C | Data catalog |
+| [`06-novelty-assessment.md`](06-novelty-assessment.md) | **What would survive peer review.** Tiers all **13** contributions (N-1…N-13) by novelty *and* by evidence class — tested / census / n=1 / mixed / untestable, with statistics. Names the claims to drop, recommends a reframing and research venues. | — | Review |
 | [`07-lessons-learned.md`](07-lessons-learned.md) | **8 practitioner topics** (LL-1…LL-8) — what we would tell the next team. Each graded by evidence class and routed to a **named venue**; plus the full inference grading (Tiers S/D/U/N/X), a 12-item day-one checklist, a submission sequence, three publication gates, and the lessons the evidence **cannot** support. | A+B+C | Proposals |
 
 ---
@@ -73,6 +74,8 @@ development at large.
 | **Output without schedule compression** — 0 Saturdays in 716 commits | vs a uniform-7-day null; Mon–Fri itself non-uniform (p = 0.0001) | **1.2e-48** |
 | **Issue→code coverage depends on issue type** — Story 69%, Bug 42%, Task 8% | χ² = 47.4, df 3 | **2.9e-10** |
 | **Out-of-hours work is concentrated** — 13 of 29 on one day | exact binomial vs uniform over the 11 affected days | **4.8e-07** |
+| **CI failure is independent of commit size** — 63% (≥500 ins.) vs 60%; the *null* is the finding | Fisher exact; Spearman **ρ = −0.024** | **0.66** |
+| **CI hardening worked** — 57% → 46% failure across 2026-04-01 | Fisher exact over 940 decided runs | **0.0014** |
 
 **Census facts** — complete enumerations needing no inference (attaching a
 p-value would be a category error): the journal undersampled its own active days
@@ -80,7 +83,10 @@ p-value would be a category error): the journal undersampled its own active days
 outside the converter; `function setState` occurs **zero** times in either
 `src/`; **exactly zero** consumers typehint the narrow adapter sub-interfaces;
 **0 of 61** ticket references were fabricated; effort is unrecoverable (Jira time
-fields empty for all 156 issues, journal clock-stamps 3 of 143 active days).
+fields empty for all 156 issues, journal clock-stamps 3 of 143 active days);
+**CI failed on 487 of 979 runs (49.7%)** and consumed **169.5 h** of wall-clock —
+more than the ≈140 h of measured human session time — with **53% of it in failing
+runs**.
 
 **Retractions and corrections** — the most credible part of the set:
 
@@ -105,7 +111,7 @@ fields empty for all 156 issues, journal clock-stamps 3 of 143 active days).
 | **TECH-1** contract-first checkout | ✅ `function setState` occurs **zero times** — the invariant is structural | ✅ the defect class is documented from **2024**, predating the design, and kept producing tester-filed bugs *after* it |
 | **TECH-2** event system | ✅ exact (330→107); ⚠️ revised — that is one file; module handler code rose **2,616 → 2,953** | ◐ MCP channel is `To Do` with 20 commits; `STRP-88` asserts both "Complete" (body) and `To Do` (field) |
 | **TECH-3** ISP theatre | ✅✅ strongest — **exactly zero** consumers typehint the narrow interfaces | ⚠️ **none of this work was ticketed** — PHPMD, with a silenced baseline, was its *only* reviewer |
-| **TECH-4** CI/CD | ◐ partial — the rename is measurable (565 files, 9 commits, one shared subject); the CI sagas are journal-only | ✅ a dedicated **`Core Bug`** status exists — 3 defects triaged to the platform |
+| **TECH-4** CI/CD | ◐ partial — the rename is measurable (565 files, 9 commits, one shared subject); the CI sagas are journal-only. **✅✅ Corpus D settles the central thesis:** 49.7% failure across 979 runs, and failure **independent of commit size** (p = 0.66, ρ = −0.024) | ✅ a dedicated **`Core Bug`** status exists — 3 defects triaged to the platform |
 | **TECH-5** money as a type | ✅ confirmed, and the consolidation **held** — 0 raw cents-math sites remain | ✅ BCMath deferral is a **live open ticket** (`STRP-160`); refactoring and black-box testing yielded **disjoint** defect sets |
 | **SEC-1** async money boundary | ✅ fixes present and fail-closed; scores and burn-down not verifiable | ✅ security ran as a tracked workstream; ⚠️ `STRP-50` open since 2025-07 |
 | **SEC-2** central validation | ✅ **7/7** guards confirmed by exact class name | ⚠️⚠️ **QA-driven, not developer-initiated** — the tester filed the payment-failure bug *and* wrote the requirements task that became Sprint 119 |
@@ -188,6 +194,18 @@ detectable from inside the repository**, so all counts are lower bounds. And
 `Co-Authored-By` trailers, on 149/716 commits, became routine only on
 2026-05-07 — their absence is **not** evidence of absence of AI involvement.
 
+**Corpus D — partial in both directions.** Runs join to a known commit for
+**745/979 (76%)** — the rest point at `head_sha` on deleted branches and PR merge
+refs — and only **444/716 commits (62%)** have any run, since CI was not
+configured on every branch throughout. `duration_seconds` is **wall-clock
+including queueing**, not billable compute. The 40 workflow *names* include
+renames of one pipeline (one pair differs only by a typo in the source). A
+`failure` conclusion means **friction, not necessarily a broken build** — flaky
+E2E, cancelled infrastructure and expired credentials all land there. And the
+export is a snapshot subject to GitHub's **run-retention window**, so older runs
+are already unrecoverable: a third independent instance of the provenance
+problem.
+
 **Corpus C — the most restrictive.** **No effort data at all** (`Original
 estimate`, `Time Spent`, `Work Ratio` and their `Σ` variants empty for all 156
 issues). `Priority` is degenerate (145/156 = `SHOULD`) and carries no signal;
@@ -221,3 +239,4 @@ trusts (§4.9, §4.11, §4.12, Appendix A).
 | 2026-08-20 | **Corpus C added.** Role separation found; flagship §4.12; `05` grown to 22 entries; all 10 topics given Jira verification blocks. Second provenance-loss mechanism recorded from a stale checkout. |
 | 2026-08-20 | **`06` novelty assessment** added, then revised with statistics — two findings promoted (N-11, N-12), one downgraded to an observation (N-5). |
 | 2026-08-20 | **`07` lessons learned** added: 8 practitioner topics, inference grading (Tiers S/D/U/N/X) backed by `data/stats.py`, day-one checklist, venue routing and publication gates. |
+| 2026-08-21 | **Corpus D added** — 979 GitHub Actions runs joined to commits. Flagship §3.4 and §4.13; `05` grown to 27 entries (M-23…M-27); TECH-4's central thesis tested and confirmed; LL-8 rewritten; **N-13** added to `06`; tests T9a–T9c added to `data/stats.py`. Headline: 49.7% CI failure rate, and failure **uncorrelated with commit size**. |

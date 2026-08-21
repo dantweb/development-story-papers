@@ -1,29 +1,16 @@
 # Discipline over Cleverness: A Longitudinal Case Study of AI-Assisted Development of a Production Payment Module
 
-*Working paper — draft of 2026-07-07; **revised 2026-08-20** with the measured git and Jira records*
-*Subject system: the OXID eShop Stripe payment module (`stripe` + `payment-base`)*
+Authors: D.Tkachev et al.
 
 **Data sources.**
 (1) The `daniil_dev_log` engineering journal — 462 markdown files, ≈113,098
 lines, 2025-11-26 → 2026-07-02.
-(2) **New in this revision:** the complete commit record of both subject
-repositories (`OXID-eSales/stripe-wallet`, `OXID-eSales/payment-base`) —
-**716 commits, 2025-10-21 → 2026-08-20**.
-(3) **Also new:** the **Jira issue record** of the STRP project — **156 issues,
-2023-05-30 → 2026-06-22** — the only corpus that records *who asked for the
+
+(2) **716 github commits, 2025-10-21 → 2026-08-20**.
+
+(3) **Jira issue record** of the STRP project — **156 issues
 work*. All extracted to CSV in [`../data/`](../data/) and documented in
 [`../data/README.md`](../data/README.md).
-
-> **What changed in this revision.** The first draft rested entirely on the
-> project's self-reported journal. This revision triangulates every quantitative
-> claim against commit timestamps and diffs. The thesis survived; several
-> numbers did not. Corrections are consolidated in Appendix A and §7.3, and
-> include a **retraction of the "single-developer" characterisation** (§4.8,
-> further overturned by the Jira record in §4.12) and a **downward revision of
-> confidence in AI-authorship share** (§4.9). The Jira corpus adds the finding
-> that most reframes the case: **an independent human QA function filed 92.5% of
-> the project's bugs** (§4.12).
-
 ---
 
 ## Abstract
@@ -40,7 +27,7 @@ decision-owner. It moves real money, spans an asynchronous webhook boundary,
 carries PCI-DSS/GDPR obligations, and integrates with a large legacy PHP
 framework.
 
-**What we measured.** Three corpora, deliberately chosen to fail in different
+**What we measured.** Four corpora, deliberately chosen to fail in different
 directions. **(A)** The project's daily engineering journal — 462 markdown files,
 ≈113,098 lines, 2025-11-26 → 2026-07-02 — candid but self-reported. **(B)** The
 complete git record of both repositories — **716 commits, 2025-10-21 →
@@ -48,9 +35,11 @@ complete git record of both repositories — **716 commits, 2025-10-21 →
 authorship trailers, work sessions reconstructed from timestamps (≤90 min gap),
 and test-suite sizes measured from the tree at 15 checkpoints. **(C)** The Jira
 issue record — **156 issues, 2023-05-30 → 2026-06-22** — the only corpus that
-records who requested the work and who found the defects. We use (B) and (C) to
-*test* (A) rather than to illustrate it, and publish the derived CSVs so the
-arithmetic is checkable.
+records who requested the work and who found the defects. **(D)** The GitHub
+Actions history — **979 workflow runs** joined to commits on `head_sha` — the only
+corpus that records what happened to each commit after it landed. We use (B),
+(C) and (D) to *test* (A) rather than to illustrate it, and publish the derived
+CSVs so the arithmetic is checkable.
 
 **What we found — six concrete results.**
 
@@ -87,6 +76,16 @@ arithmetic is checkable.
    appearing in commit messages resolve to real Jira issues — though one is
    *mislabelled*, and that single case is the paper's sharpest micro-study
    (§6.1).
+9. **CI failed on half of all runs, and commit size did not predict it.** Of 979
+   workflow runs, **487 failed and 453 succeeded (49.7%)** — statistically
+   indistinguishable from a coin flip. CI consumed **169.5 h of wall-clock**,
+   more than the ≈140 h of measured human session time, with **90.1 h (53%) spent
+   in failing runs**. Crucially, commits of ≥500 insertions failed at **63%**
+   against **60%** for smaller ones (Fisher **p = 0.66**, Spearman
+   **ρ = −0.024**): **failure was uncorrelated with the amount of code changed**,
+   which is the strongest available evidence that the dominant cost was
+   *environmental* rather than logical. The rate did improve materially over the
+   period — 57% → 46% (**p = 0.0014**).
 
 **What we retracted.** Measurement cost us three claims, and the Jira record
 deepens the first of them: the project ran on a **10-person Jira participant
@@ -258,7 +257,32 @@ no status-transition history. Critically, **the `Sprint` field holds only two
 values**, so the journal's "Sprint 1 → 133" numbering is a **private convention
 with no Jira counterpart** — the two notions of "sprint" must never be equated.
 
-### 3.4 What we can and cannot measure
+### 3.4 Corpus D — the GitHub Actions run history (new, 2026-08-21)
+
+**979 workflow runs** exported from both repositories via the GitHub REST API and
+joined to the commit record on `head_sha`. Retained per run: repository, run id /
+number / attempt, workflow name and path, triggering event, conclusion, creation
+and start timestamps, duration, head branch, actor — and, through the join,
+the commit's date, author, files changed, insertions, deletions, `src`/`tests`
+split, and AI-trailer flag. Aggregated three ways: per run, **per commit** (444
+commits with at least one run), and per workflow (41 repo × workflow pairs).
+
+This corpus answers a question none of the others can: **what happened to a
+commit after it landed.** A, B and C all describe intent, content, or provenance;
+only D records outcome.
+
+Its limits are specific. **Coverage is partial in both directions:** 745 of 979
+runs (76%) join to a known commit — the remainder point at `head_sha` values
+reachable from no ref, i.e. deleted branches and PR merge refs — and only 444 of
+716 commits (62%) have any run at all, since CI was not configured on every
+branch for the whole period. `duration_seconds` is **wall-clock including
+queueing**, not billable compute. The 40 distinct workflow *names* include
+renames of the same pipeline (one pair differs only by a typo in the source).
+And the export is a **snapshot** subject to GitHub's run-retention window, so
+runs older than that window are already unrecoverable — a fourth, independent
+instance of the provenance problem in §6.6.
+
+### 3.5 What we can and cannot measure
 
 The two corpora fail in different directions, which is why we use both.
 
@@ -276,8 +300,9 @@ The two corpora fail in different directions, which is why we use both.
    commits held."
 
 **Corpus C (Jira) limitations** are set out in §3.3 and are the most restrictive
-of the three: no effort data, no severity signal, no transition history, and a
-snapshot-only view.
+of the four: no effort data, no severity signal, no transition history, and a
+snapshot-only view. **Corpus D (Actions) limitations** are in §3.4: partial
+coverage both ways, wall-clock rather than compute, and retention-limited.
 
 **Corpus B (git) limitations,** new and equally real:
 
@@ -746,6 +771,72 @@ result, **no estimates**. The estimate-vs-actual study proposed in
 `02-topics-project-management.md` (PM-3) is not recoverable from any of the three
 corpora.
 
+### 4.13 The CI record: failure was the environment, not the code
+
+Corpus D settles a question the journal asserts repeatedly and could not
+demonstrate — that the dominant engineering cost was the build and integration
+environment rather than application logic (§6.7).
+
+**(a) CI failed on half of all runs.** Of **979 workflow runs**: **487 failure,
+453 success, 39 cancelled** — a **49.7% failure rate**, which against a 50/50
+null is indistinguishable from chance (exact binomial **p = 0.28**). The point is
+not the p-value but its interpretation: for ten months, pushing this project's
+code produced a red pipeline **as often as a green one**.
+
+**(b) The machine spent longer on this project than the humans did.** Summed run
+duration is **169.5 h**, against **≈140.1 h** of session-derived human activity
+(§4.3) — and **90.1 h of it (53%) was consumed by runs that failed**. The two
+figures are not commensurable (CI wall-clock is concurrent and includes queueing;
+sessions are a lower bound), so the claim is only "the same order, machine ≥
+human." Even hedged, it reframes where a small AI-assisted project's time goes.
+
+**(c) Commit size does not predict CI failure — and that is the finding.**
+Joining runs to per-commit diffs (n = 444 commits with CI):
+
+| Commit size | Commits with ≥1 failing run |
+|---|---|
+| ≥500 insertions | 77/123 (**63%**) |
+| <500 insertions | 193/321 (**60%**) |
+
+Fisher exact **p = 0.66**; Spearman **ρ = −0.024** (p = 0.61). There is
+**no association whatsoever** between how much code a commit changed and whether
+its pipeline failed.
+
+This negative result is the section's substantive contribution. The intuitive
+model — bigger changes break more builds — predicts a clear gradient, and there
+is none. If these failures were *logic* failures they would scale with volume of
+changed logic. They do not, because they were dependency-auth failures, PHP
+version skew, namespace-generation ordering, and flaky E2E — none of which is
+sensitive to line count. The journal's environmental account of its own pain
+(§6.7, `03-topics-technical.md` TECH-4) is thereby corroborated by the *absence*
+of a correlation, which is a stronger test than any of its narrative evidence.
+
+**(d) AI-attributed commits were no more CI-fragile.** Commits carrying a Claude
+trailer had a failing run **29/49 (59%)** of the time; those without,
+**241/395 (61%)** — Fisher **p = 0.88**. Given how readily the opposite is
+assumed, a stated null is worth reporting. It must be read narrowly, though:
+trailered commits cluster in 2026-05→08 when the failure rate was already
+falling (e), n = 49 on one side, and trailers measure attribution practice rather
+than authorship (§4.9). This is *not* evidence that AI-written code is as good;
+it is evidence that this project's CI did not discriminate.
+
+**(e) The failure rate improved by 11 points.** Split at 2026-04-01:
+**270/473 (57%)** of decided runs failed before, **217/467 (46%)** after —
+Fisher **p = 0.0014**. This is one of very few places where a *process* claim
+meets an *outcome* measure: the hardening the journal describes (permanent TDD
+probes after the namespace break, converged cross-repo dependency auth) shows up
+in the artifact as a real reduction. The caveat is composition — Playwright E2E
+and load-test workflows arrive later in the period, so some of the shift may be
+workflow mix rather than reliability, and the split point is chosen rather than
+derived.
+
+**(f) A fourth provenance loss.** 234 of 979 runs (24%) point at `head_sha`
+values reachable from no ref in either repository — CI ran against branches that
+no longer exist. And GitHub retains run history for a limited window, so runs
+older than it are **already gone**, unrecoverably. Corpus D thus arrives
+carrying the same survivorship problem as Corpus B (§6.6), from a third
+independent mechanism.
+
 ---
 
 ## 5. Results — the collaboration model (RQ2)
@@ -1005,6 +1096,12 @@ The git record corroborates the CI cluster's prominence: `ci`-category commits
 number 288 file-changes, and commit subjects in the "ci:" prefix family recur
 across the whole span (e.g. "ci: fix composer resolution — payment-base alias
 and dev stability", 2026-08-19).
+
+**Corpus D converts this from prominence to dominance** (§4.13): CI failed on
+**49.7% of 979 runs**, consumed **169.5 h** of wall-clock with **53% of that in
+failing runs**, and — decisively — failed **independently of commit size**
+(Fisher p = 0.66, ρ = −0.024). The journal's ranking of infrastructure above
+logic as a cost centre is measured, not merely asserted.
 
 ---
 

@@ -1,11 +1,12 @@
-# Measured dataset — git commit record + Jira issue record
+# Measured dataset — git commits, Jira issues, GitHub Actions runs
 
 Machine-extracted measurables for
 [`../reports/01-flagship-paper-ai-assisted-payment-module.md`](../reports/01-flagship-paper-ai-assisted-payment-module.md).
 Unlike the dev-log corpus (self-reported prose), every number here is derived
 from machine records — **git commit metadata** (timestamps, authorship trailers,
-`numstat` diffs) and the **Jira issue export** — and is reproducible from the two
-subject repositories plus the export.
+`numstat` diffs), the **Jira issue export**, and the **GitHub Actions run
+history** — and is reproducible from the two subject repositories plus the
+export.
 
 ## Provenance
 
@@ -46,11 +47,58 @@ records **who asked for the work**.
 | `jira_issues.csv` | 156 | one issue | normalized + **joined to the commit record**: type, status, category, priority, urgency, reporter, assignee, created/resolved, lead time, commit count, first/last commit date, `has_code`, summary |
 | `jira_roles.csv` | 10 | one reporter | reporter × issue-type matrix — the role-separation result |
 
+## Files — GitHub Actions
+
+Exported **2026-08-21** via `gh api repos/{owner}/{repo}/actions/runs` (paged,
+100 per page) for both repositories, then joined to the commit record on
+`head_sha`. This is a **fourth corpus** (D), and the only one that records what
+happened *to* each commit after it landed.
+
+| File | Rows | Grain | Notes |
+|---|---|---|---|
+| `actions_runs.csv` | 979 | one workflow run | repo, run id/number/attempt, workflow name and path, event, conclusion, created-at, duration, branch, actor, `head_sha` — **joined to the commit**: date, author, files changed, insertions, deletions, `src_ins`, `tests_ins`, AI-trailer flag, subject |
+| `actions_by_commit.csv` | 444 | one commit with ≥1 run | per-commit LOC (total, `src`, `tests`, `docs`, `ci`) beside run counts: total/success/failure/cancelled, `any_failure`, `all_success`, first and last conclusion, max attempt, total CI seconds, distinct workflows |
+| `actions_workflows.csv` | 41 | repo × workflow | runs, success/failure/cancelled, failure-rate %, median and total duration, first/last run date |
+
+**Headline:** 979 runs, **487 failure / 453 success / 39 cancelled — a 49.7%
+failure rate**, spanning 2025-10-21 → 2026-08-20 across **40 distinct workflow
+names**. Total CI wall-clock **169.5 h**, of which **90.1 h (53%) was spent in
+runs that failed**.
+
+### Actions-specific caveats
+
+- **Coverage is partial.** Runs join to **745 of 979** rows (76%); the other 234
+  point at `head_sha` values reachable from no ref in either repository —
+  **deleted branches and PR merge refs**. Conversely only **444 of 716 commits
+  (62%)** have any run, because CI was not configured on every branch for the
+  whole period. Per-commit CI figures are therefore a **lower bound on activity,
+  not a census of it**.
+- **The unresolved 234 rows are further evidence of the survivorship problem**
+  documented for Corpus B: CI ran against commits whose branches no longer exist.
+- **`duration_seconds` is wall-clock, not billable compute.** It is
+  `updated_at − run_started_at`, so it includes queueing and any time a run sat
+  waiting on a runner. It is not job-minutes and must not be read as cost.
+- **40 workflow names, many of them renames of the same pipeline** (e.g. "Stripe
+  full tests OXID CE 7.4" vs "Stripe full tests onm OXID CE 7.4" — the typo is in
+  the source). Do not treat distinct names as distinct pipelines without
+  inspecting `workflow_path`.
+- **`conclusion` is the final state of that attempt.** A commit can carry both a
+  failure and a later success (re-runs, fixes on the same `head_sha`), which is
+  why `actions_by_commit.csv` reports `first_conclusion` and `last_conclusion`
+  separately from the counts.
+- **The export is a snapshot** taken 2026-08-21. GitHub retains run history for a
+  limited window by default, so **runs older than the retention period are
+  already gone** — another provenance loss that is invisible from inside the
+  repository.
+- Actor logins are retained (they are the same handful of names as in the commit
+  record); no tokens, secrets, logs, or job-level detail are exported.
+
 ## Statistical tests
 
 `stats.py` recomputes every test cited in
 [`../reports/07-lessons-learned.md`](../reports/07-lessons-learned.md) ("Which
-lessons the data can actually prove") from the CSVs above. Run it with
+lessons the data can actually prove") from the CSVs above, including the
+Actions tests (T9). Run it with
 `python3 data/stats.py`; it needs only `numpy` (the bootstrap) — Fisher's exact
 test, the exact binomial, and the chi-square tail are implemented directly, so
 `scipy` is not required. It is seeded, so the bootstrap CI is reproducible.
@@ -133,6 +181,16 @@ that needs a second case.
   names are retained.
 
 ## Reproducing
+
+GitHub Actions:
+
+```bash
+gh api "repos/OXID-eSales/stripe-wallet/actions/runs?per_page=100&page=N"
+gh api "repos/OXID-eSales/payment-base/actions/runs?per_page=100&page=N"
+```
+joined to the commit stream on `head_sha`.
+
+Commits:
 
 ```bash
 git -C <repo> fetch --all --tags --prune

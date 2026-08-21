@@ -5,7 +5,7 @@ AI-assisted software project: the **OXID eShop Stripe payment module**, built
 with Claude (Claude Code) as a primary code author and a human engineer as
 orchestrator, reviewer, and decision-owner.
 
-Three corpora underpin the work:
+Four corpora underpin the work:
 
 - **The dev log** — a daily engineering journal of **462 markdown files
   (≈113,098 lines), 2025-11-26 → 2026-07-02**, plus a curated architecture
@@ -17,6 +17,10 @@ Three corpora underpin the work:
   project, 2023-05-30 → 2026-06-22**, joined to the commits on `STRP-nnn`
   references. The only corpus that records who asked for the work and who found
   the defects.
+
+- **The GitHub Actions history** *(added 2026-08-21)* — **979 workflow runs,
+  2025-10-21 → 2026-08-20**, joined to the commits on `head_sha`. The only corpus
+  that records what happened to each commit after it landed.
 
 All extracted to CSV under [`data/`](data/). Together they form a longitudinal,
 single-subject case study of AI-assisted software engineering in which the prose
@@ -34,9 +38,23 @@ record and the machine records are used to check each other.
 | [`reports/05-measurements.md`](reports/05-measurements.md) | 10 topics with measured results, sourced to dev-log files. |
 | [`reports/06-novelty-assessment.md`](reports/06-novelty-assessment.md) | **Internal review of scientific novelty** — what would survive peer review, what to drop, recommended reframing and venue fit. |
 | [`reports/07-lessons-learned.md`](reports/07-lessons-learned.md) | **Eight practitioner topics** — orchestrating a stateless agent, trust-but-verify, test volume vs verification, refactoring as defect detection, the repo as audit trail, why the AI pair still needs a tester, fail-closed money, and why the environment costs more than the logic. Includes a day-one checklist, per-topic venue recommendations with a submission sequence, three publication gates (employer approval, named-colleague consent, security disclosure), and the lessons the evidence cannot support. |
-| [`data/`](data/) | 11 files of git- and Jira-derived measurables + [`data/README.md`](data/README.md) schema and reproduction commands. |
+| [`data/`](data/) | 14 CSVs of git-, Jira- and Actions-derived measurables, plus `stats.py` + [`data/README.md`](data/README.md) schema and reproduction commands. |
 
 ## Headline findings
+
+Measured from the GitHub Actions record:
+
+- **CI failed on half of all runs** — 487 failure / 453 success / 39 cancelled
+  out of 979 — consuming **169.5 h of wall-clock**, more than the ≈140 h of
+  measured human session time, with **53% of that in failing runs**.
+- **Build failure is uncorrelated with commit size**: ≥500 insertions fail 63% of
+  the time, <500 fail 60% (Fisher **p = 0.66**, Spearman **ρ = −0.024**). The
+  *absence* of a gradient is the strongest evidence that the dominant cost was
+  environmental, not logical — a logic-failure model predicts a steep one.
+- **CI hardening measurably worked**: failure fell **57% → 46%** across
+  2026-04-01 (**p = 0.0014**).
+- **AI-attributed commits were no more CI-fragile** (59% vs 61%, p = 0.88) —
+  a confounded null, but worth stating.
 
 Measured from the Jira record:
 

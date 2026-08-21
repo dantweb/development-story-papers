@@ -1,4 +1,4 @@
-# Measured Results (22)
+# Measured Results (27)
 
 *Revised 2026-08-20 — journal-reported values now sit beside git- and
 Jira-measured ones.*
@@ -35,7 +35,13 @@ Dataset: [`../data/`](../data/); schema and caveats:
 > `Assignee` is 76% empty, `Resolution` is set on 39 issues while 82 are
 > `Done`-category, there is no status-transition history, and the `Sprint` field
 > holds two values — so **Jira sprints are unrelated to the journal's Sprint
-> 1→133**. Every measurement below is annotated with the limit that bears on it.
+> 1→133**.
+> **`[D]`** covers **62% of commits** (444/716) and **76% of runs** join to a
+> known commit; `duration_seconds` is **wall-clock including queueing**, not
+> billable compute; 40 workflow "names" include renames of one pipeline; and the
+> export is a snapshot subject to GitHub's run-retention window, so older runs
+> are **already gone**. Every measurement below is annotated with the limit that
+> bears on it.
 
 ---
 
@@ -464,6 +470,78 @@ magnitude.
 this programme** — PM-3's estimate-vs-actual proposal must be withdrawn and
 rescoped to its methods contribution.
 
+## M-23 — CI failure rate: a coin flip `[D]`
+
+**Metric:** conclusion of every workflow run.
+**Values:** **979 runs — 487 failure, 453 success, 39 cancelled**; a **49.7%
+failure rate**. Against a 50/50 null the split is *indistinguishable from
+chance* (exact binomial **p = 0.28**) — the point being that CI failure was not a
+rare event but the **modal outcome half the time**. Across 40 workflow names and
+2025-10-21 → 2026-08-20.
+**Source:** `../data/actions_runs.csv`, `../data/actions_workflows.csv`.
+**Shows:** the hardest possible corroboration of the "environment costs more than
+logic" thesis (M-5, M-6, TECH-4, LL-8). The journal *said* CI was the dominant
+cost; this measures it at every single push.
+**Caveat:** a failing run is not necessarily a broken build — cancelled and
+infrastructure-aborted runs, flaky E2E, and expired credentials all land as
+`failure`. The rate measures *friction*, not defect density.
+
+## M-24 — CI wall-clock exceeds measured human time `[D]`+`[B]`
+
+**Metric:** summed run duration (`updated_at − run_started_at`).
+**Values:** **169.5 h** of CI wall-clock, against **≈140.1 h** of
+session-derived human activity (M-11). Of that, **90.1 h (53%) was spent in runs
+that failed**.
+**Shows:** the machine spent longer on this project than the humans did — and
+more than half of that on failing pipelines. A striking, quotable framing of
+where a small AI-assisted project's time actually goes, and an argument for
+treating CI latency as a first-class cost.
+**Caveat:** the two numbers are **not commensurable** — CI wall-clock is
+concurrent and includes queueing; human sessions are a lower bound that cannot
+see non-committing work. Report as "the same order, machine ≥ human," never as a
+ratio.
+
+## M-25 — Commit size does **not** predict CI failure `[D]`+`[B]`
+
+**Metric:** commit insertions vs whether any run on that commit failed (n = 444).
+**Values:** commits with **≥500 insertions** had a failing run **63%** of the
+time; commits under 500, **60%**. Fisher exact **p = 0.66**; Spearman
+**ρ = −0.024** (p = 0.61) — effectively **zero association**.
+**Shows:** a genuine and useful **negative result**. The intuitive hypothesis
+("big commits break the build") is false here, and its failure is the positive
+evidence for the environmental account: if failures scaled with code volume they
+would be *logic* failures, and they do not. They were dependency auth, PHP
+version skew, namespace generation, and flaky E2E — none of which cares how many
+lines you changed.
+**Caveat:** `any_failure` is coarse; insertions is a crude size proxy; and the
+62% coverage means the sample is commits that had CI, not all commits.
+
+## M-26 — AI-trailered commits fail CI at the same rate `[D]`+`[B]`
+
+**Metric:** `any_failure` by AI-trailer presence (n = 444).
+**Values:** AI-trailered **29/49 (59%)**; not trailered **241/395 (61%)**.
+Fisher exact **p = 0.88**.
+**Shows:** **no evidence that AI-attributed commits were more CI-fragile.** Given
+how often that is assumed, a null result with a stated test is worth reporting.
+**Caveat:** the comparison is badly confounded and must not be read as "AI code
+is equally good." Trailered commits are concentrated in 2026-05→08, when the
+failure rate was already falling (M-27), and trailer presence measures
+*attribution practice*, not authorship (M-16). n = 49 on one side.
+
+## M-27 — CI failure rate improved materially over the project `[D]`
+
+**Metric:** failure share of decided runs, split at 2026-04-01.
+**Values:** **270/473 (57%)** before, **217/467 (46%)** after. Fisher exact
+**p = 0.0014**.
+**Shows:** an **11-point improvement** that is statistically solid — the CI
+hardening the journal narrates (permanent TDD probes after the namespace break,
+converged dependency auth) shows up in the artifact as a real reduction in
+failure rate. One of the few places the project's process claims can be checked
+against an *outcome* rather than an output.
+**Caveat:** the split point is chosen, not derived; workflow mix changed over the
+period (Playwright E2E and load tests arrive later), so part of the shift may be
+composition rather than reliability.
+
 ---
 
 ### Suggested figures
@@ -485,6 +563,12 @@ rescoped to its methods contribution.
 9. **Issue→code coverage by type** (M-19) — Story 69% vs Task 8%.
 10. **Issue creation timeline** (M-21) with the commit-record window shaded, so
     the three-year prehistory is visible at a glance.
+11. **CI outcome over time** (M-23, M-27) — stacked monthly success/failure bars
+    with the 57%→46% shift annotated.
+12. **Commit insertions vs CI outcome** (M-25) — a scatter whose *lack* of a
+    trend is the finding; add the Spearman ρ = −0.024 in the caption.
+13. **CI wall-clock vs human session time** (M-24) — two bars, 169.5 h against
+    140.1 h, with the failing-run share (90.1 h) shaded inside the CI bar.
 
 ### One-line takeaway for each cluster
 
@@ -498,5 +582,9 @@ project where a dedicated tester filed 92.5% of the bugs** (M-18); ticket
 metadata was **never fabricated but once misattributed** (M-20); the studied
 window is the **final ten months of a three-year project** (M-21); the project's
 own attribution practice cannot support its authorship claim before May 2026
-(M-16); and planning accuracy is **unmeasurable from any corpus** (M-22) — the
-honest strength and the honest limit of this dataset, side by side.
+(M-16); planning accuracy is **unmeasurable from any corpus** (M-22); and CI failed on
+**half of all 979 runs**, consumed **more wall-clock than the humans did**, and
+did so **independently of commit size** (M-23/24/25) — which is the strongest
+evidence in the set that the hard cost was environmental, not logical — while
+improving 11 points over the period (M-27) — the honest strength and the honest
+limit of this dataset, side by side.

@@ -95,6 +95,7 @@ grading of every claim in the programme is in
 | **N-4** test-to-source ratio | **tested** | 11/11 months by sign test; bootstrap 95% CI **[1.39, 2.06]** | **0.0010** |
 | **N-11** peak ≠ rate *(new, §2.7)* | **tested** | **dispersion index 6.93** vs Poisson 1.0; χ² = 984.4, df 142 | **4.7e-126** |
 | **N-12** intensity without crunch *(new, §2.8)* | **tested** | 0/716 Saturdays under a uniform-7-day null; Mon–Fri also non-uniform (χ² = 22.8, df 4, p = 0.0001) | **1.2e-48** |
+| **N-13** CI failure ⟂ commit size *(new, §2.9)* | **tested (null)** | 63% vs 60%; Spearman **ρ = −0.024**; and 49.7% failure across 979 runs | **0.66** *(the null is the finding)* |
 | **N-1** self-account vs machine record | **census** | 2.2× undersampling; 41% understatement; a measured 9.1 h over two narrated-as-active months | *n/a — complete enumeration* |
 | **N-6** provenance destruction | **census** | 2 mechanisms; 491 commits only on `LEGACY`; 1 commit on no remote ref | *n/a* |
 | **N-7** ISP criterion | **census** | **exactly 0** consumers typehint the narrow interfaces | *n/a* |
@@ -109,11 +110,16 @@ Three consequences for how the papers should be written.
    overdispersion and the weekend result were buried inside material §1 dismisses
    as "descriptive only." They are tested, counter-narrative, and belong in the
    contribution list — promoted to **N-11** and **N-12** below.
-2. **N-1 and N-6 are census-strength, not test-strength.** That is not a
+2. **A fourth corpus arrived after this assessment was first written** and added
+   **N-13**, whose evidence is a *deliberate null*. Nulls are usually
+   unpublishable; this one is the point, because the absent correlation is what
+   discriminates between an environmental and a logical account of the project's
+   costs.
+3. **N-1 and N-6 are census-strength, not test-strength.** That is not a
    weakness — a complete enumeration needs no inference, and attaching a p-value
    to "zero raw cents-math sites remain" would be a category error. But the
    papers must not *imply* statistical support where the support is enumerative.
-3. **N-5 is the weakest Tier-1 item and should be labelled as an observation.**
+4. **N-5 is the weakest Tier-1 item and should be labelled as an observation.**
    See §2.5.
 
 ### N-1. Auditing a project's self-account against its own machine records — and publishing the corrections
@@ -329,6 +335,40 @@ could in principle hide evening effort. The weekday result is robust to that
 result is weaker for exactly this reason. And n=1 operator — this is one person's
 working pattern, not a property of AI-assisted development.
 
+### N-13. A measured non-association: build failure is independent of change size
+
+**Added with Corpus D (GitHub Actions, 979 runs).** The claim that
+infrastructure, not application logic, dominates the cost of framework-coupled
+cross-repo work is practitioner folklore and appears throughout this corpus as
+narrative (TECH-4, LL-8, M-5/M-6). Corpus D lets it be tested, and the test that
+matters is a **null**:
+
+| Commit size | Commits with ≥1 failing run |
+|---|---|
+| ≥500 insertions | 77/123 (**63%**) |
+| <500 insertions | 193/321 (**60%**) |
+
+Fisher exact **p = 0.66**; Spearman **ρ = −0.024**. Alongside: **49.7% of 979
+runs failed**, CI consumed **169.5 h** of wall-clock against ≈140 h of human
+session time, and **53% of CI time went to failing runs**.
+
+**Why the null is the contribution.** A logic-failure model predicts that failure
+scales with the volume of changed logic; the data show no gradient at all. So the
+folklore claim is supported not by a correlation but by the *conspicuous absence*
+of the one a competing explanation requires. That is a cleaner argument than any
+amount of saga-telling, and — being a joined-corpus result — it is not available
+to a study of commits alone or of CI alone.
+
+**Secondary, and tested:** the failure rate fell **57% → 46%** across 2026-04-01
+(**p = 0.0014**), which is one of the few places a *process* intervention in this
+project meets an *outcome* measure rather than an output measure.
+
+**Limits.** `failure` conflates broken builds with flaky E2E, cancelled
+infrastructure and expired credentials — it measures friction, not defect
+density. Coverage is 62% of commits and 76% of runs. The 2026-04-01 split is
+chosen, not derived, and workflow composition changed across it. And this remains
+one project: the non-association is established *here*, not in general.
+
 ## 3. Tier 2 — modest or contingent novelty
 
 ### N-7. An operational criterion for "fake" interface segregation
@@ -384,7 +424,7 @@ State this plainly rather than letting a reviewer discover it.
 |---|---|
 | **TECH-1** contract-first checkout | Architecturally unremarkable. Redirect-boundary state restoration via a durable server-side aggregate is established practice. The *interesting* part is empirical: the defect class is documented from **2024**, predating the design, and kept producing tester-filed bugs *after* it — i.e. the redesign reduced without eliminating it. Publish that, not the pattern. |
 | **TECH-2** event system + translators | PSR-14 dispatch, tagged iterators, template methods, provider translators — all standard. Near-zero CS novelty. |
-| **TECH-4** cross-repo CI/CD | Valuable practitioner knowledge, no research contribution. The one interesting observation: **the failures that cost the most time left the least trace in the artifact**, making them the least verifiable class. |
+| **TECH-4** cross-repo CI/CD | **Upgraded by Corpus D.** As engineering advice, still practitioner knowledge with no research contribution. But its central thesis is now *tested* — see **N-13**: 49.7% CI failure across 979 runs, and failure independent of commit size (p = 0.66, ρ = −0.024). The measured non-association is publishable; the field guide is not. The standing observation also holds: **the failures that cost the most time left the least trace in the artifact.** |
 | **SEC-1** async money boundary | The controls are textbook: signature verification, cheapest-first guard chains, atomic idempotency, PII minimisation. Novelty is the **candour** (documenting what was wrong first, what is still open) — a publication-ethics virtue, not a scientific one. **The AI-authored audit being self-scored with no independent tracker record is a liability, not a contribution.** |
 | **Velocity / output figures** | No counterfactual, no control, confounded treatment. Descriptive only. |
 | **The harness thesis** | See §1. Context, not claim. |
