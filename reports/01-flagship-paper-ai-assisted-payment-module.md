@@ -77,15 +77,19 @@ CSVs so the arithmetic is checkable.
    *mislabelled*, and that single case is the paper's sharpest micro-study
    (§6.1).
 9. **CI failed on half of all runs, and commit size did not predict it.** Of 979
-   workflow runs, **487 failed and 453 succeeded (49.7%)** — statistically
-   indistinguishable from a coin flip. CI consumed **169.5 h of wall-clock**,
-   more than the ≈140 h of measured human session time, with **90.1 h (53%) spent
-   in failing runs**. Crucially, commits of ≥500 insertions failed at **63%**
-   against **60%** for smaller ones (Fisher **p = 0.66**, Spearman
-   **ρ = −0.024**): **failure was uncorrelated with the amount of code changed**,
-   which is the strongest available evidence that the dominant cost was
-   *environmental* rather than logical. The rate did improve materially over the
-   period — 57% → 46% (**p = 0.0014**).
+   workflow runs, **487 failed and 453 succeeded — a 49.7% failure rate**,
+   roughly **double the 26% reported for closed-source projects** and above every
+   published baseline we located. CI consumed **169.5 h of wall-clock**, more than
+   the ≈140 h of measured human session time, with **90.1 h (53%) spent in failing
+   runs**. Crucially, commits of ≥500 insertions failed at **63%** against **60%**
+   for smaller ones (Fisher **p = 0.66**, Spearman **ρ = −0.024**): **failure was
+   uncorrelated with the amount of code changed**, which is the strongest
+   available evidence that the dominant cost was *environmental* rather than
+   logical. Failures also **cluster** — 85.7% follow another failure, against a
+   published benchmark of >50% — which is what a persistent broken environment
+   predicts and changed-code defects do not. (The observed 57% → 46% improvement
+   across the period is descriptive only: corrected for that clustering it is not
+   statistically significant.)
 
 **What we retracted.** Measurement cost us three claims, and the Jira record
 deepens the first of them: the project ran on a **10-person Jira participant
@@ -790,11 +794,22 @@ Corpus D settles a question the journal asserts repeatedly and could not
 demonstrate — that the dominant engineering cost was the build and integration
 environment rather than application logic (§6.7).
 
-**(a) CI failed on half of all runs.** Of **979 workflow runs**: **487 failure,
-453 success, 39 cancelled** — a **49.7% failure rate**, which against a 50/50
-null is indistinguishable from chance (exact binomial **p = 0.28**). The point is
-not the p-value but its interpretation: for ten months, pushing this project's
-code produced a red pipeline **as often as a green one**.
+**(a) CI failed on half of all runs — an outlier rate.** Of **979 workflow
+runs**: **487 failure, 453 success, 39 cancelled** — a **49.7% failure rate**
+(51.8% of decided runs). For ten months, pushing this project's code produced a
+red pipeline about as often as a green one.
+
+Two corrections to how this was first reported. First, an earlier revision
+attached an exact binomial test against a 50/50 null (p = 0.28); **that test
+assumed independent runs, and runs here are strongly autocorrelated (g), so it is
+withdrawn.** The proportion is a census fact and needs no test. Second, published
+baselines put build-failure rates at **26%** for closed-source projects, **19%**
+for large long-lived projects, **>38%** for Java OSS CI workflows and **~12%** for
+industrial hardware-in-the-loop systems — so **our rate is roughly double the
+closed-source baseline** and is a property of *this* project rather than a general
+fact about CI. That strengthens rather than weakens the argument in (c): an
+unusually fragile build environment is exactly where patch-unrelated failures
+should dominate.
 
 **(b) The machine spent longer on this project than the humans did.** Summed run
 duration is **169.5 h**, against **≈140.1 h** of session-derived human activity
@@ -833,15 +848,33 @@ falling (e), n = 49 on one side, and trailers measure attribution practice rathe
 than authorship (§4.9). This is *not* evidence that AI-written code is as good;
 it is evidence that this project's CI did not discriminate.
 
-**(e) The failure rate improved by 11 points.** Split at 2026-04-01:
-**270/473 (57%)** of decided runs failed before, **217/467 (46%)** after —
-Fisher **p = 0.0014**. This is one of very few places where a *process* claim
-meets an *outcome* measure: the hardening the journal describes (permanent TDD
+**(e) The failure rate improved by 11 points — descriptively.** Split at
+2026-04-01: **270/473 (57%)** of decided runs failed before, **217/467 (46%)**
+after; nominal Fisher **p = 0.0014**. **Corrected for the autocorrelation in (g),
+this falls to p = 0.18 and is no longer statistically significant.** The
+descriptive change is real and coincides with a *process* claim: the hardening the journal describes (permanent TDD
 probes after the namespace break, converged cross-repo dependency auth) shows up
 in the artifact as a real reduction. The caveat is composition — Playwright E2E
 and load-test workflows arrive later in the period, so some of the shift may be
 workflow mix rather than reliability, and the split point is chosen rather than
 derived.
+
+**(g) Failures cluster, and the clustering carries both a substantive and a
+methodological result.** Walking runs in time order within each repository ×
+workflow: **409 of 477 failures (85.7%) are immediately preceded by another
+failure**, against a published multi-project benchmark of ">50%". Outcome
+**transitions occur on just 15.9%** of consecutive pairs where independence
+predicts **49.9%**, and **lag-1 autocorrelation is 0.680** — an effective sample
+size of roughly **179 against a nominal 940**.
+
+Substantively this is what an environmental account predicts: a broken build
+environment stays broken until someone repairs it, whereas defects in changed
+logic would produce far more independent outcomes. Methodologically it obliges
+the corrections in (a) and (e), and it means **any run-level test on CI data of
+this kind must model the dependence** — ours initially did not. We found it only
+by testing a published claim against our data, which is the same
+verify-against-an-outside-reference discipline the paper argues for elsewhere
+(§7.4).
 
 **(f) A fourth provenance loss.** 234 of 979 runs (24%) point at `head_sha`
 values reachable from no ref in either repository — CI ran against branches that
@@ -1045,9 +1078,18 @@ commits that are not reachable from the current mainline.
 
 This is a process failure of a distinct kind: not a wrong line of code, but the
 **destruction of the project's own audit trail** at the point of a release. It
-went unremarked in the journal. For a money-handling module with PCI-DSS
-obligations, per-commit provenance is not a nicety, and a release procedure that
-discards it is a finding in its own right. It is also a cautionary note for this
+went unremarked in the journal.
+
+**Stated precisely, because the compliance claim is narrower than it first
+appears.** PCI DSS 6.4/6.5 requires an auditable change-control record —
+documented impact, approval by authorised parties, testing, and back-out
+procedures — but it does **not** stipulate that the record must be the version
+control graph; an organisation could satisfy it through a separate
+change-management system while squashing its history. The defensible claim is
+conditional: **where a project's change-control evidence *is* its commit history,
+as it was here — the dev log and commit trail being the only record of what
+changed, why, and with what testing — destroying that history at release removes
+the artifact the audit depends on.** It is also a cautionary note for this
 research programme: had the legacy branch been pruned, §4.1–§4.7 would have been
 impossible.
 

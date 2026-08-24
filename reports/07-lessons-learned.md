@@ -119,7 +119,14 @@ effort, no sensitive material, no approval dependency.
 1. **Volume is real and measurable — and insufficient.** `[B]` The project wrote
    **1.69 lines of test code per line of production code** (+150,321 vs +88,896).
    That ratio is genuinely hard to fake. It is also **not evidence of
-   verification**.
+   verification** — and the effectiveness literature is blunter than we were:
+   **suite size is a known confounder**, coverage does not track effectiveness
+   (Inozemtseva & Holmes, ICSE 2014), and **assertions do** (Zhang & Mesbah,
+   FSE 2015). Measured here: **2.28 and 2.33 assertions per test method** across
+   the two packages — a better proxy than the ratio, and still not proof. **106
+   `willReturnCallback` occurrences remain in the trees**, the exact construct
+   that hid the hollow tests. If you want to know whether your agent-written
+   suite verifies anything, **run mutation testing**; nothing cheaper answers it.
 2. **The same project shipped tests that asserted nothing.** `[A]` Assertions
    hidden inside `willReturnCallback` effectively ran `assertTrue(true)`. A
    passing suite, a green gate, and no verification.
@@ -191,8 +198,12 @@ or OWASP AppSec for the compliance half, MSR for the provenance methods note.
 1. **Do not squash release history.** `[B]` On 2026-07-02 the mainline was
    rewritten into one commit (562 files re-added). Eight months of provenance
    survive **only** because a `b-7.4.x-LEGACY` branch was retained (491 commits).
-   For PCI-DSS-obligated software the commit trail is a compliance artifact, not a
-   convenience.
+   **Stated precisely** (PCI DSS 6.4/6.5 requires an auditable change-control
+   record with impact documentation, approval, testing and back-out procedures —
+   it does *not* mandate that the record be the commit graph): **where your
+   change-control evidence *is* your commit history, as it was here, squashing it
+   destroys the artifact the audit depends on.** That is a conditional claim about
+   practice, not a general claim that squashing breaches the standard.
 2. **Branch pruning destroys provenance too, and nobody notices.** `[B]` A commit
    (`ce96dc86085b`, 25 files, +1,710/−60) survives on **no ref of the canonical
    remote** — found only by comparing against a stale local checkout. It is now a
@@ -346,28 +357,37 @@ submission after LL-3.
    **ρ = −0.024** — no association at all. This is the clearest evidence for the
    whole topic: environmental failures are indifferent to how much code you
    changed, so the mitigation is fixing the environment, not trimming diffs.
-3. **CI hardening measurably worked.** `[D]` The failure rate fell from **57% to
-   46%** across 2026-04-01 (Fisher **p = 0.0014**) — the permanent regression
-   probes and converged dependency auth show up as an outcome, not just a
-   recommendation. Worth knowing that this class of work pays off, because it
-   rarely feels like it does.
-4. **Watch the metric's honesty:** a red pipeline is *friction*, not proof of a
+3. **CI hardening appears to work — but we cannot prove it here.** `[D]` The
+   failure rate fell from **57% to 46%** across 2026-04-01. That is a real
+   descriptive change, and it coincides with the permanent regression probes and
+   converged dependency auth. It is **not** statistically established: correcting
+   for failure clustering (lesson 5 below) leaves **p = 0.18**. Report the
+   direction, not a result.
+4. **Failures come in runs, so treat build health as a state, not an event.**
+   `[D]` **85.7% of failures are immediately preceded by another failure**
+   (published benchmark: >50%), transitions occur on only **15.9%** of
+   consecutive pairs against 49.9% expected, and lag-1 autocorrelation is
+   **0.680**. A broken environment stays broken until someone fixes it — which is
+   what an environmental account predicts and a defects-in-changed-code account
+   does not. Practically: alert on the **transition** into failure, not on each
+   red run, and measure **time-to-green**, not failure count.
+5. **Watch the metric's honesty:** a red pipeline is *friction*, not proof of a
    broken build — cancelled runs, flaky E2E and expired credentials all land as
    `failure`. Measure it anyway; just do not call it defect density.
-5. **And it leaves the least trace.** `[A]`+`[B]` The rename day (2026-05-08)
+6. **And it leaves the least trace.** `[A]`+`[B]` The rename day (2026-05-08)
    touched **565 unique files across 9 commits** — all **9 sharing one
    identical subject line**. A day the journal describes as five distinct failure
    modes and a four-hour CI loop is, in the artifact, nine indistinguishable
    commits. The most expensive class of work is the least reconstructible.
-6. **Local-vs-CI divergence is the first triage question.** `[A]` A unified-
+7. **Local-vs-CI divergence is the first triage question.** `[A]` A unified-
    namespace break survived **five falsified CI iterations** because `generated/`
    persisted locally from a pre-unification run and local never reproduced it.
-7. **A token fallback masks a missing token.** `[A]` `|| secrets.GITHUB_TOKEN`
+8. **A token fallback masks a missing token.** `[A]` `|| secrets.GITHUB_TOKEN`
    turns a clear auth failure into a confusing permissions error. Fail loudly.
-8. **Watch for version skew between local and CI**, `[A]` e.g. a PHPStan baseline
+9. **Watch for version skew between local and CI**, `[A]` e.g. a PHPStan baseline
    that differs between local PHP 8.3 and CI 8.2 — and for a mechanical rename
    needing four distinct byte-level escape forms of the same namespace string.
-9. **Add a permanent probe for every environment bug you fix.** `[A]` Three TDD
+10. **Add a permanent probe for every environment bug you fix.** `[A]` Three TDD
    probes were added after the namespace break specifically to fail fast if it
    recurred.
 
@@ -409,8 +429,21 @@ incomplete-gamma tail, percentile bootstrap at 20,000 resamples).
 | **T6** | Issue→code coverage depends on issue type (LL-6) | χ² independence | Story **69%**, Bug **42%**, Task **8%**, Sub-task **0%**; χ² = 47.4, df 3 | **2.9e-10** |
 | **T8** | Out-of-hours work is concentrated, not diffuse (LL-8) | exact binomial vs uniform over the 11 affected days | **13 of 29** out-of-hours commits on 2026-05-27 alone (45%) | **4.8e-07** |
 | **T9a** | **CI failure is uncorrelated with commit size** (LL-8) — a *negative* result, and the topic's strongest evidence | Fisher exact on ≥500 vs <500 insertions; Spearman on the same | 63% vs 60%; **ρ = −0.024** | **0.66** ← *null, deliberately* |
-| **T9b** | CI hardening measurably worked (LL-8) | Fisher exact, pre/post 2026-04-01 | 57% → **46%** failure over 940 decided runs | **0.0014** |
+| **T10** | **CI failures cluster heavily** (LL-8) | lag-1 autocorrelation; transition rate vs independence | **85.7%** of failures follow a failure (published benchmark >50%); **ρ₁ = 0.680**; transitions 15.9% vs 49.9% expected | *descriptive + benchmark* |
+| ~~T9b~~ | ~~CI hardening measurably worked~~ | ~~Fisher, pre/post 2026-04-01~~ | **DEMOTED 2026-08-24**: nominal p = 0.0014, but deflated for T10's autocorrelation (n_eff ≈ 179 of 940) → **p = 0.18** | **not significant** |
 | **T9c** | AI-trailered commits are no more CI-fragile (LL-2, LL-8) | Fisher exact | 59% vs 61% — heavily confounded, see M-26 | **0.88** ← *null* |
+
+**On the demotion of T9b, and why it belongs in the record.** Running a published
+claim against our data (">50% of failed builds follow a previous failure") to see
+whether we corroborated it — we do, at 85.7% — revealed that our own run-level
+tests had assumed independent runs. They are not independent: lag-1
+autocorrelation is 0.680 and the effective sample size is roughly a fifth of the
+nominal. That invalidated a coin-flip test we had reported for the failure rate
+(withdrawn) and demoted the CI-improvement trend from p = 0.0014 to **p = 0.18**.
+The trend remains a real descriptive change; it is no longer a tested claim. This
+is the clearest instance in the programme of the thesis it argues for — that
+checking your own numbers against an outside reference finds errors that internal
+consistency checks do not.
 
 **On the two deliberate nulls (T9a, T9c).** A p-value of 0.66 normally means
 "we learned nothing." Here T9a is the opposite: the hypothesis under test is

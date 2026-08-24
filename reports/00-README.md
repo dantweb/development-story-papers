@@ -53,7 +53,7 @@ divergences rather than the agreements.
 | [`02-topics-project-management.md`](02-topics-project-management.md) | **3 PM topics** (PM-1…PM-3) as extended abstracts, each with **Git** and **Jira verification** blocks. | A+B+C | Proposals, verified |
 | [`03-topics-technical.md`](03-topics-technical.md) | **5 technical topics** (TECH-1…TECH-5), same treatment. | A+B+C | Proposals, verified |
 | [`04-topics-security.md`](04-topics-security.md) | **2 security topics** (SEC-1, SEC-2), same treatment. | A+B+C | Proposals, verified |
-| [`05-measurements.md`](05-measurements.md) | **27 measured results.** M-1…M-10 show journal-reported beside git-measured values; M-11…M-17 are git-only; M-18…M-22 are Jira-only; M-23…M-27 are Actions-derived. Each carries its metric, source, what it demonstrates, and the caveat that bears on it. | A+B+C | Data catalog |
+| [`05-measurements.md`](05-measurements.md) | **29 measured results.** M-1…M-10 show journal-reported beside git-measured values; M-11…M-17 are git-only; M-18…M-22 are Jira-only; M-23…M-27 are Actions-derived. Each carries its metric, source, what it demonstrates, and the caveat that bears on it. | A+B+C | Data catalog |
 | [`06-novelty-assessment.md`](06-novelty-assessment.md) | **What would survive peer review.** Tiers all **13** contributions (N-1…N-13) by novelty *and* by evidence class — tested / census / n=1 / mixed / untestable, with statistics. Names the claims to drop, recommends a reframing and research venues. | — | Review |
 | [`08-literature-review.md`](08-literature-review.md) | **What published problems this corpus can speak to.** 13 entries against real papers, each graded **instantiates / supports / complicates / counterexample / challenges-us / cannot-address**, plus a consolidated list of where the literature undercuts *us* and six priority searches still outstanding. | — | Review |
 | [`07-lessons-learned.md`](07-lessons-learned.md) | **8 practitioner topics** (LL-1…LL-8) — what we would tell the next team. Each graded by evidence class and routed to a **named venue**; plus the full inference grading (Tiers S/D/U/N/X), a 12-item day-one checklist, a submission sequence, three publication gates, and the lessons the evidence **cannot** support. | A+B+C | Proposals |
@@ -77,7 +77,13 @@ development at large.
 | **Issue→code coverage depends on issue type** — Story 69%, Bug 42%, Task 8% | χ² = 47.4, df 3 | **2.9e-10** |
 | **Out-of-hours work is concentrated** — 13 of 29 on one day | exact binomial vs uniform over the 11 affected days | **4.8e-07** |
 | **CI failure is independent of commit size** — 63% (≥500 ins.) vs 60%; the *null* is the finding | Fisher exact; Spearman **ρ = −0.024** | **0.66** |
-| **CI hardening worked** — 57% → 46% failure across 2026-04-01 | Fisher exact over 940 decided runs | **0.0014** |
+| **CI failures cluster** — 85.7% follow another failure (published benchmark >50%); lag-1 ρ = 0.680 | transition rate vs independence | *descriptive + benchmark* |
+
+> **Two claims withdrawn 2026-08-24** after the literature searches in
+> [`08`](08-literature-review.md) §7.2: the CI failure rate's "coin flip"
+> binomial test (assumed independent runs — invalid) and the 57%→46% CI
+> improvement (nominal p = 0.0014 → **p = 0.18** once failure clustering is
+> accounted for). Both remain true descriptively; neither is a tested claim.
 
 **Census facts** — complete enumerations needing no inference (attaching a
 p-value would be a category error): the journal undersampled its own active days

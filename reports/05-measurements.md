@@ -1,4 +1,4 @@
-# Measured Results (27)
+# Measured Results (29)
 
 *Revised 2026-08-20 — journal-reported values now sit beside git- and
 Jira-measured ones.*
@@ -238,6 +238,44 @@ topic's actual contribution.
 *bug-finding* technique, and a "hidden test debt" quantification.
 **Caveat:** the 4 bonus bugs are a lower bound. The causal claim rests on `[A]`.
 
+## M-28 — CI failures cluster, and the clustering invalidates naive run-level tests `[D]`
+
+**Metric:** sequential dependence of run outcomes within repo × workflow.
+**Values:** **409 of 477 failures (85.7%) are immediately preceded by another
+failure** — against a published multi-project benchmark of *">50% of failed
+builds follow a previous build failure"*. Outcome **transitions on only 15.9%**
+of consecutive pairs (**49.9% expected** under independence). **Lag-1
+autocorrelation = 0.680**, giving an AR(1) **effective sample size of ~179
+against a nominal 940**. Per-commit autocorrelation is weaker (0.429).
+**Source:** `../data/stats.py` T10.
+**Shows:** two things. Substantively, **a broken environment stays broken until
+someone fixes it** — the clustering is what an environmental account predicts and
+a defect-in-changed-logic account does not, so this reinforces M-25/N-13.
+Methodologically, **any run-level test on this data must account for
+autocorrelation**; ours did not, and M-23's coin-flip test and M-27's trend were
+corrected as a result.
+**Caveat:** the AR(1) deflation is a first-order approximation, not a fitted
+model; a proper analysis would use a mixed model with workflow random effects.
+
+## M-29 — Assertion density, the metric the literature prefers to size `[B]`
+
+**Metric:** assertions per test method, measured from the tree on
+`origin/b-7.4.x`.
+**Values:** `stripe` **1,194 test methods / 2,722 assertions = 2.28 per test**
+(0.55 mock creations per test, 87 `willReturnCallback`); `payment-base`
+**915 / 2,128 = 2.33 per test** (0.24 mocks, 19 `willReturnCallback`).
+**Shows:** the effectiveness literature holds that **assertions**, not suite
+size, correlate with test-suite effectiveness (Zhang & Mesbah, FSE 2015), that
+coverage does not (Inozemtseva & Holmes, ICSE 2014), and that size is a
+confounder inflating apparent effectiveness. M-13's 1.69:1 ratio is a *size*
+metric; this is the better proxy, and it is consistent (~2.3) across two
+independently developed packages.
+**Caveat, and it is the whole point:** assertion **count** is not assertion
+**strength**, and 106 `willReturnCallback` occurrences remain — the exact
+construct that concealed this project's hollow tests (M-10). Neither number
+establishes effectiveness. **A mutation-testing pass is the follow-up that would**,
+and it is feasible: code, tests and harness all still exist.
+
 ---
 
 # Git-only measurables (new, 2026-08-20)
@@ -286,7 +324,10 @@ commit excluded).
 **Statistic:** test+ > src+ in **11/11 months** (exact sign test **p = 0.0010**);
 bootstrap 95% CI on the ratio **[1.39, 2.06]** (20k resamples), ratio > 1 in
 **100%** of them.
-**Shows:** the **only independent confirmation of the project's TDD claims**. A
+**Shows:** the **only independent confirmation of the project's TDD claims** —
+though note this is a **size** metric, which the effectiveness literature
+regards as the wrong proxy; see **M-29** for assertion density and the caveat
+that neither measures effectiveness. A
 project that merely asserted TDD while writing tests as an afterthought could not
 produce this ratio. Pairs with M-2's +196 test methods in two days.
 **Caveat:** volume of test code is **necessary but not sufficient** — M-10
@@ -474,10 +515,17 @@ rescoped to its methods contribution.
 
 **Metric:** conclusion of every workflow run.
 **Values:** **979 runs — 487 failure, 453 success, 39 cancelled**; a **49.7%
-failure rate**. Against a 50/50 null the split is *indistinguishable from
-chance* (exact binomial **p = 0.28**) — the point being that CI failure was not a
-rare event but the **modal outcome half the time**. Across 40 workflow names and
+failure rate** (51.8% of decided runs). Across 40 workflow names and
 2025-10-21 → 2026-08-20.
+> **Correction (2026-08-24).** An earlier revision reported an exact binomial
+> against a 50/50 null (p = 0.28, "indistinguishable from a coin flip"). **That
+> test assumed independent runs and is withdrawn** — CI outcomes here are strongly
+> autocorrelated (M-28). The proportion is a **census fact needing no test**.
+> **Also newly calibrated:** published build-failure rates are **26%**
+> (closed-source), **19%** (large long-lived projects), **>38%** (Java OSS CI) and
+> **~12%** (industrial hardware-in-the-loop). Our 49.7% is roughly **double the
+> closed-source baseline** — a property of *this* project, not a general fact
+> about CI.
 **Source:** `../data/actions_runs.csv`, `../data/actions_workflows.csv`.
 **Shows:** the hardest possible corroboration of the "environment costs more than
 logic" thesis (M-5, M-6, TECH-4, LL-8). The journal *said* CI was the dominant
@@ -531,9 +579,15 @@ failure rate was already falling (M-27), and trailer presence measures
 ## M-27 — CI failure rate improved materially over the project `[D]`
 
 **Metric:** failure share of decided runs, split at 2026-04-01.
-**Values:** **270/473 (57%)** before, **217/467 (46%)** after. Fisher exact
-**p = 0.0014**.
-**Shows:** an **11-point improvement** that is statistically solid — the CI
+**Values:** **270/473 (57%)** before, **217/467 (46%)** after. Nominal Fisher
+exact **p = 0.0014**.
+> **⚠️ Demoted (2026-08-24).** Correcting for the autocorrelation measured in
+> M-28 (lag-1 = 0.680, effective n ≈ 179 against a nominal 940) gives Fisher
+> **p = 0.18**. **The improvement does not survive as a statistically significant
+> result.** It remains a real descriptive change in the observed proportions, and
+> the qualitative account is unaffected — but it must **not** be listed among the
+> tested claims.
+**Shows:** an **11-point descriptive improvement** — the CI
 hardening the journal narrates (permanent TDD probes after the namespace break,
 converged dependency auth) shows up in the artifact as a real reduction in
 failure rate. One of the few places the project's process claims can be checked

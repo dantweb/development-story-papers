@@ -201,8 +201,9 @@ con=Counter(x['conclusion'] for x in A)
 n=len(A)
 print(f"  runs = {n}: success {con['success']}, failure {con['failure']}, cancelled {con['cancelled']}")
 print(f"  failure rate = {100*con['failure']/n:.1f}%")
-p=binom_sf_two_sided(con['failure'], con['success']+con['failure'], 0.5)
-print(f"  exact binomial, failures vs successes = 50/50:  p = {fmt_p(p)}  (i.e. indistinguishable from a coin flip)")
+print("  NOTE: no coin-flip test is reported. An earlier revision ran an exact binomial")
+print("  against 0.5 (p=0.28); that test ASSUMES INDEPENDENT RUNS and is INVALID -- see T10")
+print("  (lag-1 autocorrelation 0.680). The failure proportion is a census fact needing no test.")
 ci=sum(int(x['duration_seconds']) for x in A if x['duration_seconds'])
 print(f"  total CI wall-clock = {ci/3600:.1f} h  (vs ~140.1 h of measured human session time)")
 wasted=sum(int(x['duration_seconds']) for x in A if x['duration_seconds'] and x['conclusion']=='failure')
@@ -255,3 +256,53 @@ e=[x for x in A if x['created_at'][:10]<mid]; l=[x for x in A if x['created_at']
 ea=sum(1 for x in e if x['conclusion']=='failure'); eb=sum(1 for x in e if x['conclusion']=='success')
 la=sum(1 for x in l if x['conclusion']=='failure'); lb=sum(1 for x in l if x['conclusion']=='success')
 print(f"    Fisher exact, two-sided:  p = {fmt_p(fisher_2x2(ea,eb,la,lb))}")
+
+print()
+print("="*74)
+print("T10  CI outcomes are strongly autocorrelated (invalidates naive run-level tests)")
+print("="*74)
+seq=defaultdict(list)
+for r in sorted(A,key=lambda x:x['created_at']):
+    if r['conclusion'] in ('success','failure'):
+        seq[(r['repo'],r['workflow_name'])].append(1 if r['conclusion']=='failure' else 0)
+xs=[];ys=[];trans=0;tot=0;prev_fail=0;tot_fail=0
+for k,v in seq.items():
+    for i in range(1,len(v)):
+        xs.append(v[i-1]); ys.append(v[i]); tot+=1
+        if v[i]!=v[i-1]: trans+=1
+        if v[i]==1:
+            tot_fail+=1
+            if v[i-1]==1: prev_fail+=1
+nn=sum(len(v) for v in seq.values())
+pfail=sum(sum(v) for v in seq.values())/nn
+mx=sum(xs)/len(xs); my=sum(ys)/len(ys)
+num=sum((a-mx)*(b-my) for a,b in zip(xs,ys))
+den=math.sqrt(sum((a-mx)**2 for a in xs)*sum((b-my)**2 for b in ys))
+rho1=num/den
+print(f"  decided runs = {nn}, failure proportion = {pfail:.4f}")
+print(f"  failures preceded by another failure: {prev_fail}/{tot_fail} = {100*prev_fail/tot_fail:.1f}%")
+print(f"     (published comparison: '>50% of failed builds follow a previous failure' for 10 projects)")
+print(f"  outcome transitions: {trans}/{tot} = {100*trans/tot:.1f}%  (expected under independence: {100*2*pfail*(1-pfail):.1f}%)")
+print(f"  lag-1 autocorrelation = {rho1:.3f}")
+defl=(1-rho1)/(1+rho1)
+print(f"  AR(1) effective-sample deflation factor = {defl:.3f}  ->  n_eff ~ {nn*defl:.0f} (nominal {nn})")
+print()
+print("  Consequence for T9b (the 57%->46% trend):")
+mid='2026-04-01'
+e=[x for x in A if x['created_at'][:10]<mid and x['conclusion'] in('success','failure')]
+l=[x for x in A if x['created_at'][:10]>=mid and x['conclusion'] in('success','failure')]
+ea=sum(1 for x in e if x['conclusion']=='failure'); eb=len(e)-ea
+la=sum(1 for x in l if x['conclusion']=='failure'); lb=len(l)-la
+print(f"    nominal Fisher p = {fmt_p(fisher_2x2(ea,eb,la,lb))}")
+sa,sb,sc,sd=[max(1,round(v*defl)) for v in (ea,eb,la,lb)]
+print(f"    deflated [[{sa},{sb}],[{sc},{sd}]] -> Fisher p = {fmt_p(fisher_2x2(sa,sb,sc,sd))}")
+print("    => the improvement DOES NOT survive as a significant result. Demoted to descriptive.")
+print()
+Bs=sorted(B,key=lambda x:x['date'])
+v=[int(x['any_failure']) for x in Bs]
+mxb=sum(v)/len(v)
+nb=sum((v[i-1]-mxb)*(v[i]-mxb) for i in range(1,len(v)))
+db=sum((a-mxb)**2 for a in v)
+print(f"  per-COMMIT any_failure lag-1 autocorrelation = {nb/db:.3f} (n={len(v)}) -- weaker.")
+print("  T9a and T9c are per-commit NULLS; autocorrelation inflates false positives, so a")
+print("  surviving null is conservative. They stand.")

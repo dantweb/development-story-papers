@@ -95,7 +95,7 @@ grading of every claim in the programme is in
 | **N-4** test-to-source ratio | **tested** | 11/11 months by sign test; bootstrap 95% CI **[1.39, 2.06]** | **0.0010** |
 | **N-11** peak ≠ rate *(new, §2.7)* | **tested** | **dispersion index 6.93** vs Poisson 1.0; χ² = 984.4, df 142 | **4.7e-126** |
 | **N-12** intensity without crunch *(new, §2.8)* | **tested** | 0/716 Saturdays under a uniform-7-day null; Mon–Fri also non-uniform (χ² = 22.8, df 4, p = 0.0001) | **1.2e-48** |
-| **N-13** CI failure ⟂ commit size *(new, §2.9)* | **tested (null)** | 63% vs 60%; Spearman **ρ = −0.024**; and 49.7% failure across 979 runs | **0.66** *(the null is the finding)* |
+| **N-13** CI failure ⟂ commit size *(new, §2.9)* | **tested (null)** | 63% vs 60%; Spearman **ρ = −0.024**; 49.7% failure — roughly **2× published closed-source baselines** — and 85.7% failure clustering | **0.66** *(the null is the finding)* |
 | **N-1** self-account vs machine record | **census** | 2.2× undersampling; 41% understatement; a measured 9.1 h over two narrated-as-active months | *n/a — complete enumeration* |
 | **N-6** provenance destruction | **census** | 2 mechanisms; 491 commits only on `LEGACY`; 1 commit on no remote ref | *n/a* |
 | **N-7** ISP criterion | **census** | **exactly 0** consumers typehint the narrow interfaces | *n/a* |
@@ -242,6 +242,14 @@ asserted TDD while writing tests as an afterthought could not produce that ratio
 It is the one process claim in the corpus that the artifact independently
 confirms.
 
+**The effectiveness literature challenges the metric itself,** and this should be
+conceded up front rather than defended: suite **size** is a known confounder of
+effectiveness measures, coverage does not track effectiveness (Inozemtseva &
+Holmes, ICSE 2014), and **assertions do** (Zhang & Mesbah, FSE 2015). Our 1.69:1
+is a size metric. We therefore also measured the better proxy — **2.28 and 2.33
+assertions per test method** across the two packages (M-29) — and neither
+establishes effectiveness. A mutation-testing pass would, and is feasible.
+
 **The tension must be reported alongside it**, and it is what makes the finding
 interesting rather than promotional: the *same* project shipped tests that
 asserted nothing (`assertTrue(true)` inside `willReturnCallback`) and an
@@ -377,15 +385,28 @@ of the one a competing explanation requires. That is a cleaner argument than any
 amount of saga-telling, and — being a joined-corpus result — it is not available
 to a study of commits alone or of CI alone.
 
-**Secondary, and tested:** the failure rate fell **57% → 46%** across 2026-04-01
-(**p = 0.0014**), which is one of the few places a *process* intervention in this
-project meets an *outcome* measure rather than an output measure.
+**Secondary, and now only descriptive:** the failure rate fell **57% → 46%**
+across 2026-04-01 (nominal p = 0.0014). **Corrected for failure clustering
+(lag-1 autocorrelation 0.680, n_eff ≈ 179 of 940) this becomes p = 0.18 and is
+withdrawn as a tested claim** — see [`08`](08-literature-review.md) §7.2. The
+direction stands; the significance does not.
+
+**A third element, added 2026-08-24 and arguably the best part of the paper:**
+failures are **strongly clustered** — 85.7% of failures immediately follow
+another failure, against a published multi-project benchmark of >50%. This is
+independent evidence for the same mechanism (a broken environment persists until
+repaired, unlike defects in changed logic), and it is a corroboration of an
+existing published claim rather than a bare assertion.
 
 **Limits.** `failure` conflates broken builds with flaky E2E, cancelled
 infrastructure and expired credentials — it measures friction, not defect
 density. Coverage is 62% of commits and 76% of runs. The 2026-04-01 split is
-chosen, not derived, and workflow composition changed across it. And this remains
-one project: the non-association is established *here*, not in general.
+chosen, not derived, and workflow composition changed across it. Run-level
+outcomes are **autocorrelated (ρ₁ = 0.680)**, so any run-level test must model
+the dependence — the per-commit tests behind N-13 are less affected and, being
+nulls, conservative under it. And this remains one project: the non-association is
+established *here*, not in general — and against an **outlier failure rate**, which
+is itself part of why it appears so cleanly.
 
 ## 3. Tier 2 — modest or contingent novelty
 

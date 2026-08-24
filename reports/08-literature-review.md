@@ -300,7 +300,7 @@ their 13.33%:
 
 | Measure | Their corpus | Ours |
 |---|---|---|
-| Failure share of runs | — | **487/979 = 49.7%** (indistinguishable from a coin flip, p = 0.28) |
+| Failure share of runs | — | **487/979 = 49.7%** — roughly **2×** the 26% closed-source baseline (§7.1) |
 | Failures unrelated to the patch | **13.33%** potentially | not directly measured, but implied high by ρ ≈ 0 |
 | Time cost | median **4 h** per relatedness decision | **169.5 h** total CI wall-clock, **90.1 h (53%)** in failing runs |
 
@@ -582,32 +582,202 @@ Worth reading as a list, because it is the part a reviewer will assemble anyway.
 
 ---
 
-## 7. Priority searches still outstanding
+## 7. The outstanding searches — all run 2026-08-24
 
-Ordered by how much a novelty claim depends on them.
+All six searches from the first revision have now been run. Priority 1 is in
+§5.2; the remaining five are below. **Two of them changed our results**, one of
+them by exposing a statistical error of our own.
 
-1. ~~**Role separation / who files defects in AI-assisted teams.**~~ **RUN
-   2026-08-21 — see §5.2.** Outcome: not a gap. The question is posed (Garousi,
-   arXiv:2606.05770) and a falsifiable causal theory exists (Agarwal et al.,
-   arXiv:2607.07980); N-3 is the missing *measurement*, not a new question. Its
-   residual risk is n=1, not priority.
-2. **Self-report vs artifact divergence in engineering journals** (§1.2). METR
-   covers perceived productivity; we claim divergence in *documented activity*.
-   Search: diary-study validity in SE, developer-log accuracy, experience
-   sampling vs repository mining (the EMSE 2021 work on individual differences
-   limiting repository-based prediction is a likely anchor).
-3. **Test volume vs test honesty** (§2.3). Is over-mocking correlated with or
-   orthogonal to test quantity in agent-authored suites?
-4. **Agentic-SE field studies** rather than benchmarks. *Agentic Very Much!*
-   (arXiv:2606.07448) and *3100 Opinions on Code Review in an AI World*
-   (arXiv:2607.07980) both look adjacent and neither has been read.
-5. **CI failure rates in industrial closed-source projects.** Our 49.7% needs a
-   comparison baseline; most published rates come from open-source CI corpora and
-   may not be the right comparison.
-6. **PCI-DSS / regulated-domain provenance requirements.** Our §6.6 claim that
-   commit provenance is a compliance artifact is asserted, not sourced.
+### 7.1 CI failure-rate baselines — **our 49.7% is an outlier, not a norm** **[secondary]**
 
----
+**What the literature reports.** Published build-failure rates:
+
+| Setting | Failure rate |
+|---|---|
+| Closed-source projects (initial study of CI bad practices) | **26%** |
+| Large, long-lived projects | **19%** |
+| Java OSS CI workflows (empirical analysis) | **>38%** |
+| Industrial systems with hardware-in-the-loop | **1,414 / 11,731 ≈ 12%** |
+| **This project** | **49.7%** (487/979; 51.8% of decided runs) |
+
+Causes reported elsewhere: compilation **47%**, testing **36%**, checkout **12%**;
+dependency-related errors are the largest category in build-log analysis.
+
+**Why this matters, and it cuts against how we framed M-23.** We presented 49.7%
+as evidence that CI failure was "the modal outcome half the time" — true, but the
+implicit reading was that this is simply what CI is like. It is not. Our rate is
+roughly **double the closed-source baseline** and above every figure we found.
+That makes it a **property of this project**, not a general fact, and it
+strengthens rather than weakens the environmental account: a project with an
+unusually fragile build environment is exactly where you would expect
+patch-unrelated failures to dominate (§3.2) and where size-independence (N-13)
+should appear most clearly.
+
+**It also demands a caveat we had not made.** A high failure rate in a
+*framework-coupled, cross-repo, private-dependency* setting may be normal *for
+that setting*, and none of the baselines above share it. The honest claim is
+"unusually high against published baselines, which do not include a comparable
+setting."
+
+**Verdict: CHALLENGES US** (on framing), and **strengthens N-13** (on mechanism).
+
+### 7.2 Failure clustering — a published claim we could test, which exposed an error in T9 **[secondary → own analysis]**
+
+**Their claim.** In multi-project build analyses, *"for 10 projects, more than 50%
+of failed builds follow a previous build failure."* Overall stability of recent
+build history is reported as the strongest single influence on build outcome.
+
+**Our test (new, T10 in [`../data/stats.py`](../data/stats.py)).** Grouping runs
+by repository × workflow and walking them in time order:
+
+- **409 of 477 failures (85.7%) are immediately preceded by another failure** —
+  far above their >50% threshold.
+- Outcome **transitions occur on only 15.9%** of consecutive pairs, against
+  **49.9% expected** under independence.
+- **Lag-1 autocorrelation = 0.680.**
+
+**This confirms their claim and extends it — and then it broke one of our own
+results.** An AR(1) deflation gives an **effective sample size of ~179 against a
+nominal 940**. Two consequences, both corrections:
+
+1. **M-23's "indistinguishable from a coin flip (exact binomial p = 0.28)" is
+   withdrawn.** That test assumed independent runs. It is invalid, it has been
+   removed from `stats.py`, and the failure proportion now stands as a **census
+   fact requiring no test** — which is what it always should have been.
+2. **M-27 / T9b — the 57% → 46% improvement — is demoted.** Nominal Fisher
+   p = 0.0014; deflated to n_eff, **p = 0.18**. The improvement **does not survive
+   as a statistically significant result.** It remains a real descriptive change
+   in the observed proportions, and the qualitative account (permanent regression
+   probes, converged dependency auth) is unaffected — but it can no longer be
+   listed among the tested claims.
+
+**What is *not* affected.** T9a (failure ⟂ commit size) and T9c (AI-trailered vs
+not) are **per-commit** rather than per-run, where autocorrelation is weaker
+(lag-1 = 0.429), and both are **nulls**. Autocorrelation inflates false positives;
+a null that survives it is conservative. **N-13 stands.**
+
+**Verdict: SUPPORTS their claim strongly (85.7% vs >50%) and CHALLENGES US —
+the most valuable single outcome of this search round, because it caught a real
+statistical error in our own work.**
+
+### 7.3 Test size versus test quality — **the literature says our headline metric is the wrong one** **[secondary]**
+
+**What the literature establishes.**
+
+- **Assertions, not size, track effectiveness.** Zhang & Mesbah (FSE 2015),
+  across 6,700 constructed suites and ~24,000 assertions in five real-world Java
+  projects: *assertion count is strongly correlated with test-suite
+  effectiveness.*
+- **Coverage is not.** Inozemtseva & Holmes (ICSE 2014): coverage is **not**
+  strongly correlated with effectiveness.
+- **Size is a confounder.** A TOSEM (2025) analysis finds mutation-score↔fault-
+  detection correlations are strong when suite size is *uncontrolled* but fall to
+  roughly **0.05–0.20 when size is controlled** — most of the apparent
+  association is a size effect.
+- **And specifically for LLM-generated suites**, a 2026 replicability study
+  (arXiv:2607.22880) finds *little evidence that suite size is a dominant
+  confounder*, with size correlating only **weakly** with mutation score and
+  real-bug detection.
+
+**This is a direct challenge to how N-4 is stated.** Our **1.69:1 test-to-source
+write ratio** is a **size** metric. The literature's consensus is that size is
+precisely the wrong proxy for effectiveness, and it names the right one —
+assertions — which is also exactly the axis on which this project's documented
+failure occurred (`assertTrue(true)` hidden inside `willReturnCallback`).
+
+**So we computed the better metric.** Measured on `origin/b-7.4.x`:
+
+| Repo | Test methods | Assertions | Assertions/test | Mock creations/test | `willReturnCallback` |
+|---|---|---|---|---|---|
+| `stripe` | 1,194 | 2,722 | **2.28** | 0.55 | 87 |
+| `payment-base` | 915 | 2,128 | **2.33** | 0.24 | 19 |
+
+Two readings, and we should publish both. **Charitable:** ~2.3 assertions per test
+method is a substantive density, consistent across two independently developed
+packages — so the suite is not merely voluminous. **Sceptical:** 106
+`willReturnCallback` occurrences remain in the trees, the exact construct that
+concealed the project's hollow tests, and assertion *count* still says nothing
+about assertion *strength*.
+
+**Consequence for the claims.** N-4 should be restated as: *test-writing effort
+was real and sustained (a size fact), and assertion density is moderate (a better
+proxy) — but neither establishes effectiveness, which this corpus cannot measure
+without mutation testing.* Running a mutation-testing pass over this suite is
+now the single most valuable technical follow-up available, and it is feasible:
+the code, the tests and the harness all still exist.
+
+**Verdict: CHALLENGES US**, productively — and yields a new measurement and a
+concrete follow-up.
+
+### 7.4 Agentic-SE field studies — and the position directly opposed to ours **[abstract]**
+
+**Monperrus, *The End of Code Review: Coding Agents Supersede Human Inspection*
+(arXiv:2606.13175, June 2026).** Argues coding agents have crossed a capability
+threshold at which human code review is no longer a necessary part of a quality
+pipeline: every stated goal of review — defect detection, style, knowledge
+transfer, team awareness — can be met by agents at lower cost and higher
+throughput, and the "agents write, humans must review" arrangement is a dead end
+that neither assures quality nor scales.
+
+**This is the strongest published counter-position to our N-3**, and the paper
+set is better for engaging it head-on rather than citing only the agreeable
+Agarwal et al. (§5.2.2).
+
+Three honest observations:
+
+1. **Our case is a counterexample to the strong form.** In this project the
+   agent-assisted pair did not detect its own behavioural defects: **a human
+   filed 37 of 40 bugs**, and the developer using the AI filed **zero**. If agents
+   could supersede human inspection here, that distribution should not look the
+   way it does.
+2. **But we must not overstate it, because the constructs differ.** Monperrus
+   argues about *code review* — inspection of a diff. Our tester performed
+   *black-box testing* against a running system. Those are different activities,
+   and his argument does not obviously extend to the second. Our evidence bears on
+   "can the agent-plus-developer pair find its own defects", not on "is diff
+   review necessary".
+3. **We fall inside his own carve-out.** He reserves a continuing human role for
+   *"security-critical paths in regulated systems"* and changes whose correctness
+   depends on requirements the agent was never given. A PCI-DSS-obligated payment
+   module is exactly that. So our case is consistent with his position as stated,
+   and only contradicts the loose popular reading of it.
+
+**Verdict: COUNTEREXAMPLE to the strong/popular form; CONSISTENT with the paper
+as written.** Cite it as the opposing pole and state the carve-out.
+
+Also located but not yet read: *Early Adoption of Agentic Coding Tools by GitHub
+Projects* (arXiv:2607.14037) and *Code Review Agent Benchmark* (arXiv:2603.23448).
+
+### 7.5 PCI-DSS provenance — **our compliance claim is now sourced, and it is narrower than we wrote** **[secondary]**
+
+**What we asserted.** In §6.6 of the flagship, that for a PCI-DSS-obligated
+module "per-commit provenance is not a nicety" and a release procedure that
+discards it is a finding in its own right. This was unsourced.
+
+**What the standard actually requires.** PCI DSS **Requirement 6.4/6.5** governs
+change control and requires, for each change: documentation of impact,
+documented **approval by authorised parties**, **testing** of functionality, and
+**back-out procedures** — with change-control records providing an **audit trail
+of changes for accountability**. Requirement 6 also mandates secure SDLC
+practice, code review and version control for policies and procedures.
+
+**The honest correction.** The standard requires an **auditable change-control
+record**; it does **not** specify that the record must be the git commit graph.
+An organisation could satisfy 6.4/6.5 through a change-management system while
+squashing its VCS history. So our claim must be narrowed to something we can
+actually defend:
+
+> Where a project's change-control evidence *is* its commit history — as it was
+> here, with the dev log and commit trail serving as the only record of what
+> changed, why, and with what testing — destroying that history at release
+> removes the artifact the audit trail depends on.
+
+That is a **conditional** claim about this project's practice, not a general claim
+that squashing violates PCI DSS. We should not imply the latter, and §6.6
+currently comes close to doing so.
+
+**Verdict: CHALLENGES US.** Sourced, but narrower than asserted. Requires a
+wording fix in the flagship §6.6 and in LL-5.
 
 ## 8. Summary
 
