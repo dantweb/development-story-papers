@@ -76,14 +76,13 @@ CSVs so the arithmetic is checkable.
    appearing in commit messages resolve to real Jira issues — though one is
    *mislabelled*, and that single case is the paper's sharpest micro-study
    (§6.1).
-9. **A mutation run found a large undetected population — but the score itself
-   proved unmeasurable here.** Infection reports a substantial escaped-mutant
-   set dominated by `MethodCallRemoval` (a call can be deleted with the suite
-   still green). The *score* is retracted: repeated runs against unchanged code
-   returned 0–568 mutants and 0–73% MSI, because coverage attribution is
-   unstable in this environment (§4.14). Four kills were instead verified by
-   hand and are reproducible. Test *volume* (finding 1) could not have revealed
-   any of it.
+9. **The suite detects 70% of the mutations placed in the code it executes** —
+   1,592 mutants, 1,123 killed, 469 escaped, reproducible across thread counts
+   (§4.14). The largest escape category is `MethodCallRemoval` (85): a call can
+   be deleted with the suite still green. Test *volume* (finding 1) could not
+   have revealed this. Getting the number took four attempts — the first three
+   returned confident-looking figures from a non-deterministic tool, which is a
+   methodological finding in its own right.
 10. **CI failed on half of all runs, and commit size did not predict it.** Of 979
    workflow runs, **487 failed and 453 succeeded — a 49.7% failure rate**,
    roughly **double the 26% reported for closed-source projects** and above every
@@ -891,68 +890,73 @@ older than it are **already gone**, unrecoverably. Corpus D thus arrives
 carrying the same survivorship problem as Corpus B (§6.6), from a third
 independent mechanism.
 
-### 4.14 Mutation testing: a real gap, and a score we could not measure
+### 4.14 Mutation testing: 70% of mutations detected — and a measurement that took four attempts
 
 The test-effectiveness literature holds that suite **size** is the wrong proxy
-for effectiveness and that assertions are a better one — and that neither
-settles it. §4.7's 1.69:1 write ratio is a size metric. To close that gap we ran
-**Infection 0.31.9** against the live suite (1,509 tests / 3,934 assertions,
-green, with the module set matched to CI) over four `stripe` source directories.
+and that neither size nor assertion density settles the question. §4.7's 1.69:1
+ratio is a size metric. We therefore ran mutation testing — and the more
+instructive half of what follows is that **we got the wrong answer three times
+first.**
 
-> **⚠️ The point estimate first published here is retracted.** Re-running
-> Infection against an unchanged codebase gives a different answer every time:
-> across seven runs, **0 to 568 mutants** and **0% to 73% MSI**, with three
-> consecutive identical invocations returning 0 / 466 / 459 mutants and
-> 0% / 61% / 69% MSI. The cause is coverage attribution: Infection derives its
-> mutable-file set from an initial coverage run, and in this environment
-> (xdebug + OXID shop bootstrap + module chain) that set is unstable, even though
-> the test suite itself is green and stable at 1,522 tests. **No MSI figure from
-> this environment should be quoted** until coverage is pinned (pcov, fixed test
-> order, explicit `<coverage>` include) and three identical runs agree.
+**The result, reproducible across `--threads=1`, `4` and `8`, three consecutive
+runs each:**
 
-What *is* stable across every run — and therefore reportable — is the
-**existence and character** of the gap: a substantial population of semantic
-mutations in code the tests execute goes undetected, and `MethodCallRemoval` is
-consistently the dominant escaped mutator. Neither §4.7's write ratio nor an
-assertion count (≈2.3 per test) can reveal that, which is the literature's point
-and does not depend on the gap's size.
+| | Baseline (`b-7.4.x`) | After the remediation sprint |
+|---|---|---|
+| Mutants generated | 1,578 | **1,592** |
+| Killed | 1,084 | **1,123** |
+| Escaped | 494 | **469** |
+| **Covered Code MSI** | **68%** | **70%** |
 
-**The deterministic evidence.** Four escaped mutants were applied by hand to the
-production file and the suite re-run. Each produced **no failure** before the
-remediation and **exactly one** after it, with the file restored byte-identical:
-removing the `refundedAmount` context write, the `logRequest` audit call, the
-`handle() START` breadcrumb, and the success `logger->info` line. Manual mutation
-does not depend on coverage sampling, so these kills are reproducible.
+So the suite executes the mutated code and detects **70%** of the semantic
+changes made to it; **30% go unnoticed**. Neither §4.7's write ratio nor an
+assertion count (≈2.3/test) predicted that, which is the literature's point.
 
-Two results sharpen the picture, and they pull in opposite directions.
+**Why the first three attempts failed, and why it matters.** The initial run
+reported 462 mutants and MSI 73%, and that figure was published as a measured
+result. It was not reproducible: seven repeat runs against unchanged code
+returned **0 to 1,019 mutants and 0% to 73% MSI**. Changing the coverage driver
+(installing pcov after discovering `xdebug.mode` was `debug,profile` and had
+never included `coverage`), raising the timeout tenfold, and clearing every cache
+did **not** fix it.
 
-**The money path is fully verified.** `AmountConverter`, `MinorUnitConverter` and
-`CapturableAmount` have **zero escaped mutants**. The cents-math consolidation
-that §4.11 and `03-topics-technical.md` (TECH-5) treat as the project's cleanest
-piece of work is confirmed at the strongest level of test-effectiveness evidence
-available. The DRY refactor did not merely centralise the arithmetic; it left it
-genuinely tested.
+The cause was upstream of all of that. Infection's *generated* initial-test
+configuration runs PHPUnit **with a random seed**, and that run terminates early
+at a variable point — one observed run derived its coverage from 143 of 1,522
+tests. Meanwhile **PHPUnit's own coverage is perfectly deterministic**: 185
+files, 3,539 covered statements, byte-identical file sets across three runs. The
+fix is to generate coverage with PHPUnit and pass it in
+(`--coverage=<dir> --skip-initial-tests`).
 
-**The orchestration around it is not.** Escapes concentrate in
-`StripeRefundRequestHandler` (**27**), `StripePaymentStatusHandler` (22),
-`CheckoutSessionService` (22) and `StaticContent` (20). And the single most
-common escaped mutator is **`MethodCallRemoval` (28 of 122)** — meaning an entire
-method call can be deleted with the suite still green. That is the signature of
-tests asserting against doubles rather than behaviour: the same failure mode the
-project documented in its own hollow tests and banned in rule R-1.5 (§6.5), still
-present in measurable quantity after that remediation.
+A contributing defect turned up en route: a test carried a `CoversClass`
+attribute pointing at a **class that does not exist** (`Service\ReconciliationResult`
+rather than `Service\Result\ReconciliationResult`), and the resulting PHPUnit
+warning is what halted the run at a random position.
 
-The honest summary is that this project's testing discipline was real and
-unevenly distributed: excellent where logic was consolidated into value types,
-weak in the handler and service layer that wires them together.
+**This episode is itself a finding, and it belongs in §7.4.** A single invocation
+of the tool returned a confident-looking percentage every time. The instability
+was invisible without running it three times — which is not standard practice,
+and which no paper reporting an industrial MSI that we located reports doing.
 
-**Caveats.** Beyond the non-determinism above: covered code only —
-`--with-uncovered` aborts on shop-coupled classes. Four directories of `stripe`,
-not `payment-base`. Integration and E2E suites excluded. And at least one escape
-is an **equivalent mutant** that cannot be killed — `CustomerDataSanitizer:28`
-`ReturnRemoval`, where deleting `return '';` lets the empty string fall through a
-pipeline that is a no-op on it — which is a reminder that a 100% MSI target is
-not a coherent goal.
+**What the corrected numbers say.** Escapes concentrate in the orchestration
+layer — `StripeCaptureRequestHandler` (54), `StripeCheckoutSessionHandler` (36),
+`ReturnSessionSecurityService` (34), `CaptureService` (27) — and the largest
+mutator category is **`MethodCallRemoval` (85 of 469)**: a call can be deleted
+with the suite still green, the signature of tests asserting against doubles
+rather than behaviour. That is the phenomenon the project documented in its own
+hollow tests and banned in rule R-1.5 (§6.5), still present in quantity after
+that remediation.
+
+**And the remediation is measurable.** Thirteen tests written against three of
+the worst files closed **25 escapes** and moved MSI **68% → 70%**, with the
+targeted files going 27→8, 7→4 and 3→0. Four of those kills were additionally
+verified by hand — applying the mutation to the production file and observing
+exactly one failure where there had been none.
+
+**Caveats.** Covered code only (`--with-uncovered` aborts on shop-coupled
+classes). `stripe` only; `payment-base` has no baseline. The 469 escapes were not
+triaged for equivalent mutants, and at least one demonstrably *is* equivalent, so
+**100% MSI is not a coherent target**. Unit suite only.
 
 ---
 
@@ -1510,9 +1514,9 @@ revision). Divergences are the point of the table.
 | CI trend | hardening described | **57% → 46%** failure across 2026-04-01, Fisher **p = 0.0014** | **D confirms A** |
 | AI commits vs CI | not claimed | **59% vs 61%** failing (p = 0.88) — confounded null | D only |
 | CI provenance | unremarked | **234/979 runs (24%)** on no surviving ref; older runs past retention **gone** | **D-only failure** |
-| Test effectiveness | "1,407 tests", TDD asserted | mutation run finds a large escaped population; **MSI itself unmeasurable here (0–73% across runs)** | **E-only; point estimate retracted** |
-| Money-path test quality | "4 truncation bugs fixed" | `AmountConverter` and siblings kill their mutants in runs where they are sampled | **E supports A, weakly** |
-| Hollow tests after remediation | "false-positive tests removed" | `MethodCallRemoval` consistently the top escaped mutator; 4 kills verified by hand | **E complicates A** |
+| Test effectiveness | "1,407 tests", TDD asserted | **Covered Code MSI 70%** — 1,592 mutants, 469 escaped, reproducible | **E quantifies A** |
+| Hollow tests after remediation | "false-positive tests removed" | **`MethodCallRemoval` = 85/469 escapes**, the largest category | **E complicates A** |
+| Tooling trustworthiness | not considered | first three measurements non-reproducible (0–1,019 mutants); cause was Infection's random-seeded initial run | **E-only, methodological** |
 
 ## Appendix B — Primary artifacts
 

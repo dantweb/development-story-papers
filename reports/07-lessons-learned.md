@@ -128,31 +128,41 @@ effort, no sensitive material, no approval dependency.
    `willReturnCallback` occurrences remain in the trees**, the exact construct
    that hid the hollow tests. If you want to know whether your agent-written
    suite verifies anything, **run mutation testing**; nothing cheaper answers it.
-2. **We ran it — and the score turned out to be unmeasurable in this
-   environment.** `[E]` Seven Infection runs against unchanged code returned
-   **0 to 568 mutants and 0% to 73% MSI**; three consecutive identical
-   invocations gave 0 / 466 / 459. Coverage attribution is unstable (xdebug +
-   OXID bootstrap), even though the suite is green and stable. **Lesson: verify
-   your mutation tool is deterministic before you quote its score, and certainly
-   before you gate CI on it** — run it three times on unchanged code and compare.
-   What *is* stable is the qualitative finding: a large escaped population,
-   dominated by `MethodCallRemoval`.
+2. **We ran it, and the answer is 70% — but it took four attempts to get a
+   number that reproduces.** `[E]` Final, stable across `--threads=1/4/8`:
+   **1,592 mutants, 1,123 killed, 469 escaped, Covered Code MSI 70%.** The suite
+   executes the code and misses **30%** of the semantic changes to it.
+2b. **Verify your mutation tool is deterministic before you quote it — run it
+   three times on unchanged code.** `[E]` Our first figure (462 mutants, MSI 73%)
+   was published as fact and was not reproducible: seven repeats returned **0 to
+   1,019 mutants and 0% to 73% MSI**. Swapping the coverage driver, raising the
+   timeout tenfold and clearing every cache did not fix it. The cause was that
+   **Infection's own generated initial-test run uses a random seed and terminates
+   early at a variable point** — while PHPUnit's coverage, run directly, is
+   perfectly deterministic. Fix: generate coverage yourself and pass
+   `--coverage=<dir> --skip-initial-tests`. Every wrong answer along the way
+   looked authoritative.
 2b. **When the tool is unreliable, mutate by hand.** `[E]` Applying four
    mutations manually to the production file and re-running the suite is
    deterministic, takes minutes, and produced the sprint's actual evidence: each
    mutation caused **no failure** before the new tests and **exactly one** after.
    That is a technique worth keeping even where the tooling works.
-3. **The escapes cluster in orchestration, not in the value types.**
-   `AmountConverter`, `MinorUnitConverter` and `CapturableAmount` — the money
-   primitives — killed their mutants in the runs that sampled them. The weak spots are handlers and
+3. **The escapes cluster in orchestration.** `StripeCaptureRequestHandler` (54),
+   `StripeCheckoutSessionHandler` (36), `ReturnSessionSecurityService` (34),
+   `CaptureService` (27). Consolidating logic into well-tested collaborators
+   (LL-4) shows up here; the glue code around them is where the gaps are. The weak spots are handlers and
    services: refund handler **27**, payment-status handler **22**, checkout-session
    service **22**. If you consolidate logic into well-tested value objects (LL-4),
    mutation testing will show you it worked; it will also show you the glue code
    you never really tested.
-4. **`MethodCallRemoval` was the top escaped mutator (28 of 122).** That means a
-   method call can be **deleted entirely** and the suite stays green. If you write
-   tests against mocks, this is the failure you will have, and only mutation
-   testing will tell you.
+4. **`MethodCallRemoval` is the top escaped mutator (85 of 469).** A method call
+   can be **deleted entirely** and the suite stays green. If you write tests
+   against mocks, this is the failure you will have, and only mutation testing
+   will tell you.
+5. **Targeted work moves the number, and you can prove it.** 13 tests against
+   three of the worst files closed **25 escapes** and moved MSI **68% → 70%**
+   (27→8, 7→4, 3→0 on the targeted files), measured on the same deterministic
+   footing before and after.
 5. **The same project shipped tests that asserted nothing.** `[A]` Assertions
    hidden inside `willReturnCallback` effectively ran `assertTrue(true)`. A
    passing suite, a green gate, and no verification.
@@ -586,7 +596,7 @@ expensive or impossible later.
 | 4 | Require a ticket reference per commit | 39% lacked one; history became unauditable `[B]` |
 | 5 | Never squash release history; test that history is auditable | two silent provenance losses `[B]` |
 | 6 | Fail the build on silently skipped tests | 34% of a suite was hidden behind a green light `[A]` |
-| 6b | **Run mutation testing — after proving the tool is deterministic** | three identical runs here gave 0 / 466 / 459 mutants; an unverified tool yields an unusable number `[E]` |
+| 6b | **Run mutation testing — and prove the tool is deterministic first** | three runs on unchanged code gave 0 / 466 / 459 before the fix; 1,592 every time after `[E]` |
 | 7 | Ban new suppressions; fix or fail | a suppression hid a money-path crash `[A]` |
 | 8 | Budget an independent tester | the pair filed **zero** bugs against itself `[C]` |
 | 9 | Ticket architectural work | otherwise a silenced linter is your architecture reviewer `[C]` |

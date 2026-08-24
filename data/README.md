@@ -101,13 +101,13 @@ assertions, green).
 
 | File | Rows | Grain | Notes |
 |---|---|---|---|
-| `mutation_escaped.csv` | 122 | one escaped mutant | source file, line, mutator name |
+| `mutation_escaped.csv` | 469 | one escaped mutant | source file, line, mutator name |
 
 **Run configuration.** Source scope: `src/Stripe/EventSystem/Handler`,
 `src/Stripe/Core`, `src/Stripe/Webhook`, `src/Stripe/Service`. Test scope:
 `--testsuite=Unit`. Mutators: `@default` minus `CastInt`/`CastString` (the
-project's own `infection.json5` choice). Result: **462 mutants, 340 killed, 122
-escaped, Covered Code MSI 73%, mutation code coverage 100%**.
+project's own `infection.json5` choice). Result: **1,592 mutants, 1,123 killed, 469
+escaped, Covered Code MSI 70%** — see the determinism note below.
 
 ### Reproducing, and the environment caveat that matters
 
@@ -128,29 +128,38 @@ the run was blocked until the environment matched CI. **The shop configuration
 used for this run was snapshotted beforehand and restored bit-for-bit
 afterwards** (verified by directory checksum); no module state was left changed.
 
-### ⚠️ The run is NOT deterministic — read before using these numbers
+### Determinism — how this run was made reproducible
 
-Seven invocations against **unchanged code**, cache cleared between runs:
+The first attempts at this measurement were **not reproducible**: seven runs
+against unchanged code returned **0 to 1,019 mutants and 0% to 73% MSI**.
+Neither the coverage driver (pcov changed nothing), the timeout, nor cache
+clearing fixed it.
 
-| Run | Mutants | Covered Code MSI | Files mutated |
-|---|---|---|---|
-| threads=4 | 462 | 73% | 16 |
-| threads=4, repeat | 318 | 67% | — |
-| threads=4, cache cleared | 124 | — | 4 |
-| threads=1 | 568 | 62% | 12 |
-| threads=1 | **0** | **0%** | 0 |
-| threads=1 | 466 | 61% | 12 |
-| threads=1 | 459 | 69% | 18 |
+**Cause:** Infection's *generated* initial-test configuration runs PHPUnit with a
+**random seed** and terminates early at a variable point — one observed run
+derived coverage from 143 of 1,522 tests. PHPUnit's own coverage is by contrast
+perfectly deterministic (185 files, 3,539 covered statements, identical across
+runs).
 
-Infection derives its mutable-file set from coverage collected by an initial
-test run; in this environment (xdebug + OXID shop bootstrap + module chain) that
-coverage set varies between runs, even though the suite itself is green and
-stable at 1,522 tests. **`mutation_escaped.csv` is therefore one draw, not a
-census**, and no MSI figure from this setup should be quoted.
+**Fix — generate coverage yourself and skip Infection's initial run:**
 
-To make it quotable: switch to **pcov**, fix test order, add an explicit
-`<coverage>` include list to `phpunit.xml`, then show three identical runs
-agreeing before publishing a number.
+```bash
+docker compose exec php php vendor/bin/phpunit \
+  -c extensions/stripe/tests/phpunit.xml --testsuite Unit \
+  --coverage-xml /tmp/cov/coverage-xml --log-junit /tmp/cov/junit.xml
+
+docker compose exec -w /var/www/extensions/stripe php \
+  php -d memory_limit=3G vendor/bin/infection \
+  --threads=4 --no-progress --coverage=/tmp/cov --skip-initial-tests
+```
+
+Verified identical across `--threads=1`, `4` and `8`, three consecutive runs
+each: **1,592 mutants · 1,123 killed · 469 escaped · Covered Code MSI 70%**.
+
+A contributing defect was fixed en route: a `CoversClass` attribute pointing at a
+non-existent class produced a PHPUnit warning that halted the initial run at a
+random position. Coverage driver note: `xdebug.mode` in this image is
+`debug,profile` and never included `coverage`; pcov is now the driver.
 
 ### Caveats
 

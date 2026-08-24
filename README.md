@@ -47,19 +47,20 @@ record and the machine records are used to check each other.
 
 ## Headline findings
 
-Attempted by mutation testing (score retracted):
+Measured by mutation testing:
 
-- **The mutation score proved unmeasurable in this environment** — seven runs
-  against unchanged code returned **0–568 mutants and 0–73% MSI**. Coverage
-  attribution is unstable; the suite itself is green and stable. Any single run
-  returns a confident-looking percentage, which is the trap.
-- **What is stable:** a large population of semantic mutations in tested code
-  goes undetected, dominated by **`MethodCallRemoval`** — an entire method call
+- **The suite detects 70% of the mutations placed in code it executes** — 1,592
+  mutants, 1,123 killed, **469 escaped**, reproducible across thread counts. Test
+  volume (1.69:1) and assertion density (≈2.3/test) were both compatible with
+  that 30% gap and neither could reveal it.
+- **`MethodCallRemoval` is the largest escape category (85/469)** — a method call
   can be deleted with the suite still green, the signature of tests asserting on
   mocks rather than behaviour.
-- **Four kills verified by hand** (deterministic): removing the `refundedAmount`
-  context write, the audit `logRequest` call, a log breadcrumb and the success
-  log line each caused zero failures before remediation and exactly one after.
+- **The number took four attempts.** The first three were non-reproducible
+  (0–1,019 mutants across runs) and each looked authoritative. The cause was
+  Infection's own random-seeded initial test run — not the coverage driver, the
+  timeout, or caching. **Verify your mutation tool is deterministic before
+  quoting it.**
 
 Measured from the GitHub Actions record:
 

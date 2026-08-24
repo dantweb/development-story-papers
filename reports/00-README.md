@@ -86,15 +86,20 @@ development at large.
 > improvement (nominal p = 0.0014 → **p = 0.18** once failure clustering is
 > accounted for). Both remain true descriptively; neither is a tested claim.
 
-**Attempted by experiment (2026-08-24), and retracted the same day.** A
-mutation-testing pass was **run, not deferred** — and its score proved
-**non-deterministic**: seven runs against unchanged code returned **0–568
-mutants and 0–73% MSI**, three consecutive identical invocations giving
-0 / 466 / 459. Coverage attribution is unstable in this environment. What stands
-is qualitative and consistent across runs — a large escaped population dominated
-by **`MethodCallRemoval`** (a call can be deleted with the suite still green) —
-plus **four kills verified by hand**, which are reproducible. See M-30 for the
-retraction and what pinning the measurement would require.
+**Measured by experiment (2026-08-24): Covered Code MSI 70%.** 1,592 mutants,
+1,123 killed, **469 escaped**, reproducible across `--threads=1/4/8`. The suite
+executes the code and misses **30%** of the semantic changes to it; the largest
+escape category is **`MethodCallRemoval` (85/469)** — a call can be deleted with
+the suite still green.
+
+**The measurement was wrong three times first, and that is a finding.** The
+initial figure (MSI 73%) was published as fact and was not reproducible: seven
+runs on unchanged code returned **0–1,019 mutants and 0–73% MSI**. Neither the
+coverage driver, the timeout, nor caching was the cause — **Infection's own
+generated initial-test run uses a random seed and terminates early at a variable
+point**, while PHPUnit's coverage run directly is perfectly deterministic. Fixed
+by generating coverage externally and passing `--coverage --skip-initial-tests`.
+See M-30.
 
 **Census facts** — complete enumerations needing no inference (attaching a
 p-value would be a category error): the journal undersampled its own active days
