@@ -47,17 +47,19 @@ record and the machine records are used to check each other.
 
 ## Headline findings
 
-Measured by mutation testing:
+Attempted by mutation testing (score retracted):
 
-- **The suite detects 73% of what it executes** — 462 mutants, 340 killed, 122
-  escaped, at 100% mutation code coverage. Test *volume* (1.69:1) and assertion
-  density (≈2.3/test) were both compatible with that gap and neither revealed it.
-- **The money path is fully verified**: `AmountConverter`, `MinorUnitConverter`
-  and `CapturableAmount` have **zero escaped mutants**. The escapes cluster in
-  handlers and services (refund handler 27, payment-status 22).
-- **`MethodCallRemoval` is the commonest escape (28/122)** — an entire method call
+- **The mutation score proved unmeasurable in this environment** — seven runs
+  against unchanged code returned **0–568 mutants and 0–73% MSI**. Coverage
+  attribution is unstable; the suite itself is green and stable. Any single run
+  returns a confident-looking percentage, which is the trap.
+- **What is stable:** a large population of semantic mutations in tested code
+  goes undetected, dominated by **`MethodCallRemoval`** — an entire method call
   can be deleted with the suite still green, the signature of tests asserting on
   mocks rather than behaviour.
+- **Four kills verified by hand** (deterministic): removing the `refundedAmount`
+  context write, the audit `logRequest` call, a log breadcrumb and the success
+  log line each caused zero failures before remediation and exactly one after.
 
 Measured from the GitHub Actions record:
 

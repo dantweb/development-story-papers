@@ -596,29 +596,73 @@ against an *outcome* rather than an output.
 period (Playwright E2E and load tests arrive later), so part of the shift may be
 composition rather than reliability.
 
-## M-30 — Mutation score: 27% of semantic mutations in tested code survive `[E]`
+## M-30 — Mutation score: **RETRACTED as a point estimate** — the measurement is non-deterministic `[E]`
 
-**This is the measurement M-13, M-29, N-4 and LL-3 all pointed at, and it was
-run rather than deferred.** Infection 0.31.9, PHP 8.3, against the live suite
+> ### ⚠️ Retraction (2026-08-24, same day as first publication)
+>
+> The figures below were published as a measured result. **They are one draw
+> from a non-deterministic process and must not be quoted as a mutation score.**
+>
+> Re-running Infection against an *unchanged* codebase, clearing the cache
+> between runs, produces a different result every time:
+>
+> | Run | Mutants generated | Covered Code MSI | Source files mutated |
+> |---|---|---|---|
+> | initial (threads=4) | 462 | **73%** | 16 |
+> | repeat | 318 | 67% | — |
+> | repeat, cache cleared | 124 | — | 4 |
+> | threads=1 | 568 | 62% | 12 |
+> | threads=1, repeat | **0** | **0%** | 0 |
+> | threads=1, repeat | 466 | 61% | 12 |
+> | threads=1, repeat | 459 | 69% | 18 |
+>
+> Three consecutive identical invocations returned **0 / 466 / 459** mutants and
+> **0% / 61% / 69%** MSI with no code change between them. The escaped-file
+> ranking is also unstable: `StripeRefundRequestHandler` tops one run and is
+> absent from the next.
+>
+> **Cause:** Infection derives its mutable-file set from coverage collected by an
+> initial test run, and in this environment (xdebug, OXID shop bootstrap, module
+> chain, 1,500-test suite) that coverage set varies between runs. The initial
+> suite itself is green and stable at 1,522 tests; the *coverage attribution* is
+> not.
+>
+> **What survives.** The **class** of finding is stable — every run reports a
+> substantial escaped population, and `MethodCallRemoval` is consistently the
+> dominant mutator. And the **specific kills verified by hand** are
+> deterministic and stand (see below). What does not survive is any point
+> estimate of MSI, any file ranking, and consequently the "27% of mutations
+> survive" headline.
+>
+> **What would fix it:** pin coverage generation (pcov instead of xdebug, fixed
+> test order, an explicit `<coverage>` include list in `phpunit.xml`), then
+> demonstrate three identical runs before quoting a number. Until then **no MSI
+> threshold can serve as a CI gate**, and Sprint 135's DoD #1 is unsatisfiable
+> as written.
+
+**The run below is retained as the record of what was executed and what it
+found, not as a measurement.** Infection 0.31.9, PHP 8.3, against the live suite
 (**1,509 tests / 3,934 assertions, green**) with the module set matched to CI.
 
 **Primary result — four source directories** (`EventSystem/Handler`, `Core`,
 `Webhook`, `Service`), full Unit suite:
 
-| Metric | Value |
-|---|---|
-| Mutants generated (in covered code) | **462** |
-| Killed by the test suite | **340** |
-| **Escaped (undetected)** | **122** |
-| Mutation code coverage | **100%** |
-| **Covered Code MSI** | **73%** |
+*One draw, not a measurement — see the retraction above.*
 
-**Secondary result — the pre-existing narrow config** (`EventSystem/Handler`
-only, tests filtered to `--filter=Handler`): **415 mutants, 227 killed, 188
-escaped, MSI 54%**. The same handler code scores **54% against its own tests and
-73% against the whole unit suite** — cross-cutting tests supply a third of the
-kills, which is worth knowing before anyone reads a per-module MSI as a property
-of that module's tests.
+| Metric | Value in this draw |
+|---|---|
+| Mutants generated (in covered code) | 462 |
+| Killed by the test suite | 340 |
+| Escaped (undetected) | 122 |
+| Mutation code coverage | 100% |
+| Covered Code MSI | 73% *(range across runs: 0–73%)* |
+
+**Secondary observation — test-selection scope matters.** The pre-existing
+narrow config (`EventSystem/Handler` only, `--filter=Handler`) returned 415
+mutants / MSI 54% against this draw's 462 / 73% on the same handler code. The
+*direction* is expected — cross-cutting tests add kills — but given the
+non-determinism neither figure is a measurement. It is recorded only as a reason
+never to read a per-module MSI as a property of that module's own tests.
 
 **Where the suite is weakest** (`../data/mutation_escaped.csv`):
 
@@ -643,12 +687,29 @@ the precise signature of over-mocked tests that assert on doubles rather than
 behaviour, which is the phenomenon Hora & Robbes study (MSR 2026) and which this
 project documented and banned in rule R-1.5 (M-10).
 
-**Shows:** the volume/verification gap, finally quantified rather than inferred.
-The suite executes **100%** of the mutated code and detects **73%** of the
-mutations in it. Both halves matter: 73% is a respectable score for a real
-industrial suite, *and* 27% of semantic changes to tested code go unnoticed.
+**Shows — revised.** Not a quantified volume/verification gap; the point
+estimate is retracted above. What the run does establish, and what repeated runs
+agree on, is **qualitative but real**: a substantial population of semantic
+mutations in tested code goes undetected, and `MethodCallRemoval` dominates it.
 "1.69 lines of test per line of code" (M-13) and "2.3 assertions per test"
-(M-29) were both compatible with that gap and neither could reveal it.
+(M-29) are compatible with that and cannot reveal it — that part of the argument
+is unaffected, because it never depended on the size of the gap, only on its
+existence.
+
+**Independently verified, and deterministic (this is the solid part).** Four
+escaped mutants were applied *by hand* to the production file and the suite
+re-run. Before the Sprint-135 tests each produced **no failure**; after them each
+produced **exactly one**, with the file restored byte-identical afterwards:
+
+| Mutation applied | Before | After |
+|---|---|---|
+| remove `$context->set('refundedAmount', …)` | green | **1 failure** |
+| remove `requestLogService->logRequest(…)` | green | **1 failure** |
+| remove `logEvent('…handle() START')` | green | **1 failure** |
+| disable `logger->info('Refund processed…')` | green | **1 failure** |
+
+Manual mutation does not depend on Infection's coverage sampling, so these four
+kills are reproducible. They are the evidence the sprint work rests on.
 
 **Caveats.** Covered code only — `--with-uncovered` crashes on shop-coupled
 classes (`ViewConfig`), so **this is MSI over code the unit tests already

@@ -128,16 +128,23 @@ effort, no sensitive material, no approval dependency.
    `willReturnCallback` occurrences remain in the trees**, the exact construct
    that hid the hollow tests. If you want to know whether your agent-written
    suite verifies anything, **run mutation testing**; nothing cheaper answers it.
-2. **We ran it, and here is the number.** `[E]` Infection over four source
-   directories against the green suite: **462 mutants, 340 killed, 122 escaped —
-   Covered Code MSI 73%** with 100% mutation code coverage. So the suite
-   *executes* all of the mutated code and *detects* about three-quarters of the
-   semantic changes to it. Read both halves honestly: 73% is respectable for a
-   real industrial suite, and **27% of mutations in tested code go unnoticed**.
-   Neither the 1.69:1 ratio nor the 2.3 assertions/test predicted which.
+2. **We ran it — and the score turned out to be unmeasurable in this
+   environment.** `[E]` Seven Infection runs against unchanged code returned
+   **0 to 568 mutants and 0% to 73% MSI**; three consecutive identical
+   invocations gave 0 / 466 / 459. Coverage attribution is unstable (xdebug +
+   OXID bootstrap), even though the suite is green and stable. **Lesson: verify
+   your mutation tool is deterministic before you quote its score, and certainly
+   before you gate CI on it** — run it three times on unchanged code and compare.
+   What *is* stable is the qualitative finding: a large escaped population,
+   dominated by `MethodCallRemoval`.
+2b. **When the tool is unreliable, mutate by hand.** `[E]` Applying four
+   mutations manually to the production file and re-running the suite is
+   deterministic, takes minutes, and produced the sprint's actual evidence: each
+   mutation caused **no failure** before the new tests and **exactly one** after.
+   That is a technique worth keeping even where the tooling works.
 3. **The escapes cluster in orchestration, not in the value types.**
    `AmountConverter`, `MinorUnitConverter` and `CapturableAmount` — the money
-   primitives — have **zero escaped mutants**. The weak spots are handlers and
+   primitives — killed their mutants in the runs that sampled them. The weak spots are handlers and
    services: refund handler **27**, payment-status handler **22**, checkout-session
    service **22**. If you consolidate logic into well-tested value objects (LL-4),
    mutation testing will show you it worked; it will also show you the glue code
@@ -579,7 +586,7 @@ expensive or impossible later.
 | 4 | Require a ticket reference per commit | 39% lacked one; history became unauditable `[B]` |
 | 5 | Never squash release history; test that history is auditable | two silent provenance losses `[B]` |
 | 6 | Fail the build on silently skipped tests | 34% of a suite was hidden behind a green light `[A]` |
-| 6b | **Run mutation testing, not just coverage** | MSI 73% while mutation *coverage* was 100% — coverage cannot see the 27% `[E]` |
+| 6b | **Run mutation testing — after proving the tool is deterministic** | three identical runs here gave 0 / 466 / 459 mutants; an unverified tool yields an unusable number `[E]` |
 | 7 | Ban new suppressions; fix or fail | a suppression hid a money-path crash `[A]` |
 | 8 | Budget an independent tester | the pair filed **zero** bugs against itself `[C]` |
 | 9 | Ticket architectural work | otherwise a silenced linter is your architecture reviewer `[C]` |

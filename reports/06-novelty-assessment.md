@@ -92,7 +92,7 @@ grading of every claim in the programme is in
 |---|---|---|---|
 | **N-3** QA labour omitted *(measurement for an existing theory — see 08 §5.2)* | **tested** | Fisher on `[[52,0],[0,37]]`; full table **χ² = 199.4**, df 6, **Cramér's V = 0.859** | **6.7e-26** / **2.6e-40** |
 | **N-2** trailers ≠ authorship | **tested** | 2/466 vs 147/250 across 2026-05-07, Fisher exact | **5.2e-81** |
-| **N-4** test-to-source ratio *(+ assertion density M-29, + mutation score M-30)* | **tested** | 11/11 months by sign test; bootstrap 95% CI **[1.39, 2.06]**; **MSI 73%**, 122/462 mutants escaped | **0.0010** |
+| **N-4** test-to-source ratio *(+ assertion density M-29; mutation score attempted, M-30 retracted)* | **tested** | 11/11 months by sign test; bootstrap 95% CI **[1.39, 2.06]**; MSI unmeasurable (0–73% across runs) | **0.0010** |
 | **N-11** peak ≠ rate *(new, §2.7)* | **tested** | **dispersion index 6.93** vs Poisson 1.0; χ² = 984.4, df 142 | **4.7e-126** |
 | **N-12** intensity without crunch *(new, §2.8)* | **tested** | 0/716 Saturdays under a uniform-7-day null; Mon–Fri also non-uniform (χ² = 22.8, df 4, p = 0.0001) | **1.2e-48** |
 | **N-13** CI failure ⟂ commit size *(new, §2.9)* | **tested (null)** | 63% vs 60%; Spearman **ρ = −0.024**; 49.7% failure — roughly **2× published closed-source baselines** — and 85.7% failure clustering | **0.66** *(the null is the finding)* |
@@ -248,12 +248,13 @@ effectiveness measures, coverage does not track effectiveness (Inozemtseva &
 Holmes, ICSE 2014), and **assertions do** (Zhang & Mesbah, FSE 2015). Our 1.69:1
 is a size metric. We therefore also measured the better proxy — **2.28 and 2.33
 assertions per test method** across the two packages (M-29) — and then **ran the
-mutation-testing pass** that actually settles it (M-30): **Covered Code MSI 73%**,
-462 mutants, 122 escaped, at 100% mutation code coverage. N-4 is now a
-three-metric claim in which only the third speaks to effectiveness. Notably the
-**money path has zero escaped mutants** while orchestration code carries 20–27
-each, and the top escaped mutator is **`MethodCallRemoval`** — a measured
-instance of the over-mocking phenomenon rather than an anecdote.
+mutation-testing pass** that would settle it. **The score proved unmeasurable in
+this environment** — seven runs against unchanged code returned 0–568 mutants and
+0–73% MSI (M-30, retracted). What survives is qualitative and stable across
+runs: a large escaped population dominated by **`MethodCallRemoval`**, plus four
+kills verified by hand. So N-4 remains a two-metric claim, neither of which
+speaks to effectiveness, with the third **attempted and not obtained** — which is
+itself the honest result.
 
 **The tension must be reported alongside it**, and it is what makes the finding
 interesting rather than promotional: the *same* project shipped tests that

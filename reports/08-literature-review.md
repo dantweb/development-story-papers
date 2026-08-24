@@ -703,13 +703,21 @@ about assertion *strength*.
 was real and sustained (a size fact), and assertion density is moderate (a better
 proxy) — but neither establishes effectiveness.*
 
-**The mutation-testing pass this section called for was run on 2026-08-24.**
-Infection 0.31.9 against the live suite: **462 mutants in covered code, 340
-killed, 122 escaped — Covered Code MSI 73%**, with 100% mutation code coverage
-(M-30). The literature's position is thereby vindicated on our own data: the
-size metric (1.69:1) and the assertion metric (≈2.3/test) were both compatible
-with **27% of semantic mutations in tested code going undetected**, and neither
-could have revealed it.
+**The mutation-testing pass this section called for was run on 2026-08-24 — and
+its score had to be retracted.** Infection 0.31.9 against the live suite returned
+a different answer on every invocation: **0 to 568 mutants, 0% to 73% MSI**
+across seven runs on unchanged code, because coverage attribution is unstable in
+this environment (M-30). The literature's position is still supported, but by the
+*qualitative* result rather than a number: a large population of semantic
+mutations in tested code goes undetected, dominated by `MethodCallRemoval`, and
+neither the size metric (1.69:1) nor the assertion metric (≈2.3/test) could have
+revealed it. Four kills were verified by hand and are reproducible.
+
+**A methodological finding for this literature.** Papers reporting MSI on
+industrial systems rarely report whether the measurement was checked for
+run-to-run stability. Ours was not stable, and the instability is invisible from
+a single run — a single invocation returns a confident-looking percentage. That
+is worth stating alongside the mutation-testing advice this section endorses.
 
 Two refinements that only the mutation run could produce:
 
@@ -726,9 +734,12 @@ Two refinements that only the mutation run could produce:
    merely anecdotal. This is a direct, quantitative point of contact with Hora &
    Robbes (MSR 2026) that we did not have when §2.3 was written.
 
-**Verdict: CHALLENGED US, and we ran the experiment.** N-4 is now a
-three-metric claim (size, assertion density, MSI) in which only the third speaks
-to effectiveness — and it says 73%.
+**Verdict: CHALLENGED US, we ran the experiment, and the third metric could not
+be obtained.** N-4 stands on size and assertion density, neither of which speaks
+to effectiveness; the metric that does was attempted and retracted as
+non-deterministic. The honest position is that **this corpus still cannot
+quantify its own test effectiveness** — which is a weaker claim than we made
+yesterday and a more accurate one.
 
 **Verdict: CHALLENGES US**, productively — and yields a new measurement and a
 concrete follow-up.
@@ -813,7 +824,7 @@ wording fix in the flagship §6.6 and in LL-5.
 | 2.2 | Rewritten-away vs never-collected provenance gaps | three loss mechanisms, one orphan recovered from a stale checkout | **INSTANTIATES** |
 | 5.1 | Techniques detect different fault classes (Basili & Selby) | 4 refactoring-found vs 6 tester-found amount defects, zero overlap | **SUPPORTS (lineage)** |
 | 2.3 | Agent-generated over-mocked tests (MSR 2026) | `assertTrue(true)` tests, 34% silent skips, rule R-1.5; **and now measured — `MethodCallRemoval` is the top escaped mutator, 28/122** | **INSTANTIATES + quantifies** |
-| 7.3 | Size is the wrong proxy; assertions are the right one | mutation pass run: **MSI 73%**, money path **0 escapes**, orchestration 20–27 each | **CHALLENGED US — experiment run** |
+| 7.3 | Size is the wrong proxy; assertions are the right one | mutation pass run; **score retracted as non-deterministic (0–73% across runs)**; qualitative gap confirmed, 4 kills verified by hand | **CHALLENGED US — experiment run, score unobtainable** |
 | 3.1 | Churn/commit-count predict build outcome | ρ = −0.024, Fisher p = 0.66 — no predictive value here | **COMPLICATES** |
 | 4.1 | Two-thirds of developers keep office hours (ICSE 2018) | 0 Saturdays / 716, P = 1.2e-48; 95.9% in 08:00–20:00 | **SUPPORTS + extends** |
 | 4.2 | Rising night/weekend commits (TGIF, EMSE 2025) | 0.14% weekend commits in 2025–26 | **COUNTEREXAMPLE (weak)** |

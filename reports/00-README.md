@@ -86,14 +86,15 @@ development at large.
 > improvement (nominal p = 0.0014 → **p = 0.18** once failure clustering is
 > accounted for). Both remain true descriptively; neither is a tested claim.
 
-**Measured by experiment (2026-08-24).** A mutation-testing pass — the follow-up
-the test-effectiveness literature demanded — was **run, not deferred**: 462
-mutants in covered code, **340 killed / 122 escaped, Covered Code MSI 73%** at
-100% mutation code coverage. The **money path (`AmountConverter` and siblings)
-has zero escaped mutants**, confirming TECH-5's consolidation claim at the
-strongest available level; escapes cluster in handlers and services, and the
-commonest is **`MethodCallRemoval` (28/122)** — a call can be deleted with the
-suite still green.
+**Attempted by experiment (2026-08-24), and retracted the same day.** A
+mutation-testing pass was **run, not deferred** — and its score proved
+**non-deterministic**: seven runs against unchanged code returned **0–568
+mutants and 0–73% MSI**, three consecutive identical invocations giving
+0 / 466 / 459. Coverage attribution is unstable in this environment. What stands
+is qualitative and consistent across runs — a large escaped population dominated
+by **`MethodCallRemoval`** (a call can be deleted with the suite still green) —
+plus **four kills verified by hand**, which are reproducible. See M-30 for the
+retraction and what pinning the measurement would require.
 
 **Census facts** — complete enumerations needing no inference (attaching a
 p-value would be a category error): the journal undersampled its own active days

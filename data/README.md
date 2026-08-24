@@ -128,6 +128,30 @@ the run was blocked until the environment matched CI. **The shop configuration
 used for this run was snapshotted beforehand and restored bit-for-bit
 afterwards** (verified by directory checksum); no module state was left changed.
 
+### ⚠️ The run is NOT deterministic — read before using these numbers
+
+Seven invocations against **unchanged code**, cache cleared between runs:
+
+| Run | Mutants | Covered Code MSI | Files mutated |
+|---|---|---|---|
+| threads=4 | 462 | 73% | 16 |
+| threads=4, repeat | 318 | 67% | — |
+| threads=4, cache cleared | 124 | — | 4 |
+| threads=1 | 568 | 62% | 12 |
+| threads=1 | **0** | **0%** | 0 |
+| threads=1 | 466 | 61% | 12 |
+| threads=1 | 459 | 69% | 18 |
+
+Infection derives its mutable-file set from coverage collected by an initial
+test run; in this environment (xdebug + OXID shop bootstrap + module chain) that
+coverage set varies between runs, even though the suite itself is green and
+stable at 1,522 tests. **`mutation_escaped.csv` is therefore one draw, not a
+census**, and no MSI figure from this setup should be quoted.
+
+To make it quotable: switch to **pcov**, fix test order, add an explicit
+`<coverage>` include list to `phpunit.xml`, then show three identical runs
+agreeing before publishing a number.
+
 ### Caveats
 
 - **Covered code only.** `--with-uncovered` aborts on shop-coupled classes
