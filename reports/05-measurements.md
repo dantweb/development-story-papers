@@ -1,4 +1,4 @@
-# Measured Results (29)
+# Measured Results (30)
 
 *Revised 2026-08-20 — journal-reported values now sit beside git- and
 Jira-measured ones.*
@@ -595,6 +595,68 @@ against an *outcome* rather than an output.
 **Caveat:** the split point is chosen, not derived; workflow mix changed over the
 period (Playwright E2E and load tests arrive later), so part of the shift may be
 composition rather than reliability.
+
+## M-30 — Mutation score: 27% of semantic mutations in tested code survive `[E]`
+
+**This is the measurement M-13, M-29, N-4 and LL-3 all pointed at, and it was
+run rather than deferred.** Infection 0.31.9, PHP 8.3, against the live suite
+(**1,509 tests / 3,934 assertions, green**) with the module set matched to CI.
+
+**Primary result — four source directories** (`EventSystem/Handler`, `Core`,
+`Webhook`, `Service`), full Unit suite:
+
+| Metric | Value |
+|---|---|
+| Mutants generated (in covered code) | **462** |
+| Killed by the test suite | **340** |
+| **Escaped (undetected)** | **122** |
+| Mutation code coverage | **100%** |
+| **Covered Code MSI** | **73%** |
+
+**Secondary result — the pre-existing narrow config** (`EventSystem/Handler`
+only, tests filtered to `--filter=Handler`): **415 mutants, 227 killed, 188
+escaped, MSI 54%**. The same handler code scores **54% against its own tests and
+73% against the whole unit suite** — cross-cutting tests supply a third of the
+kills, which is worth knowing before anyone reads a per-module MSI as a property
+of that module's tests.
+
+**Where the suite is weakest** (`../data/mutation_escaped.csv`):
+
+| File | Escaped |
+|---|---|
+| `StripeRefundRequestHandler.php` | **27** |
+| `StripePaymentStatusHandler.php` | 22 |
+| `CheckoutSessionService.php` | 22 |
+| `StaticContent.php` | 20 |
+| `CustomerDataSanitizer.php` | 7 |
+
+**Where it is strongest, and this is the finding that matters most:**
+**`AmountConverter`, `MinorUnitConverter` and `CapturableAmount` have ZERO
+escaped mutants.** The money primitives that TECH-5 and M-9/M-10 are built
+around are **fully mutation-verified**. The weakness is in the *orchestration*
+around them — handlers and services — not in the value types.
+
+**The top escaped mutator is the damning one:** **`MethodCallRemoval` (28)**,
+followed by `ArrayItemRemoval` (18) and `ArrayItem` (16). A `MethodCallRemoval`
+escape means **an entire method call can be deleted and the tests still pass** —
+the precise signature of over-mocked tests that assert on doubles rather than
+behaviour, which is the phenomenon Hora & Robbes study (MSR 2026) and which this
+project documented and banned in rule R-1.5 (M-10).
+
+**Shows:** the volume/verification gap, finally quantified rather than inferred.
+The suite executes **100%** of the mutated code and detects **73%** of the
+mutations in it. Both halves matter: 73% is a respectable score for a real
+industrial suite, *and* 27% of semantic changes to tested code go unnoticed.
+"1.69 lines of test per line of code" (M-13) and "2.3 assertions per test"
+(M-29) were both compatible with that gap and neither could reveal it.
+
+**Caveats.** Covered code only — `--with-uncovered` crashes on shop-coupled
+classes (`ViewConfig`), so **this is MSI over code the unit tests already
+execute**, not over the module. Scope is four directories of `stripe`, not
+`payment-base`. Some escaped mutants are inevitably harmless (equivalent
+mutants); Infection says so itself and no manual triage of the 122 was done.
+Integration and E2E suites were not part of the run, so defences living there
+are not credited.
 
 ---
 

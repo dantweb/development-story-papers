@@ -18,9 +18,10 @@ independent machine records** rather than taken at its word.
 | **B** | the commit record | 2025-10-21 → 2026-08-20 | 716 commits (`stripe-wallet` 586, `payment-base` 130) | *what actually landed*, and when, to the minute |
 | **C** | the Jira issue record | 2023-05-30 → 2026-06-22 | 156 issues of project STRP | *who asked for the work and who found the defects* |
 | **D** | the GitHub Actions history | 2025-10-21 → 2026-08-20 | 979 workflow runs, joined to commits on `head_sha` | *what happened to each commit after it landed* |
+| **E** | a mutation-testing run | executed 2026-08-24 | Infection 0.31.9 over 462 mutants against the live suite | *whether the tests actually verify anything* |
 
-A is self-reported prose. B, C and D are machine records, extracted to
-[`../data/`](../data/) — 14 CSVs, a schema and caveats document
+A is self-reported prose. B, C, D and E are machine records, extracted to
+[`../data/`](../data/) — 15 CSVs, a schema and caveats document
 ([`../data/README.md`](../data/README.md)), and
 [`../data/stats.py`](../data/stats.py), which recomputes every statistical test
 cited anywhere in these reports.
@@ -53,7 +54,7 @@ divergences rather than the agreements.
 | [`02-topics-project-management.md`](02-topics-project-management.md) | **3 PM topics** (PM-1…PM-3) as extended abstracts, each with **Git** and **Jira verification** blocks. | A+B+C | Proposals, verified |
 | [`03-topics-technical.md`](03-topics-technical.md) | **5 technical topics** (TECH-1…TECH-5), same treatment. | A+B+C | Proposals, verified |
 | [`04-topics-security.md`](04-topics-security.md) | **2 security topics** (SEC-1, SEC-2), same treatment. | A+B+C | Proposals, verified |
-| [`05-measurements.md`](05-measurements.md) | **29 measured results.** M-1…M-10 show journal-reported beside git-measured values; M-11…M-17 are git-only; M-18…M-22 are Jira-only; M-23…M-27 are Actions-derived. Each carries its metric, source, what it demonstrates, and the caveat that bears on it. | A+B+C | Data catalog |
+| [`05-measurements.md`](05-measurements.md) | **30 measured results.** M-1…M-10 show journal-reported beside git-measured values; M-11…M-17 are git-only; M-18…M-22 are Jira-only; M-23…M-27 are Actions-derived. Each carries its metric, source, what it demonstrates, and the caveat that bears on it. | A+B+C | Data catalog |
 | [`06-novelty-assessment.md`](06-novelty-assessment.md) | **What would survive peer review.** Tiers all **13** contributions (N-1…N-13) by novelty *and* by evidence class — tested / census / n=1 / mixed / untestable, with statistics. Names the claims to drop, recommends a reframing and research venues. | — | Review |
 | [`08-literature-review.md`](08-literature-review.md) | **What published problems this corpus can speak to.** 13 entries against real papers, each graded **instantiates / supports / complicates / counterexample / challenges-us / cannot-address**, plus a consolidated list of where the literature undercuts *us* and six priority searches still outstanding. | — | Review |
 | [`07-lessons-learned.md`](07-lessons-learned.md) | **8 practitioner topics** (LL-1…LL-8) — what we would tell the next team. Each graded by evidence class and routed to a **named venue**; plus the full inference grading (Tiers S/D/U/N/X), a 12-item day-one checklist, a submission sequence, three publication gates, and the lessons the evidence **cannot** support. | A+B+C | Proposals |
@@ -84,6 +85,15 @@ development at large.
 > binomial test (assumed independent runs — invalid) and the 57%→46% CI
 > improvement (nominal p = 0.0014 → **p = 0.18** once failure clustering is
 > accounted for). Both remain true descriptively; neither is a tested claim.
+
+**Measured by experiment (2026-08-24).** A mutation-testing pass — the follow-up
+the test-effectiveness literature demanded — was **run, not deferred**: 462
+mutants in covered code, **340 killed / 122 escaped, Covered Code MSI 73%** at
+100% mutation code coverage. The **money path (`AmountConverter` and siblings)
+has zero escaped mutants**, confirming TECH-5's consolidation claim at the
+strongest available level; escapes cluster in handlers and services, and the
+commonest is **`MethodCallRemoval` (28/122)** — a call can be deleted with the
+suite still green.
 
 **Census facts** — complete enumerations needing no inference (attaching a
 p-value would be a category error): the journal undersampled its own active days
@@ -247,4 +257,5 @@ trusts (§4.9, §4.11, §4.12, Appendix A).
 | 2026-08-20 | **Corpus C added.** Role separation found; flagship §4.12; `05` grown to 22 entries; all 10 topics given Jira verification blocks. Second provenance-loss mechanism recorded from a stale checkout. |
 | 2026-08-20 | **`06` novelty assessment** added, then revised with statistics — two findings promoted (N-11, N-12), one downgraded to an observation (N-5). |
 | 2026-08-20 | **`07` lessons learned** added: 8 practitioner topics, inference grading (Tiers S/D/U/N/X) backed by `data/stats.py`, day-one checklist, venue routing and publication gates. |
+| 2026-08-24 | **Corpus E added** — mutation testing run against the live suite (M-30, flagship §4.14). All six literature searches completed; two of our claims withdrawn or demoted as a result (see §7 of `08`). |
 | 2026-08-21 | **Corpus D added** — 979 GitHub Actions runs joined to commits. Flagship §3.4 and §4.13; `05` grown to 27 entries (M-23…M-27); TECH-4's central thesis tested and confirmed; LL-8 rewritten; **N-13** added to `06`; tests T9a–T9c added to `data/stats.py`. Headline: 49.7% CI failure rate, and failure **uncorrelated with commit size**. |

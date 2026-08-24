@@ -76,7 +76,14 @@ CSVs so the arithmetic is checkable.
    appearing in commit messages resolve to real Jira issues — though one is
    *mislabelled*, and that single case is the paper's sharpest micro-study
    (§6.1).
-9. **CI failed on half of all runs, and commit size did not predict it.** Of 979
+9. **The suite detects 73% of what it executes.** A mutation-testing run
+   (Infection, 462 mutants in covered code) killed **340** and let **122 escape** —
+   **Covered Code MSI 73%** at 100% mutation code coverage. The money path
+   (`AmountConverter` and siblings) has **zero escaped mutants**; the escapes
+   cluster in handlers and services, and the commonest is `MethodCallRemoval`,
+   meaning a call can be deleted with the suite still green. Test *volume*
+   (finding 1) could not have told us any of this.
+10. **CI failed on half of all runs, and commit size did not predict it.** Of 979
    workflow runs, **487 failed and 453 succeeded — a 49.7% failure rate**,
    roughly **double the 26% reported for closed-source projects** and above every
    published baseline we located. CI consumed **169.5 h of wall-clock**, more than
@@ -883,6 +890,56 @@ older than it are **already gone**, unrecoverably. Corpus D thus arrives
 carrying the same survivorship problem as Corpus B (§6.6), from a third
 independent mechanism.
 
+### 4.14 Mutation testing: the suite detects 73% of what it executes
+
+The test-effectiveness literature holds that suite **size** is the wrong proxy
+for effectiveness and that assertions are a better one — and that neither
+settles it. §4.7's 1.69:1 write ratio is a size metric. To close that gap we ran
+**Infection 0.31.9** against the live suite (1,509 tests / 3,934 assertions,
+green, with the module set matched to CI) over four `stripe` source directories.
+
+| Metric | Value |
+|---|---|
+| Mutants generated in covered code | **462** |
+| Killed | **340** |
+| **Escaped** | **122** |
+| Mutation code coverage | **100%** |
+| **Covered Code MSI** | **73%** |
+
+Both halves of that deserve stating. The suite **executes** all of the mutated
+code and **detects roughly three-quarters** of the semantic changes made to it —
+a respectable figure for a real industrial suite — while **27% of mutations in
+tested code go unnoticed**. Neither §4.7's ratio nor an assertion count (≈2.3 per
+test) predicted that number, which is precisely the literature's point.
+
+Two results sharpen the picture, and they pull in opposite directions.
+
+**The money path is fully verified.** `AmountConverter`, `MinorUnitConverter` and
+`CapturableAmount` have **zero escaped mutants**. The cents-math consolidation
+that §4.11 and `03-topics-technical.md` (TECH-5) treat as the project's cleanest
+piece of work is confirmed at the strongest level of test-effectiveness evidence
+available. The DRY refactor did not merely centralise the arithmetic; it left it
+genuinely tested.
+
+**The orchestration around it is not.** Escapes concentrate in
+`StripeRefundRequestHandler` (**27**), `StripePaymentStatusHandler` (22),
+`CheckoutSessionService` (22) and `StaticContent` (20). And the single most
+common escaped mutator is **`MethodCallRemoval` (28 of 122)** — meaning an entire
+method call can be deleted with the suite still green. That is the signature of
+tests asserting against doubles rather than behaviour: the same failure mode the
+project documented in its own hollow tests and banned in rule R-1.5 (§6.5), still
+present in measurable quantity after that remediation.
+
+The honest summary is that this project's testing discipline was real and
+unevenly distributed: excellent where logic was consolidated into value types,
+weak in the handler and service layer that wires them together.
+
+**Caveats.** Covered code only — `--with-uncovered` aborts on shop-coupled
+classes — so this is MSI over code the unit tests already execute, not over the
+module. Four directories of `stripe`, not `payment-base`. No manual triage of the
+122 escapes for equivalent mutants. Integration and E2E suites were excluded, so
+defences living there are not credited.
+
 ---
 
 ## 5. Results — the collaboration model (RQ2)
@@ -1439,6 +1496,9 @@ revision). Divergences are the point of the table.
 | CI trend | hardening described | **57% → 46%** failure across 2026-04-01, Fisher **p = 0.0014** | **D confirms A** |
 | AI commits vs CI | not claimed | **59% vs 61%** failing (p = 0.88) — confounded null | D only |
 | CI provenance | unremarked | **234/979 runs (24%)** on no surviving ref; older runs past retention **gone** | **D-only failure** |
+| Test effectiveness | "1,407 tests", TDD asserted | **MSI 73%** — 462 mutants, 122 escaped, 100% mutation coverage | **E-only, measured 2026-08-24** |
+| Money-path test quality | "4 truncation bugs fixed" | `AmountConverter`/`MinorUnitConverter`/`CapturableAmount`: **0 escaped mutants** | **E confirms A** |
+| Hollow tests after remediation | "false-positive tests removed" | **`MethodCallRemoval` = 28/122 escapes** — calls deletable with suite green | **E complicates A** |
 
 ## Appendix B — Primary artifacts
 
@@ -1466,7 +1526,7 @@ Git (Corpus B), key commits:
 
 ## Appendix C — Dataset
 
-Fourteen CSVs in [`../data/`](../data/), with schema, caveats and reproduction
+Fifteen CSVs in [`../data/`](../data/), with schema, caveats and reproduction
 commands in [`../data/README.md`](../data/README.md), the export scripts
 (`fetch_actions.sh`, `build_actions.py`), and `stats.py`, which recomputes every
 statistical test cited in this paper:
@@ -1487,6 +1547,7 @@ statistical test cited in this paper:
 | `actions_runs.csv` | one workflow run, joined to its commit and that commit's LOC | 979 |
 | `actions_by_commit.csv` | one commit with ≥1 run: LOC beside run outcomes | 444 |
 | `actions_workflows.csv` | repo × workflow | 41 |
+| `mutation_escaped.csv` | one escaped mutant: file, line, mutator | 122 |
 
 Every figure in §4 and Appendix A is a direct aggregation over these files, and
 every p-value is reproducible with `python3 data/stats.py`. Author email

@@ -93,6 +93,51 @@ runs that failed**.
 - Actor logins are retained (they are the same handful of names as in the commit
   record); no tokens, secrets, logs, or job-level detail are exported.
 
+## Files — mutation testing
+
+Produced by an **Infection 0.31.9** run on **2026-08-24** inside the project's
+Docker PHP 8.3 container, against the live unit suite (1,509 tests / 3,934
+assertions, green).
+
+| File | Rows | Grain | Notes |
+|---|---|---|---|
+| `mutation_escaped.csv` | 122 | one escaped mutant | source file, line, mutator name |
+
+**Run configuration.** Source scope: `src/Stripe/EventSystem/Handler`,
+`src/Stripe/Core`, `src/Stripe/Webhook`, `src/Stripe/Service`. Test scope:
+`--testsuite=Unit`. Mutators: `@default` minus `CastInt`/`CastString` (the
+project's own `infection.json5` choice). Result: **462 mutants, 340 killed, 122
+escaped, Covered Code MSI 73%, mutation code coverage 100%**.
+
+### Reproducing, and the environment caveat that matters
+
+The suite **cannot be run against the developer shop as configured** — eight
+modules are active locally and the `mollie → paypal` class-extension chain
+aborts the bootstrap. CI activates only `oe_payment_base` and
+`oe_payments_stripe_wallet`. To reproduce, match CI's module set:
+
+```bash
+docker compose exec php php bin/oe-console oe:module:deactivate oe_payments_mollie
+# also: opalreturns, opalsubscription, oe_onepage_checkout, oe_payments_paypal
+docker compose exec -w /var/www/extensions/stripe php \
+  php -d memory_limit=3G vendor/bin/infection --threads=4 --no-progress
+```
+
+This is itself an instance of the local-vs-CI divergence documented in LL-8 —
+the run was blocked until the environment matched CI. **The shop configuration
+used for this run was snapshotted beforehand and restored bit-for-bit
+afterwards** (verified by directory checksum); no module state was left changed.
+
+### Caveats
+
+- **Covered code only.** `--with-uncovered` aborts on shop-coupled classes
+  (`ViewConfig` extends the OXID chain). So MSI is over code the unit tests
+  already execute, **not** over the module.
+- **`stripe` only**, four directories; `payment-base` was not mutated.
+- **No equivalent-mutant triage.** Some of the 122 escapes are inevitably
+  harmless; Infection says so itself and none were manually classified.
+- **Unit suite only** — integration and E2E defences are not credited.
+
 ## Statistical tests
 
 `stats.py` recomputes every test cited in

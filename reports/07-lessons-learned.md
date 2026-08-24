@@ -14,6 +14,7 @@ with its own audience and form — built from lessons the project actually paid 
 - **`[B]`** git-measured (716 commits, 2025-10-21 → 2026-08-20)
 - **`[C]`** Jira-measured (156 issues, 2023-05-30 → 2026-06-22)
 - **`[D]`** Actions-measured (979 workflow runs, 2025-10-21 → 2026-08-20)
+- **`[E]`** Mutation-measured (Infection run against the live suite, 2026-08-24)
 
 Lessons carrying only `[A]` are **experience, not evidence** — they are worth
 transmitting but should not be presented as findings. Lessons carrying `[B]` or
@@ -127,19 +128,37 @@ effort, no sensitive material, no approval dependency.
    `willReturnCallback` occurrences remain in the trees**, the exact construct
    that hid the hollow tests. If you want to know whether your agent-written
    suite verifies anything, **run mutation testing**; nothing cheaper answers it.
-2. **The same project shipped tests that asserted nothing.** `[A]` Assertions
+2. **We ran it, and here is the number.** `[E]` Infection over four source
+   directories against the green suite: **462 mutants, 340 killed, 122 escaped —
+   Covered Code MSI 73%** with 100% mutation code coverage. So the suite
+   *executes* all of the mutated code and *detects* about three-quarters of the
+   semantic changes to it. Read both halves honestly: 73% is respectable for a
+   real industrial suite, and **27% of mutations in tested code go unnoticed**.
+   Neither the 1.69:1 ratio nor the 2.3 assertions/test predicted which.
+3. **The escapes cluster in orchestration, not in the value types.**
+   `AmountConverter`, `MinorUnitConverter` and `CapturableAmount` — the money
+   primitives — have **zero escaped mutants**. The weak spots are handlers and
+   services: refund handler **27**, payment-status handler **22**, checkout-session
+   service **22**. If you consolidate logic into well-tested value objects (LL-4),
+   mutation testing will show you it worked; it will also show you the glue code
+   you never really tested.
+4. **`MethodCallRemoval` was the top escaped mutator (28 of 122).** That means a
+   method call can be **deleted entirely** and the suite stays green. If you write
+   tests against mocks, this is the failure you will have, and only mutation
+   testing will tell you.
+5. **The same project shipped tests that asserted nothing.** `[A]` Assertions
    hidden inside `willReturnCallback` effectively ran `assertTrue(true)`. A
    passing suite, a green gate, and no verification.
-3. **Hard-gate silent skips to zero.** `[A]` The integration suite reported 157
+6. **Hard-gate silent skips to zero.** `[A]` The integration suite reported 157
    tests with **53 silently skipped (~34%)** when Stripe credentials were absent
    — a green CI concealing a third of the layer. Skips must fail the build, not
    decorate it.
-4. **Ban re-implementing the method under test inside a test double.** `[A]`
+7. **Ban re-implementing the method under test inside a test double.** `[A]`
    Codified as rule R-1.5 *after* the project had done it. A double that
    reproduces the logic tests the double.
-5. **"If a test never went red, you didn't TDD it."** `[A]` Refactors guarded by
+8. **"If a test never went red, you didn't TDD it."** `[A]` Refactors guarded by
    characterization tests written first.
-6. **Suppressions hide crashes, so never suppress — fix.** `[A]` PHPStan *caught*
+9. **Suppressions hide crashes, so never suppress — fix.** `[A]` PHPStan *caught*
    a call to the nonexistent `setState('REFUNDED')`; a `phpstan.neon` ignore
    silenced it, converting a static error into a latent money-path crash on every
    admin refund (STRP-89). The invariant is now structural: **`function setState`
@@ -560,6 +579,7 @@ expensive or impossible later.
 | 4 | Require a ticket reference per commit | 39% lacked one; history became unauditable `[B]` |
 | 5 | Never squash release history; test that history is auditable | two silent provenance losses `[B]` |
 | 6 | Fail the build on silently skipped tests | 34% of a suite was hidden behind a green light `[A]` |
+| 6b | **Run mutation testing, not just coverage** | MSI 73% while mutation *coverage* was 100% — coverage cannot see the 27% `[E]` |
 | 7 | Ban new suppressions; fix or fail | a suppression hid a money-path crash `[A]` |
 | 8 | Budget an independent tester | the pair filed **zero** bugs against itself `[C]` |
 | 9 | Ticket architectural work | otherwise a silenced linter is your architecture reviewer `[C]` |

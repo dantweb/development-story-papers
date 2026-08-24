@@ -699,12 +699,36 @@ packages — so the suite is not merely voluminous. **Sceptical:** 106
 concealed the project's hollow tests, and assertion *count* still says nothing
 about assertion *strength*.
 
-**Consequence for the claims.** N-4 should be restated as: *test-writing effort
+**Consequence for the claims.** N-4 must be restated as: *test-writing effort
 was real and sustained (a size fact), and assertion density is moderate (a better
-proxy) — but neither establishes effectiveness, which this corpus cannot measure
-without mutation testing.* Running a mutation-testing pass over this suite is
-now the single most valuable technical follow-up available, and it is feasible:
-the code, the tests and the harness all still exist.
+proxy) — but neither establishes effectiveness.*
+
+**The mutation-testing pass this section called for was run on 2026-08-24.**
+Infection 0.31.9 against the live suite: **462 mutants in covered code, 340
+killed, 122 escaped — Covered Code MSI 73%**, with 100% mutation code coverage
+(M-30). The literature's position is thereby vindicated on our own data: the
+size metric (1.69:1) and the assertion metric (≈2.3/test) were both compatible
+with **27% of semantic mutations in tested code going undetected**, and neither
+could have revealed it.
+
+Two refinements that only the mutation run could produce:
+
+1. **The money path is fully verified.** `AmountConverter`, `MinorUnitConverter`
+   and `CapturableAmount` have **zero escaped mutants**. TECH-5's claims about
+   the cents-math consolidation are independently confirmed at the strongest
+   level of test-effectiveness evidence available. The weakness is in
+   *orchestration* — `StripeRefundRequestHandler` (27 escapes),
+   `StripePaymentStatusHandler` (22), `CheckoutSessionService` (22).
+2. **The top escaped mutator is `MethodCallRemoval` (28 of 122).** An entire
+   method call can be deleted with the suite still green — the exact signature of
+   tests that assert on doubles rather than behaviour, i.e. **the phenomenon
+   §2.3's over-mocking paper studies, now measured in our corpus** rather than
+   merely anecdotal. This is a direct, quantitative point of contact with Hora &
+   Robbes (MSR 2026) that we did not have when §2.3 was written.
+
+**Verdict: CHALLENGED US, and we ran the experiment.** N-4 is now a
+three-metric claim (size, assertion density, MSI) in which only the third speaks
+to effectiveness — and it says 73%.
 
 **Verdict: CHALLENGES US**, productively — and yields a new measurement and a
 concrete follow-up.
@@ -788,7 +812,8 @@ wording fix in the flagship §6.6 and in LL-5.
 | 3.2 | Build failures unrelated to the patch (13.33%) | 49.7% failure rate; failure ⟂ change size (ρ = −0.024) | **SUPPORTS bidirectionally** |
 | 2.2 | Rewritten-away vs never-collected provenance gaps | three loss mechanisms, one orphan recovered from a stale checkout | **INSTANTIATES** |
 | 5.1 | Techniques detect different fault classes (Basili & Selby) | 4 refactoring-found vs 6 tester-found amount defects, zero overlap | **SUPPORTS (lineage)** |
-| 2.3 | Agent-generated over-mocked tests (MSR 2026) | `assertTrue(true)` tests, 34% silent skips, rule R-1.5 — alongside a 1.69:1 write ratio | **INSTANTIATES + contributes** |
+| 2.3 | Agent-generated over-mocked tests (MSR 2026) | `assertTrue(true)` tests, 34% silent skips, rule R-1.5; **and now measured — `MethodCallRemoval` is the top escaped mutator, 28/122** | **INSTANTIATES + quantifies** |
+| 7.3 | Size is the wrong proxy; assertions are the right one | mutation pass run: **MSI 73%**, money path **0 escapes**, orchestration 20–27 each | **CHALLENGED US — experiment run** |
 | 3.1 | Churn/commit-count predict build outcome | ρ = −0.024, Fisher p = 0.66 — no predictive value here | **COMPLICATES** |
 | 4.1 | Two-thirds of developers keep office hours (ICSE 2018) | 0 Saturdays / 716, P = 1.2e-48; 95.9% in 08:00–20:00 | **SUPPORTS + extends** |
 | 4.2 | Rising night/weekend commits (TGIF, EMSE 2025) | 0.14% weekend commits in 2025–26 | **COUNTEREXAMPLE (weak)** |

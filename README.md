@@ -5,7 +5,7 @@ AI-assisted software project: the **OXID eShop Stripe payment module**, built
 with Claude (Claude Code) as a primary code author and a human engineer as
 orchestrator, reviewer, and decision-owner.
 
-Four corpora underpin the work:
+Five corpora underpin the work:
 
 - **The dev log** — a daily engineering journal of **462 markdown files
   (≈113,098 lines), 2025-11-26 → 2026-07-02**, plus a curated architecture
@@ -21,6 +21,10 @@ Four corpora underpin the work:
 - **The GitHub Actions history** *(added 2026-08-21)* — **979 workflow runs,
   2025-10-21 → 2026-08-20**, joined to the commits on `head_sha`. The only corpus
   that records what happened to each commit after it landed.
+
+- **A mutation-testing run** *(added 2026-08-24)* — **Infection over 462 mutants**
+  against the live suite. The only corpus that speaks to whether the tests
+  actually verify anything.
 
 All extracted to CSV under [`data/`](data/). Together they form a longitudinal,
 single-subject case study of AI-assisted software engineering in which the prose
@@ -39,9 +43,21 @@ record and the machine records are used to check each other.
 | [`reports/06-novelty-assessment.md`](reports/06-novelty-assessment.md) | **Internal review of scientific novelty** — what would survive peer review, what to drop, recommended reframing and venue fit. |
 | [`reports/08-literature-review.md`](reports/08-literature-review.md) | **Positioning against real published work** — 13 entries graded instantiates / supports / complicates / counterexample / challenges-us, where the literature undercuts us, and the searches still outstanding. |
 | [`reports/07-lessons-learned.md`](reports/07-lessons-learned.md) | **Eight practitioner topics** — orchestrating a stateless agent, trust-but-verify, test volume vs verification, refactoring as defect detection, the repo as audit trail, why the AI pair still needs a tester, fail-closed money, and why the environment costs more than the logic. Includes a day-one checklist, per-topic venue recommendations with a submission sequence, three publication gates (employer approval, named-colleague consent, security disclosure), and the lessons the evidence cannot support. |
-| [`data/`](data/) | 14 CSVs of git-, Jira- and Actions-derived measurables, plus `stats.py` + [`data/README.md`](data/README.md) schema and reproduction commands. |
+| [`data/`](data/) | 15 CSVs of git-, Jira- and Actions-derived measurables, plus `stats.py` + [`data/README.md`](data/README.md) schema and reproduction commands. |
 
 ## Headline findings
+
+Measured by mutation testing:
+
+- **The suite detects 73% of what it executes** — 462 mutants, 340 killed, 122
+  escaped, at 100% mutation code coverage. Test *volume* (1.69:1) and assertion
+  density (≈2.3/test) were both compatible with that gap and neither revealed it.
+- **The money path is fully verified**: `AmountConverter`, `MinorUnitConverter`
+  and `CapturableAmount` have **zero escaped mutants**. The escapes cluster in
+  handlers and services (refund handler 27, payment-status 22).
+- **`MethodCallRemoval` is the commonest escape (28/122)** — an entire method call
+  can be deleted with the suite still green, the signature of tests asserting on
+  mocks rather than behaviour.
 
 Measured from the GitHub Actions record:
 
