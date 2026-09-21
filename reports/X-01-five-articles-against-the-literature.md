@@ -164,14 +164,60 @@ talk cannot carry.
 
 ## 3. The five articles
 
-Each proposal has the same eight blocks: working title; stances; the published
-claims engaged; our evidence; the argument; what we add that the cited work
-cannot have; what a reviewer will say and how we concede it; still to do,
-venue, gate, effort.
+Each proposal has the same blocks: working title; **statement** (what the
+article claims and concludes) and **abstract** — added 2026-09-21 for Articles
+1–4; stances; the published claims engaged; our evidence; the argument; what
+we add that the cited work cannot have; what a reviewer will say and how we
+concede it; still to do, venue, gate, effort.
 
 ---
 
 ### Article 1 — *Imprecise about volume, not only optimistic about speed: auditing a daily AI-assisted engineering journal against its own commit, issue and CI records*
+
+**Statement — what the article claims and concludes.** The article states
+that a candid, daily, artifact-linked engineering journal of an AI-assisted
+project — the best case for self-report — diverged from the project's own
+commit, issue and CI records in five directions at once: it undersampled its
+active days 2.2×, understated its flagship epic's output by 41%, narrated a
+two-month period with 9.1 h of measured activity as continuous work, omitted
+the human QA role that filed 92.5% of the project's defects, and framed a
+three-year project as a seven-month one. It concludes that **self-report error
+in AI-assisted work has at least two independent components** — optimism about
+*effect*, which METR measured, and imprecision about *volume, continuity, scope
+and actors*, which this case measures — and that a correction for one does not
+correct for the other. It further concludes that the direction of drift is not
+self-flattery: the journal understated its own output. It recommends that any
+empirical AI-SE study resting on diaries, retrospectives or agent completion
+reports audit them against the artifact and **report the disagreement's
+direction and size**, not merely triangulate. It explicitly does *not*
+conclude that process discipline caused the observed quality; that claim is
+demoted to background as unprovable at n = 1.
+
+**Abstract.** Empirical studies of AI-assisted software engineering lean on
+self-reported data — developer surveys, diaries, retrospectives and,
+increasingly, agent-authored completion reports. METR's 2025 field experiment
+showed that experienced developers misjudged AI's effect on their own speed by
+roughly 39 points against a task clock. We ask a complementary question: how
+far does a *high-quality* self-account drift from the artifact when no clock is
+involved? We audit a daily engineering journal (462 files, ≈113k lines, ten
+months) written during the AI-assisted development of a production payment
+module against three machine records of the same project: 716 commits with
+per-path diffs and timestamps, 156 issue-tracker items, and 979 CI runs. The
+journal was candid about failure and accurate to the line on mechanical facts
+(several LOC and method counts match exactly), yet it diverged systematically:
+it documented 47 active days against 105 with commits (2.2×), understated its
+flagship two-day epic by ~41% on insertions (+11,204 reported vs +15,844
+measured), narrated a measured 9.1-hour two-month trough as active work,
+described "simplifications" by the file that shrank while module code grew
+(330→107 vs 2,616→2,953), omitted the tester who filed 37 of 40 bugs, and
+described a three-year project as seven months old. Commit timing independently
+confirms the journal's process claims where they are checkable — test code
+outweighed production code 1.69:1 in 11 of 11 months (p = 0.0010) and zero of
+716 commits fell on a Saturday (P = 1.2e-48). We conclude that self-report error
+in AI-assisted work decomposes into optimism about effect and imprecision about
+volume, continuity, scope and actors, that these are independent, and that
+the second is invisible to controlled speed studies. We publish the derived
+datasets and every retraction the audit forced on our own earlier drafts.
 
 **Stances.** **CONFIRMS** METR's central finding by an independent route;
 **ENHANCES** it with a taxonomy of self-report error that METR's instrument
@@ -249,6 +295,58 @@ text; the work is cutting, not writing.
 ---
 
 ### Article 2 — *Churn predicts nothing here: build failure independent of change size in a framework-coupled, cross-repository project*
+
+**Statement — what the article claims and concludes.** The article states
+that in a framework-coupled, cross-repository, AI-assisted project with 979
+CI runs, **build failure was independent of change size**: commits of ≥500
+insertions failed 63% of the time and commits under 500 failed 60% (Fisher
+p = 0.66, Spearman ρ = −0.024), with the two framings disagreeing in sign. It
+states that failures were strongly clustered — 85.7% immediately followed
+another failure, lag-1 autocorrelation 0.680 — against a published benchmark of
+>50%. It concludes that the logic-failure account, which predicts failure
+rising with changed volume, is falsified here, and that the environmental
+account survives *because* that prediction failed; that the churn and
+commit-count feature family reported as predictive in the build-failure
+literature **carries no signal in this setting**; that Huang et al.'s
+patch-unrelated-failure mechanism explains the null and this project is an
+extreme case of it (49.7% failure, roughly double the closed-source baseline);
+and that the machine's time on the project (169.5 h of CI wall-clock, 53% in
+failing runs) exceeded the humans' measured session time. It concludes that
+build health should be treated as a **state** with transitions, not a
+per-commit event, and that the observed improvement (57% → 46%) is descriptive
+only — p = 0.18 once clustering is modelled — a correction the article keeps in
+its text. It does not conclude that AI-authored commits were better or worse
+for the build; that comparison is a confounded null and is reported as such.
+
+**Abstract.** The build-failure prediction literature reports source churn and
+per-build commit count among the most useful pre-execution predictors of CI
+outcome. We present a ten-month industrial case in which those features
+predict nothing. Joining 979 GitHub Actions runs to the per-commit diffs of two
+repositories (444 commits with CI), we find that commits with ≥500 insertions
+had a failing run 63% of the time and smaller commits 60% (Fisher exact
+p = 0.66; Spearman ρ = −0.024, with the threshold and rank framings disagreeing
+in sign). We frame this as a hypothesis test: a defects-in-changed-logic
+account predicts a failure gradient over change size, and none exists. The
+project's overall failure rate was 49.7% (487 of 979 runs), roughly double the
+published closed-source baseline of 26% and above every figure we located, and
+failures arrived in runs — 85.7% immediately followed another failure, against
+a published multi-project benchmark of >50%; lag-1 autocorrelation was 0.680,
+reducing the effective run-level sample to roughly a fifth of nominal. CI
+consumed 169.5 h of wall-clock, more than the ≈140 h of human commit-bearing
+session time, with 53% of it in failing runs. Huang et al.'s finding that a
+material share of CI failures are unrelated to the triggering patch supplies
+the mechanism: where failures are patch-unrelated, size cannot predict them,
+and the correlation vanishes as their share grows. Our case is that limit
+approached; the project's own journal independently attributes its costly
+failures to dependency authentication, PHP version skew, namespace generation
+and flaky end-to-end tests, none of which depends on diff size. Modelling the
+autocorrelation also invalidated two of our own earlier tests, including an
+apparent hardening improvement (57% → 46%, nominal p = 0.0014, corrected
+p = 0.18), which we report as descriptive. We conclude that in
+framework-coupled, cross-repository settings the dominant CI cost can be
+environmental and size-indifferent, that churn features should not be assumed
+predictive without checking the patch-unrelated share, and that build health
+is better monitored as a persistent state than as a per-commit event.
 
 **Stances.** **DISPROVES**, within a documented setting, the predictive
 usefulness of churn and commit-count features from the build-failure
@@ -344,6 +442,59 @@ hand-classification is the only new measurement.
 
 ### Article 3 — *The team set the sign: a measured case of role-separated oversight in an AI-assisted project*
 
+**Statement — what the article claims and concludes.** The article states
+that in this AI-assisted project, defect discovery was performed by a human
+role distinct from the engineer who used the assistant, and that the
+separation is near-deterministic: the developer filed 52 Stories and zero
+Bugs, a dedicated tester filed 37 of 40 Bugs and zero Stories (Fisher
+p = 6.7e-26; full reporter × type table χ² = 199.4, Cramér's V = 0.859), and
+requirements for a whole subsystem originated *from* the tester's bug report.
+It concludes that Agarwal et al.'s proposition — that the team, through how it
+structures review, sets the sign of a coding agent's effect — has a **measured
+instance**, supplied from a tracker export beside the journal that explains its
+mechanism; that the oversight burden Garousi characterises was, here, **borne
+by a distinct role**, so the actionable recommendation is a person whose job is
+oversight, not a diffuse team duty; that the agent-plus-developer pair **did
+not find its own behavioural defects**, which is a counterexample to the strong
+reading of "coding agents supersede human inspection" while consistent with
+that paper's own carve-out for regulated systems; and that productivity
+narratives built from a developer's journal and the commit record
+**structurally omit this labour**, because neither source can see it. It
+states its limits plainly: one team, roles inferred from reporting behaviour
+and to be corroborated, no effort data to size the burden, and a construct
+distinction — the tester performed black-box testing, not diff review. It
+recommends budgeting an independent tester when sizing an AI-assisted team, and
+specifies a cheap multi-project replication using only tracker exports.
+
+**Abstract.** Discourse about AI-assisted development is dominated by the
+solo-developer-plus-agent framing, and recent theory argues that a coding
+agent's effect on software is decided at the review control point, with the
+team setting its sign through expertise and review structure (Agarwal et al.,
+from 3,100 coded practitioner documents). That theory rests on discourse; the
+oversight burden it implies has been characterised qualitatively (Garousi) but
+not measured, and one position holds that agents now supersede human
+inspection altogether (Monperrus). We supply a measured case. Joining the
+156-issue tracker of a production payment module to its 716 commits and its
+daily engineering journal, we cross-tabulate reporter against issue type
+across ten reporters and three years. The engineer who built the module with
+an LLM assistant filed 52 Stories and zero Bugs; a separate tester filed 37 of
+the project's 40 Bugs (92.5%) and zero Stories; a project manager filed 26
+Tasks and nothing else. The association is near-deterministic (Fisher exact
+p = 6.7e-26 on the developer × tester Story × Bug table; χ² = 199.4, df 6,
+p = 2.6e-40, Cramér's V = 0.859). Issue-to-code conversion also depends on type
+(Story 69%, Bug 42%, Task 8%; p = 2.9e-10), and one subsystem's requirements
+originated as a tester-filed payment-blocking bug that the tester then rewrote
+as the requirements task the developer implemented. This QA function is
+invisible in both the developer's journal and the commit history; it surfaces
+only in the tracker. We conclude that the team here set the sign through a
+dedicated human oversight role, that the agent-assisted pair did not detect its
+own behavioural defects, and that productivity accounts built from journals and
+repositories omit the labour that made the measured quality possible. We
+position this as a single-case test of a named published proposition, state the
+construct difference between black-box testing and diff review, and specify a
+replication across AI-assisted projects with differing QA staffing that needs
+only issue-tracker exports.
+
 **Stances.** **ENHANCES** Agarwal et al. by supplying artifact-derived
 measurement for a proposition that rests on practitioner discourse;
 **ENHANCES** Garousi by answering the question the oversight-burden framing
@@ -432,6 +583,62 @@ Do not rush it.
 ---
 
 ### Article 4 — *Ground truth for the perils: a single-project case for what commit traces of coding agents can and cannot show*
+
+**Statement — what the article claims and concludes.** The article states
+that the repository traces of coding-agent activity in this project are
+partial, convention-driven, heterogeneous and lossy — and, uniquely, that each
+of these properties is documented against ground truth. It states that
+`Co-Authored-By` trailers cover 149 of 716 commits, that coverage steps from
+0.4% to 58.8% on a single date (2026-05-07, Fisher p = 5.2e-81) while the
+project's journal documents heavy assistant use throughout the untrailered
+seven months, and that six model strings appear in four months. It states that
+provenance was destroyed by three mechanisms during the study window — a
+release squash leaving 491 commits only on a legacy branch, routine branch
+pruning orphaning a commit recovered only from a stale checkout, and CI
+retention leaving 234 of 979 runs pointing at commits on no surviving ref. It
+concludes that **a trailer series measures the adoption of a commit convention,
+not the incidence of AI involvement**, so trend and model-attribution analyses
+built on trailers are confounded by rollout and generation churn; that **none
+of the three provenance losses is detectable from inside the repository**, so
+every commit count from a project that squashes releases and prunes branches
+is a lower bound with an invisible survivorship bias; that "rewritten away"
+and "never happened" cannot in general be distinguished even with full
+repository access; and that the commonly feared failure of LLM-authored commit
+metadata — fabricated identifiers — did not occur (0 of 61 references across
+436 ticket-bearing commits), while conflation did (one misattributed ticket).
+It recommends emitting the co-authorship trailer from the first commit,
+never squashing release history where the commit graph is the change-control
+evidence, and instrumenting effort prospectively, since it was recoverable
+from none of five corpora.
+
+**Abstract.** Mining coding-agent activity from repositories is attractive and
+hazardous: recent work catalogues the perils — traces are partial, arrive over
+time, come from heterogeneous agents, and can be lost — but ecosystem-scale
+studies have no ground truth for the commits that carry no trace. We present a
+single project in which they are all documented against one. Across 716
+commits in two repositories of a production payment module, `Co-Authored-By:
+Claude*` trailers appear on 149 (20.8%): 2 of 466 commits before 2026-05-07
+and 147 of 250 after (Fisher exact p = 5.2e-81), reaching 86% by August 2026,
+with six distinct model strings in four months. The project's daily engineering
+journal independently records heavy assistant use throughout the seven months
+of 0% coverage, so the trailer series is shown — not inferred — to be
+uninformative as a time series of AI involvement; it measures a convention
+being adopted. Provenance was lost by three mechanisms during the study window:
+a release squash re-added 562 files and left 491 commits reachable only on a
+retained legacy branch; deletion of merged feature branches orphaned a
+25-file commit that survives only as a dangling object recovered from a stale
+local checkout; and 234 of 979 CI runs (24%) reference commits on no surviving
+ref, with older runs already discarded by the platform's retention window.
+None of the three is detectable from inside the repository. Ticket references
+in commit messages were never fabricated (0 of 61 distinct identifiers across
+436 commits) but once misattributed. We conclude that trailer-derived AI
+labels measure attribution practice rather than authorship, that commit counts
+from projects with ordinary release and branch hygiene are lower bounds with
+an invisible survivorship bias, and that the distinction between
+rewritten-away and never-collected history may require artifacts outside
+version control entirely. We release the derived datasets and recommend
+trailer emission from the first commit, retention of release history where it
+serves as change-control evidence, and prospective effort instrumentation.
 
 **Stances.** **ENHANCES** Robbes et al.'s catalogue of perils with a
 fully-instrumented single-project instance of each; **ENHANCES** the
