@@ -58,6 +58,7 @@ divergences rather than the agreements.
 | [`06-novelty-assessment.md`](06-novelty-assessment.md) | **What would survive peer review.** Tiers all **13** contributions (N-1…N-13) by novelty *and* by evidence class — tested / census / n=1 / mixed / untestable, with statistics. Names the claims to drop, recommends a reframing and research venues. | — | Review |
 | [`08-literature-review.md`](08-literature-review.md) | **What published problems this corpus can speak to.** 13 entries against real papers, each graded **instantiates / supports / complicates / counterexample / challenges-us / cannot-address**, plus a consolidated list of where the literature undercuts *us* and six priority searches still outstanding. | — | Review |
 | [`07-lessons-learned.md`](07-lessons-learned.md) | **8 practitioner topics** (LL-1…LL-8) — what we would tell the next team. Each graded by evidence class and routed to a **named venue**; plus the full inference grading (Tiers S/D/U/N/X), a 12-item day-one checklist, a submission sequence, three publication gates, and the lessons the evidence **cannot** support. | A+B+C | Proposals |
+| [`X-01-five-articles-against-the-literature.md`](X-01-five-articles-against-the-literature.md) | **Five article proposals, each positioned against named published work** — stance (confirms / disproves / enhances), evidence by `N-`/`M-`/`T-` id, reviewer concessions, outstanding work, venue and gate. Opens with a review of reports 00–08 and a corrections queue of stale figures. | — | Proposals |
 
 ---
 
