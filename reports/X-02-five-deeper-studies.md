@@ -15,7 +15,9 @@ disk spanning 2025-11 → 2026-09** (§0.2). Each of the five studies below is a
 question developers using coding agents actually argue about, and for which
 the field has essentially no artifact-based evidence. Each was **piloted on
 2026-09-21** against the CSVs before being proposed; the pilot numbers are
-reported as uncorrected and labelled as such.
+reported as uncorrected and labelled as such. Each study carries a
+two-word conclusion, a registered-report-style abstract, and a graded
+literature table (**added 2026-09-21**); §9 consolidates the references.
 
 ---
 
@@ -65,6 +67,52 @@ exist to show the studies are live, not to be cited.
 ---
 
 ## 1. Study S-1 — *Is the peak worse than the rate?* Burst-mode agentic work and what it costs later
+
+**In two words: *Bursts cost.*** Expanded: code produced on high-throughput
+days carried a measurably higher pipeline-failure rate than code produced at
+the ordinary pace, and the study tests whether the same holds for
+verification and field defects — a conclusion the pilot points to and the
+study would confirm or overturn.
+
+**Abstract (registered-report style).** *Context.* Just-in-time defect
+prediction has established that properties of a change — size, diffusion,
+author experience, time of day — predict its risk (Mockus & Weiss 2000;
+Nagappan & Ball 2005; Eyolfson et al. 2011; Kamei et al. 2013). Agentic
+development adds a property those studies never saw: the *cadence* of the day
+on which a change was made, because an agent can produce 30 commits in a day
+where a human produces three. Whether burst-mode output is worse is currently
+argued from intuition. *Objective.* To test whether commits made on burst days
+(≥10 commits) differ from commits made on ordinary days on three independent
+quality outcomes: continuous-integration failure, escaped-mutant density of
+the lines introduced, and later bug-fix touch. *Method.* 716 commits of a
+production payment module over ten months, joined to 979 CI runs, to a
+deterministic mutation-testing baseline via line provenance on grafted
+history, and to 40 tracker bugs via fix commits. Three mechanical days are
+excluded; period is controlled by month strata; inference is by permutation
+over days because per-commit outcomes are autocorrelated (ρ₁ = 0.429).
+Within-session position (first vs last commit of a ≤90-minute run) is tested
+for drift. *Pilot.* Burst-day commits had a failing run 72% of the time
+against 56% on ordinary days (Fisher p = 0.0014, uncorrected). *Predictions.*
+If bursts trade quality for speed, all three outcomes rise; if bursts merely
+coincide with a broken environment, only CI failure rises, which exonerates
+the agent and indicts the pipeline; if bursts are free, nothing rises once
+period is controlled. *Contribution.* The first artifact-based test of the
+throughput–quality trade-off in agent-assisted work, and — because per-commit
+size predicted nothing here (ρ = −0.024) while day cadence did — evidence
+that the informative risk feature has moved from the change to the day.
+
+**Literature it rests on.**
+
+| Paper | Their claim | Our stance | Status |
+|---|---|---|---|
+| Mockus & Weiss, *Predicting risk of software changes*, Bell Labs Tech. J. 2000 | change size and diffusion predict failure | **CONFIRMS** the family; **ENHANCES** with a cadence feature they could not observe | to read |
+| Nagappan & Ball, *Use of relative code churn measures to predict system defect density*, ICSE 2005 | relative churn predicts defect density | **COMPLICATES** — per-commit size carried no CI signal here (N-13) while day-level cadence did | to read |
+| Eyolfson, Tan & Lam, *Do time of day and developer experience affect commit bugginess?*, MSR 2011 | late-night and inexperienced commits are buggier | **ENHANCES** — adds a *throughput* dimension to the temporal-risk lineage; this project has almost no night commits (M-14), so cadence is the only temporal variable left | to read |
+| Kamei et al., *A large-scale empirical study of just-in-time quality assurance*, TSE 2013 | change-level features predict defect-inducing commits across projects | **ENHANCES** — proposes day cadence as a JIT feature for agent-assisted repositories | to read |
+| Śliwerski, Zimmermann & Zeller, *When do changes induce fixes?*, MSR 2005 | SZZ; Friday commits more often bug-inducing | **CONFIRMS** the method (used for the bug-touch outcome); **ENHANCES** the weekday result with a within-week cadence result | to read |
+| Huang et al., *Is this Build Failure Related to my Patch?*, 2026 | 13% of failures are patch-unrelated | **ENHANCES** — supplies the discriminating test between "agent produced worse code" and "environment was broken on busy days" | in `08` §3.2 |
+| Robbes et al., *Promises, Perils…*, MSR 2026 | agent traces are partial and time-confounded | **CONFIRMS** — burst/ordinary is defined without trailers precisely because trailers are unreliable here (N-2) | in `08` §2.1 |
+| METR 2025 | measured vs perceived AI productivity diverge | **ENHANCES** — throughput is what practitioners perceive; this measures what the throughput cost | in `08` §1.2 |
 
 **The question developers argue about.** Whether to let a coding agent run in
 long, high-throughput bursts (a 64-commit two-day epic) or pace it. The
@@ -123,6 +171,57 @@ publishable on CI and ratio alone.
 ---
 
 ## 2. Study S-2 — *Verification provenance.* Which lines does the suite actually verify, and under what conditions were they written?
+
+**In two words: *Provenance predicts.*** Expanded: whether a line is
+verified by the suite is expected to depend on the conditions under which it
+was written — burst day, red pipeline, unticketed work, tests and source
+landing together — and on when in the project it was written; the
+longitudinal series decides whether verification accumulated with volume or
+volume accumulated alone.
+
+**Abstract (registered-report style).** *Context.* Mutation score is the
+strongest available proxy for test-suite effectiveness (Just et al. 2014),
+but it is almost always reported as one aggregate, and its relation to real
+faults weakens once suite size is controlled (Papadakis et al. 2018).
+Industrial practice at Google surfaces mutants at diff time (Petrović &
+Ivanković 2018), implicitly asserting that *when and how* a line is written
+matters to whether it gets tested — an assertion never examined
+retrospectively. *Objective.* To attribute every mutant in an agent-assisted
+payment module to the commit that wrote its line and model escape probability
+on that commit's properties; and to measure the module's mutation score at
+five to seven historical checkpoints against its test-suite growth.
+*Method.* Infection over four source directories with the JSON logger (≈1,600
+mutants), `git blame` on history reconstructed by grafting the retained
+pre-squash branch onto the 2026-07-02 release squash, and a logistic model
+over date, burst/ordinary day, session length, trailer and model, ticket
+presence, test/source ratio of the commit, its CI outcome, and subsystem. The
+longitudinal series uses fourteen frozen checkouts on disk (2025-11 →
+2026-09), each with its own test configuration and container stack, run with
+the deterministic recipe (`--coverage --skip-initial-tests`). *Pilot.* Blame on
+the retained branch recovers real dates (17 commits, 2025-12 → 2026-05, for
+the top escape file) where the current branch attributes every line to the
+squash; the current baseline is MSI 70%, 469 of 1,592 escaped, with 169 of
+469 escapes in event handlers and zero in the three money-arithmetic classes.
+*Predictions.* Under "tests written to satisfy the code", escape rate peaks
+in large commits adding tests and source together, and MSI is flat or falling
+over checkpoints while the suite grows 493 → 2,109 methods; under "hollow
+tests were an early defect later corrected", escape rate falls with date and
+MSI rises. *Contribution.* The first mutation-by-provenance analysis of an
+industrial suite, a longitudinal MSI series on an evolving agent-assisted
+system, and a demonstration that the study is impossible without retained
+history — the release squash would have destroyed it.
+
+**Literature it rests on.**
+
+| Paper | Their claim | Our stance | Status |
+|---|---|---|---|
+| Just et al., *Are mutants a valid substitute for real faults in software testing?*, FSE 2014 | mutant detection correlates with real-fault detection; some faults are not coupled to any mutant | **ENHANCES** — adds *who wrote the line, when, how* as covariates of escape | to read |
+| Papadakis et al., *Are mutation scores correlated with real fault detection?*, ICSE 2018 | the correlation is weak once test-suite size is controlled | **CONFIRMS** on one suite, longitudinally — size (1.69:1) and MSI move independently if the flat-MSI prediction holds | to read |
+| Inozemtseva & Holmes, ICSE 2014; Zhang & Mesbah, FSE 2015 | coverage is not, assertions are, correlated with effectiveness | **CONFIRMS** — already shown on this suite (`08` §7.3); the provenance model asks *why* | in `08` §7.3 |
+| Petrović & Ivanković, *State of Mutation Testing at Google*, ICSE-SEIP 2018; Petrović et al., *Does mutation testing improve testing practices?*, ICSE 2021 | surfacing mutants at code-review time changes how developers test | **ENHANCES** — a retrospective provenance analysis is the observational counterpart to their diff-time intervention | to read |
+| Hora & Robbes, *Are Coding Agents Generating Over-Mocked Tests?*, MSR 2026 | agent tests may pass without testing behaviour | **ENHANCES** — `MethodCallRemoval` (85/469) becomes a *dated, attributed* signature rather than a count | in `08` §2.3 |
+| arXiv:2607.22880 (2026), replicability of LLM-generated suite effectiveness | size only weakly confounds mutation score for LLM suites | **CONFIRMS or DISPROVES** — the longitudinal half tests it directly on one suite | in `08` §7.3 |
+| *Was It Never Collected, or Rewritten Away?*, 2026 | history rewrites bound what mining can observe | **CONFIRMS** — the study exists only because a legacy branch survived the squash (N-6) | in `08` §2.2 |
 
 **The question developers argue about.** Whether agent-written tests verify
 agent-written code, or whether the two are written to satisfy each other. `05`
@@ -196,6 +295,58 @@ provenance half; the provenance half is publishable alone.
 
 ## 3. Study S-3 — *Do mutants predict where humans find bugs?* A defect-by-defect accounting of a money path's quality system
 
+**In two words: *Complementary detectors.*** Expanded: the human tester
+and the automated layers are expected to have found largely disjoint defect
+classes, so that mutation escape density either maps where manual testing
+should go or shows that human-found defects lie outside anything the suite
+could have caught — either answer is the result.
+
+**Abstract (registered-report style).** *Context.* Whether mutants stand in
+for real faults has been studied on curated defect benchmarks (Just et al.
+2014; Papadakis et al. 2018), and whether different detection techniques
+find different fault classes has been studied in controlled experiments
+(Basili & Selby 1987; Juristo, Moreno & Vegas 2003; Runeson et al. 2006).
+Neither literature has an industrial system with a known human tester, a
+per-file mutation map, and an intent record on the same code. *Objective.*
+To determine (i) whether escaped-mutant density predicts the files in which a
+dedicated human tester found bugs, (ii) which quality layer — unit suite,
+static analysis, CI integration, end-to-end, or a human against a running
+shop — could have caught each of the project's 40 bugs and which did, and
+(iii) what the bug-introducing commits have in common. *Method.* 40 `Bug`
+issues of a payment module (37 filed by one tester), 17 joined to fix commits
+and thence to `src/` files via the retained pre-squash branch; per-file escape
+density from a deterministic Infection baseline (469 escapes over 46 files);
+two-rater classification of catchable layer against a codebook, with the
+tester as one rater where consent allows; SZZ on the 17 fix diffs over
+grafted history to recover introducing commits and their burst/ordinary,
+trailer, test-accompaniment and CI properties. Reclassified bugs (3 `Not a
+bug`, 3 `Core Bug`) are a control stratum (Herzig et al. 2013). *Pilot.* Four
+sample bugs resolve to two to four fix files each; escapes concentrate in
+event handlers (169/469) and are absent from money arithmetic; four
+refactoring-found truncation bugs and six tester-found amount bugs on the
+same subsystem do not overlap. *Predictions.* If human-found bugs sit in
+high-escape files, mutation testing is a map for manual QA; if they sit in
+low-escape files or in interface and state-at-redirect code the unit suite
+cannot reach, the human found what no automated layer could by construction,
+and the tester's 92.5% share of bugs (N-3) is explained by complementarity
+rather than by suite weakness. *Contribution.* A mutant-versus-real-fault
+study with a human oracle on a regulated money path, and a 40-row
+layer-accounting that turns the programme's untestable N-5 observation into
+data.
+
+**Literature it rests on.**
+
+| Paper | Their claim | Our stance | Status |
+|---|---|---|---|
+| Just et al., FSE 2014 | mutants are a valid but imperfect substitute for real faults; some faults are uncoupled | **ENHANCES** — file-level, industrial, human-reported faults; tests whether the uncoupled class is exactly what the tester found | to read |
+| Papadakis et al., ICSE 2018 | mutation score ↔ real-fault detection is weak when size is controlled | **CONFIRMS or COMPLICATES** — a per-file test rather than a per-suite correlation | to read |
+| Basili & Selby, *Comparing the effectiveness of software testing strategies*, TSE 1987 | techniques differ by fault class | **CONFIRMS** the lineage with a modern channel set (refactoring, mutation, black-box human) | in `08` §5.1 |
+| Juristo, Moreno & Vegas, *Functional testing, structural testing and code reading: what fault type do they each detect?*, 2003 | replication: effectiveness depends on program and fault type | **CONFIRMS** — supplies the fault-type codebook for the 40-row table | in `08` §5.1 |
+| Runeson et al., *What do we know about defect detection methods?*, IEEE Software 2006 | evidence on detection methods is fragmented and context-dependent | **ENHANCES** — one context, fully instrumented | to read |
+| Śliwerski et al., MSR 2005; Kim et al., *Automatic identification of bug-introducing changes*, ASE 2006 | SZZ and its refinement | **CONFIRMS** the method; applies it to 17 money-path bugs with an intent record | to read |
+| Herzig, Just & Zeller, *It's not a bug, it's a feature*, ICSE 2013 | a third of "bugs" in trackers are misclassified | **CONFIRMS** — 6 of 40 (15%) reclassified here (M-5); used as a control stratum | to read |
+| Agarwal et al. 2026; Garousi 2026; Monperrus 2026 | the team sets the sign; oversight is a burden; agents supersede inspection | **ENHANCES** Agarwal/Garousi with *what kind* of defects the human oversight caught; **DISPROVES** the strong Monperrus reading if the human-caught class is unreachable by any automated layer | in `08` §5.2, §7.4 |
+
 **The question the field has never had the data for.** The mutant–real-fault
 coupling literature (Just et al., Papadakis et al.) asks whether mutation
 score predicts real-fault detection, on curated defect benchmarks. This
@@ -263,6 +414,54 @@ none of the 40 is a security finding (those are `STRP-99/108`, excluded).
 
 ## 4. Study S-4 — *The context tax.* What it costs to drive a stateless agent for ten months, and what the writing bought
 
+**In two words: *Context costs.*** Expanded: driving a stateless agent
+for ten months required a volume of human-written context that fell from
+roughly ten times the production code to near parity and then spiked with
+the epic; the study prices that cost by type and tests whether it bought
+control over commits, accuracy of reports, or nothing measurable.
+
+**Abstract (registered-report style).** *Context.* Productivity frameworks
+count a developer's time and output (Forsgren et al., SPACE, 2021) and field
+experiments count minutes (METR 2025), but neither counts the words a human
+writes *to the agent*. Lab studies have shown that prompt crafting is a
+distinct and costly activity state (Mozannar et al. 2024) and that developers
+report difficulty communicating intent to assistants (Liang, Yang & Myers
+2024). No study has measured this cost over a real project's lifetime.
+*Objective.* To measure the volume, type, repetition and time trend of
+human-authored agent context in a ten-month agent-assisted project, and to
+test whether it is associated with commit granularity, pipeline outcome,
+verification, or self-report accuracy. *Method.* The project's complete
+engineering journal on disk — 578 files, 113,064 lines, ≈396,000 words —
+classified by directory role (dispatch briefs and plans in `sprints/`,
+completion reports in `done/` and `reports/`, `status.md`, `todo/`), with
+imported documentation separated by path; near-duplicate detection for
+repeated rule blocks; per-commit `docs` insertions from 715 commits; the
+sprint → commit join by dated directory and ticket; trailers as the only
+model clock (the journal names a model twice in 113k lines). Outcomes per
+sprint: commits produced, one-commit mapping, CI failure of its commits,
+escape density of its lines (S-2), completion-report accuracy (S-5). *Pilot.*
+Documentation-to-source insertion ratio by month: 29.7, 10.1, 4.6, 1.2, 3.6,
+3.2, 1.8, 5.5, 3.3, 0.6, 1.3 — with the early months inflated by imported
+material still to be separated. *Predictions.* Plan volume associates with
+one-commit mapping and report accuracy (context buys *control*) and not with
+CI outcome (environmental); the null — that context volume predicts nothing —
+is possible and would be the more provocative result. *Contribution.* The
+first artifact-based measurement of a cost category absent from the
+productivity literature, with its trend across six model generations.
+
+**Literature it rests on.**
+
+| Paper | Their claim | Our stance | Status |
+|---|---|---|---|
+| Forsgren et al., *The SPACE of developer productivity*, ACM Queue 2021 | productivity has five dimensions; measure more than output | **ENHANCES** — names a cost (human-written agent context) none of the five dimensions counts | to read |
+| Mozannar et al., *Reading Between the Lines: Modeling User Behavior and Costs in AI-Assisted Programming*, CHI 2024 | prompt crafting and suggestion verification are distinct, costly activity states in lab sessions | **ENHANCES** — the same cost measured in words over ten months of real work instead of minutes in a session | to read |
+| Liang, Yang & Myers, *A large-scale survey on the usability of AI programming assistants*, ICSE 2024 | developers struggle to communicate intent and to control assistants | **CONFIRMS** — with the artifact of that struggle: repeated "ABSOLUTE HARD RULES" per dispatch (LL-1) | to read |
+| Barke, James & Polikarpova, *Grounded Copilot*, OOPSLA 2023 | programmers alternate acceleration and exploration modes with assistants | **ENHANCES** — a third mode at project scale: *briefing* a stateless agent, with its volume measured | to read |
+| METR 2025 | AI slowed experienced developers while they felt faster | **ENHANCES** — a candidate mechanism for the gap: time spent writing context is felt as progress and counted as documentation | in `08` §1.2 |
+| Garousi 2026, *Human Oversight and Overload* | oversight of AI output is a hidden burden | **ENHANCES** — the burden has an *input* side (writing the context) as well as the output side he describes | in `08` §5.2.1 |
+| Aghajani et al., *Software documentation issues unveiled*, ICSE 2019 | taxonomy of documentation problems | **COMPLICATES** — documentation-as-instruction to an agent is a new artifact class their taxonomy does not cover | to read |
+| Robbes et al., MSR 2026 | agent traces in repositories are partial | **ENHANCES** — the journal is a second, richer trace of agent activity than commit metadata, and it lives in the repository (M-17: `docs` is 4.4× the code) | in `08` §2.1 |
+
 **The question every agent user is guessing about.** How much human-written
 context — plans, rules, status, completion reports — an agent needs, whether
 it pays back, and whether the need falls as models improve. Practice ranges
@@ -325,6 +524,54 @@ employer approval — the journal is internal; excerpts must be cleared.
 ---
 
 ## 5. Study S-5 — *How wrong are agent completion reports?* Calibration of ≈200 self-reports against the commit record
+
+**In two words: *Reports drift.*** Expanded: agent completion reports
+are expected to err in both directions and by claim type — accurate on
+counts the agent derived from its own actions, unreliable on counts that
+require the repository's state, and carrying a measurable
+done-but-not-committed rate — turning one −41% anecdote into a calibration
+curve.
+
+**Abstract (registered-report style).** *Context.* Language-model
+calibration is studied on benchmarks and elicited confidences (Xiong et al.
+2024; Kalai et al. 2025), and the human side of the AI-productivity
+perception gap has been measured in the field (METR 2025). The *agent's*
+account of its own work — the completion report a developer reads before
+deciding whether to look further — has not been calibrated against the
+artifact in a real project. *Objective.* To measure the signed error of
+numeric claims in agent completion reports against the commit record, by
+claim type, over ten months and six model generations, and to estimate the
+rate of work reported done but never committed. *Method.* 284 report files
+(`done/` 190, `reports/` 94) containing 1,132 lines that state a count of
+commits, files, tests or lines; a typed extractor with a hand-validated
+100-line sample; report → git-window matching by dated directory, ticket, and
+the sprint reference present on 108 commits; measurement against `numstat`,
+`function test*` deltas, file line counts at the window's last commit, and
+PHPUnit counts only where the claim is a PHPUnit count (the two test-count
+series are never mixed); windows that cross a squashed or pruned branch are
+flagged as lower bounds. *Pilot.* The one fully checked report understated
+its epic by 41% on insertions and 3 on commits while its test count was
+exact; two smaller checks found one under- and one over-count. *Predictions.*
+Error is bidirectional, not flattering; action-derived counts (files edited,
+tests written) are accurate; state-derived counts (total commits, cumulative
+LOC, "all tests passing") drift; "complete" claims carry a done-but-not-
+committed rate the journal itself calls common in mid-2026. *Contribution.*
+In-situ calibration of agent self-reports on real work, a claim-type
+taxonomy telling developers which numbers to verify, and the cost/yield of
+doing so — LL-2's argument with a denominator.
+
+**Literature it rests on.**
+
+| Paper | Their claim | Our stance | Status |
+|---|---|---|---|
+| METR 2025 | practitioners misjudge AI's effect on their own speed by ~39 points | **ENHANCES** — the agent-side counterpart: how far the agent's account of its work is from the artifact | in `08` §1.2 |
+| Xiong et al., *Can LLMs express their uncertainty?*, ICLR 2024 | LLMs are overconfident when eliciting confidence on benchmark tasks | **COMPLICATES** — in situ, error is bidirectional; understatement of own output is not overconfidence | to read |
+| Kalai, Nachum, Vempala & Zhang, *Why Language Models Hallucinate*, 2025 | training and evaluation reward confident guessing over abstention | **COMPLICATES** — counts that require repository state are guessed; counts derived from the agent's own actions are not, which their account predicts only partly | to read |
+| Sharma et al., *Towards Understanding Sycophancy in Language Models*, ICLR 2024 | models tailor outputs to perceived user preference | **DISPROVES the naive reading** if confirmed — the checked report *under*-sold its own work, the opposite of sycophantic inflation | to read |
+| Jimenez et al., *SWE-bench*, ICLR 2024 | agents are evaluated on resolved benchmark issues | **ENHANCES** — evaluation of what an agent *says* it resolved, on real work, over time | to read |
+| Bettenburg et al., *What makes a good bug report?*, FSE 2008 | the gap between what reports contain and what developers need | **ENHANCES** — the same question for agent completion reports: which stated facts are load-bearing and which are wrong | in `08` §5.2.3 (lineage) |
+| Robbes et al., MSR 2026 | agent traces are partial | **CONFIRMS** — completion reports are a second, human-accepted trace, and they disagree with the first | in `08` §2.1 |
+| Liu et al., *Debt Behind the AI Boom*, 2026 | AI-introduced issues survive in repositories | **ENHANCES** — done-but-not-committed is the inverse failure: reported work that never reached the repository | in `08` §1.3 |
 
 **The question developers face daily.** Whether to believe the agent's
 summary of what it just did. The programme has **one** data point — the epic
@@ -444,3 +691,59 @@ None of the five is about agreeing or disagreeing with a paper. Each is a
 question that people running coding agents are currently answering by
 instinct, and each has a falsifiable prediction that this corpus — and, as
 far as `08`'s searches show, no other — can test.
+
+---
+
+## 9. References
+
+Status per [`08`](08-literature-review.md) §0: **[08]** already located and
+graded there (read depth as marked in `08`); **[to read]** newly introduced by
+this report from the author's knowledge of the field and **not yet read in this
+programme** — every one must be read in full before a venue draft cites it.
+Nothing may be cited from this document.
+
+**Change-level risk and temporal effects (S-1, S-3)**
+- Mockus, A. & Weiss, D. M. — *Predicting risk of software changes*. Bell Labs Technical Journal, 2000. [to read]
+- Nagappan, N. & Ball, T. — *Use of relative code churn measures to predict system defect density*. ICSE 2005. [to read]
+- Śliwerski, J., Zimmermann, T. & Zeller, A. — *When do changes induce fixes?* MSR 2005. [to read]
+- Kim, S., Zimmermann, T., Pan, K. & Whitehead, E. J. — *Automatic identification of bug-introducing changes*. ASE 2006. [to read]
+- Eyolfson, J., Tan, L. & Lam, P. — *Do time of day and developer experience affect commit bugginess?* MSR 2011. [to read]
+- Kamei, Y. et al. — *A large-scale empirical study of just-in-time quality assurance*. IEEE TSE 39(6), 2013. [to read]
+- Herzig, K., Just, S. & Zeller, A. — *It's not a bug, it's a feature: how misclassification impacts bug prediction*. ICSE 2013. [to read]
+- Huang et al. — *Is this Build Failure Related to my Patch?* arXiv:2605.05564, 2026. [08 §3.2, full-text]
+
+**Test effectiveness and mutation (S-2, S-3)**
+- Basili, V. R. & Selby, R. W. — *Comparing the effectiveness of software testing strategies*. IEEE TSE 13(12), 1987. [08 §5.1]
+- Juristo, N., Moreno, A. M. & Vegas, S. — *Functional testing, structural testing and code reading: what fault type do they each detect?* In *Empirical Methods and Studies in Software Engineering*, LNCS 2765, 2003. [08 §5.1]
+- Runeson, P., Andersson, C., Thelin, T., Andrews, A. & Berling, T. — *What do we know about defect detection methods?* IEEE Software 23(3), 2006. [to read]
+- Inozemtseva, L. & Holmes, R. — *Coverage is not strongly correlated with test suite effectiveness*. ICSE 2014. [08 §7.3]
+- Just, R., Jalali, D., Inozemtseva, L., Ernst, M. D., Holmes, R. & Fraser, G. — *Are mutants a valid substitute for real faults in software testing?* FSE 2014. [to read]
+- Zhang, Y. & Mesbah, A. — *Assertions are strongly correlated with test suite effectiveness*. ESEC/FSE 2015. [08 §7.3]
+- Petrović, G. & Ivanković, M. — *State of mutation testing at Google*. ICSE-SEIP 2018. [to read]
+- Papadakis, M., Shin, D., Yoo, S. & Bae, D.-H. — *Are mutation scores correlated with real fault detection? A large scale empirical study on the relationship between mutants and real faults*. ICSE 2018. [to read]
+- Petrović, G., Ivanković, M., Fraser, G. & Just, R. — *Does mutation testing improve testing practices?* ICSE 2021. [to read]
+- Hora, A. & Robbes, R. — *Are coding agents generating over-mocked tests? An empirical study*. MSR 2026, arXiv:2602.00409. [08 §2.3]
+- *Replicability of LLM-generated test-suite effectiveness* — arXiv:2607.22880, 2026. [08 §7.3, secondary]
+
+**Mining agent activity and provenance (S-1, S-2, S-4, S-5)**
+- Robbes, R., Matricon, T., Degueule, T., Hora, A. & Zacchiroli, S. — *Promises, perils, and (timely) heuristics for mining coding agent activity*. MSR 2026, arXiv:2601.18345. [08 §2.1]
+- *Was it never collected, or rewritten away? A commit-provenance dataset…* arXiv:2607.02774, 2026. [08 §2.2]
+- Liu, Widyasari, Zhao, Irsan & Lo — *Debt behind the AI boom*. arXiv:2603.28592, 2026. [08 §1.3]
+
+**Human–AI collaboration, cost and oversight (S-4, S-3)**
+- Forsgren, N., Storey, M.-A., Maddila, C., Zimmermann, T., Houck, B. & Butler, J. — *The SPACE of developer productivity*. ACM Queue 19(1), 2021. [to read]
+- Barke, S., James, M. B. & Polikarpova, N. — *Grounded Copilot: how programmers interact with code-generating models*. OOPSLA 2023. [to read]
+- Mozannar, H., Bansal, G., Fourney, A. & Horvitz, E. — *Reading between the lines: modeling user behavior and costs in AI-assisted programming*. CHI 2024. [to read]
+- Liang, J. T., Yang, C. & Myers, B. A. — *A large-scale survey on the usability of AI programming assistants: successes and challenges*. ICSE 2024. [to read]
+- Aghajani, E. et al. — *Software documentation issues unveiled*. ICSE 2019. [to read]
+- METR — *Measuring the impact of early-2025 AI on experienced open-source developer productivity*. arXiv:2507.09089, 2025. [08 §1.2]
+- Garousi, V. — *Human oversight and overload: two hidden and costly burdens of AI-assisted software engineering*. arXiv:2606.05770, 2026. [08 §5.2.1]
+- Agarwal, Miller, Kästner & Vasilescu — *3100 opinions on code review in an AI world*. arXiv:2607.07980, 2026. [08 §5.2.2]
+- Monperrus, M. — *The end of code review: coding agents supersede human inspection*. arXiv:2606.13175, 2026. [08 §7.4, not yet read]
+
+**Model self-report and calibration (S-5)**
+- Bettenburg, N., Just, S., Schröter, A., Weiss, C., Premraj, R. & Zimmermann, T. — *What makes a good bug report?* FSE 2008. [08 §5.2.3, lineage]
+- Xiong, M. et al. — *Can LLMs express their uncertainty? An empirical evaluation of confidence elicitation in LLMs*. ICLR 2024. [to read]
+- Sharma, M. et al. — *Towards understanding sycophancy in language models*. ICLR 2024. [to read]
+- Jimenez, C. E. et al. — *SWE-bench: can language models resolve real-world GitHub issues?* ICLR 2024. [to read]
+- Kalai, A. T., Nachum, O., Vempala, S. S. & Zhang, E. — *Why language models hallucinate*. 2025. [to read]
