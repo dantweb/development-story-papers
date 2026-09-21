@@ -165,8 +165,8 @@ talk cannot carry.
 ## 3. The five articles
 
 Each proposal has the same blocks: working title; **statement** (what the
-article claims and concludes) and **abstract** — added 2026-09-21 for Articles
-1–4; stances; the published claims engaged; our evidence; the argument; what
+article claims and concludes) and **abstract** — added 2026-09-21 for all five
+articles; stances; the published claims engaged; our evidence; the argument; what
 we add that the cited work cannot have; what a reviewer will say and how we
 concede it; still to do, venue, gate, effort.
 
@@ -723,6 +723,73 @@ only. **Effort:** medium; the material is complete and scattered across `05`,
 ---
 
 ### Article 5 — *Size, assertions, and the 30% neither could see: mutation testing an agent-written suite, and why the first three scores were wrong*
+
+**Statement — what the article claims and concludes.** The article states
+that on a single agent-assisted PHP test suite, the two proxies for
+test-suite quality that a repository study can compute — suite size and
+assertion density — were both compatible with the suite missing 30% of the
+semantic changes to code it executes, and neither could reveal it. It states
+that the project wrote 1.69 lines of test code per line of production code in
+11 of 11 months, that its tests carry ≈2.3 assertions each across two
+independently developed packages, and that a deterministic mutation run
+nonetheless yields a Covered Code MSI of 70% (1,592 mutants, 1,123 killed, 469
+escaped). It states that the largest escape category is `MethodCallRemoval`
+(85 of 469) — a call can be deleted with the suite still green — which is the
+over-mocking signature Hora & Robbes hypothesise for agent-written tests, and
+that the project's own journal documents the same defect in prose
+(`assertTrue(true)` inside `willReturnCallback`; 34% of an integration suite
+silently skipped) before it was ever measured. It states that the classes into
+which money arithmetic was consolidated have **zero** escaped mutants, while
+the escapes cluster in orchestration code. And it states that the first
+three mutation scores were wrong and looked authoritative — seven runs on
+unchanged code returned 0–1,019 mutants and 0–73% MSI — because Infection's
+generated initial-test run uses a random seed and terminates early, while
+PHPUnit's own coverage is byte-identical across runs. It concludes that the
+test-effectiveness literature's position holds on this suite at the expense
+of the project's own headline metric; that over-mocking in an agent-assisted
+suite is measurable and here is the dominant weakness; that consolidation into
+well-tested value objects shows up in the mutation score, and so does the glue
+around them; and that **an industrial mutation score should not be reported
+without a run-to-run stability check**, since no located industrial MSI paper
+reports one and a single invocation gives no hint of instability. It does not
+attribute the over-mocking to the agent: test authorship is mixed and trailer
+coverage is 20.8%, so the claim is about the suite, not its author.
+
+**Abstract.** Test-suite effectiveness research holds that suite size is a
+confounder, coverage is not strongly correlated with effectiveness, and
+assertion count is the better proxy; recent work asks whether coding agents
+generate over-mocked tests that pass without testing behaviour. We report a
+case in which all three measures — size, assertions and mutation score — were
+computed on one agent-assisted suite whose hollow-test history is
+independently documented. Over ten months the project wrote 1.69 lines of test
+code per line of production code (+150,321 vs +88,896; test growth exceeded
+source growth in 11 of 11 months, p = 0.0010; bootstrap CI [1.39, 2.06]), and
+its 2,109 test methods carry 2.28 and 2.33 assertions each across two
+packages. Mutation testing with Infection over four source directories,
+reproducible across thread counts and repeated runs, yields a Covered Code MSI
+of 70%: 1,592 mutants, 1,123 killed, 469 escaped. Neither proxy could see the
+gap. The largest escape category is `MethodCallRemoval` (85/469) — an entire
+call can be deleted with the suite green — the signature of tests that assert
+on doubles rather than behaviour, and the project's journal records exactly
+that defect (`assertTrue(true)` hidden inside `willReturnCallback`; 53 of 157
+integration tests silently skipped) before the measurement existed. Escapes
+cluster in orchestration code (`StripeCaptureRequestHandler` 54,
+`StripeCheckoutSessionHandler` 36), while the three classes into which money
+arithmetic was consolidated have zero escaped mutants; 13 targeted tests
+closed 25 escapes and moved MSI from 68% to 70%. Reaching a stable number
+required four attempts: the first score (462 mutants, MSI 73%) was published
+as fact and was not reproducible, seven runs on unchanged code returning
+0–1,019 mutants and 0–73% MSI. The cause was not the coverage driver, timeout
+or caching but the tool's own generated initial-test run, which uses a random
+seed and terminates at a variable point; PHPUnit's coverage run directly is
+byte-identical across runs, and passing it to the tool with
+`--skip-initial-tests` fixes the instability. We conclude that size and
+assertion metrics can be jointly blind to a 30-point effectiveness gap in an
+agent-assisted suite, that over-mocking is measurable as the dominant escape
+category, that consolidation into value objects is visible in the score, and
+that industrial mutation scores should carry a run-to-run stability check that
+the literature we located does not report. We publish the escaped-mutant list
+and the reproducible recipe.
 
 **Stances.** **CONFIRMS**, on our own data and at the expense of our own
 headline metric, the test-effectiveness literature's position that suite size
