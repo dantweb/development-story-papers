@@ -57,8 +57,8 @@ exist to show the studies are live, not to be cited.
 
 | Pilot | Result | Reading |
 |---|---|---|
-| **P1** commits on burst days (≥10 commits/day) vs ordinary days: any failing CI run | **107/151 (71%)** vs **164/293 (56%)**, Fisher **p = 0.0028**; excluding the three mechanical days (package split, rename, squash): **100/138 (72%)** vs **160/284 (56%)**, **p = 0.0014** | the peak is not only *not the rate* — it may be **worse** than the rate |
-| **P2** CI failure streaks that ended in green, per repo × workflow | **74** streaks; median **2 runs / 4.1 h** to green; **23** streaks of ≥5 runs; longest **358 h** | repair is a measurable, heavy-tailed cost in human time |
+| **P1** commits on burst days (≥10 commits/day) vs ordinary days: any failing CI run | **100/138 (72%)** vs **160/284 (56%)** with the three mechanical days excluded; Fisher **p = 0.0014** treating commits as independent — **but a day-level permutation test gives p = 0.18** (`stats.py` T11, added 2026-09-21). Direction holds in both halves of the record (74/54, 66/59). | a real 16-point descriptive difference that is **not a tested result**; the study is still worth running because the discriminating outcomes (escapes, bug-touch) are different data |
+| **P2** CI failure streaks that ended in green, per repo × workflow | **74** streaks; median **2 runs / 4.1 h** to green; 75th percentile 28.7 h; **23** streaks of ≥5 runs; longest **358 h** (`stats.py` T12) | repair latency is measurable and heavy-tailed; calendar time, not effort |
 | **P3** `stripe-wallet` runs within 72 h after a `payment-base` commit vs not | **45.4%** fail (n = 392) vs **60.8%** (n = 472) | **opposite** to "upstream breaks downstream"; time-confounded — demoted to §5 |
 | **P4** documentation-to-source insertion ratio by month | 29.7 (2025-10), 10.1, 4.6, **1.2** (2026-01), 3.6, 3.2, 1.8, **5.5** (2026-05), 3.3, 0.6, 1.3 | the "context tax" is large, variable, and falls then spikes with the epic; October/November include imported documentation that must be separated |
 | **P5** numeric self-claims in the dev log | **1,132** lines stating a count of commits / files / tests / LOC across **220** files | enough claims to estimate an error *distribution*, not one −41% anecdote |
@@ -68,11 +68,13 @@ exist to show the studies are live, not to be cited.
 
 ## 1. Study S-1 — *Is the peak worse than the rate?* Burst-mode agentic work and what it costs later
 
-**In two words: *Bursts cost.*** Expanded: code produced on high-throughput
-days carried a measurably higher pipeline-failure rate than code produced at
-the ordinary pace, and the study tests whether the same holds for
-verification and field defects — a conclusion the pilot points to and the
-study would confirm or overturn.
+**In two words: *Bursts cost?*** Expanded: code produced on high-throughput
+days carried a 16-point higher pipeline-failure rate than code produced at the
+ordinary pace, a difference that is significant only if commits are treated as
+independent (Fisher p = 0.0014) and not once clustering within days is respected
+(permutation p = 0.18). The question mark is deliberate: the pilot gives a
+direction, and the study tests whether verification and field-defect outcomes
+follow it.
 
 **Abstract (registered-report style).** *Context.* Just-in-time defect
 prediction has established that properties of a change — size, diffusion,
@@ -92,7 +94,9 @@ excluded; period is controlled by month strata; inference is by permutation
 over days because per-commit outcomes are autocorrelated (ρ₁ = 0.429).
 Within-session position (first vs last commit of a ≤90-minute run) is tested
 for drift. *Pilot.* Burst-day commits had a failing run 72% of the time
-against 56% on ordinary days (Fisher p = 0.0014, uncorrected). *Predictions.*
+against 56% on ordinary days; Fisher p = 0.0014 if commits are independent,
+**p = 0.18 under a day-level permutation** that preserves within-day clustering
+(`stats.py` T11). The direction holds in both halves of the record. *Predictions.*
 If bursts trade quality for speed, all three outcomes rise; if bursts merely
 coincide with a broken environment, only CI failure rises, which exonerates
 the agent and indicts the pipeline; if bursts are free, nothing rises once
@@ -681,7 +685,7 @@ requires for LL-6.
 
 | # | Question | Unit (n) | Pilot | New join required |
 |---|---|---|---|---|
-| **S-1** | Is code produced in bursts worse? | commits (716) | burst-day CI failure **72% vs 56%, p = 0.0014** | none for CI; S-2/S-3 for the rest |
+| **S-1** | Is code produced in bursts worse? | commits (716) | burst-day CI failure **72% vs 56%**; Fisher p = 0.0014, **day-permutation p = 0.18** — direction only | none for CI; S-2/S-3 for the rest |
 | **S-2** | Which lines does the suite verify, and how were they written? MSI over time | mutants (≈1,600); checkpoints (5–7) | blame recovers real dates on `LEGACY`; snapshots have configs | graft; JSON logger; snapshot environments |
 | **S-3** | Do escaped mutants predict where the human tester found bugs? Which layer caught what? | bugs (40; 17 with fixes) | 4 sample bugs → 2–4 fix files each | graft; bug spreadsheet |
 | **S-4** | What did ten months of agent context cost, and what did it buy? | sprints / months / commits | docs:src **29.7 → 1.2 → 5.5 → 1.3** by month; ≈396k words by role | role classifier; sprint→commit by date |

@@ -3,7 +3,8 @@
 import csv, math, random
 from collections import Counter, defaultdict
 import numpy as np
-D='/home/dtkachev/dantweb/development-story-papers/data/'
+import os
+D=os.path.join(os.path.dirname(os.path.abspath(__file__)),'')  # data dir = this script's dir
 random.seed(12345); np.random.seed(12345)
 
 # ---------- distributions ----------
@@ -306,3 +307,75 @@ db=sum((a-mxb)**2 for a in v)
 print(f"  per-COMMIT any_failure lag-1 autocorrelation = {nb/db:.3f} (n={len(v)}) -- weaker.")
 print("  T9a and T9c are per-commit NULLS; autocorrelation inflates false positives, so a")
 print("  surviving null is conservative. They stand.")
+
+print()
+print("="*74)
+print("T11  Burst days: do commits made on >=10-commit days fail CI more often? (X-02 S-1)")
+print("="*74)
+perday=Counter(x['date'] for x in C)
+MECH={'2026-01-16','2026-05-08','2026-07-02'}   # package split, namespace rename, release squash
+burst_days={d for d,n in perday.items() if n>=10 and d not in MECH}
+Bd=[x for x in B if x['date'] not in MECH]
+bb=[x for x in Bd if x['date'] in burst_days]; oo=[x for x in Bd if x['date'] not in burst_days]
+a=sum(int(x['any_failure']) for x in bb); b=len(bb)-a
+c=sum(int(x['any_failure']) for x in oo); d=len(oo)-c
+print(f"  burst days (>=10 commits, mechanical days excluded): {len(burst_days)} days")
+print(f"    burst-day commits with CI:    {a}/{len(bb)} had >=1 failing run ({100*a/len(bb):.0f}%)")
+print(f"    ordinary-day commits with CI: {c}/{len(oo)} ({100*c/len(oo):.0f}%)")
+print(f"    Fisher exact (treats commits as independent -- they are not): p = {fmt_p(fisher_2x2(a,b,c,d))}")
+# day-level permutation: shuffle the burst label across active days with CI, keep within-day clustering
+days=defaultdict(list)
+for x in Bd: days[x['date']].append(int(x['any_failure']))
+daylist=list(days.keys()); nb=sum(1 for dd in daylist if dd in burst_days)
+def diff(labels):
+    f1=sum(sum(days[dd]) for dd in labels); n1=sum(len(days[dd]) for dd in labels)
+    f0=sum(sum(days[dd]) for dd in daylist if dd not in labels); n0=sum(len(days[dd]) for dd in daylist if dd not in labels)
+    return f1/n1 - f0/n0
+obs=diff(set(dd for dd in daylist if dd in burst_days))
+cnt=0; R=20000
+for _ in range(R):
+    lab=set(random.sample(daylist,nb))
+    if abs(diff(lab))>=abs(obs)-1e-12: cnt+=1
+print(f"    observed difference = {100*obs:+.1f} points over {len(daylist)} active days with CI ({nb} burst)")
+print(f"    day-level permutation test ({R} shuffles of the burst label across days): p = {fmt_p(cnt/R)}")
+# period check
+for lab,sel in (('before 2026-04-01',[x for x in Bd if x['date']<'2026-04-01']),('from 2026-04-01',[x for x in Bd if x['date']>='2026-04-01'])):
+    sb=[x for x in sel if x['date'] in burst_days]; so=[x for x in sel if x['date'] not in burst_days]
+    if sb and so:
+        print(f"    {lab:<18} burst {sum(int(x['any_failure']) for x in sb)}/{len(sb)} ({100*sum(int(x['any_failure']) for x in sb)/len(sb):.0f}%)  ordinary {sum(int(x['any_failure']) for x in so)}/{len(so)} ({100*sum(int(x['any_failure']) for x in so)/len(so):.0f}%)")
+# test/src ratio on burst vs ordinary (all commits, not only those with CI)
+Lm={x['sha']:x for x in L}
+def ratio(sel):
+    t=sum(int(Lm[x['sha']]['tests_ins']) for x in sel if x['sha'] in Lm); s_=sum(int(Lm[x['sha']]['src_ins']) for x in sel if x['sha'] in Lm)
+    return t/max(1,s_)
+allb=[x for x in C if x['date'] in burst_days]; allo=[x for x in C if x['date'] not in burst_days and x['date'] not in MECH]
+print(f"    tests:src insertion ratio  burst {ratio(allb):.2f} (n={len(allb)})   ordinary {ratio(allo):.2f} (n={len(allo)})")
+print("  READ: a difference in CI failure between burst and ordinary days is compatible with")
+print("  worse code, a broken environment on busy days, or period effects. X-02 S-1 specifies the")
+print("  outcomes (escape density, bug-touch) that discriminate between them. Not a causal claim.")
+
+print()
+print("="*74)
+print("T12  Time-to-green: how long do CI failure streaks last? (X-02 §0.3 P2)")
+print("="*74)
+import datetime as _dt
+def _P(t): return _dt.datetime.fromisoformat(t.replace('Z','+00:00'))
+runs=sorted([x for x in A if x['conclusion'] in ('success','failure')], key=lambda x:(x['repo'],x['workflow_path'],x['created_at']))
+streaks=[]
+from itertools import groupby
+for k,g in groupby(runs,key=lambda x:(x['repo'],x['workflow_path'])):
+    g=list(g); i=0
+    while i<len(g):
+        if g[i]['conclusion']=='failure':
+            j=i
+            while j<len(g) and g[j]['conclusion']=='failure': j+=1
+            if j<len(g): streaks.append((j-i,(_P(g[j]['created_at'])-_P(g[i]['created_at'])).total_seconds()/3600))
+            i=j
+        else: i+=1
+ln=sorted(s_ for s_,h in streaks); hs=sorted(h for s_,h in streaks)
+med=lambda v: v[len(v)//2] if len(v)%2 else (v[len(v)//2-1]+v[len(v)//2])/2
+print(f"  failure streaks that ended in a green run (per repo x workflow): {len(streaks)}")
+print(f"    runs to green:  median {med(ln):.0f}, max {ln[-1]};  streaks of >=5 runs: {sum(1 for v in ln if v>=5)}")
+print(f"    hours to green: median {med(hs):.1f} h, 75th pct {hs[int(.75*len(hs))]:.1f} h, max {hs[-1]:.0f} h")
+print("  READ: wall-clock from the first red run to the next green run of the same workflow;")
+print("  includes nights and weekends, so it is calendar time, not effort.")

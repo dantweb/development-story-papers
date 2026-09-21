@@ -553,7 +553,7 @@ The spine:
 | CI failure is the modal outcome | **487/979 runs failed (49.7%)** across 40 workflow names over ten months |
 | The machine outspends the humans | **169.5 h** CI wall-clock vs ≈140 h measured human session time; **90.1 h (53%)** in failing runs |
 | **The central result — a measured non-association** | ≥500 insertions fail **63%**, <500 fail **60%**; Fisher **p = 0.66**, Spearman **ρ = −0.024** |
-| Hardening works, measurably | **57% → 46%** failure across 2026-04-01, Fisher **p = 0.0014** |
+| Hardening appears to work — descriptively | **57% → 46%** failure across 2026-04-01; nominal p = 0.0014, **p = 0.18** after clustering correction (§2 N-13, `08` §7.2) — a direction, not a result |
 | Supporting qualitative account | the namespace-generation break (five falsified CI iterations), cross-repo dependency auth, PHP 8.2/8.3 skew — `03-topics-technical.md` TECH-4 |
 | Companion result | **N-5**, disjoint defect yields from refactoring vs black-box testing on the same subsystem |
 

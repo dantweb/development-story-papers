@@ -329,13 +329,16 @@ meaningful.
 **Our relevance.** We have both halves of the tension. On one side, a **49.7%
 failure rate** over ten months, and 40 workflow "names" that include renames of
 one pipeline — a pipeline red half the time is not functioning as a gate. On the
-other, a **measured 11-point improvement** (57% → 46% across 2026-04-01, Fisher
-**p = 0.0014**) and permanent regression probes added after each environment
-break — the project was actively repairing the practice, not merely displaying it.
+other, a **descriptive 11-point improvement** (57% → 46% across 2026-04-01;
+nominal p = 0.0014, **p = 0.18** once the failure clustering of §7.2 is modelled)
+and permanent regression probes added after each environment break — the project
+was actively repairing the practice, not merely displaying it, even though the
+repair's effect does not reach significance.
 
 **Verdict: COMPLICATES.** A high failure rate is not sufficient evidence of
-theatre; the trend matters, and ours improves. We can offer a case where a badly
-failing CI was nonetheless a live, tended practice.
+theatre; the trend matters, and ours improves in direction. We can offer a case
+where a badly failing CI was nonetheless a live, tended practice — with the
+honest caveat that the tending is not statistically established.
 
 ---
 
@@ -729,12 +732,14 @@ is worth stating alongside the mutation-testing advice this section endorses.
 Two refinements that only the mutation run could produce:
 
 1. **The money path is fully verified.** `AmountConverter`, `MinorUnitConverter`
-   and `CapturableAmount` have **zero escaped mutants**. TECH-5's claims about
-   the cents-math consolidation are independently confirmed at the strongest
-   level of test-effectiveness evidence available. The weakness is in
-   *orchestration* — `StripeRefundRequestHandler` (27 escapes),
-   `StripePaymentStatusHandler` (22), `CheckoutSessionService` (22).
-2. **The top escaped mutator is `MethodCallRemoval` (28 of 122).** An entire
+   and `CapturableAmount` have **zero escaped mutants** — re-verified on the
+   corrected 469-row set (2026-09-21), not only on the retracted first draw.
+   TECH-5's claims about the cents-math consolidation are independently confirmed
+   at the strongest level of test-effectiveness evidence available. The weakness
+   is in *orchestration* — `StripeCaptureRequestHandler` (54 escapes),
+   `StripeCheckoutSessionHandler` (36), `ReturnSessionSecurityService` (34),
+   `CaptureService` (27); 169 of 469 escapes sit in event handlers.
+2. **The top escaped mutator is `MethodCallRemoval` (85 of 469).** An entire
    method call can be deleted with the suite still green — the exact signature of
    tests that assert on doubles rather than behaviour, i.e. **the phenomenon
    §2.3's over-mocking paper studies, now measured in our corpus** rather than
@@ -826,7 +831,7 @@ wording fix in the flagship §6.6 and in LL-5.
 | 3.2 | Build failures unrelated to the patch (13.33%) | 49.7% failure rate; failure ⟂ change size (ρ = −0.024) | **SUPPORTS bidirectionally** |
 | 2.2 | Rewritten-away vs never-collected provenance gaps | three loss mechanisms, one orphan recovered from a stale checkout | **INSTANTIATES** |
 | 5.1 | Techniques detect different fault classes (Basili & Selby) | 4 refactoring-found vs 6 tester-found amount defects, zero overlap | **SUPPORTS (lineage)** |
-| 2.3 | Agent-generated over-mocked tests (MSR 2026) | `assertTrue(true)` tests, 34% silent skips, rule R-1.5; **and now measured — `MethodCallRemoval` is the top escaped mutator, 28/122** | **INSTANTIATES + quantifies** |
+| 2.3 | Agent-generated over-mocked tests (MSR 2026) | `assertTrue(true)` tests, 34% silent skips, rule R-1.5; **and now measured — `MethodCallRemoval` is the top escaped mutator, 85/469** | **INSTANTIATES + quantifies** |
 | 7.3 | Size is the wrong proxy; assertions are the right one | mutation pass run: **MSI 70%**, 469/1,592 escaped, reproducible after fixing tool non-determinism | **CHALLENGED US — experiment run and completed** |
 | 3.1 | Churn/commit-count predict build outcome | ρ = −0.024, Fisher p = 0.66 — no predictive value here | **COMPLICATES** |
 | 4.1 | Two-thirds of developers keep office hours (ICSE 2018) | 0 Saturdays / 716, P = 1.2e-48; 95.9% in 08:00–20:00 | **SUPPORTS + extends** |

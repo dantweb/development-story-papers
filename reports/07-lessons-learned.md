@@ -132,7 +132,7 @@ effort, no sensitive material, no approval dependency.
    number that reproduces.** `[E]` Final, stable across `--threads=1/4/8`:
    **1,592 mutants, 1,123 killed, 469 escaped, Covered Code MSI 70%.** The suite
    executes the code and misses **30%** of the semantic changes to it.
-2b. **Verify your mutation tool is deterministic before you quote it — run it
+3. **Verify your mutation tool is deterministic before you quote it — run it
    three times on unchanged code.** `[E]` Our first figure (462 mutants, MSI 73%)
    was published as fact and was not reproducible: seven repeats returned **0 to
    1,019 mutants and 0% to 73% MSI**. Swapping the coverage driver, raising the
@@ -142,40 +142,39 @@ effort, no sensitive material, no approval dependency.
    perfectly deterministic. Fix: generate coverage yourself and pass
    `--coverage=<dir> --skip-initial-tests`. Every wrong answer along the way
    looked authoritative.
-2b. **When the tool is unreliable, mutate by hand.** `[E]` Applying four
+4. **When the tool is unreliable, mutate by hand.** `[E]` Applying four
    mutations manually to the production file and re-running the suite is
    deterministic, takes minutes, and produced the sprint's actual evidence: each
    mutation caused **no failure** before the new tests and **exactly one** after.
    That is a technique worth keeping even where the tooling works.
-3. **The escapes cluster in orchestration.** `StripeCaptureRequestHandler` (54),
+5. **The escapes cluster in orchestration.** `StripeCaptureRequestHandler` (54),
    `StripeCheckoutSessionHandler` (36), `ReturnSessionSecurityService` (34),
-   `CaptureService` (27). Consolidating logic into well-tested collaborators
-   (LL-4) shows up here; the glue code around them is where the gaps are. The weak spots are handlers and
-   services: refund handler **27**, payment-status handler **22**, checkout-session
-   service **22**. If you consolidate logic into well-tested value objects (LL-4),
-   mutation testing will show you it worked; it will also show you the glue code
-   you never really tested.
-4. **`MethodCallRemoval` is the top escaped mutator (85 of 469).** A method call
+   `CaptureService` (27); 169 of 469 escapes are in event handlers. The three
+   money-arithmetic classes (`AmountConverter`, `MinorUnitConverter`,
+   `CapturableAmount`) have **zero** escapes. If you consolidate logic into
+   well-tested value objects (LL-4), mutation testing will show you it worked; it
+   will also show you the glue code you never really tested.
+6. **`MethodCallRemoval` is the top escaped mutator (85 of 469).** A method call
    can be **deleted entirely** and the suite stays green. If you write tests
    against mocks, this is the failure you will have, and only mutation testing
    will tell you.
-5. **Targeted work moves the number, and you can prove it.** 13 tests against
+7. **Targeted work moves the number, and you can prove it.** 13 tests against
    three of the worst files closed **25 escapes** and moved MSI **68% → 70%**
    (27→8, 7→4, 3→0 on the targeted files), measured on the same deterministic
    footing before and after.
-5. **The same project shipped tests that asserted nothing.** `[A]` Assertions
+8. **The same project shipped tests that asserted nothing.** `[A]` Assertions
    hidden inside `willReturnCallback` effectively ran `assertTrue(true)`. A
    passing suite, a green gate, and no verification.
-6. **Hard-gate silent skips to zero.** `[A]` The integration suite reported 157
+9. **Hard-gate silent skips to zero.** `[A]` The integration suite reported 157
    tests with **53 silently skipped (~34%)** when Stripe credentials were absent
    — a green CI concealing a third of the layer. Skips must fail the build, not
    decorate it.
-7. **Ban re-implementing the method under test inside a test double.** `[A]`
+10. **Ban re-implementing the method under test inside a test double.** `[A]`
    Codified as rule R-1.5 *after* the project had done it. A double that
    reproduces the logic tests the double.
-8. **"If a test never went red, you didn't TDD it."** `[A]` Refactors guarded by
+11. **"If a test never went red, you didn't TDD it."** `[A]` Refactors guarded by
    characterization tests written first.
-9. **Suppressions hide crashes, so never suppress — fix.** `[A]` PHPStan *caught*
+12. **Suppressions hide crashes, so never suppress — fix.** `[A]` PHPStan *caught*
    a call to the nonexistent `setState('REFUNDED')`; a `phpstan.neon` ignore
    silenced it, converting a static error into a latent money-path crash on every
    admin refund (STRP-89). The invariant is now structural: **`function setState`
@@ -725,8 +724,10 @@ Stated so nobody cites this document for them.
 - **"The process prevented defects."** The same process produced hollow tests, a
   crash-hiding suppression, and a mislabelled fix. It *also* caught them. Quality
   was a property of the loop.
-- **"Sub-sprint decomposition improves commit hygiene."** Measured and
-  **refuted** `[B]`.
+- **"Sub-sprint decomposition improves commit hygiene."** The convention
+  **failed on its own terms** — 9 of 13 decimal sub-sprints span more than one
+  commit `[B]` — and whether it was *better than nothing* is **untestable**
+  (Fisher p = 1.00, Tier U above). Not "refuted": the data are silent.
 - **"The security posture is good."** The audit is self-scored with no
   independent record `[C]`. Unknown, not good.
 - **"The module is done."** At the end of the record: `STRP-160` (float math) open,

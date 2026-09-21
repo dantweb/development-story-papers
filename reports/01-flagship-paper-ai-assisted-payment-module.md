@@ -1,24 +1,42 @@
-# Discipline over Cleverness: A Longitudinal Case Study of AI-Assisted Development of a Production Payment Module
+# What the Journal Got Wrong: Auditing Ten Months of AI-Assisted Development of a Payment Module Against Its Commit, Issue, CI and Mutation Records
 
-Authors: D.Tkachev et al.
+*Formerly "Discipline over Cleverness: A Longitudinal Case Study of AI-Assisted
+Development of a Production Payment Module". Retitled 2026-09-21: the former
+title stated a thesis this design cannot establish (§7.2); the present one
+states what the study did. The developer's maxim, "Discipline > cleverness", is
+kept as the claim under audit, not as the conclusion.*
 
-**Data sources.**
-(1) The `daniil_dev_log` engineering journal — 462 markdown files, ≈113,098
-lines, 2025-11-26 → 2026-07-02.
+Authors: D. Tkachev et al.
 
-(2) **716 github commits, 2025-10-21 → 2026-08-20**.
+**Data sources — five corpora, one project.**
+**(A)** the `daniil_dev_log` engineering journal — 462 markdown files, ≈113,098
+lines, 2025-11-26 → 2026-07-02, written by the party being studied;
+**(B)** the complete commit record of both repositories — **716 commits,
+2025-10-21 → 2026-08-20**, from all refs including the retained pre-squash
+branch;
+**(C)** the Jira issue record of project STRP — **156 issues, 2023-05-30 →
+2026-06-22**;
+**(D)** the GitHub Actions history — **979 workflow runs** joined to commits on
+`head_sha`;
+**(E)** a deterministic mutation-testing run — **1,592 mutants** over the
+module's core, executed 2026-08-24.
+All derived data is in [`../data/`](../data/) (15 CSVs, schema and caveats in
+[`../data/README.md`](../data/README.md)); every statistic is recomputed by
+`python3 data/stats.py` (tests T1–T12).
 
-(3) **Jira issue record** of the STRP project — **156 issues
-work*. All extracted to CSV in [`../data/`](../data/) and documented in
-[`../data/README.md`](../data/README.md).
 ---
 
 ## Abstract
 
-**In one line:** an LLM assistant helped build a production payment module over
-ten months; we measured the result against its own git history, and found that
-the project's *process* claims held up, its *volume* claims were understated, and
-its *authorship* claims cannot be verified for the first seven months.
+**In one line:** a candid, daily, artifact-linked engineering journal of an
+AI-assisted payment module was audited against five machine records of the same
+project, and diverged from them in specific, directional ways — it undersampled
+its own active days 2.2×, understated its flagship epic by 41%, narrated a
+measured idle period as active, described a three-year project as seven months
+old, omitted the human tester who filed 92.5% of its bugs, and credited itself
+with more than twice the documentation volume it actually produced. Nothing in it
+was false. The omissions were structural, and no candour inside one person's log
+would have surfaced them.
 
 **The subject.** A full Stripe payment integration for the OXID eShop platform,
 built on a provider-agnostic core (`payment-base`), with Claude (via Claude Code)
@@ -27,113 +45,85 @@ decision-owner. It moves real money, spans an asynchronous webhook boundary,
 carries PCI-DSS/GDPR obligations, and integrates with a large legacy PHP
 framework.
 
-**What we measured.** Four corpora, deliberately chosen to fail in different
-directions. **(A)** The project's daily engineering journal — 462 markdown files,
-≈113,098 lines, 2025-11-26 → 2026-07-02 — candid but self-reported. **(B)** The
-complete git record of both repositories — **716 commits, 2025-10-21 →
-2026-08-20** — from which we derive per-commit diffs split by path category,
-authorship trailers, work sessions reconstructed from timestamps (≤90 min gap),
-and test-suite sizes measured from the tree at 15 checkpoints. **(C)** The Jira
-issue record — **156 issues, 2023-05-30 → 2026-06-22** — the only corpus that
-records who requested the work and who found the defects. **(D)** The GitHub
-Actions history — **979 workflow runs** joined to commits on `head_sha` — the only
-corpus that records what happened to each commit after it landed. We use (B),
-(C) and (D) to *test* (A) rather than to illustrate it, and publish the derived
-CSVs so the arithmetic is checkable.
+**What we did.** We treated the journal (A) as a set of claims and tested them
+against four independent machine records that fail in different directions: the
+commit record (B: 716 commits, per-path diffs, timestamps, authorship trailers,
+sessions reconstructed at a 90-minute gap, suite size measured from the tree),
+the issue tracker (C: 156 issues — the only corpus that records who asked for
+the work and who found the defects), the CI history (D: 979 runs — the only
+corpus that records what happened to a commit after it landed), and a
+deterministic mutation-testing baseline (E: 1,592 mutants — the only corpus that
+speaks to whether the tests verify anything). We publish the derived CSVs and
+the script that recomputes every statistic.
 
-**What we found — six concrete results.**
+**What the audit found.** Six divergences between the self-account and the
+record, each a complete enumeration needing no inference:
 
-1. **Test code outweighed production code 1.69 : 1** (+150,321 vs +88,896 lines).
-   This is the only independent confirmation of the project's TDD claims; a
-   project merely asserting TDD could not produce this ratio.
-2. **The work was done in ordinary hours: zero Saturday commits, one Sunday
-   commit, and 95.9% of all commits inside 08:00–20:00 local time.** Whatever
-   produced the output, it was not overtime.
-3. **Cadence is bimodal, and the peak is not the rate.** Median **3 commits per
-   active day** (mean 5.0, max 35) across **143 active days**; only 18 days
-   exceed 10 commits. Reading the best days as sustained throughput — which the
-   first draft came close to doing — overstates it roughly tenfold.
-4. **Effort is now bounded project-wide, not sampled from three days.** 227
-   sessions totalling **≈140 hours** of commit-bearing activity, replacing a
-   journal that clock-stamped only 3 of its days. The same data exposes a
-   **measured two-month trough (9.1 h across March–April 2026)** that the journal
-   narrates as active work.
-5. **The flagship two-day remediation epic is confirmed and revised upward:** 64
-   commits (reported: 61), +15,844/−6,075 lines (reported: +11,204/−5,876), 183
-   code files, +196 test methods, 8.2 h of session time. The self-report
-   *understated* its own output by ~41% on insertions.
-6. **The test suite grew 493 → 2,109 test methods**, and the 2026-01-16 package
-   split — the first draft's largest unresolved caveat — is shown to have been
-   **conservative** (≤7% of methods, ≤1% of source LOC), so growth curves are
-   safe if both packages are summed.
-7. **The AI-assisted pair was not the whole quality system.** Jira shows a
-   **strict role separation across 10 participants**: the developer filed 52
-   Stories and **zero Bugs**, while a separate tester filed **37 of the
-   project's 40 Bugs (92.5%)** and zero Stories, and a third person filed 26 of
-   the 50 Tasks. An independent human QA function, invisible in both the journal
-   and the commit record, was supplying the defects the pair then fixed.
-8. **Zero fabricated ticket references.** All **61** distinct `STRP-nnn` ids
-   appearing in commit messages resolve to real Jira issues — though one is
-   *mislabelled*, and that single case is the paper's sharpest micro-study
-   (§6.1).
-9. **The suite detects 70% of the mutations placed in the code it executes** —
-   1,592 mutants, 1,123 killed, 469 escaped, reproducible across thread counts
-   (§4.14). The largest escape category is `MethodCallRemoval` (85): a call can
-   be deleted with the suite still green. Test *volume* (finding 1) could not
-   have revealed this. Getting the number took four attempts — the first three
-   returned confident-looking figures from a non-deterministic tool, which is a
-   methodological finding in its own right.
-10. **CI failed on half of all runs, and commit size did not predict it.** Of 979
-   workflow runs, **487 failed and 453 succeeded — a 49.7% failure rate**,
-   roughly **double the 26% reported for closed-source projects** and above every
-   published baseline we located. CI consumed **169.5 h of wall-clock**, more than
-   the ≈140 h of measured human session time, with **90.1 h (53%) spent in failing
-   runs**. Crucially, commits of ≥500 insertions failed at **63%** against **60%**
-   for smaller ones (Fisher **p = 0.66**, Spearman **ρ = −0.024**): **failure was
-   uncorrelated with the amount of code changed**, which is the strongest
-   available evidence that the dominant cost was *environmental* rather than
-   logical. Failures also **cluster** — 85.7% follow another failure, against a
-   published benchmark of >50% — which is what a persistent broken environment
-   predicts and changed-code defects do not. (The observed 57% → 46% improvement
-   across the period is descriptive only: corrected for that clustering it is not
-   statistically significant.)
+| The journal said | The record shows |
+|---|---|
+| 47 active days documented | **105** days with commits inside the journal's own window (**2.2×**) |
+| flagship epic: 61 commits, +11,204 lines | **64** commits, **+15,844** lines — understated by **~41%** |
+| March–April 2026 narrated as active work | **9.1 h** of commit-bearing activity in two months |
+| a seven-month, single-developer project | a **three-year** project (35% of issues predate the first commit), **3** committers, **10** tracker participants |
+| the developer and the assistant as the quality loop | a dedicated tester filed **37 of 40 bugs (92.5%)**; the developer filed **0** |
+| "documentation is 4.4× the code; the log is the dominant activity" (our own earlier revision) | the journal is **≈2.0×** the code; **≈29%** of documentation lines are business-strategy material from October 2025, before the journal existed |
 
-**What we retracted.** Measurement cost us three claims, and the Jira record
-deepens the first of them: the project ran on a **10-person Jira participant
-base over three years** (2023-05 → 2026-06), so the AI-assisted implementation
-phase studied here is one stage of a much longer effort, not the project. **(i)** "Single-developer"
-is **withdrawn**: there were three human contributors (87% / 8.8% / 2.7% of
-commits), the second active across the full span. **(ii)** "Claude was the primary
-code author" is **unverifiable before 2026-05-07**: `Co-Authored-By` trailers
-cover only 149/716 commits (20.8%), are absent before May 2026, and reach 86% by
-August — they measure attribution *practice*, not authorship. **(iii)** Reported
-"simplifications" describe **one file, not the module**: the webhook refactor
-genuinely cut its dispatch method 330 → 107 lines, but moved that logic into 8
-new handler classes (+600 lines of production code, +856 of tests), taking
-module handler code from 2,616 to 2,953 LOC. Per-unit complexity fell while
-aggregate code rose; only the shrinking half was reported.
+**What the machine records establish on their own.** Eight results, each with
+a test or a census behind it (`stats.py`): **test code outweighed production code
+1.69 : 1** in 11 of 11 months (p = 0.0010, bootstrap CI [1.39, 2.06]); **zero
+Saturday commits in 716** (P = 1.2e-48) with 95.9% inside 08:00–20:00;
+**cadence is overdispersed** (index 6.93, p = 4.7e-126) so the peak is not the
+rate; **AI-authorship trailers are a convention adopted on one day**, 0.4% →
+58.8% at 2026-05-07 (p = 5.2e-81), so they measure attribution practice, not
+authorship; **role separation is near-deterministic** (developer 52 Stories / 0
+Bugs, tester 0 / 37; Cramér's V = 0.859, p = 2.6e-40); **CI failed on 49.7% of
+979 runs** — double the published closed-source baseline — consumed **169.5 h**
+against ≈140 h of human session time, **clustered** (85.7% of failures follow a
+failure), and was **independent of commit size** (63% vs 60%, p = 0.66,
+ρ = −0.024), which is the finding: failures indifferent to line count are
+environmental, not logical; **the suite detects 70% of mutations** in code it
+executes (469 of 1,592 escape; `MethodCallRemoval` is the top escape category at
+85, the over-mocking signature) while the three money-arithmetic classes have
+**zero** escapes; and **0 of 61 ticket references were fabricated**, one
+misattributed.
 
-**Failure modes, including one only git could see.** The assistant committed
-against an explicit "do not commit" instruction (verified: commit `bf32d77`
-matches the journal's complaint in all five particulars, including a `status.md`
-committed at zero changed lines), collapsed multi-phase commits, over-claimed
-*and* under-counted its own results, and shipped tests that asserted nothing.
-Additionally, **a release on 2026-07-02 squashed the mainline and destroyed eight
-months of per-commit provenance** — a process failure the journal never mentions,
-and one this study survives only because a legacy branch was retained.
+**What did not survive our own testing.** Three claims from earlier revisions
+are withdrawn or demoted here: a "coin-flip" binomial test on the CI failure rate
+(assumed independent runs; invalid); the 57% → 46% CI improvement (nominal
+p = 0.0014, **p = 0.18** once failure clustering is modelled); and — new in this
+revision — a busy-day effect in which commits made on ≥10-commit days failed CI at
+72% against 56% (Fisher p = 0.0014, but **p = 0.18** under a day-level
+permutation). All three remain true as descriptions and none is a tested result.
+The first three mutation scores were also wrong: seven runs on unchanged code
+returned 0–1,019 mutants because the tool's own initial test run used a random
+seed; the reproducible figure required generating coverage externally.
 
-**Conclusion.** LLM assistants can carry the bulk of production coding on a
-money-handling system **when wrapped in a rigid process harness** — TDD as a hard
-boundary, quality gates as the definition of done, single-phase sequential agent
-dispatches, and cheap mandatory verification of every agent claim. The harness,
-not the model's raw capability, is the load-bearing variable: the same assistant
-that collapsed commits and hid hollow tests also produced 64 clean, gate-passing,
-test-bearing commits in two days. A third finding generalises beyond the case:
-**self-reported logs are not a substitute for machine-readable provenance.** This
-was an unusually good log, and it still undersampled its own project by 2.2×,
-narrated an idle period as active, and miscounted its flagship epic in both
-directions. The developer's one-line thesis, recorded in the journal, survives
-all of it: *"Discipline > cleverness."*
+**Retracted.** "Single-developer" (twice: three committers, ten participants);
+"Claude was the primary code author" before 2026-05-07 (unverifiable — trailers
+absent); reported "simplifications" (one file fell 330 → 107 lines while module
+handler code rose 2,616 → 2,953); and the documentation claim above.
+
+**Failure modes.** The assistant committed against an explicit "do not commit"
+instruction (commit `bf32d77` matches the journal's complaint in all five
+particulars), collapsed multi-phase work into single commits (9 of 13 decimal
+sub-sprints span more than one commit), over-claimed *and* under-counted its own
+output, and shipped tests that asserted nothing. A release on 2026-07-02
+squashed the mainline: `git blame` on the current branch now attributes every
+line of the module to that one commit, and this study exists only because a
+legacy branch was retained.
+
+**What this paper claims, and does not.** It makes no causal claim about the
+assistant — there is no control arm, one operator, and six model generations in
+four months. The journal's thesis, *"Discipline > cleverness"*, is consistent
+with the record and not established by it. What is established: a high-quality
+self-account still drifts in predictable directions (activity undersampled,
+volume understated, continuity over-reported, actors outside the author's role
+omitted); a single actor's record cannot describe a multi-actor system; trailer
+series measure convention, not AI involvement; provenance loss is invisible from
+inside a repository; a mutation score must be checked for run-to-run stability
+before it is quoted; and in this framework-coupled, cross-repository setting the
+dominant cost was the environment, established by the *absence* of the
+correlation a logic-failure account requires.
 
 ---
 
@@ -155,24 +145,62 @@ substantially AI-authored (documents carry bylines such as *"Developer: Daniil
 what shipped but how the human and the assistant divided labor, where the
 assistant failed, and how those failures were caught.
 
-**Contribution of this revision.** A journal written by the party being studied
-is a weak instrument for quantitative claims. We therefore add a second,
-independent, machine-readable corpus — the git commit record — and use it to
-*test* the journal rather than illustrate it. This turns several soft claims
-hard (the TDD claim, the cadence claim), overturns one (single-developer),
-and materially weakens another (AI-authorship share). We publish the derived
-CSVs so the arithmetic is checkable.
+**What this paper is.** A journal written by the party being studied is a weak
+instrument for quantitative claims and an irreplaceable one for intent. We
+therefore use four independent machine records to *test* the journal rather than
+illustrate it, and we report the disagreements — their direction and size — as
+the primary result. The method is ordinary triangulation; the contribution is
+publishing what triangulation did to our own earlier claims.
 
-Our research questions:
+**Contributions.** Stable identifiers (`N-`, `M-`, `T-`) refer to
+[`06-novelty-assessment.md`](06-novelty-assessment.md),
+[`05-measurements.md`](05-measurements.md) and `data/stats.py`.
 
-- **RQ1 (output).** What volume and cadence of production work did the
-  human–AI pair sustain, and how is it distributed over the project?
-- **RQ2 (process).** What collaboration model emerged, and which parts of it
-  were load-bearing for quality?
-- **RQ3 (failure).** How, and how often, did the assistant fail, and what
-  mechanisms caught those failures before they reached production?
-- **RQ4 (quality).** Did the disciplined process actually produce
-  higher-quality outcomes, or only the appearance of them?
+1. **An audit of a self-account against machine records, with the corrections
+   published** (N-1; §4.1, §4.3, §4.5, §4.7, §4.12). Six enumerated divergences,
+   all directional: the journal undersampled activity, understated volume,
+   over-reported continuity, omitted actors outside its author's role, and — in
+   an earlier revision of this paper — over-attributed documentation volume to
+   itself.
+2. **A tested counterexample to trailer-based identification of AI-assisted
+   commits** (N-2; §4.9): 0.4% → 58.8% on a single date, p = 5.2e-81, six model
+   strings in four months, with the journal as ground truth for the untrailered
+   period.
+3. **The measurement for a published causal proposition about team structure**
+   (N-3; §4.12a): near-deterministic role separation between the engineer using
+   the assistant and a dedicated tester, V = 0.859, positioned as a test case for
+   Agarwal et al.'s "the team sets the sign".
+4. **A three-metric account of test quality on one suite** (N-4, N-14; §4.7,
+   §4.14): size (1.69:1) and assertion density (≈2.3) both blind to a 30-point
+   mutation gap; the money path fully verified; and a root-caused
+   non-determinism in the mutation tool.
+5. **A measured non-association between commit size and CI failure** (N-13;
+   §4.13), with failure clustering as corroborating mechanism, and two of our own
+   run-level tests withdrawn for ignoring that clustering.
+6. **Two provenance-loss mechanisms invisible from inside the repository**
+   (N-6; §6.6), with a recovered witness and a demonstration of what the squash
+   destroyed.
+
+**What this paper does not claim.** No causal effect of the assistant on speed
+or quality: no control arm, one operator, one framework, six model generations
+(§7.2). No productivity rate: the cadence has no meaningful central value
+(§4.2). No security assessment: the project's audit is self-scored (§7.3). And
+not the thesis in the former title: "discipline over cleverness" is consistent
+with everything below and established by none of it.
+
+Our research questions, revised from the first draft to match what the data can
+answer:
+
+- **RQ1 (audit).** Where, in which direction, and by how much does the
+  project's self-account diverge from its commit, issue, CI and mutation
+  records?
+- **RQ2 (output).** What volume, cadence and schedule of work do the machine
+  records establish, independently of the journal?
+- **RQ3 (failure).** How did the assistant fail, what caught it, and what did
+  the machine records add to the journal's own account of failure?
+- **RQ4 (cost and quality).** Where did the project's effort go, and what can
+  the record say about the quality of the result — as distinct from the appearance
+  of quality?
 
 ---
 
@@ -293,9 +321,26 @@ And the export is a **snapshot** subject to GitHub's run-retention window, so
 runs older than that window are already unrecoverable — a fourth, independent
 instance of the provenance problem in §6.6.
 
-### 3.5 What we can and cannot measure
+### 3.5 Corpus E — the mutation-testing run (new, 2026-08-24)
 
-The two corpora fail in different directions, which is why we use both.
+Infection 0.31.9 over four source directories of `stripe`
+(`EventSystem/Handler`, `Core`, `Webhook`, `Service`) against the full unit
+suite (1,522 tests / 3,971 assertions), inside the project's PHP 8.3 container
+with the module set matched to CI. Coverage is generated by PHPUnit and passed
+in (`--coverage=<dir> --skip-initial-tests`), because Infection's own initial
+test run is non-deterministic (§4.14). The result — **1,592 mutants, 1,123
+killed, 469 escaped, Covered Code MSI 70%** — is byte-identical across
+`--threads=1/4/8`, three runs each. Escaped mutants are exported per file, line
+and mutator (`../data/mutation_escaped.csv`, 469 rows).
+
+Its limits: covered code only (`--with-uncovered` aborts on shop-coupled
+classes), `stripe` only, unit suite only, no equivalent-mutant triage, and one
+snapshot in time. It is the only corpus that speaks to whether the tests verify
+anything, and the only one produced by experiment rather than extraction.
+
+### 3.6 What we can and cannot measure
+
+The corpora fail in different directions, which is why we use all of them.
 
 **Corpus A (journal) limitations,** unchanged from the first draft:
 
@@ -423,11 +468,12 @@ An unexpected result, and one only timestamps could produce:
 hours are 13:00 (110 commits), 16:00 (94), 14:00 (85), 12:00 (76), 17:00 (68);
 only **29 commits (4.1%) fall outside 08:00–20:00** local time.
 
-This is the strongest quantitative support in the paper for the "discipline"
-thesis, and it is orthogonal to everything the journal claims. The output
-described in §4.2 was produced inside ordinary working hours. Whatever the
-mechanism — the harness, the assistant, the operator — it did not run on
-overtime.
+This is consistent with the journal's account of a disciplined process, and it
+is orthogonal to everything the journal claims — but it is evidence about
+*schedule*, not about what produced the schedule. The output described in §4.2
+was produced inside ordinary working hours. Whatever the mechanism — the
+harness, the assistant, the operator, or an employment context that supplies an
+obvious alternative explanation — it did not run on overtime.
 
 Under a null of commits distributed uniformly across all seven days, the
 probability of observing **zero** Saturdays in 716 commits is **1.2e-48**. Even
@@ -531,14 +577,33 @@ at **[1.39, 2.06]**, with the ratio above 1 in **100%** of resamples. The journa
 afterthought could not produce this ratio, and no self-report was needed to
 establish it.
 
-Two further readings. First, **`docs` is the largest artifact class by volume
-by a wide margin** — 4.4× the production code, 585,998 inserted lines. The
-"log as memory" practice (§5.5) is not a side activity; measured by output it
-is the project's dominant activity. Whether that is admirable discipline or
-documentation overproduction is a genuine open question this data cannot settle,
-and it is a strong candidate for its own paper. Second, deletions run at ~46% of
-insertions in `src` — substantial ongoing rewriting rather than accretion,
-consistent with the refactoring discipline the journal describes.
+Two further readings. First, **`docs` is the largest artifact class by volume**
+— 585,998 inserted lines, 4.4× the production code — and an earlier revision of
+this paper read that as "the log-as-memory practice is the project's dominant
+activity." **That reading was wrong, and correcting it belongs in a paper about
+auditing self-accounts.** Decomposing the `docs` insertions by path in the
+repository (all refs, squash excluded) gives approximately:
+
+| Documentation class | Inserted lines | Share | What it is |
+|---|---|---|---|
+| the engineering journal (`daniil_dev_log`) | **≈177,600** | **≈30%** | Corpus A — plans, dispatch briefs, completion reports, status |
+| `docs/payment-component/vc` | ≈168,200 | ≈29% | business-strategy and market-hypothesis material, HTML decks, committed under `STRP-52` on 2025-10-27 — **before the journal existed** |
+| `scopus` | ≈18,300 | ≈3% | literature export |
+| architecture, PlantUML, implementation notes, HTML API docs, other | remainder | ≈38% | project documentation proper |
+
+So the journal that this paper studies is **≈2.0× the production code**, not
+4.4×: still the single largest class of authored output, and still a real cost
+of driving a stateless agent (§5.5), but half the figure previously quoted. The
+error was a category one — `docs/` was read as "the dev log" because the dev
+log lives there — and it is the same error in kind as the "330 → 107"
+simplification in §4.11: a true aggregate, attributed to the wrong thing. It
+was found on 2026-09-21 while pricing the journal for
+[`X-02`](X-02-five-deeper-studies.md) S-4; the `docs` category in
+`commit_loc_by_category.csv` is unchanged and still correct as a path category.
+
+Second, deletions run at ~46% of insertions in `src` — substantial ongoing
+rewriting rather than accretion, consistent with the refactoring discipline the
+journal describes.
 
 ### 4.8 Retraction: this was not a single-developer project
 
@@ -825,6 +890,15 @@ figures are not commensurable (CI wall-clock is concurrent and includes queueing
 sessions are a lower bound), so the claim is only "the same order, machine ≥
 human." Even hedged, it reframes where a small AI-assisted project's time goes.
 
+The cost has a shape as well as a size (`stats.py` T12). Walking runs in time
+order within each repository × workflow, **74 failure streaks ended in a green
+run**; the median streak was **2 runs and 4.1 hours** from first red to next
+green, the 75th percentile **28.7 hours**, and the longest **358 hours** — about
+fifteen days. **23 streaks ran to five or more consecutive failures.** These are
+calendar hours including nights and weekends, so they bound repair *latency*,
+not effort; but a pipeline that stays red for a median half-day and a tail of
+two weeks is not functioning as a gate during those intervals.
+
 **(c) Commit size does not predict CI failure — and that is the finding.**
 Joining runs to per-commit diffs (n = 444 commits with CI):
 
@@ -890,6 +964,25 @@ older than it are **already gone**, unrecoverably. Corpus D thus arrives
 carrying the same survivorship problem as Corpus B (§6.6), from a third
 independent mechanism.
 
+**(h) Busy days fail more — as a description, and not as a tested result.**
+§4.2 established that cadence is bursty. Joining that to CI outcome asks whether
+the code produced on burst days differs from the rest (`stats.py` T11). On the
+17 days with ≥10 commits (the three mechanical days — package split, namespace
+rename, release squash — excluded), **100 of 138 commits (72%)** had a failing
+run; on ordinary days, **160 of 284 (56%)**. Treating commits as independent,
+Fisher gives p = 0.0014. **Commits are not independent**: outcomes cluster
+within days as they do within workflows (g), and a permutation test that
+shuffles the *burst* label across the 128 active days with CI — preserving
+within-day clustering — gives **p = 0.18**. The direction holds in both halves
+of the record (74% vs 54% before 2026-04-01; 66% vs 59% after), and burst-day
+commits carried *more* test code per source line (1.94 vs 1.65), so a "rushed,
+under-tested" account is not what the data show. We report this exactly as we
+report (e): a real descriptive difference of 16 points, compatible with worse
+code, with a broken environment on the days the project pushed hardest, or with
+period effects — and not a finding. The outcomes that would discriminate
+between those accounts (escape density and later bug-touch of burst-day lines)
+are specified in [`X-02`](X-02-five-deeper-studies.md) S-1.
+
 ### 4.14 Mutation testing: 70% of mutations detected — and a measurement that took four attempts
 
 The test-effectiveness literature holds that suite **size** is the wrong proxy
@@ -946,6 +1039,16 @@ with the suite still green, the signature of tests asserting against doubles
 rather than behaviour. That is the phenomenon the project documented in its own
 hollow tests and banned in rule R-1.5 (§6.5), still present in quantity after
 that remediation.
+
+The converse is as informative. The three classes into which the project
+consolidated its money arithmetic — `AmountConverter`, `MinorUnitConverter`,
+`CapturableAmount` — have **zero escaped mutants**, re-verified on the corrected
+469-row set rather than the retracted first draw. The cents-truncation bugs of
+§7.1 were fixed by moving arithmetic into value objects; mutation testing shows
+that move produced fully verified code, and that the remaining risk sits in the
+orchestration around it. Where escapes concentrate is therefore not a random
+sample of the module but a map of its *glue*: 169 of 469 in event handlers, 39
+in webhook handlers, and the rest in services.
 
 **And the remediation is measurable.** Thirteen tests written against three of
 the worst files closed **25 escapes** and moved MSI **68% → 70%**, with the
@@ -1096,6 +1199,17 @@ identifiers** (§4.12c) and exactly one traceable mislabel.
 Despite a prompt asking for per-phase commits, "the agent collapsed phases 2–4
 into one commit." Mitigation: split the dispatch (§5.3).
 
+The commit record lets the mitigation be checked, and it did not do what the
+journal believed. The decimal sub-sprint scheme (114.0 → 114.13) was introduced
+so that one phase would map to one dispatch and one commit. Measured: **9 of 13
+sub-sprints (69%) span more than one commit, median 5.** The convention failed
+on its own terms. Whether it was nonetheless *better than* ordinary sprint
+numbering is untestable with 13 groups against 6 (31% vs 33% single-commit,
+Fisher p = 1.00) — an earlier revision of the companion report called this
+"refuted", which overstated it; the data are silent. The transferable point
+survives either way: if one unit per commit matters, the harness must produce
+it, because a naming scheme measurably did not.
+
 ### 6.3 Over-claiming and miscounting
 
 The human, treating agent reports as *hypotheses*, caught: a "boundary sealed"
@@ -1210,6 +1324,27 @@ It would not survive a `git gc`. The provenance of that feature is currently one
 routine maintenance command away from permanent loss, and the same is true of
 whatever else is dangling in checkouts nobody has thought to compare.
 
+**What the squash destroyed can be shown, not only asserted.** Running
+`git blame` on the current mainline attributes **every line** of the module's
+largest file — all 305 lines of `StripeCaptureRequestHandler.php` — to the
+2026-07-02 squash commit; the same file blamed on the retained legacy branch
+resolves to **17 commits dated 2025-12 through 2026-05**. Any question that
+requires knowing *when and under what conditions a line was written* — which
+lines the suite fails to verify (§4.14), which commits introduced the bugs the
+tester found — is unanswerable on the mainline and answerable only by grafting
+the legacy branch back onto the squash. Two of the five studies proposed in
+[`X-02`](X-02-five-deeper-studies.md) depend on that graft and would otherwise
+not exist.
+
+The provenance problem also has a partial remedy that is worth naming because
+it lies outside version control. Fourteen frozen checkouts of the module,
+dated 2025-11-25 through 2026-09-18, survive on the developer's machine as
+by-products of installation testing. They are independent witnesses to the
+repository's state at fourteen dates, immune to squash and pruning, and they
+are what surfaced the orphaned commit above. A study that intends to be
+auditable should keep such snapshots deliberately rather than rely on their
+accidental survival.
+
 ### 6.7 Frequency and severity
 
 The incident forensics pass catalogs **~75 distinct bugs/CI failures/
@@ -1243,7 +1378,10 @@ The strongest positive evidence is now twofold. First, the **side-effect bugs**:
 consolidating duplicated cents-math (a DRY refactor, not a bug hunt) surfaced
 *four real-money truncation bugs that no review had flagged*
 (`(int)(19.99*100) = 1998`, charging €19.98). Discipline found defects that
-inspection missed. Second, and new in this revision, the **1.69:1 test-to-source
+inspection missed — an *observation*, not a tested result: the tester filed six
+different amount-related bugs on the same subsystem with zero overlap, but the
+probability of zero overlap cannot be computed without the size of the defect
+pool, which is unknowable (`06` N-5). Second, and new in this revision, the **1.69:1 test-to-source
 write ratio** (§4.7) and the **absence of crunch** (§4.4): the project's own
 output profile is what a disciplined process looks like from the outside, and
 neither figure depends on the project's testimony about itself.
@@ -1313,6 +1451,12 @@ underpowered or out of reach is maintained in
   with the standing caveat that sessions cannot see non-committing work.
 - **Newly quantified:** the journal undersamples active days 2.2× (§4.1), and
   narrates activity during a measured two-month trough (§6.4).
+- **Corrected in this revision (2026-09-21):** the `docs` category was read as
+  the engineering journal; decomposed by path, the journal is ≈30% of it
+  (≈2.0× source), and ≈29% is pre-journal business-strategy material (§4.7).
+- **Demoted in this revision:** a busy-day CI effect (72% vs 56%) that is
+  significant only if commits are treated as independent; day-level permutation
+  gives p = 0.18 (§4.13h). Reported as a direction, like the 57% → 46% trend.
 - **Weakened claim:** AI-authorship share is unverifiable before 2026-05-07
   (§4.9). This is the revision's most significant loss of confidence.
 - **Newly closed off:** the estimate-vs-actual study is **not recoverable from
@@ -1330,7 +1474,7 @@ underpowered or out of reach is maintained in
   precision.
 - **Still single-sourced:** findings-closed counts and quality-gate pass rates
   are not derivable from git and rest on AI-authored completion reports (§4.5).
-- **Survivorship, all four corpora:** the journal is written by the party being
+- **Survivorship, all five corpora:** the journal is written by the party being
   studied; the Jira export is a snapshot with no transition history; the git
   record lost provenance twice during the study window — a mainline squash and
   the deletion of at least two feature branches (§6.6); and Corpus D adds a
@@ -1352,119 +1496,192 @@ underpowered or out of reach is maintained in
 
 ### 7.4 What generalizes
 
-Three findings feel robust beyond this case.
+Six findings travel beyond this case. None of them is the former title's thesis,
+and the first draft's claim that "the harness is the load-bearing variable" is
+withdrawn from this list: it is a causal claim, and §7.2 says why no causal
+claim is available here.
 
-First, **the harness is the load-bearing variable**: the same assistant that
-collapsed commits, over-claimed, and shipped hollow tests also produced 64
-clean, gate-passing, test-bearing commits in two days — the difference is
-process, not prompt.
-
-Second, **verification is cheap and mandatory**: a 1–2 minute grep or `git show`
-against each agent claim repeatedly caught real errors. This revision is itself
-an instance of the principle at a larger scale — a day of mining the commit
-record corrected a peak-vs-median conflation, an authorship overclaim, a
-retracted confound, and a 41% undercount, in a paper whose subject is the value
-of verification.
-
-Third, and new: **self-reported logs are not a substitute for machine-readable
-provenance.** The journal was an unusually good log — daily, candid, structured
-— and it still undersampled its own project by half, narrated a two-month idle
-period as active, and miscounted its flagship epic in both directions. Projects
-that intend to be studied, or audited, should treat commit-level provenance as
-the primary record and prose as commentary on it.
-
-Fourth, and the one substantive engineering claim in this paper that is both
-tested and transferable: **in framework-coupled, cross-repo work, build failure
-is independent of change size.** Commits of ≥500 insertions failed at 63% against
-60% for smaller ones — Fisher p = 0.66, Spearman ρ = −0.024 (§4.13c). The
-competing hypothesis is falsifiable and specific: if pipeline failures were
-defects in changed logic, failure probability must rise with the volume of changed
-logic. It does not, at all. Two practical consequences follow, and neither is
-specific to this project: **sizing commits does not protect the build**, and
-effort spent on environment hardening pays measurably — this project's failure
-rate fell 11 points (§4.13e, p = 0.0014). This is the paper's clearest instance of
-a result available *only* by joining corpora: neither the commit record nor the CI
-record alone can produce it.
-
-Fifth, and the strongest methodological lesson of this revision: **a single
-actor's record cannot describe a multi-actor system.** The journal is a
-developer's log, so it documents the developer's process in fine detail and omits
-the tester entirely — yet an independent human filing 92.5% of the defect reports
-is plainly part of how this project achieved quality (§4.12a). Nothing in the
-journal is false; the omission is structural, and no amount of candour inside one
-person's log would have surfaced it. Case studies of AI-assisted engineering
-should sample the issue tracker as a matter of course, precisely because it
-records the actors a developer's log cannot see.
+1. **A high-quality self-account drifts in predictable directions.** Daily,
+   candid, structured, accurate to the line on mechanical facts — and still
+   undersampling activity 2.2×, understating volume by 41%, over-reporting
+   continuity, omitting actors outside its author's role, and over-attributing
+   documentation to itself by half. These directions are not random; a study
+   correcting for one does not correct for the others. Anyone designing an
+   AI-SE study on diaries, retrospectives or agent completion reports should
+   expect all five.
+2. **A single actor's record cannot describe a multi-actor system.** The
+   journal documents the developer's process in fine detail and omits the
+   tester entirely; an independent human filing 92.5% of defect reports is
+   plainly part of how the project achieved quality (§4.12a). Case studies of
+   AI-assisted engineering should sample the issue tracker as a matter of
+   course, because it records the actors a developer's log cannot see.
+3. **Trailer series measure convention adoption, not AI involvement.** A
+   step from 0.4% to 58.8% on one date, with heavy assistant use documented
+   throughout the untrailered period, is a dated counterexample to a technique
+   currently gaining traction (§4.9).
+4. **Provenance loss is invisible from inside the repository.** A release
+   squash and routine branch pruning removed history during the study window;
+   neither is detectable without an outside witness, and every count from a
+   repository with ordinary hygiene is a lower bound (§6.6).
+5. **In framework-coupled, cross-repository work, build failure was
+   independent of change size**, and that null is the argument. A
+   logic-failure account predicts a gradient; there is none (p = 0.66,
+   ρ = −0.024), failures cluster as a persistent state (85.7% follow a
+   failure), and the machine outspent the humans. The practical consequence:
+   sizing commits does not protect the build. Whether hardening paid is a
+   direction (57% → 46%), not a result (p = 0.18); so is the busy-day effect
+   (§4.13h). This is the paper's clearest instance of a result available *only*
+   by joining corpora.
+6. **Verify the instrument before quoting it.** The mutation tool returned a
+   confident percentage on every invocation and was wrong three times; a
+   published clustering claim, tested against our data, exposed that two of our
+   own tests assumed independence they did not have. Both corrections came
+   from checking against an outside reference, which is the same discipline
+   the project applied to the agent's claims at 1–2 minutes per check (§6.3).
+   A study of verification should expect to be verified, and this one was.
 
 ---
 
 ## 8. Related work
 
-This study sits alongside benchmark-style evaluations of code LLMs (function
-synthesis, bug-fix rates) and industrial adoption surveys, but differs in unit
-of analysis: a **single system followed for months**, with process and failures
-recorded contemporaneously. Methodologically this revision moves the paper
-closer to mining-software-repositories (MSR) practice — commit-level extraction,
-session reconstruction from timestamps, authorship-trailer analysis, issue-tracker
-joins, and CI-outcome mining — applied to a partly AI-authored corpus, and
-combines it with an experience-report narrative that MSR work usually lacks.
+A fuller, graded review is in [`08-literature-review.md`](08-literature-review.md);
+this section states where each result of this paper lands against it. Read
+status is as marked there — several entries rest on abstracts and must be read
+in full before a venue draft cites them.
 
-The pairing is the methodological contribution: **the journal supplies mechanism,
-the machine records supply measurement, and each catches the other's errors.**
-Two literatures are adjacent and should be engaged in the venue draft. The
-**CI/build-failure mining** literature (studies of build-breakage prediction and
-its features on public CI corpora) is the natural comparison for §4.13 — notably
-because a recurring finding there is that change-size features *do* carry
-predictive signal, which makes this project's flat non-association (p = 0.66,
-ρ = −0.024) a case that needs explaining rather than a confirmation. The
-**inspection-versus-testing** experiments of the Basili era are the lineage for
-the disjoint-yield observation in `03-topics-technical.md` (TECH-5).
+**Self-report and measurement.** METR's 2025 field experiment (arXiv:2507.09089)
+found experienced developers 19% slower with AI while believing themselves 20%
+faster. Our RQ1 result is the same finding by an independent route — a
+self-authored journal against the project's own machine records — and extends
+it from perceived *speed* to documented *volume, continuity, scope and actors*,
+with the direction reversed on volume: the journal understated its output. Peng
+et al.'s Copilot RCT (2023) we cannot address; we have no control arm, and §4.2
+shows why repository metrics cannot supply a rate to compare.
 
-A full related-work section is deferred to the venue draft, and it is this
-paper's largest missing piece.
+**Mining coding-agent activity.** Robbes, Matricon, Degueule, Hora and
+Zacchiroli (MSR 2026, arXiv:2601.18345) catalogue the perils of mining agent
+traces — partial, arriving over time, heterogeneous, lost. §4.9 and §6.6 are a
+single-project instance of each peril with the whole artifact available, and
+with ground truth an ecosystem study cannot have: the journal documents heavy
+assistant use across seven months of 0% trailer coverage. The commit-provenance
+dataset of arXiv:2607.02774 separates "rewritten away" from "never collected";
+we are a primary-source case of the first with a recovered witness, and add a
+third mechanism (CI retention) outside version control. *Agentic Much?* (TOSEM,
+arXiv:2601.18341) estimates 22–29% ecosystem agent adoption by February 2026;
+our 86% trailer coverage by August 2026 is a project convention, not an adoption
+curve, which is one more reason the series cannot be read as one.
+
+**Who does the oversight.** Agarwal, Miller, Kästner and Vasilescu
+(arXiv:2607.07980), from 3,100 coded practitioner documents, propose that "the
+team sets the sign" of a coding agent's effect through how it structures review.
+§4.12a is a measured instance — one team, V = 0.859 — of a proposition that
+currently rests on discourse; they also state, independently, the sign-flip
+problem we met in §4.13 and which is why we report both framings there. Garousi
+(arXiv:2606.05770) characterises the oversight burden qualitatively without
+asking who bears it; here it was borne by a distinct role. Monperrus
+(arXiv:2606.13175) argues agents supersede human inspection; our case is a
+counterexample to the strong reading — the pair did not find its own behavioural
+defects — and sits inside his own carve-out for regulated systems, with the
+construct caveat that the tester performed black-box testing, not diff review.
+
+**Test effectiveness.** Inozemtseva & Holmes (ICSE 2014) and Zhang & Mesbah
+(FSE 2015) established that coverage does not, and assertions do, track suite
+effectiveness, and that size confounds both. §4.14 confirms this on one suite at
+our own expense: 1.69:1 and ≈2.3 assertions per test were jointly blind to a
+30-point mutation gap. Hora & Robbes (MSR 2026, arXiv:2602.00409) ask whether
+coding agents over-mock; `MethodCallRemoval` as the top escape category (85 of
+469) is their phenomenon measured rather than anecdotal. No industrial
+mutation-score paper we located reports a run-to-run stability check; §4.14
+shows why one is needed.
+
+**CI failure.** The TravisTorrent-era prediction literature reports churn and
+commit-count as useful predictors of build outcome; in this project they carry
+no signal (§4.13c), which Huang, da Costa, Dick and El Mezouar
+(arXiv:2605.05564) explain: where a material share of failures is unrelated to
+the patch, size cannot predict them, and our project — at roughly double the
+published closed-source failure rate of 26%, with 85.7% of failures following a
+failure against a published benchmark of >50% — is the extreme end of their
+phenomenon. Testing that clustering claim is what exposed the independence
+assumption in our own earlier tests. *Continuous Integration Theater*
+(arXiv:1907.01602) is complicated rather than confirmed here: a pipeline red
+half the time was nonetheless actively tended, though the tending's effect does
+not reach significance.
+
+**Defect detection.** Basili & Selby (TSE 1987) and the Juristo, Moreno and
+Vegas replication (2003) found that techniques detect different fault classes.
+The disjoint yields of refactoring and black-box testing on the money subsystem
+(§7.1) are an instance of that lineage with a new channel — LLM-assisted
+refactoring — and, as stated there, an observation rather than a result.
+
+**Work rhythm.** Claes, Mäntylä, Kuutila and Adams (ICSE 2018) found two-thirds
+of developers keep office hours, more so when hired; §4.4 sits at the extreme of
+that group. *TGIF* (EMSE 2025) reports rising night and weekend commits over
+time; this 2025–26 project runs the other way, which is a weak counterexample
+to a trend with an obvious alternative explanation in employment context.
+
+**What the literature took from us.** Liu et al. (*Debt Behind the AI Boom*,
+arXiv:2603.28592) find that >15% of AI-authored commits introduce static issues;
+our null on AI-trailered commits versus CI outcome (§4.13d) cannot see what
+their instrument sees and is stated only as "this project's CI did not
+discriminate." PCI DSS 6.4/6.5 requires an auditable change-control record and
+does not mandate the commit graph; §6.6 is worded as the conditional claim that
+survives. And the build-failure clustering benchmark, tested against our data,
+withdrew one of our tests and demoted another — the most useful single thing
+the literature did for this paper.
 
 ---
 
 ## 9. Conclusion
 
 An LLM assistant carried a large share of the production coding for a real,
-money-handling payment module over ten months. On its best two days the pair
-produced 64 reviewed, tested, gate-passing commits; across the whole span the
-project wrote 1.69 lines of test code per line of production code, grew from 493
-to 2,109 test methods, and did so in ≈140 measured hours of working time that
-included **zero Saturdays**.
+money-handling payment module over ten months, and the engineer driving it kept
+an unusually good daily record of how. This paper is what happened when that
+record was checked against the project's commits, issues, CI runs and a mutation
+baseline. The record was accurate to the line on what it could count and wrong
+in every direction on what it could not see: it documented fewer than half the
+days the project shipped code, undersold its own flagship epic by 41%, narrated
+two nearly idle months as active, described a three-year, ten-person project as
+seven months of one developer and an assistant, never mentioned the tester who
+found 92.5% of its bugs, and — through our own earlier revision — claimed twice
+the documentation output it produced. None of that was dishonest. It was the
+view from one seat.
 
-The same project also violated an explicit "do not commit" order, collapsed
-commits, over-claimed and under-counted, shipped tests that tested nothing,
-mislabelled a fix under a neighbouring ticket, and squashed away eight months of
-its own history at release. Both sets of facts are true, and the reconciliation
-is the paper's thesis: **the quality of AI-assisted output tracked the rigidity
-of the process harness around it** — TDD as a hard boundary, quality gates as the
-definition of done, single-phase sequential dispatches, and cheap mandatory
-verification of every agent claim.
+What the machine records establish stands independently of the journal: test
+code outweighed production code 1.69 : 1 in every month; the work landed inside
+ordinary hours with zero Saturdays in 716 commits; the cadence has no meaningful
+central rate; authorship trailers were a convention adopted on one day and
+measure nothing before it; defect discovery was a separate human role with
+near-deterministic separation from the engineer; CI failed on half of all runs,
+outspent the humans in wall-clock, stayed red in streaks, and did so
+independently of how much code a commit changed; and the suite the project was
+proud of detects 70% of the semantic changes to code it executes, fully
+verifying the money arithmetic and leaving the glue around it exposed.
 
-And a fourth machine record — 979 CI runs — reframes where the effort actually
-went. Continuous integration failed on **half of all runs (49.7%)**, consumed
-**169.5 hours** of wall-clock against roughly 140 hours of measured human
-activity, and spent 53% of that on runs that failed. Most tellingly, that failure
-was **statistically independent of how much code a commit changed** (p = 0.66,
-ρ = −0.024): the dominant cost of this project was not writing the logic, and not
-the logic being wrong, but the environment the logic had to build in.
+Three of our own claims did not survive the same treatment — a coin-flip test,
+an improvement trend, and a busy-day effect, each significant when runs or
+commits were treated as independent and each at p ≈ 0.18 when they were not —
+and the mutation score was wrong three times before it was right. We report
+these as the most credible part of the paper. A study whose subject is that
+agent claims must be verified at 1–2 minutes each has no standing to exempt its
+own.
 
-One qualification belongs in the conclusion rather than a footnote. The harness
-was not the whole apparatus: an independent human tester filed 92.5% of this
-project's bug reports, a fact absent from the developer's journal and visible
-only in the issue tracker. The defensible claim is therefore narrower and more
-useful than "an AI built a payment module": **an AI, a disciplined developer, a
-dedicated tester and a project manager built it, and the AI carried the bulk of
-the typing under a process that assumed it would be wrong.**
+The former title asserted that discipline beat cleverness. The record is
+consistent with that and cannot establish it: there is no counterfactual, one
+operator, and six models in four months. What the record does establish is
+narrower and more useful. **A single actor's account of an AI-assisted project —
+however candid — will undersample activity, understate volume, over-report
+continuity and omit the actors it cannot see; trailers will tell you when a
+convention was adopted, not when the AI arrived; the repository will have
+forgotten some of what happened and will not tell you so; the mutation tool may
+lie confidently; and the cost that dominates a framework-coupled project can be
+shown to be environmental by the correlation that is absent rather than the one
+that is present.** Each of those is a claim about how to study this kind of work,
+and each was paid for by retracting something we had already written.
 
-This revision adds a corollary the first draft could not have reached, because
-it took its subject's word. Verification applies to the study as much as to the
-code: measuring the commit record retracted a confound, corrected a rate by an
-order of magnitude, and withdrew an authorship claim for the majority of the
-project's life. The developer's own summary, written in the log after the
-hardest sprint, survives all of it: *"Discipline > cleverness."*
+The developer's maxim, written in the log after the hardest sprint, is
+*"Discipline > cleverness."* We leave it where it belongs: as the hypothesis
+this project ran on, which its own records were good enough to test and not
+good enough to prove.
 
 ---
 
@@ -1489,7 +1706,7 @@ revision). Divergences are the point of the table.
 | Unit tests | 852 → ~1,407 (PHPUnit) | 493 → 2,109 methods (different metric) | series not comparable |
 | Package-split discontinuity | "most important gotcha", unresolved | conservative: ≤7% methods, ≤1% src LOC | **resolved** |
 | Test : source write ratio | asserted TDD | **1.69 : 1** (+150,321 / +88,896) | **B confirms A** |
-| Docs volume | 462 files / 113,098 lines | +585,998 inserted lines (4.4× src) | B only |
+| Docs volume | 462 files / 113,098 lines | +585,998 `docs` lines (4.4× src) of which the journal is **≈177,600 (≈2.0× src)**; ≈168,200 are pre-journal strategy decks | **our earlier revision over-attributed 2×** |
 | Contributors | "single-developer" | 3 humans (87% / 8.8% / 2.7%) + bot | **A retracted** |
 | AI-authored share | "primary code author" | trailers on 149/716 (20.8%); 0% pre-May-2026, 86% Aug | **A unverified pre-May** |
 | Model generations | Opus 4.7 / 4.8 bylines | 6 distinct strings, May–Aug 2026 | B refines A |
@@ -1511,10 +1728,13 @@ revision). Divergences are the point of the table.
 | CI outcomes | "CI/infra was the largest cluster" | **487 failure / 453 success / 39 cancelled of 979 runs — 49.7%** | **D quantifies A** |
 | CI time cost | not tracked | **169.5 h** wall-clock; **90.1 h (53%)** in failing runs; vs ≈140 h human sessions | D only |
 | Failure vs commit size | not considered | **no association** — 63% (≥500 ins.) vs 60%; Fisher **p = 0.66**, ρ = −0.024 | **D-only, tested null** |
-| CI trend | hardening described | **57% → 46%** failure across 2026-04-01, Fisher **p = 0.0014** | **D confirms A** |
+| CI trend | hardening described | **57% → 46%** across 2026-04-01; nominal p = 0.0014, **p = 0.18** after clustering correction | **D agrees in direction; not significant** |
+| Busy days vs CI | "tens of commits/day" on the epic | burst-day commits **72%** vs **56%** failing; Fisher p = 0.0014, **day-permutation p = 0.18** | **D-only; direction, not a result** |
+| Time to green | CI "loops" narrated | 74 streaks; median **2 runs / 4.1 h**, 75th pct 28.7 h, max **358 h**; 23 streaks ≥5 runs | **D quantifies A** |
+| Sub-sprint → commit mapping | "one phase, one commit" | **9/13 (69%)** span >1 commit, median 5; vs ordinary numbering p = 1.00 | **B: failed on its own terms; comparison underpowered** |
 | AI commits vs CI | not claimed | **59% vs 61%** failing (p = 0.88) — confounded null | D only |
 | CI provenance | unremarked | **234/979 runs (24%)** on no surviving ref; older runs past retention **gone** | **D-only failure** |
-| Test effectiveness | "1,407 tests", TDD asserted | **Covered Code MSI 70%** — 1,592 mutants, 469 escaped, reproducible | **E quantifies A** |
+| Test effectiveness | "1,407 tests", TDD asserted | **Covered Code MSI 70%** — 1,592 mutants, 469 escaped, reproducible; **0 escapes** in the three money-arithmetic classes | **E quantifies A** |
 | Hollow tests after remediation | "false-positive tests removed" | **`MethodCallRemoval` = 85/469 escapes**, the largest category | **E complicates A** |
 | Tooling trustworthiness | not considered | first three measurements non-reproducible (0–1,019 mutants); cause was Infection's random-seeded initial run | **E-only, methodological** |
 
@@ -1547,7 +1767,7 @@ Git (Corpus B), key commits:
 Fifteen CSVs in [`../data/`](../data/), with schema, caveats and reproduction
 commands in [`../data/README.md`](../data/README.md), the export scripts
 (`fetch_actions.sh`, `build_actions.py`), and `stats.py`, which recomputes every
-statistical test cited in this paper:
+statistical test cited in this paper (T1–T12):
 
 | File | Grain | Rows |
 |---|---|---|
@@ -1565,7 +1785,7 @@ statistical test cited in this paper:
 | `actions_runs.csv` | one workflow run, joined to its commit and that commit's LOC | 979 |
 | `actions_by_commit.csv` | one commit with ≥1 run: LOC beside run outcomes | 444 |
 | `actions_workflows.csv` | repo × workflow | 41 |
-| `mutation_escaped.csv` | one escaped mutant: file, line, mutator | 122 |
+| `mutation_escaped.csv` | one escaped mutant: file, line, mutator | 469 |
 
 Every figure in §4 and Appendix A is a direct aggregation over these files, and
 every p-value is reproducible with `python3 data/stats.py`. Author email

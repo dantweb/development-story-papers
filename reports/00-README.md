@@ -18,7 +18,7 @@ independent machine records** rather than taken at its word.
 | **B** | the commit record | 2025-10-21 → 2026-08-20 | 716 commits (`stripe-wallet` 586, `payment-base` 130) | *what actually landed*, and when, to the minute |
 | **C** | the Jira issue record | 2023-05-30 → 2026-06-22 | 156 issues of project STRP | *who asked for the work and who found the defects* |
 | **D** | the GitHub Actions history | 2025-10-21 → 2026-08-20 | 979 workflow runs, joined to commits on `head_sha` | *what happened to each commit after it landed* |
-| **E** | a mutation-testing run | executed 2026-08-24 | Infection 0.31.9 over 462 mutants against the live suite | *whether the tests actually verify anything* |
+| **E** | a mutation-testing run | executed 2026-08-24 | Infection 0.31.9, **1,592 mutants** against the live suite, deterministic | *whether the tests actually verify anything* |
 
 A is self-reported prose. B, C, D and E are machine records, extracted to
 [`../data/`](../data/) — 15 CSVs, a schema and caveats document
@@ -50,7 +50,7 @@ divergences rather than the agreements.
 
 | File | What it is | Corpora | Status |
 |------|------------|---------|--------|
-| [`01-flagship-paper-ai-assisted-payment-module.md`](01-flagship-paper-ai-assisted-payment-module.md) | **Flagship paper** — *Discipline over Cleverness.* Abstract (a concrete spoiler), methods over three corpora, quantitative results §4.1–§4.12, the collaboration model, failure analysis, threats to validity, and an appendix table putting every journal claim beside its measured value. | A+B+C | Full draft, revised |
+| [`01-flagship-paper-ai-assisted-payment-module.md`](01-flagship-paper-ai-assisted-payment-module.md) | **Flagship paper** — *What the Journal Got Wrong.* Retitled 2026-09-21 (formerly *Discipline over Cleverness*). Six enumerated divergences between the self-account and the record, eight tested results, three of our own claims demoted, a real related-work section drawn from `08`, and an appendix table putting every journal claim beside its measured value. | A+B+C+D+E | Full draft, revised |
 | [`02-topics-project-management.md`](02-topics-project-management.md) | **3 PM topics** (PM-1…PM-3) as extended abstracts, each with **Git** and **Jira verification** blocks. | A+B+C | Proposals, verified |
 | [`03-topics-technical.md`](03-topics-technical.md) | **5 technical topics** (TECH-1…TECH-5), same treatment. | A+B+C | Proposals, verified |
 | [`04-topics-security.md`](04-topics-security.md) | **2 security topics** (SEC-1, SEC-2), same treatment. | A+B+C | Proposals, verified |

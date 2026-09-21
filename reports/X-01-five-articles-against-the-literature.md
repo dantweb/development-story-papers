@@ -105,8 +105,11 @@ Three re-measurements in August 2026 (M-30's determinism fix, M-27's
 demotion, M-23's withdrawn test) were propagated to `05`, `06` §2 and `07`'s
 Tier S table but **not everywhere**. The following are stale and should be
 fixed before any article below is drafted, because each is the kind of
-internal inconsistency a reviewer will find first. **None has been applied by
-this review**; the list is the deliverable.
+internal inconsistency a reviewer will find first. **Status 2026-09-21: every row
+below has been applied** — the flagship, both READMEs and `data/README.md`
+during the flagship revision, and `03`, `05` (M-17), `06`, `07` and `08` in a
+follow-up pass the same day. The table is retained as the record of what was
+stale and why.
 
 | File : line | Stale text | Should read |
 |---|---|---|
@@ -120,6 +123,8 @@ this review**; the list is the deliverable.
 | `reports/08-literature-review.md` : 333 | §3.3 cites the 11-point improvement at p = 0.0014 as evidence against "CI theatre" | descriptive only |
 | `reports/08-literature-review.md` : 737, 829 | "`MethodCallRemoval` **28 of 122**" (§7.3 item 2 and §8 summary row 2.3); §7.3 item 1's file list | 85 of 469; file list per §1.2 above |
 | `reports/07-lessons-learned.md` : 729 | "Sub-sprint decomposition … **Measured and refuted**" | contradicts Tier U (same file, line 521–545) and line 582; should read "failed on its own terms; comparison underpowered (p = 1.00)" |
+| `reports/05-measurements.md` : 407–413 (M-17) and the former flagship §4.7 | "`docs` … **4.4× the production code** … the log-as-memory practice is, by output volume, the project's dominant activity" | the journal is **≈177,600 lines (≈30% of `docs`, ≈2.0× src)**; ≈168,200 lines are pre-journal strategy decks under `STRP-52`. **Fixed in the flagship and in `05` M-17, 2026-09-21** |
+| `data/stats.py` : 6 | hardcoded `D='/home/dtkachev/dantweb/…/data/'` — the script could not run from this checkout | **fixed**: data dir resolved from the script's own location; T11–T12 added |
 | `reports/07-lessons-learned.md` : 131–165 | LL-3 has **two items numbered 2b and two numbered 5**, and lesson 3 contains two overlapping sentences with different file lists (the old run's and the new run's) | renumber; keep the corrected list only |
 
 Everything else spot-checked in this review — the T-table in `07`, `06` §2.0,

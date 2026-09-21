@@ -408,7 +408,7 @@ PHP modules — the class of failure most under-documented and most expensive.
 > | CI wall-clock | **169.5 h**, of which **90.1 h (53%)** in failing runs |
 > | vs human session time | ≈140.1 h — **the machine spent longer than the humans** |
 > | Failure vs commit size | ≥500 insertions **63%**, <500 **60%** — Fisher **p = 0.66**, Spearman **ρ = −0.024** |
-> | Trend | 57% → 46% failure across 2026-04-01, Fisher **p = 0.0014** |
+> | Trend | 57% → 46% failure across 2026-04-01 — nominal Fisher p = 0.0014, **p = 0.18 after correcting for failure clustering** (M-28); descriptive only |
 >
 > **The zero correlation with commit size is the strongest evidence the topic
 > has.** If these were logic failures they would scale with the volume of changed
@@ -417,9 +417,10 @@ PHP modules — the class of failure most under-documented and most expensive.
 > flaky E2E are indifferent to line count. A thesis that previously rested on
 > narrated sagas now rests on a measured non-association.
 >
-> The 11-point improvement (p = 0.0014) also gives the topic something it lacked:
-> evidence that the permanent regression probes and converged dependency auth
-> *worked*, rather than just being recommended.
+> The 11-point improvement is *consistent with* the permanent regression probes
+> and converged dependency auth having worked — but it is **not a tested result**:
+> run outcomes are autocorrelated (lag-1 0.680), and the corrected p is 0.18
+> (`08` §7.2). Report the direction, not a finding.
 >
 > **New caveat this data introduces.** A `failure` conclusion is friction, not
 > necessarily a broken build — cancelled infrastructure, flaky E2E and expired

@@ -22,7 +22,7 @@ Five corpora underpin the work:
   2025-10-21 → 2026-08-20**, joined to the commits on `head_sha`. The only corpus
   that records what happened to each commit after it landed.
 
-- **A mutation-testing run** *(added 2026-08-24)* — **Infection over 462 mutants**
+- **A mutation-testing run** *(added 2026-08-24)* — **Infection over 1,592 mutants**
   against the live suite. The only corpus that speaks to whether the tests
   actually verify anything.
 
@@ -35,7 +35,7 @@ record and the machine records are used to check each other.
 | File | What it is |
 |------|------------|
 | [`reports/00-README.md`](reports/00-README.md) | Index + shared data-quality caveats. |
-| [`reports/01-flagship-paper-ai-assisted-payment-module.md`](reports/01-flagship-paper-ai-assisted-payment-module.md) | **Flagship paper** — *Discipline over Cleverness: A Longitudinal Case Study of AI-Assisted Development of a Production Payment Module.* Revised 2026-08-20 against the measured commit record. |
+| [`reports/01-flagship-paper-ai-assisted-payment-module.md`](reports/01-flagship-paper-ai-assisted-payment-module.md) | **Flagship paper** — *What the Journal Got Wrong: Auditing Ten Months of AI-Assisted Development of a Payment Module Against Its Commit, Issue, CI and Mutation Records.* Retitled and sharpened 2026-09-21: the audit is the contribution, the "discipline" thesis is the claim under test, and a documentation over-attribution in our own earlier revision is corrected. |
 | [`reports/02-topics-project-management.md`](reports/02-topics-project-management.md) | 3 project-management topics (extended abstracts). |
 | [`reports/03-topics-technical.md`](reports/03-topics-technical.md) | 5 technical topics (extended abstracts). |
 | [`reports/04-topics-security.md`](reports/04-topics-security.md) | 2 security topics (extended abstracts). |
@@ -73,8 +73,9 @@ Measured from the GitHub Actions record:
   the time, <500 fail 60% (Fisher **p = 0.66**, Spearman **ρ = −0.024**). The
   *absence* of a gradient is the strongest evidence that the dominant cost was
   environmental, not logical — a logic-failure model predicts a steep one.
-- **CI hardening measurably worked**: failure fell **57% → 46%** across
-  2026-04-01 (**p = 0.0014**).
+- **CI hardening appears to have worked, descriptively**: failure fell **57% → 46%**
+  across 2026-04-01 — nominal p = 0.0014, but **p = 0.18** once failure clustering
+  is modelled, so it is a direction, not a tested result.
 - **AI-attributed commits were no more CI-fragile** (59% vs 61%, p = 0.88) —
   a confounded null, but worth stating.
 

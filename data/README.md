@@ -173,7 +173,7 @@ random position. Coverage driver note: `xdebug.mode` in this image is
 
 ## Statistical tests
 
-`stats.py` recomputes every test cited in
+`stats.py` (T1–T12; T11 burst-day CI failure with a day-level permutation test and T12 time-to-green streaks were added 2026-09-21) recomputes every test cited in
 [`../reports/07-lessons-learned.md`](../reports/07-lessons-learned.md) ("Which
 lessons the data can actually prove") from the CSVs above, including the
 Actions tests (T9). Run it with

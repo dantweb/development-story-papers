@@ -400,21 +400,27 @@ Also: **102 distinct commit subjects are reused** across multiple commits
 — `"STRP-78 Extract paymenmt component"` **56×** (typo included), `"STRP-135
 PaymentComponent -> PaymentBase namespace refactoring"` 10×, `"up"` 10× — and
 **33 subjects contain spelling errors**. Only **61% of commits (436/716)** carry
-a ticket reference. **11 merges.** On **2026-07-02 the `stripe-wallet` mainline
-was squashed** (`6e828a242d6b`, 562 files re-added, +18,417 src / +44,534 tests
-/ +19,803 docs); the **491 pre-squash commits survive only on
-`b-7.4.x-LEGACY`**. Meanwhile `docs` is the **largest artifact class by volume**:
-**+585,998 / −194,375** across 4,005 file-changes — **4.4× the production code**.
+a ticket reference. **11 merges.** Meanwhile `docs` is the **largest artifact
+class by volume**: **+585,998 / −194,375** across 4,005 file-changes — 4.4× the
+production code as a *path category*. **Corrected 2026-09-21:** decomposed by
+path in the repository (all refs, squash excluded), the engineering journal
+(`daniil_dev_log`) accounts for **≈177,600 of those lines (≈30%, ≈2.0× src)**;
+**≈168,200 (≈29%)** are business-strategy and market-hypothesis material (HTML
+decks under `docs/payment-component/vc`) committed under `STRP-52` on
+2025-10-27, **before the journal existed**; ≈18,300 are a literature export; the
+remainder is project documentation proper (architecture, PlantUML, API docs).
 **Shows:** two results at once. (a) A **release that destroyed eight months of
 per-commit provenance** — a real finding for a PCI-DSS-obligated module, and one
 the journal never mentions; this research programme survives only because a
-legacy branch was retained. (b) The **"log as memory" practice is, by output
-volume, the project's dominant activity** — whether that is admirable discipline
-or documentation overproduction is a genuine open question and a candidate for
-its own paper.
+legacy branch was retained. (b) The **"log as memory" practice is the single
+largest class of *authored* output at ≈2.0× the production code** — not the
+4.4× an earlier revision quoted, which read the whole `docs/` category as the
+journal. Whether ≈2× is admirable discipline or documentation overproduction is
+a genuine open question, priced in [`X-02`](X-02-five-deeper-studies.md) S-4.
 **Caveat:** reused subjects make it impossible to audit the decomposition
-conventions of PM-1 from history; the docs figure includes the dev log itself,
-so it measures the *research corpus* as much as the deliverable.
+conventions of PM-1 from history; the `docs` path category mixes the journal
+(the research corpus), pre-project strategy material and the deliverable's own
+documentation, so it must be decomposed before any ratio is quoted.
 **Two refinements from the branch-deletion finding.** First, message quality
 tracked **branch role**: the orphan feature-branch tip is titled `test` while the
 mainline commit that superseded it is properly titled — a more accurate reading
