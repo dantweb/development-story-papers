@@ -6,6 +6,65 @@ claims that [`01`](01-flagship-paper-ai-assisted-payment-module.md),
 [`X-02`](X-02-five-deeper-studies.md) contradict — graded by how strong the
 contradiction actually is*
 
+**Statement — what this report claims and concludes.** It claims that three
+works of this programme — the audited flagship, the five positioned articles of
+X-01 and the five deeper studies of X-02 — contradict a definable set of
+statements, and that the contradictions fall into five grades of very unequal
+strength. It concludes that the works **disprove two peer-reviewed conclusions
+in a bounded sense** — the strong reading of "coding agents supersede human
+inspection", by a case in which the agent-assisted pair found none of its own
+behavioural defects, and the transferability of churn-based build-failure
+prediction, by a setting in which the feature carries no signal — and
+**undermine one methodological premise** shared across the agent-mining
+literature, that commit trailers index AI involvement. It concludes that the
+works supply only **weak counterexamples** to two published trends (rising
+off-hours work; the CI-theatre inference), each with an alternative
+explanation the works themselves state. And it concludes that **the largest
+class of disproved statements is the subject project's own record and this
+programme's own earlier drafts**: eleven journal statements false by
+enumeration and twelve of our own claims withdrawn, demoted or corrected, none
+of which reversed a direction and all of which removed a significance or halved
+a magnitude. The report's final claim is about that ratio: an audit of a
+self-account that disproves more of itself than of others is behaving as an
+audit should, and its credibility rests on the fourth section, not the first.
+
+**Abstract.** Single-subject case studies are routinely read as refuting
+general claims they cannot touch. This report enumerates what one such study —
+a ten-month, five-corpus audit of an AI-assisted payment module — actually
+contradicts, and grades each contradiction: **D1**, a counterexample to a claim
+stated or read as universal; **D2**, a published predictor or measurement
+premise shown to carry no signal in a documented setting; **D3**, a factual
+statement false by complete enumeration; **D4**, an inferential reading
+contradicted while its source survives; **D5**, a claim of our own demoted by a
+stricter test. Against peer-reviewed work the works yield one D1/D4 pair
+(Monperrus's *End of Code Review*: a dedicated tester filed 37 of 40 bugs and
+the engineer using the assistant filed none, Cramér's V = 0.859, inside the
+paper's own carve-out for regulated systems), one D2 (churn and commit count
+predict build failure: ρ = −0.024, p = 0.66 across 444 commits, explained by a
+49.7% failure rate double the closed-source baseline and 85.7% failure
+clustering), one D2 on a shared premise (trailers as AI involvement: 0.4% →
+58.8% on one date, p = 5.2e-81, with journal ground truth for the untrailered
+seven months), one weak D1 (*TGIF*: zero Saturdays in 716 commits, with
+employment as the alternative explanation), one D4 (CI theatre inferred from
+failure rate), and one D2 on reporting practice (single-run mutation scores:
+0–1,019 mutants across seven runs of an unchanged suite). Against practitioner
+claims it yields ten rows, including that the pair is its own QA, that agents
+fabricate identifiers (0 of 61 did), that test volume shows quality (1.69 : 1
+and ≈2.3 assertions per test were blind to a 30-point mutation gap), and that
+small commits protect the build. Against the subject's own journal it yields
+eleven D3 rows, from "single-developer" to a 41% understatement of its flagship
+epic. Against our own earlier drafts it yields twelve rows, including a
+documentation figure over-attributed by 2×, a mutation score wrong by 70 points,
+and three significance claims — the CI trend, the burst-day effect, and a
+coin-flip test — that fell to p ≈ 0.18 or invalidity once dependent units were
+treated as dependent. Ten further claims these works are sometimes read as
+refuting are listed as not disproved, including METR's, which the works confirm.
+We conclude that the study's power to disprove is real but narrow, that every
+statistical overclaim in the programme came from treating dependent units as
+independent and every factual overclaim from reading an aggregate as the thing
+it contained, and that the retraction ledger is the most credible product of
+the work.
+
 A single-subject study cannot refute a distribution, an effect size or a
 survey. It can do four narrower things, and this report does not let the word
 "disproved" cover anything else. Every entry below names the claim as stated,
@@ -286,3 +345,47 @@ counterexamples to two trends**, and **disprove far more of the subject's own
 record and of our own earlier drafts than of anyone else's work**. That ratio
 is what an audit of a self-account should produce, and it is the reason the
 programme's credibility rests on §4 rather than on §1.
+
+---
+
+## 7. References
+
+Read status follows [`08`](08-literature-review.md) §9 and
+[`X-02`](X-02-five-deeper-studies.md) §9: **[08]** located and graded there;
+**[X-02]** introduced there and **not yet read in full**; **[own]** a report of
+this programme. Nothing may be cited from this document.
+
+**Works whose statements are contradicted (§1)**
+- Monperrus, M. — *The end of code review: coding agents supersede human inspection*. arXiv:2606.13175, 2026. [08 §7.4 — abstract only, not yet read]
+- Build-failure prediction on churn and commit-count features — the TravisTorrent-era literature summarised in `08` §3.1, including *Insights into Continuous Integration Build Failures* (MSR 2017). [08 §3.1, secondary]
+- Huang, da Costa, Dick & El Mezouar — *Is this build failure related to my patch? An empirical study of unrelated build failures in continuous integration*. arXiv:2605.05564, 2026. [08 §3.2, full-text] — supplies the mechanism for §1.2
+- Liu, Widyasari, Zhao, Irsan & Lo — *Debt behind the AI boom: a large-scale empirical study of AI-generated code in the wild*. arXiv:2603.28592, 2026. [08 §1.3] — affected by §1.3's premise; its own findings are **not** contradicted (§5)
+- *Agentic Much? Adoption of coding agents on GitHub*. TOSEM, arXiv:2601.18341; and *Agentic Very Much!*, arXiv:2606.07448, 2026. [08 §5.2.5] — affected by §1.3's premise
+- *TGIF: the evolution of developer commit times*. Empirical Software Engineering, 2025. [08 §4.2, secondary]
+- *Continuous Integration Theater*. arXiv:1907.01602, 2019. [08 §3.3, secondary] — the inference, not the paper, is contradicted
+- Industrial mutation-score reports — no specific paper is named as wrong; the contradicted assumption is single-run reporting (§1.6)
+
+**Works whose statements are confirmed, enhanced or instantiated, and therefore not in §1 (§5)**
+- METR — *Measuring the impact of early-2025 AI on experienced open-source developer productivity*. arXiv:2507.09089, 2025. [08 §1.2]
+- Peng, Kalliamvakou, Cihon & Demirer — *The impact of AI on developer productivity: evidence from GitHub Copilot*. 2023. [08 §1.1]
+- Robbes, Matricon, Degueule, Hora & Zacchiroli — *Promises, perils, and (timely) heuristics for mining coding agent activity*. MSR 2026, arXiv:2601.18345. [08 §2.1]
+- *Was it never collected, or rewritten away? A commit-provenance dataset…* arXiv:2607.02774, 2026. [08 §2.2]
+- Hora & Robbes — *Are coding agents generating over-mocked tests? An empirical study*. MSR 2026, arXiv:2602.00409. [08 §2.3]
+- Agarwal, Miller, Kästner & Vasilescu — *3100 opinions on code review in an AI world: building causal theory from practitioner discourse*. arXiv:2607.07980, 2026. [08 §5.2.2]
+- Garousi, V. — *Human oversight and overload: two hidden and costly burdens of AI-assisted software engineering*. arXiv:2606.05770, 2026. [08 §5.2.1]
+- Claes, Mäntylä, Kuutila & Adams — *Do programmers work at night or during the weekend?* ICSE 2018. [08 §4.1]
+- Basili, V. R. & Selby, R. W. — *Comparing the effectiveness of software testing strategies*. IEEE TSE 13(12), 1987; Juristo, Moreno & Vegas — *Functional testing, structural testing and code reading: what fault type do they each detect?* LNCS 2765, 2003. [08 §5.1]
+- Inozemtseva & Holmes — *Coverage is not strongly correlated with test suite effectiveness*. ICSE 2014; Zhang & Mesbah — *Assertions are strongly correlated with test suite effectiveness*. ESEC/FSE 2015. [08 §7.3] — confirmed on one suite (§2.4)
+- Just, Jalali, Inozemtseva, Ernst, Holmes & Fraser — *Are mutants a valid substitute for real faults in software testing?* FSE 2014; Papadakis, Shin, Yoo & Bae — *Are mutation scores correlated with real fault detection?* ICSE 2018. [X-02] — the lineage for §1.6 and X-02 S-2/S-3
+- PCI Security Standards Council — *PCI DSS v4.0*, Requirements 6.4 and 6.5. [08 §7.5, secondary] — the source of the narrowing in §2.9
+
+**Reports of this programme cited as evidence [own]**
+- `01-flagship-paper-ai-assisted-payment-module.md` — *What the Journal Got Wrong* (retitled 2026-09-21); §4.1–§4.14, §6, §7.4, §9 and Appendix A carry every measurement cited above
+- `05-measurements.md` — M-1…M-30, the data catalogue; M-17, M-23, M-27 and M-30 carry the corrected entries
+- `06-novelty-assessment.md` — N-1…N-14 and the three-paper split
+- `07-lessons-learned.md` — the inference grading (Tiers S/D/U/N/X) and the tests T1–T10
+- `08-literature-review.md` — the graded literature contacts and the two searches that broke our own results (§7.2, §7.3)
+- `X-01-five-articles-against-the-literature.md` — Articles 1–5 and the corrections queue (§1.3)
+- `X-02-five-deeper-studies.md` — studies S-1…S-5, pilots P1–P6, and §9 references
+- `data/stats.py` — tests T1–T12; T11 (burst days, day-level permutation) and T12 (time-to-green) added 2026-09-21
+- `data/README.md` — corpus schema, the mutation-testing determinism note, and the Jira and Actions caveats
